@@ -1,0 +1,16 @@
+# dune exec query-generator
+# OCAMLPARAM: unset
+# Shared cache: enabled-except-user-rules
+# Shared cache location: /Users/elaineli/.cache/dune/db
+# Workspace root: /Users/elaineli/Programs/gclts-checker/query-generator
+# Auto-detected concurrency: 8
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; fdo_target_exe = None
+#  ; build_dir = In_build_dir "default"
+#  ; instrument_with = []
+#  }
+$ /Users/elaineli/.opam/5.1.0/bin/ocamlc.opt -config > /var/folders/72/wjk0ydmn6j18cw1_h3z2_s7r0000gn/T/dune_a428ab_output
