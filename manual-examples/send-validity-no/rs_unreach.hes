@@ -31,23 +31,18 @@ s.t.
 /* Defining unreach_rs */
 unreach_rs (s:int) (x:int): bool =nu
 /* Outermost case split on s */ 
-(s = 0
-/\ 
-(forall (v:int). v = 1 => unreach_rs 1 x)
-/\
-(forall (v:int). v = 2 => unreach_rs 3 x))
-\/ 
-(s = 1
-/\
-(x = 1 => false))
-\/ 
-(s = 2)
-\/ 
-(s = 3 
-/\
-(x = 2 => false))
-\/ 
-(s = 4);
+false \/ (
+s = 0 /\ (forall (v:int). (v = 1) => unreach_rs 1 x) 
+/\ (forall (v:int). (v = 2) => unreach_rs 3 x) 
+) \/ (
+s = 1 /\ ((x = 1) => false) 
+/\ (forall (v:int). (v = 1) => unreach_rs 2 x) 
+) \/ (
+s = 2 ) \/ (
+s = 3 /\ ((x = 2) => false) 
+/\ (forall (v:int). (v = 2) => unreach_rs 4 x) 
+) \/ (
+s = 4 );
 
 /* First conjuncts: r->s transition, but predicate disabled */ 
 /*    (1) r->s:v{v=1} (2)

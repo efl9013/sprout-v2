@@ -1,0 +1,162 @@
+/* 
+Receive Validity violating finite protocol: 
+States: {0,1,2,3,4}
+Registers: {}
+Initial register values: N/A
+
+   (0) p->q:v{v=1}  (1)
+   (1) q->r:v{True} (2)
+   (2) p->r:v{True} (3)
+   (0) p->q:v{v=2}  (4)
+   (4) p->r:v{True} (5)
+   (5) q->r:v{True} (6)
+
+*/
+
+/* RCC for participant r for transitions (2) p->r:v{True} (3), (5) q->r:v{True} (6) */ 
+
+/* Expected result: invalid */ 
+/* Result: invalid */ 
+
+exists (x1:int) (x2:int). 
+   prodreach_r 2 1 /\ true /\ true /\ 
+   avail_pr_r x1 2
+s.t. 
+
+/* Defining prodreach_r */ 
+prodreach_r (s1:int) (s2:int): bool =mu
+/* Restricting the domain for states */ 
+   (0 <= s1 /\ s1 <= 6)
+/\ 
+   (0 <= s2 /\ s2 <= 6)
+/\ 
+/* First disjunct: base case */ 
+   (s1 = 0 /\ s2 = 0)
+\/
+/* Second disjunct */ 
+/* Enumerating pairs of transitions involving r where both copies can take a simultaneous step */ 
+/* 
+   (1) q->r:v{True} (2), (1) q->r:v{True} (2)
+   (1) q->r:v{True} (2), (5) q->r:v{True} (6)
+   (2) p->r:v{True} (3), (2) p->r:v{True} (3)
+   (2) p->r:v{True} (3), (4) p->r:v{True} (5)
+   (4) p->r:v{True} (5), (4) p->r:v{True} (5)
+   (4) p->r:v{True} (5), (2) p->r:v{True} (3)
+   (5) q->r:v{True} (6), (5) q->r:v{True} (6)
+   (5) q->r:v{True} (6), (1) q->r:v{True} (2)
+*/ 
+   (s1=2 /\ s2=2 /\ (exists (x1:int) (x2:int). prodreach_r 1 1 /\ true /\ true /\ x1 = x2))
+\/ 
+   (s1=2 /\ s2=6 /\ (exists (x1:int) (x2:int). prodreach_r 1 5 /\ true /\ true /\ x1 = x2))
+\/ 
+   (s1=3 /\ s2=3 /\ (exists (x1:int) (x2:int). prodreach_r 2 2 /\ true /\ true /\ x1 = x2))
+\/ 
+   (s1=3 /\ s2=5 /\ (exists (x1:int) (x2:int). prodreach_r 2 4 /\ true /\ true /\ x1 = x2))
+\/ 
+   (s1=5 /\ s2=5 /\ (exists (x1:int) (x2:int). prodreach_r 4 4 /\ true /\ true /\ x1 = x2))
+\/ 
+   (s1=5 /\ s2=3 /\ (exists (x1:int) (x2:int). prodreach_r 4 2 /\ true /\ true /\ x1 = x2))
+\/ 
+   (s1=6 /\ s2=6 /\ (exists (x1:int) (x2:int). prodreach_r 5 5 /\ true /\ true /\ x1 = x2))
+\/ 
+   (s1=6 /\ s2=2 /\ (exists (x1:int) (x2:int). prodreach_r 5 1 /\ true /\ true /\ x1 = x2))
+\/ 
+/* Third disjunct */ 
+/* Enumerating transitions in which r is unvolved */ 
+/* 
+   (0) p->q:v{v=1}  (1)
+   (0) p->q:v{v=2}  (4)
+*/ 
+   (s1=1 /\ (exists (x1:int). prodreach_r 0 s2 /\ x1=1))
+\/ 
+   (s1=4 /\ (exists (x1:int). prodreach_r 0 s2 /\ x1=2))
+\/ 
+/* Fourth disjunct */ 
+/* Copying the third disjunct, 1->2 */ 
+   (s2=1 /\ (exists (x2:int). prodreach_r s1 0 /\ x2=1))
+\/ 
+   (s2=4 /\ (exists (x2:int). prodreach_r s1 0 /\ x2=2));
+
+
+
+
+
+/* Need to define avail for each subset of P that contains the receiver, in this case r: {r}, {r,p}, {r,q}, {r,p,q} */ 
+
+/* Defining avail_pr_pqr */ 
+avail_pr_pqr (x1:int) (s:int):bool =mu 
+/* Restricting the domain of s */ 
+   (0 <= s /\ s <= 6)
+/\ 
+/* Since B = {p,q,r}, first disjunct enumerates all transitions of the form p -> q, q -> p, q -> r, r -> p, r -> q */  
+/* (0) p->q:v{v=1}  (1)
+   (1) q->r:v{True} (2)
+   (0) p->q:v{v=2}  (4)
+   (5) q->r:v{True} (6) */ 
+   (s = 0 /\ (exists (x:int). avail_pr_pqr x1 1 /\ x = 1))
+\/ 
+   (s = 1 /\ (exists (x:int). avail_pr_pqr x1 2 /\ true))
+\/ 
+   (s = 0 /\ (exists (x:int). avail_pr_pqr x1 4 /\ true))
+\/
+   (s = 5 /\ (exists (x:int). avail_pr_pqr x1 6 /\ true));
+/* Since ~B = {}, second disjunct enumerates no transitions */
+/* Since ~B = {}, third disjunct enumerates no transitions */ 
+
+/* Defining avail_pr_pq */ 
+avail_pr_pq (x1:int) (s:int):bool =mu 
+/* Restricting the domain of s */ 
+   (0 <= s /\ s <= 6)
+/\ 
+/* Since B = {p,q}, first disjunct enumerates all transitions of the form p -> r, q -> p, q -> r */  
+/* 
+   (1) q->r:v{True} (2)
+   (2) p->r:v{True} (3)
+   (4) p->r:v{True} (5)
+   (5) q->r:v{True} (6) */ 
+   (s = 1 /\ (exists (x:int). avail_pr_pqr x1 2 /\ true))
+\/ 
+   (s = 2 /\ (exists (x:int). avail_pr_pqr x1 3 /\ true))
+\/ 
+   (s = 4 /\ (exists (x:int). avail_pr_pqr x1 5 /\ true))
+\/
+   (s = 5 /\ (exists (x:int). avail_pr_pqr x1 6 /\ true));
+/* Since ~B = {r}, second disjunct enumerates all transitions of the form r -> p, r -> q */
+/* Of which there are none */ 
+/* Since ~B = {r}, third disjunct enumerates all transitions of the form r -> p, r -> q */ 
+/* Of which there are none */  
+
+/* Defining avail_pr_r */ 
+avail_pr_r (x1:int) (s:int):bool =mu 
+/* Restricting the domain of s */ 
+   (0 <= s /\ s <= 6)
+/\ 
+/* Since B = {r}, first disjunct enumerates all transitions in which r is the sender */ 
+/* Of which there are none */ 
+/* Since ~B = {p,q}, second disjunct enumerates all transitions of the form p -> q, q -> p, q -> r */ 
+/* (0) p->q:v{v=1}  (1)
+   (0) p->q:v{v=2}  (4) 
+   (1) q->r:v{True} (2)
+   (5) q->r:v{True} (6) */ 
+   (s = 0 /\ (exists (x:int). avail_pr_pq x1 1 /\ x1 = 1))
+\/ 
+   (s = 0 /\ (exists (x:int). avail_pr_pq x1 4 /\ true))
+\/
+   (s = 1 /\ (exists (x:int). avail_pr_pq x1 2 /\ true))
+\/
+   (s = 5 /\ (exists (x:int). avail_pr_pq x1 6 /\ true))
+\/
+/* Since ~B = {p,q}, third disjunct enumerates all transitions of the form p -> r, q -> r */ 
+/* (1) q->r:v{True} (2)
+   (2) p->r:v{True} (3)
+   (4) p->r:v{True} (5)
+   (5) q->r:v{True} (6) */ 
+   (s = 1 /\ x1 = 1)
+\/
+   (s = 2 /\ true)
+\/ 
+   (s = 4 /\ true)
+\/ 
+   (s = 5 /\ true);
+
+

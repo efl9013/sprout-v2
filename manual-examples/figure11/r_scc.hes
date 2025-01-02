@@ -1,28 +1,7 @@
-/* 
-Modified (non-implementable) protocol from Figure 11: 
-States: {0,1,2,3}
-Registers: {rx,ry}
-Initial register values: rx=0, ry=0
-
-Conventions: 
-- Communication variable is always v 
-- Register preservation is included explicitly 
-   (0) p->q:v{rx'=v/\ry'=ry} (1)
-   (1) q->r:v{ry'=v/\v>rx/\rx'=rx} (2)
-   (2) r->p:v{v>ry/\rx'=rx/\ry'=ry} (3)
-*/
- 
-/* Symbolic Send Coherence for participant r for this protocol enumerates the following pairs of states and transitions: 
-- (2) r->p:v{v>ry/\rx'=rx/\ry'=ry} (3), (0)
-- (2) r->p:v{v>ry/\rx'=rx/\ry'=ry} (3), (1)
-- (2) r->p:v{v>ry/\rx'=rx/\ry'=ry} (3), (2)
-- (2) r->p:v{v>ry/\rx'=rx/\ry'=ry} (3), (3)
-*/ 
-
-/* The following is the negation of SSC, because apparently the tool cannot handle implies false */ 
+/* SCC for participant r for all transitions together */ 
 
 /* Expected result: valid */ 
-/* Result: invalid */ 
+/* Result: invalid! */ 
 
 exists (s1:int) (s1':int) (x1:int) (rx_1:int) (ry_1:int) (rx_1':int) (ry_1':int) (s2:int) (rx_2:int) (ry_2:int). 
 (((s1=2 /\ s1'=3 /\ s2=0)
