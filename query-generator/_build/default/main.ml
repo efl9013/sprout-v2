@@ -222,7 +222,7 @@ let receive_validity_no : symbolic_protocol = {
 
 
 
-(* let parse_file filename =
+let parse_file filename =
   let channel = open_in filename in
   let lexbuf = Lexing.from_channel channel in
   try
@@ -241,7 +241,7 @@ let receive_validity_no : symbolic_protocol = {
       Printf.eprintf "Lexing error at line %d, character %d: %s\n"
         pos.pos_lnum (pos.pos_cnum - pos.pos_bol) msg;
       close_in channel;
-      failwith ("Lexing error in file") *)
+      failwith ("Lexing error in file")
 (* 
 let parse_file filename =
   let channel = open_in filename in
@@ -265,7 +265,7 @@ let () =
   else
     let filename = Sys.argv.(1) in
     try
-      let protocol = figure11_repaired in
+      let protocol = parse_file filename in
   (* print_endline (string_of_blocked_set ["r"; "s"; "p"]); *)
   (* Figure11 protocol has 3 participants *)
   (* generate_scc_queries_for_participant figure11 "p";
