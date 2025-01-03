@@ -19,6 +19,7 @@ let first_conjunct_from_transition (prot: symbolic_protocol) (tr: symbolic_trans
   "(" ^ 
   quantify_over_poststate_registers prot "forall" ^ 
   string_of_formula phi ^ 
+  
   " => false) \n"
 
 (* Defining the first conjunct altogether, for unreach for a pair of participants and a state *)

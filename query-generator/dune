@@ -1,7 +1,7 @@
 (executable
  (name main)
  (public_name query-generator)
- (libraries ast common prodreach unreach avail scc rcc nmc)
+ (libraries ast common prodreach unreach avail scc rcc nmc lexer parser)
  (modules Main))
 
 (env
@@ -11,6 +11,16 @@
 (library
  (name ast)
  (modules Ast))
+
+(library
+ (name lexer)
+ (libraries parser)
+ (modules Lexer))
+
+(library
+ (name parser)
+ (libraries ast)
+ (modules Parser))
 
 (library
  (name common)

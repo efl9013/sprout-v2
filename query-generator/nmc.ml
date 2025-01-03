@@ -74,3 +74,13 @@ let generate_nmc_filename_from_pair_for_participant (pair: symbolic_transition *
 	string_of_int tr2.pre ^ string_of_int tr2.post ^
 	".hes"
 
+let generate_nmc_queries_for_participant (prot: symbolic_protocol) (p: participant) (dir: string) = 
+  let transition_pairs = filter_transitions_nmc_participant (all_transition_pairs prot.transitions) p in 
+  List.iter (fun pair -> write_to_file  
+                          (Filename.concat dir (generate_nmc_filename_from_pair_for_participant pair p))
+                          (generate_nmc_from_pair_for_participant prot pair p))
+            transition_pairs 
+
+let generate_nmc_queries (prot: symbolic_protocol) (dir: string) = 
+  let participants = get_participants prot in 
+  List.iter (fun p -> generate_nmc_queries_for_participant prot p dir) participants 

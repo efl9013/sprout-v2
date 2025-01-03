@@ -1,7 +1,24 @@
 (** common.ml **)
 open Ast 
 
+(* System utilities *)
+let write_to_file filename contents =
+  let oc = open_out filename in
+  try
+    Printf.fprintf oc "%s\n" contents;
+    close_out oc
+  with e ->
+    close_out_noerr oc;
+    raise e
+
+let create_newdir path perm =
+  if not (Sys.file_exists path) then Sys.mkdir path perm
+  
+(* Protocol functions *)
 module StringSet = Set.Make(String)
+
+let add_nonexistent (p: participant) (ls: participant list) =
+  if List.mem p ls then ls else p :: ls 
 
 let get_participants protocol =
   let participant_set = 
@@ -12,6 +29,11 @@ let get_participants protocol =
     ) StringSet.empty protocol.transitions
   in
   StringSet.elements participant_set
+
+let all_distinct_participant_pairs (prot: symbolic_protocol) = 
+  let participants = get_participants prot in
+  let all_pairs =  List.concat (List.map (fun p -> List.map (fun q -> (p,q)) participants) participants) in 
+  List.filter (fun (p,q) -> p <> q) all_pairs
 
 let rec substitute_expr (e: expr) (x: variable) (y: variable) : expr = 
   match e with 

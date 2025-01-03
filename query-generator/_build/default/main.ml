@@ -7,15 +7,50 @@ open Scc
 open Nmc 
 open Rcc 
 open Printf
+open Lexer 
+open Parser 
 
-let write_to_file filename contents =
-  let oc = open_out filename in
-  try
-    Printf.fprintf oc "%s\n" contents;
-    close_out oc
-  with e ->
-    close_out_noerr oc;
-    raise e
+let send_validity_yes : symbolic_protocol = {
+  states = [0;1;2;3;4];
+  registers = [];
+  transitions = [
+    {
+      pre = 0;
+      sender = "p";
+      receiver = "q";
+      comm_var = "v";
+      predicate = Eq (Var "v", Const 1); 
+      post = 1
+    };
+    {
+      pre = 0;
+      sender = "p";
+      receiver = "q";
+      comm_var = "v";
+      predicate = Eq (Var "v", Const 2); 
+      post = 3
+    };
+    {
+      pre = 1;
+      sender = "r";
+      receiver = "s";
+      comm_var = "v";
+      predicate = Eq (Var "v", Const 2); 
+      post = 2
+    };
+    {
+      pre = 3;
+      sender = "r";
+      receiver = "s";
+      comm_var = "v";
+      predicate = Eq (Var "v", Const 2); 
+      post = 4
+    }
+  ];
+  initial_state = 0;
+  initial_register_assignment = [];
+  final_states = [2;4]
+}
 
 let send_validity_no : symbolic_protocol = {
   states = [0;1;2;3;4];
@@ -93,46 +128,160 @@ let figure11 : symbolic_protocol = {
   final_states = [3];
 }
 
-let transition_01 : symbolic_transition = 
-  { 
+let figure11_repaired : symbolic_protocol = {
+  states = [0; 1; 2; 3];
+  registers = ["rx"; "ry"];
+  transitions = [
+    { 
       pre = 0;
       sender = "p";
       receiver = "q";
       comm_var = "v";
       predicate = And(Eq(Var "rx'", Var "v"), Eq(Var "ry'", Var "ry"));
       post = 1;
-    }
- 
-let generate_scc_queries_for_participant (prot: symbolic_protocol) (p: participant) = 
-  let transitions = filter_transitions_scc_participant prot.transitions p in 
-  List.iter (fun tr -> write_to_file 
-                          (generate_scc_filename_from_transition_for_participant tr p) 
-                          (generate_scc_from_transition_for_participant prot tr p))
-            transitions 
+    };
+    {
+      pre = 1;
+      sender = "q";
+      receiver = "r";
+      comm_var = "v";
+      predicate = And(And(Eq(Var "ry'", Var "v"), Gt(Var "v", Var "rx")), Eq(Var "rx'", Var "rx"));
+      post = 2;
+    };
+    {
+      pre = 2;
+      sender = "r";
+      receiver = "p";
+      comm_var = "v";
+      predicate = And(And(Gt(Var "v", Var "ry"), Eq(Var "rx'", Var "rx")), Eq(Var "ry'", Var "ry"));
+      post = 3;
+    };
+  ];
+  initial_state = 0;
+  initial_register_assignment = [("rx", 0); ("ry", 0)];
+  final_states = [3];
+}
 
-let generate_nmc_queries_for_participant (prot: symbolic_protocol) (p: participant) = 
-  let transition_pairs = filter_transitions_nmc_participant (all_transition_pairs prot.transitions) p in 
-  List.iter (fun pair -> write_to_file  
-                          (generate_nmc_filename_from_pair_for_participant pair p)
-                          (generate_nmc_from_pair_for_participant prot pair p))
-            transition_pairs 
+let receive_validity_no : symbolic_protocol = {
+  states = [0; 1; 2; 3; 4; 5; 6];
+  registers = [];
+  transitions = [
+    {
+      pre = 0;
+      sender = "p";
+      receiver = "q";
+      comm_var = "v";
+      predicate = Eq(Var "v", Const 1);
+      post = 1;
+    };
+    {
+      pre = 1;
+      sender = "q";
+      receiver = "r";
+      comm_var = "v";
+      predicate = True;
+      post = 2;
+    };
+    {
+      pre = 2;
+      sender = "p";
+      receiver = "r";
+      comm_var = "v";
+      predicate = True;
+      post = 3;
+    };
+    {
+      pre = 0;
+      sender = "p";
+      receiver = "q";
+      comm_var = "v";
+      predicate = Eq(Var "v", Const 2);
+      post = 4;
+    };
+    {
+      pre = 4;
+      sender = "p";
+      receiver = "r";
+      comm_var = "v";
+      predicate = True;
+      post = 5;
+    };
+    {
+      pre = 5;
+      sender = "q";
+      receiver = "r";
+      comm_var = "v";
+      predicate = True;
+      post = 6;
+    };
+  ];
+  initial_state = 0;
+  initial_register_assignment = [];
+  final_states = [3; 6];
+}
 
-let generate_scc_queries (prot: symbolic_protocol) = 
-  let participants = get_participants prot in 
-  List.iter (fun p -> generate_scc_queries_for_participant prot p) participants 
 
-let generate_nmc_queries (prot: symbolic_protocol) = 
-  let participants = get_participants prot in 
-  List.iter (fun p -> generate_nmc_queries_for_participant prot p) participants 
 
-(* Main function currently tests one inductive predicate at a time *) 
+(* let parse_file filename =
+  let channel = open_in filename in
+  let lexbuf = Lexing.from_channel channel in
+  try
+    let result = Parser.protocol Lexer.token lexbuf in
+    close_in channel;
+    result
+  with
+  | Parsing.Parse_error ->
+      let pos = lexbuf.lex_curr_p in
+      Printf.eprintf "Parse error at line %d, character %d: Unexpected token '%s'\n"
+        pos.pos_lnum (pos.pos_cnum - pos.pos_bol) (Lexing.lexeme lexbuf);
+      close_in channel;
+      failwith ("Parsing error in file")
+  | Lexer.LexError msg ->
+      let pos = lexbuf.lex_curr_p in
+      Printf.eprintf "Lexing error at line %d, character %d: %s\n"
+        pos.pos_lnum (pos.pos_cnum - pos.pos_bol) msg;
+      close_in channel;
+      failwith ("Lexing error in file") *)
+(* 
+let parse_file filename =
+  let channel = open_in filename in
+  try
+    let lexbuf = Lexing.from_channel channel in
+    let result = Parser.protocol Lexer.token lexbuf in
+    close_in channel;
+    result
+  with
+  | Parsing.Parse_error ->
+      close_in channel;
+      failwith ("Parse error in file: " ^ filename)
+  | e ->
+      close_in channel;
+      raise e
+ *)
+
 let () =
+  if Array.length Sys.argv < 2 then
+    Printf.eprintf "Usage: %s <input_file>\n" Sys.argv.(0)
+  else
+    let filename = Sys.argv.(1) in
+    try
+      let protocol = figure11_repaired in
+  (* print_endline (string_of_blocked_set ["r"; "s"; "p"]); *)
   (* Figure11 protocol has 3 participants *)
   (* generate_scc_queries_for_participant figure11 "p";
   generate_scc_queries_for_participant figure11 "q"; 
   generate_scc_queries_for_participant figure11 "r";  *)
-  generate_scc_queries figure11; 
-  generate_nmc_queries figure11; 
+  let dirname = filename ^ "-generated" in 
+  let perm = 0o777 in 
+  create_newdir dirname perm; 
+  generate_scc_queries protocol dirname; 
+  generate_rcc_queries protocol  dirname;
+  generate_nmc_queries protocol dirname; 
+  with Failure msg ->
+      Printf.eprintf "Error: %s\n" msg
+(*   create_newdir "figure11" 0o777;
+  generate_rcc_queries figure11 "figure11"; *)
+  (* generate_rcc_queries send_validity_no;  *)
   (* Send_validity_no protocol has 4 participants *)
   (* generate_scc_queries_for_participant send_validity_no "r"; *)
   (* generate_scc_queries_for_participant send_validity_no "s"; *)

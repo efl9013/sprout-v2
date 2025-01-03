@@ -64,4 +64,14 @@ let generate_scc_from_transition_for_participant (prot: symbolic_protocol) (tr: 
 let generate_scc_filename_from_transition_for_participant (tr: symbolic_transition) (p: participant) = 
 	p ^ "_scc_" ^ string_of_int tr.pre ^ string_of_int tr.post ^ ".hes"
 
+let generate_scc_queries_for_participant (prot: symbolic_protocol) (p: participant) (dir: string) = 
+  let transitions = filter_transitions_scc_participant prot.transitions p in 
+  List.iter (fun tr -> write_to_file 
+                          (Filename.concat dir (generate_scc_filename_from_transition_for_participant tr p))
+                          (generate_scc_from_transition_for_participant prot tr p))
+            transitions 
+
+let generate_scc_queries (prot: symbolic_protocol) (dir: string) = 
+  let participants = get_participants prot in 
+  List.iter (fun p -> generate_scc_queries_for_participant prot p dir) participants 
 
