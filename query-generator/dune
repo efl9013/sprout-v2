@@ -1,12 +1,20 @@
 (executable
  (name main)
  (public_name query-generator)
- (libraries ast common prodreach unreach avail scc rcc nmc lexer parser)
- (modules Main))
+ (libraries logs util ast common prodreach unreach avail scc rcc nmc lexer parser)
+ (modules Main)
+ (preprocess (pps ppx_custom_printf)))
 
 (env
  (dev
-  (flags (:standard -w -27-33))))
+  (flags (:standard -w -27-33-32))))
+
+(library
+ (name util)
+ (modules Print Loc Error)
+ (libraries str sexplib)
+ (preprocess
+  (pps ppx_compare ppx_sexp_conv ppx_custom_printf)))
 
 (library
  (name ast)
@@ -14,7 +22,7 @@
 
 (library
  (name lexer)
- (libraries parser)
+ (libraries util parser)
  (modules Lexer))
 
 (library
@@ -60,5 +68,7 @@
 (ocamllex
  (modules lexer))
 
-(ocamlyacc
- (modules parser))
+(menhir
+ (modules parser)
+ (flags --explain))
+

@@ -1,3 +1,31 @@
-(lang dune 2.9)
+(lang dune 3.12)
 
-(name your_project_name)
+(using menhir 2.1)
+
+(generate_opam_files)
+
+(package
+ (name Query-generator)
+ (synopsis "Query generator")
+ (description "TODO")
+ (depends
+  (ocaml
+   (>= 4.12.0))
+  (dune
+   (>= 3.12))
+  (stdio
+   (>= 0.14))
+  (logs
+   (>= 0.7.0))
+  (fmt
+   (>= 0.9.0))
+  (ppx_custom_printf
+   (>= 0.14.1))
+  (ppx_compare
+   (>= 0.14.0))
+  (ppx_hash
+   (>= 0.14.0))
+  (ppx_sexp_conv
+   (>= 0.14.3))
+ )
+)

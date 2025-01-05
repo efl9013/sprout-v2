@@ -1,3 +1,4 @@
+open Util
 open Ast 
 open Common 
 open Prodreach
@@ -225,11 +226,15 @@ let receive_validity_no : symbolic_protocol = {
 let parse_file filename =
   let channel = open_in filename in
   let lexbuf = Lexing.from_channel channel in
+  let _ = Lexer.set_file_name lexbuf filename in
   try
     let result = Parser.protocol Lexer.token lexbuf in
     close_in channel;
     result
   with
+  | Parser.Error ->
+    let err_pos = lexbuf.lex_curr_p in
+    Error.syntax_error (Loc.make err_pos err_pos) "Parse error"
   | Parsing.Parse_error ->
       let pos = lexbuf.lex_curr_p in
       Printf.eprintf "Parse error at line %d, character %d: Unexpected token '%s'\n"
@@ -259,26 +264,37 @@ let parse_file filename =
       raise e
  *)
 
+let print_errors errs =
+  List.iter (fun e -> Logs.err (fun m -> m !"%{Error}" e)) errs;
+  Logs.debug (fun m ->
+      let bs = Printexc.get_backtrace () in
+      m "\n---------\n%s" bs);
+  Stdlib.exit 1 (* duplicates error output: `Error (false, "") *)
+
 let () =
+  Logs.set_reporter (Logs.format_reporter ());
   if Array.length Sys.argv < 2 then
     Printf.eprintf "Usage: %s <input_file>\n" Sys.argv.(0)
   else
     let filename = Sys.argv.(1) in
     try
+      (*print_endline (string_of_blocked_set ["r"; "s"; "p"]); *)
       let protocol = parse_file filename in
-  (* print_endline (string_of_blocked_set ["r"; "s"; "p"]); *)
   (* Figure11 protocol has 3 participants *)
   (* generate_scc_queries_for_participant figure11 "p";
   generate_scc_queries_for_participant figure11 "q"; 
   generate_scc_queries_for_participant figure11 "r";  *)
-  let dirname = filename ^ "-generated" in 
-  let perm = 0o777 in 
-  create_newdir dirname perm; 
-  generate_scc_queries protocol dirname; 
-  generate_rcc_queries protocol  dirname;
-  generate_nmc_queries protocol dirname; 
-  with Failure msg ->
-      Printf.eprintf "Error: %s\n" msg
+      let dirname = filename ^ "-generated" in 
+      let perm = 0o777 in 
+      create_newdir dirname perm; 
+      generate_scc_queries protocol dirname; 
+      generate_rcc_queries protocol  dirname;
+      generate_nmc_queries protocol dirname; 
+    with
+    | Sys_error s | Failure s | Invalid_argument s ->
+      print_errors [Internal, Loc.dummy, s]
+    | Error.Msg es ->
+      print_errors es
 (*   create_newdir "figure11" 0o777;
   generate_rcc_queries figure11 "figure11"; *)
   (* generate_rcc_queries send_validity_no;  *)

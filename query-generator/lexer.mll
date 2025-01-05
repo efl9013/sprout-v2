@@ -1,7 +1,21 @@
 {
 open Parser
+open Util
+open Lexing
+
 exception LexError of string
+
+(* set file name *)
+let set_file_name lexbuf name =
+  lexbuf.lex_curr_p <- { lexbuf.lex_curr_p with pos_fname = name }
+
+let lexical_error lexbuf msg =
+  let pos = lexeme_start_p lexbuf in
+  let loc = Loc.make pos pos in
+  Error.syntax_error loc msg
+
 }
+
 
 let digit = ['0'-'9']
 let integer = digit+
@@ -16,7 +30,7 @@ rule token = parse
   | initial_state           { INIT_HEADER }
   | final_states            { FINAL_HEADER }
   | register_assignments    { REGISTER_HEADER }
-  | '\n'                    { NEWLINE }
+  | '\n'                    { Lexing.new_line lexbuf; token lexbuf }
   | "True"                  { TRUE }
   | "False"                 { FALSE }
   | "/\\" | "and"           { AND }
@@ -39,6 +53,5 @@ rule token = parse
   | ','                     { COMMA }
   | ':'                     { COLON }
   | "->"                    { ARROW }
-  | "EOF"                   { PROTEOF }
   | eof                     { EOF }
-  | _                       { raise (LexError ("Unexpected char: " ^ Lexing.lexeme lexbuf)) }
+  | _                       { lexical_error lexbuf "Unexpected character" }
