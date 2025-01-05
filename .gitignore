@@ -3,3 +3,4 @@ _build/
 .vscode
 .DS_Store
 *-generated/
+*.opam
