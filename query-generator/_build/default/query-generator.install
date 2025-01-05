@@ -1,8 +1,0 @@
-lib: [
-  "_build/install/default/lib/query-generator/META"
-  "_build/install/default/lib/query-generator/dune-package"
-  "_build/install/default/lib/query-generator/opam"
-]
-bin: [
-  "_build/install/default/bin/query-generator"
-]

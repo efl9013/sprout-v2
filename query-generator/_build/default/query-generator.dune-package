@@ -1,4 +1,0 @@
-(lang dune 3.17)
-(name query-generator)
-(sections (lib .) (bin ../../bin))
-(files (lib (META dune-package opam)) (bin (query-generator)))
