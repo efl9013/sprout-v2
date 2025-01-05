@@ -291,8 +291,6 @@ let print_errors errs =
 let check_protocol (prot: symbolic_protocol) (dirname: string) : unit = 
   Printf.printf "Checking implementability of the following protocol: \n";
   print_symbolic_protocol prot; 
-  Printf.printf "\nPrinting participant list:";
-  print_participants prot;
   let perm = 0o777 in 
   create_newdir dirname perm; 
   generate_scc_queries prot dirname; 
@@ -307,19 +305,10 @@ let () =
   else
     let filename = Sys.argv.(1) in
     try
-      let parsed_protocol = parse_file filename in
-      let hardcoded_protocol = figure11 in 
-      let parsed_dirname = filename ^ "-parsed-generated" in 
-      let hardcoded_dirname = filename ^ "-hardcoded-generated" in 
+      let protocol = parse_file filename in
+      let dirname = filename ^ "-generated" in 
       let perm = 0o777 in 
-      if symbolic_protocol_eq parsed_protocol hardcoded_protocol &&
-        get_participants parsed_protocol = get_participants hardcoded_protocol 
-      then (Printf.printf "Protocols are identical!";
-            check_protocol parsed_protocol parsed_dirname;
-            check_protocol hardcoded_protocol hardcoded_dirname)
-      else 
-      Printf.printf "Protocols differ"
-      (* check_protocol send_validity_yes dirname;  *)
+      check_protocol protocol dirname; 
     with
     | Sys_error s | Failure s | Invalid_argument s ->
       print_errors [Internal, Loc.dummy, s]
