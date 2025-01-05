@@ -36,14 +36,14 @@ let make_symbolic_protocol states registers transitions initial_state initial_re
 %%
 
 protocol:
-  | INIT_HEADER; init = state REGISTER_HEADER; regs = register_assignments trans = transitions FINAL_HEADER separated_list(COMMA, state) EOF
+  | INIT_HEADER; init = state REGISTER_HEADER; regs = register_assignments trans = transitions FINAL_HEADER final = separated_list(COMMA, state) EOF
     { make_symbolic_protocol 
         (List.sort_uniq compare (init :: [] @ (List.map (fun t -> t.Ast.pre) trans) @ (List.map (fun t -> t.Ast.post) trans)))
         (List.sort_uniq compare (List.map fst regs))
         trans
         init
         regs
-        [] }
+        final }
 (*  | error { raise (Parse_failure "CRASH!") }*)
 
 state:
