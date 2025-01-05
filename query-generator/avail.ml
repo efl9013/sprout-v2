@@ -30,7 +30,7 @@ let first_conjunct (prot: symbolic_protocol) : string =
 (* The second disjunct corresponds to the case where a new participant is blocked *)
 (* The second disjunct enumerates transitions where the sender is blocked, and the signature is not p->q *)
 let filter_transitions_disjunct_two (ls: symbolic_transition list) (bs: participant list) (p: participant) (q: participant) : symbolic_transition list =
-   List.filter (fun tr -> List.mem tr.sender bs && (tr.sender != p || tr.receiver != q)) ls 
+   List.filter (fun tr -> List.mem tr.sender bs && (tr.sender <> p || tr.receiver <> q)) ls 
 
 let second_disjunct_from_transition (prot: symbolic_protocol) (tr: symbolic_transition) (bs: participant list) (p: participant) (q: participant) : string = 
 	let phi = substitute tr.predicate tr.comm_var "x" in 
@@ -57,7 +57,7 @@ let sender_not_blocked (prot: symbolic_protocol) (bs: participant list) (tr: sym
 	List.mem tr.sender participants && not (List.mem tr.sender bs)
 
 let filter_transitions_disjunct_three (prot: symbolic_protocol) (ls: symbolic_transition list) (bs: participant list) (p: participant) (q: participant) : symbolic_transition list =
-   List.filter (fun tr -> sender_not_blocked prot bs tr && (tr.sender != p || tr.receiver != q)) ls 
+   List.filter (fun tr -> sender_not_blocked prot bs tr && (tr.sender <> p || tr.receiver <> q)) ls 
 
 let third_disjunct_from_transition (prot: symbolic_protocol) (tr: symbolic_transition) (bs: participant list) (p: participant) (q: participant) : string = 
 	let phi = substitute tr.predicate tr.comm_var "x" in 

@@ -30,6 +30,14 @@ let get_participants protocol =
   in
   StringSet.elements participant_set
 
+let print_participants protocol =
+  let participants = get_participants protocol in
+  Printf.printf "Participants: {";
+  List.iteri (fun i p ->
+    Printf.printf "%s%s" p (if i < List.length participants - 1 then ", " else "")
+  ) participants;
+  Printf.printf "}\n"
+  
 let all_distinct_participant_pairs (prot: symbolic_protocol) = 
   let participants = get_participants prot in
   let all_pairs =  List.concat (List.map (fun p -> List.map (fun q -> (p,q)) participants) participants) in 
@@ -109,10 +117,10 @@ let participant_involved (tr: symbolic_transition) (p: participant) =
   tr.sender = p || tr.receiver = p 
 
 let participant_uninvolved (tr: symbolic_transition) (p: participant) = 
-  tr.sender != p && tr.receiver != p 
+  tr.sender <> p && tr.receiver <> p 
 
 let filter_by_uninvolvement (ls: symbolic_transition list) (p: participant) = 
-  List.filter (fun (tr: symbolic_transition) -> tr.sender != p && tr.receiver != p) ls 
+  List.filter (fun (tr: symbolic_transition) -> tr.sender <> p && tr.receiver <> p) ls 
 
 let state_disjunction (ls: state list) (v: variable) =
   List.fold_left (fun acc x -> acc ^ " \\/ " ^ v ^ " = " ^ string_of_int x) "false" ls

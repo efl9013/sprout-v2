@@ -36,7 +36,7 @@ let send_validity_yes : symbolic_protocol = {
       sender = "r";
       receiver = "s";
       comm_var = "v";
-      predicate = Eq (Var "v", Const 2); 
+      predicate = Eq (Var "v", Const 1); 
       post = 2
     };
     {
@@ -44,13 +44,13 @@ let send_validity_yes : symbolic_protocol = {
       sender = "r";
       receiver = "s";
       comm_var = "v";
-      predicate = Eq (Var "v", Const 2); 
+      predicate = Eq (Var "v", Const 1); 
       post = 4
     }
   ];
   initial_state = 0;
   initial_register_assignment = [];
-  final_states = [2;4]
+  final_states = []
 }
 
 let send_validity_no : symbolic_protocol = {
@@ -92,10 +92,11 @@ let send_validity_no : symbolic_protocol = {
   ];
   initial_state = 0;
   initial_register_assignment = [];
-  final_states = [2;4]
+  final_states = []
 }
 
-let figure11 : symbolic_protocol = {
+(* Realized that this hardcoded example actually does not handle primed variables in the right way! *)
+(* let figure11 : symbolic_protocol = {
   states = [0; 1; 2; 3];
   registers = ["rx"; "ry"];
   transitions = [
@@ -127,6 +128,40 @@ let figure11 : symbolic_protocol = {
   initial_state = 0;
   initial_register_assignment = [("rx", 0); ("ry", 0)];
   final_states = [3];
+} *)
+
+let figure11 : symbolic_protocol = {
+  states = [0; 1; 2; 3];
+  registers = ["rx"; "ry"];
+  transitions = [
+    { 
+      pre = 0;
+      sender = "p";
+      receiver = "q";
+      comm_var = "v";
+      predicate = And(Eq(VarPrime "rx", Var "v"), Eq(VarPrime "ry", Var "ry"));
+      post = 1;
+    };
+    {
+      pre = 1;
+      sender = "q";
+      receiver = "r";
+      comm_var = "v";
+      predicate = And(And(Eq(VarPrime "ry", Var "v"), Gt(Var "v", Var "rx")), Eq(VarPrime "rx", Var "rx"));
+      post = 2;
+    };
+    {
+      pre = 2;
+      sender = "r";
+      receiver = "p";
+      comm_var = "v";
+      predicate = And(And(Gt(Var "v", Var "rx"), Eq(VarPrime "rx", Var "rx")), Eq(VarPrime "ry", Var "ry"));
+      post = 3;
+    };
+  ];
+  initial_state = 0;
+  initial_register_assignment = [("rx", 0); ("ry", 0)];
+  final_states = [];
 }
 
 let figure11_repaired : symbolic_protocol = {
@@ -218,10 +253,8 @@ let receive_validity_no : symbolic_protocol = {
   ];
   initial_state = 0;
   initial_register_assignment = [];
-  final_states = [3; 6];
+  final_states = [];
 }
-
-
 
 let parse_file filename =
   let channel = open_in filename in
@@ -247,22 +280,6 @@ let parse_file filename =
         pos.pos_lnum (pos.pos_cnum - pos.pos_bol) msg;
       close_in channel;
       failwith ("Lexing error in file")
-(* 
-let parse_file filename =
-  let channel = open_in filename in
-  try
-    let lexbuf = Lexing.from_channel channel in
-    let result = Parser.protocol Lexer.token lexbuf in
-    close_in channel;
-    result
-  with
-  | Parsing.Parse_error ->
-      close_in channel;
-      failwith ("Parse error in file: " ^ filename)
-  | e ->
-      close_in channel;
-      raise e
- *)
 
 let print_errors errs =
   List.iter (fun e -> Logs.err (fun m -> m !"%{Error}" e)) errs;
@@ -271,6 +288,18 @@ let print_errors errs =
       m "\n---------\n%s" bs);
   Stdlib.exit 1 (* duplicates error output: `Error (false, "") *)
 
+let check_protocol (prot: symbolic_protocol) (dirname: string) : unit = 
+  Printf.printf "Checking implementability of the following protocol: \n";
+  print_symbolic_protocol prot; 
+  Printf.printf "\nPrinting participant list:";
+  print_participants prot;
+  let perm = 0o777 in 
+  create_newdir dirname perm; 
+  generate_scc_queries prot dirname; 
+  generate_rcc_queries prot dirname;
+  generate_nmc_queries prot dirname 
+  (* Note to self: no semi-colon after final statement! *)
+
 let () =
   Logs.set_reporter (Logs.format_reporter ());
   if Array.length Sys.argv < 2 then
@@ -278,42 +307,21 @@ let () =
   else
     let filename = Sys.argv.(1) in
     try
-      (*print_endline (string_of_blocked_set ["r"; "s"; "p"]); *)
-      let protocol = parse_file filename in
-  (* Figure11 protocol has 3 participants *)
-  (* generate_scc_queries_for_participant figure11 "p";
-  generate_scc_queries_for_participant figure11 "q"; 
-  generate_scc_queries_for_participant figure11 "r";  *)
-      let dirname = filename ^ "-generated" in 
+      let parsed_protocol = parse_file filename in
+      let hardcoded_protocol = figure11 in 
+      let parsed_dirname = filename ^ "-parsed-generated" in 
+      let hardcoded_dirname = filename ^ "-hardcoded-generated" in 
       let perm = 0o777 in 
-      create_newdir dirname perm; 
-      generate_scc_queries protocol dirname; 
-      generate_rcc_queries protocol  dirname;
-      generate_nmc_queries protocol dirname; 
+      if symbolic_protocol_eq parsed_protocol hardcoded_protocol &&
+        get_participants parsed_protocol = get_participants hardcoded_protocol 
+      then (Printf.printf "Protocols are identical!";
+            check_protocol parsed_protocol parsed_dirname;
+            check_protocol hardcoded_protocol hardcoded_dirname)
+      else 
+      Printf.printf "Protocols differ"
+      (* check_protocol send_validity_yes dirname;  *)
     with
     | Sys_error s | Failure s | Invalid_argument s ->
       print_errors [Internal, Loc.dummy, s]
     | Error.Msg es ->
       print_errors es
-(*   create_newdir "figure11" 0o777;
-  generate_rcc_queries figure11 "figure11"; *)
-  (* generate_rcc_queries send_validity_no;  *)
-  (* Send_validity_no protocol has 4 participants *)
-  (* generate_scc_queries_for_participant send_validity_no "r"; *)
-  (* generate_scc_queries_for_participant send_validity_no "s"; *)
-
-  (* write_to_file "output.txt"  *)
-    (* (unreach_for_participant_pair send_validity_no "r" "s") *)
-    (* (generate_prodreach_for_participant send_validity_no "r") *)
-    (* (generate_prodreach_for_participant figure11 "p") *)
-    (* (unreach_for_participant_pair figure11 "p" "q") *)
-    (* (generate_scc_from_transition_for_participant figure11 transition_01 "p") *)
-
-
-
-
-
-
-
-
-
