@@ -1,7 +1,7 @@
 (executable
  (name main)
  (public_name query-generator)
- (libraries logs util ast common prodreach unreach avail scc rcc nmc lexer parser)
+ (libraries unix logs util ast common prodreach unreach avail scc rcc nmc lexer parser)
  (modules Main)
  (preprocess (pps ppx_custom_printf)))
 

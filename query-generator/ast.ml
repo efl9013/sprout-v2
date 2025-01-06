@@ -280,8 +280,8 @@ let print_symbolic_protocol p =
   printf "  initial_register_assignment = [%s];\n" 
     (String.concat "; " (List.map (fun (v, n) -> sprintf "(\"%s\", %d)" v n) p.initial_register_assignment));
   printf "  final_states = [%s];\n" (String.concat "; " (List.map string_of_int p.final_states));
-  printf "}"
-
+  printf "}\n"
+  
 (* Printing functions *)
 
 

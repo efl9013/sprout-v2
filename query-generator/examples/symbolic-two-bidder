@@ -1,0 +1,13 @@
+Initial state: (0)
+Initial register assignments: ry=0, rc=0, rza=0, rzb=0
+(0) b1->s:y{y>0/\ry'=y/\rc'=rc/\rza'=rza/\rzb'=rzb} (1)
+(1) b1->b2:y{y=ry/\ry'=ry/\rc'=rc/\rza'=rza/\rzb'=rzb} (2)
+(2) s->b1:z{z>0/\rc'=z/\rza'=0/\rzb'=0/\ry'=ry} (3)
+(3) b1->b2:b{b>rza/\rza'=b/\ry'=ry/\rc'=rc/\rzb'=rzb} (4)
+(4) b2->s:x{x=0/\ry'=ry/\rc'=rc/\rza'=rza/\rzb'=rzb} (5)
+(5) s->b1:x{x=0/\ry'=ry/\rc'=rc/\rza'=rza/\rzb'=rzb} (6)
+(4) b2->b1:b{b>rzb/\rzb'=b/\ry'=ry/\rc'=rc/\rza'=rza} (7)
+(7) b1->s:x{x=1/\rza+rzb>rc/\ry'=ry/\rc'=rc/\rza'=rza/\rzb'=rzb} (8)
+(8) s->b2:x{x=1/\ry'=ry/\rc'=rc/\rza'=rza/\rzb'=rzb} (6)
+(7) b1->b2:x{x=1/\rza+rzb<rc/\ry'=ry/\rc'=rc/\rza'=rza/\rzb'=rzb} (3)
+Final states: (6)

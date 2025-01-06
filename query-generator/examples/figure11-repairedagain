@@ -1,0 +1,6 @@
+Initial state: (0)
+Initial register assignments: rx=0, ry=0
+(0) p->q:v{rx'=v/\ry'=ry} (1)
+(1) q->r:v{ry'=v/\v>rx/\rx'=rx} (2)
+(2) r->p:v{v=17/\rx'=rx/\ry'=ry} (3)
+Final states: (3), (2)

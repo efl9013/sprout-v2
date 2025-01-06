@@ -10,6 +10,8 @@ open Rcc
 open Printf
 open Lexer 
 open Parser 
+open Unix 
+open Filename 
 
 let send_validity_yes : symbolic_protocol = {
   states = [0;1;2;3;4];
@@ -288,6 +290,38 @@ let print_errors errs =
       m "\n---------\n%s" bs);
   Stdlib.exit 1 (* duplicates error output: `Error (false, "") *)
 
+let is_substring sub str =
+  let sub_len = String.length sub in
+  let str_len = String.length str in
+  let rec check i =
+    if i > str_len - sub_len then false
+    else if String.sub str i sub_len = sub then true
+    else check (i + 1)
+  in
+  check 0
+
+let process_hes_file filename dirname =
+  Unix.chdir "/Users/elaineli/Programs/coar";
+  let command = Printf.sprintf "dune exec main -- -c ./config/solver/dbg_muval_parallel_exc_tbq_ar.json -p muclp ../gclts-checker/query-generator/%s/%s" dirname filename in
+  let ic = Unix.open_process_in command in
+  let rec read_last_line last_line =
+    try
+      let line = input_line ic in
+      read_last_line line
+    with End_of_file -> last_line
+  in
+  let last_line = read_last_line "" in
+  let _ = Unix.close_process_in ic in
+  is_substring "invalid" last_line
+
+let process_directory path dirname =
+  let files = Sys.readdir path in
+  Array.fold_left (fun acc file ->
+    if check_suffix file ".hes" then
+      (file, process_hes_file file dirname) :: acc
+    else acc
+  ) [] files
+
 let check_protocol (prot: symbolic_protocol) (dirname: string) : unit = 
   Printf.printf "Checking implementability of the following protocol: \n";
   print_symbolic_protocol prot; 
@@ -295,7 +329,12 @@ let check_protocol (prot: symbolic_protocol) (dirname: string) : unit =
   create_newdir dirname perm; 
   generate_scc_queries prot dirname; 
   generate_rcc_queries prot dirname;
-  generate_nmc_queries prot dirname 
+  generate_nmc_queries prot dirname;
+  let path = dirname in 
+  let results = process_directory path dirname in 
+  List.iter (fun (file, contains_invalid) ->
+    Printf.printf "%s: %s\n" file (if contains_invalid then "" else "violates implementability!")
+  ) results
   (* Note to self: no semi-colon after final statement! *)
 
 let () =
