@@ -16,29 +16,29 @@ For protocol S, let S1 and S2 be the two identical copies of S.
 First, we define all the inductive predicates required:
 
 /* Defining prodreach_p */ 
-prodreach_p (s1:int) (rx1:int) (ry1:int) (s2:int) (r2x:int) (ry2:int): bool =mu 
+prodreach_p (s1:int) (rx1:int) (ry1:int) (s2:int) (rx2:int) (ry2:int): bool =mu 
 /* Restricting the domain for states */ 
 	(s1 = 0 \/ s1 = 1 \/ s1 = 2 \/ s1 = 3) 
 /\
 	(s2 = 0 \/ s2 = 1 \/ s2 = 2 \/ s2 = 3) 
 /\ 
 /* First disjunct: base case */ 
-	(s1 = 0 /\ s2 = 0 /\ rx1 = 0 /\ ry1 = 0 /\ r2x = 0 /\ ry2 = 0)
+	(s1 = 0 /\ s2 = 0 /\ rx1 = 0 /\ ry1 = 0 /\ rx2 = 0 /\ ry2 = 0)
 	\/ 
 /* Second disjuncts: both copies take a step */ 
 /* Enumerating pairs of states where both copies can take a simultaneous step */ 
 	(s1 = 1 /\ s2 = 1 /\ 
-	(exists (x1:int) (x2:int) (rx1_pre:int) (ry1_pre:int) (r2x_pre:int) (ry2_pre:int). 
-	prodreach_p 0 rx1_pre ry1_pre 0 r2x_pre ry2_pre /\ 
+	(exists (x1:int) (x2:int) (rx1_pre:int) (ry1_pre:int) (rx2_pre:int) (ry2_pre:int). 
+	prodreach_p 0 rx1_pre ry1_pre 0 rx2_pre ry2_pre /\ 
 	rx1 = x1 /\ ry1 = ry1_pre /\ 
-	r2x = x2 /\ ry2 = ry2_pre /\ 
+	rx2 = x2 /\ ry2 = ry2_pre /\ 
 	x1 = x2))
 \/ 
 	(s1 = 3 /\ s2 = 3 /\ 
-	(exists (x1:int) (x2:int) (rx1_pre:int) (ry1_pre:int) (r2x_pre:int) (ry2_pre:int). 
-	prodreach_p 2 rx1_pre ry1_pre 2 r2x_pre ry2_pre /\ 
+	(exists (x1:int) (x2:int) (rx1_pre:int) (ry1_pre:int) (rx2_pre:int) (ry2_pre:int). 
+	prodreach_p 2 rx1_pre ry1_pre 2 rx2_pre ry2_pre /\ 
 	x1 > rx1 /\ rx1 = rx1_pre /\ ry1 = ry1_pre /\ 
-	x2 > r2x_pre /\ r2x = r2x_pre /\ ry2 = ry2_pre /\ 
+	x2 > rx2_pre /\ rx2 = rx2_pre /\ ry2 = ry2_pre /\ 
 	x1 = x2))
 \/ 
 /* Third disjuncts: first copy takes an epsilon step */ 
@@ -46,13 +46,13 @@ prodreach_p (s1:int) (rx1:int) (ry1:int) (s2:int) (r2x:int) (ry2:int): bool =mu
 - (0) p->q:v{rx'=v/\ry'=ry} (1) */ 
 	(s1 = 2 /\ 
 	(exists (x1:int) (rx1_pre:int) (ry1_pre:int). 
-	prodreach_p 1 rx1_pre ry1_pre s2 r2x ry2 /\ 
+	prodreach_p 1 rx1_pre ry1_pre s2 rx2 ry2 /\ 
 	ry1 = x1 /\ x1 > rx1_pre /\ rx1 = rx1_pre)) 
 \/ 
 /* Fourth disjuncts: second copy takes an epsilon step */ 
 	(s2 = 2 /\ 
-	(exists (x2:int) (r2x_pre:int) (ry2_pre:int). 
-	prodreach_p s1 rx1 ry1 1 r2x_pre ry2_pre /\ 
+	(exists (x2:int) (rx2_pre:int) (ry2_pre:int). 
+	prodreach_p s1 rx1 ry1 1 rx2_pre ry2_pre /\ 
 	ry2 = x2 /\ x2 > rx2_pre /\ rx2 = rx2_pre));
 
 /* Defining unreach_pq */
