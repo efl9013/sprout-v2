@@ -19,7 +19,10 @@ let first_conjunct_from_pair (prot: symbolic_protocol) (pair: symbolic_transitio
 	let tr1 = fst pair in 
 	let tr2 = snd pair in 
 	"(s1 = " ^ string_of_int tr1.pre ^ " /\\ " ^ 
-	"s2 = " ^ string_of_int tr2.pre ^ " )\n" 
+	"s'1 = " ^ string_of_int tr1.post ^ " /\\ " ^ 
+	"s2 = " ^ string_of_int tr2.pre ^ " /\\ " ^ 
+	"s'2 = " ^ string_of_int tr2.post ^ 
+	")\n" 
 
 (* Second conjunct calls prodreach_p on the prestates and prestate registers of each copy *)
 let second_conjunct_from_pair (prot: symbolic_protocol) (p: participant) : string = 

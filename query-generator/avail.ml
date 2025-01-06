@@ -34,6 +34,9 @@ let filter_transitions_disjunct_two (ls: symbolic_transition list) (bs: particip
 
 let second_disjunct_from_transition (prot: symbolic_protocol) (tr: symbolic_transition) (bs: participant list) (p: participant) (q: participant) : string = 
 	let phi = substitute tr.predicate tr.comm_var "x" in 
+	"(" ^ 
+  "s = " ^ string_of_int tr.pre ^
+  " /\\ " ^  
 	"(exists (x: int). " ^ 
 	quantify_over_poststate_registers prot "exists" ^ " " ^ 
 	"avail_" ^ p ^ q ^ "_" ^ 
@@ -43,7 +46,7 @@ let second_disjunct_from_transition (prot: symbolic_protocol) (tr: symbolic_tran
 	List.fold_left (fun acc x -> acc ^ parenthesize (x ^ "'")) "" prot.registers ^
 	" /\\ " ^
 	string_of_formula phi ^ 
-	")\n"
+	"))\n"
 
 let second_disjunct (prot: symbolic_protocol) (bs: participant list) (p: participant) (q: participant) : string = 
   let transitions = filter_transitions_disjunct_two prot.transitions bs p q in 
@@ -61,7 +64,10 @@ let filter_transitions_disjunct_three (prot: symbolic_protocol) (ls: symbolic_tr
 
 let third_disjunct_from_transition (prot: symbolic_protocol) (tr: symbolic_transition) (bs: participant list) (p: participant) (q: participant) : string = 
 	let phi = substitute tr.predicate tr.comm_var "x" in 
-	"(exists (x: int). " ^ 
+	"(" ^ 
+  "s = " ^ string_of_int tr.pre ^
+  " /\\ " ^  
+  "(exists (x: int). " ^ 
 	"(" ^
 	quantify_over_poststate_registers prot "exists" ^ " " ^ 
 	"avail_" ^ p ^ q ^ "_" ^ 
@@ -71,7 +77,7 @@ let third_disjunct_from_transition (prot: symbolic_protocol) (tr: symbolic_trans
 	List.fold_left (fun acc x -> acc ^ parenthesize (x ^ "'")) "" prot.registers ^
 	" /\\ " ^
 	string_of_formula phi ^ 
-	"))\n"
+	")))\n"
 
 let third_disjunct (prot: symbolic_protocol) (bs: participant list) (p: participant) (q: participant) : string = 
   let transitions = filter_transitions_disjunct_three prot prot.transitions bs p q in 
@@ -84,7 +90,12 @@ let filter_transitions_disjunct_four (ls: symbolic_transition list) (bs: partici
 
 let fourth_disjunct_from_transition (prot: symbolic_protocol) (tr: symbolic_transition) (bs: participant list) (p: participant) (q: participant) : string = 
 	let phi = substitute tr.predicate tr.comm_var "x1" in 
-	string_of_formula phi 
+	"(" ^ 
+  "s = " ^ string_of_int tr.pre ^
+  " /\\ " ^  
+	string_of_formula phi ^
+	")\n"
+
 
 let fourth_disjunct (prot: symbolic_protocol) (bs: participant list) (p: participant) (q: participant) : string = 
 	let transitions = filter_transitions_disjunct_four prot.transitions bs p q in 

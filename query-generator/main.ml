@@ -334,7 +334,10 @@ let check_protocol (prot: symbolic_protocol) (dirname: string) : unit =
   let results = process_directory path dirname in 
   List.iter (fun (file, contains_invalid) ->
     Printf.printf "%s: %s\n" file (if contains_invalid then "" else "violates implementability!")
-  ) results
+  ) results;
+  if List.for_all (fun (file, contains_invalid) -> contains_invalid) results 
+  then Printf.printf "Implementable\n" 
+  else Printf.printf "Non-implementable\n"
   (* Note to self: no semi-colon after final statement! *)
 
 let () =
