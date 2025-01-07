@@ -74,6 +74,7 @@ formula:
   | formula AND formula { Ast.And($1, $3) }
   | formula OR formula { Ast.Or($1, $3) }
   | NOT formula { Ast.Not($2) }
+  | LPAREN formula RPAREN { $2 }
   
 expr:
   | INT { Ast.Const $1 }
