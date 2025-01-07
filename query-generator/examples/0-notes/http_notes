@@ -1,0 +1,7 @@
+- from https://github.com/sessionstar/oopsla20-artifact/blob/master/examples/HTTP/Http.scr
+- encoding: 
+    HeaderName = 0
+    Body = 1
+- status>=100 -> status>99
+- status<=999 -> status<1000
+- verifies in 9min

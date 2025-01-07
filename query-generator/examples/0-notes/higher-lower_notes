@@ -1,0 +1,7 @@
+- from https://github.com/sessionstar/oopsla20-artifact/blob/master/examples/HigherLower/HigherLower.scr
+- encoding
+  lose = 0 
+  win = 1
+  lower = 2
+  higher = 3
+- verifies in [crashes currently...]
