@@ -1,7 +1,12 @@
 Initial state: (0)
-Initial register assignments: rq=1
+Initial register assignments: rq=0
+(0) c->a:m{m=3/\rq'=rq} (1)
+(1) c->a:query{rq'=rq} (2)
+(2) a->c:quote{quote>0/\rq'=quote} (0)
 (0) c->a:m{m=1/\rq>0/\rq'=rq} (3)
-(3) a->s:m{m=1/\rq'=rq} (6)
+(3) a->s:m{m=1/\rq'=rq} (4)
+(4) c->s:payment{payment=rq/\rq'=rq} (5)
+(5) s->c:m{m=2/\rq'=rq} (6)
 (6) c->a:m{m=4/\rq'=rq} (7)
 (0) c->a:m{m=0/\rq>0/\rq'=rq} (8)
 (8) a->s:m{m=0/\rq'=rq} (6)

@@ -7,13 +7,9 @@
     ack = 2, 
     query = 3,
     bye = 4 
-- ??
-- needs more than 13GB RAM
+- fails in under 2min, RCC for S and C 
 
 removing loop + change quote default:
-(0) c->a:m{m=3/\rq'=rq} (1)
-(1) c->a:query{rq'=rq} (2)
-(2) a->c:quote{quote>0/\rq'=quote} (0)
 
 => travel-agency-light
 
