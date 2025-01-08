@@ -6,4 +6,4 @@
     counter = 2, 
     accept = 3,
     confirmed = 4
-- verifies in [crashes currently...]
+- needs more than 13GB RAM

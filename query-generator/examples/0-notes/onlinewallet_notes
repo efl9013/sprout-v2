@@ -6,4 +6,4 @@
     pay: 2
     payauth: 3
     quit: 4
-- verifies in [beyond 13GB RAM...]
+- needs more than 13GB RAM

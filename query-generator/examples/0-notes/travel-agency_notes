@@ -1,0 +1,23 @@
+- from https://github.com/sessionstar/oopsla20-artifact/blob/master/examples/TravelAgency/TravelAgency.scr
+- omitting some labels
+- merged ends
+- encoding: 
+    no = 0,
+    yes = 1, 
+    ack = 2, 
+    query = 3,
+    bye = 4 
+- ??
+- needs more than 13GB RAM
+
+removing loop + change quote default:
+(0) c->a:m{m=3/\rq'=rq} (1)
+(1) c->a:query{rq'=rq} (2)
+(2) a->c:quote{quote>0/\rq'=quote} (0)
+
+=> travel-agency-light
+
+- removing register makes it implementable (11s check)
+- removing constraint on rq>0 does not -> removed
+- removing constraint on payment does not -> removed
+- even introducing constraint that payment is 3 does not help

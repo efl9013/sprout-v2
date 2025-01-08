@@ -2,4 +2,4 @@
 - encoding:  
     ko: 0
     ok: 1
-- verifies in [beyond 13GB of RAM]
+- needs more than 13GB RAM

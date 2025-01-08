@@ -1,0 +1,8 @@
+Initial state: (0)
+Initial register assignments: rq=1
+(0) c->a:m{m=1/\rq>0/\rq'=rq} (3)
+(3) a->s:m{m=1/\rq'=rq} (6)
+(6) c->a:m{m=4/\rq'=rq} (7)
+(0) c->a:m{m=0/\rq>0/\rq'=rq} (8)
+(8) a->s:m{m=0/\rq'=rq} (6)
+Final states: (7)

@@ -1,0 +1,12 @@
+Initial state: (0)
+Initial register assignments: rx=0, rpa=0
+(0) a->s:bookID{rx'=rx/\rpa'=rpa} (1)
+(1) s->a:x{rx'=x/\rpa'=rpa} (2)
+(2) s->b:y{rx=y/\rx'=rx/\rpa'=rpa} (3)
+(3) a->b:pa{(0<pa\/pa=0)/\pa<rx+1/\rx'=rx/\rpa'=rpa} (4)
+(4) b->a:m{m=1/\rx'=rx/\rpa'=rpa} (5)
+(5) b->a:pb{pb=rx-rpa/\pb<rpa/\rx'=rx/\rpa'=rpa} (6)
+(6) a->s:m{m=2/\rx'=rx/\rpa'=rpa} (7)
+(4) b->a:m{m=0/\rx'=rx/\rpa'=rpa} (8)
+(8) a->s:m{m=3/\rx'=rx/\rpa'=rpa} (9)
+Final states: (7), (9)

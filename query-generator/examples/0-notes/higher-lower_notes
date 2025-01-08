@@ -4,4 +4,4 @@
   win = 1
   lower = 2
   higher = 3
-- verifies in [crashes currently...]
+- needs more than 13GB RAM
