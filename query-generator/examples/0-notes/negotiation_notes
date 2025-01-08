@@ -1,0 +1,9 @@
+- from https://github.com/sessionstar/oopsla20-artifact/blob/master/examples/Negotiation/SapNego.scr
+- changing their use of labels as they do pairs of label and value
+- encoding: 
+    reject = 0,
+    propose = 1, 
+    counter = 2, 
+    accept = 3,
+    confirmed = 4
+- verifies in [crashes currently...]

@@ -1,0 +1,5 @@
+- from https://github.com/sessionstar/oopsla20-artifact/blob/master/examples/Ticket/Ticket.scr
+- encoding:  
+    ko: 0
+    ok: 1
+- verifies in [beyond 13GB of RAM]
