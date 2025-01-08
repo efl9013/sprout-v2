@@ -93,9 +93,10 @@ let fourth_disjunct_from_transition (prot: symbolic_protocol) (tr: symbolic_tran
 	"(" ^ 
   "s = " ^ string_of_int tr.pre ^
   " /\\ " ^  
+  "(" ^
+	quantify_over_poststate_registers prot "exists" ^ " " ^ 
 	string_of_formula phi ^
-	")\n"
-
+	"))\n"
 
 let fourth_disjunct (prot: symbolic_protocol) (bs: participant list) (p: participant) (q: participant) : string = 
 	let transitions = filter_transitions_disjunct_four prot.transitions bs p q in 
