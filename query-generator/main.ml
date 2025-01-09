@@ -303,7 +303,7 @@ let is_substring sub str =
 let process_hes_file filename dirname =
   Unix.chdir "/Users/elaineli/Programs/coar";
   (* Adding "> /dev/null 2>&1" to the end of this command breaks everything! *)
-  let command = Printf.sprintf "timeout 5 dune exec main -- -c ./config/solver/dbg_muval_parallel_exc_tbq_ar.json -p muclp ../gclts-checker/query-generator/%s/%s" dirname filename in
+  let command = Printf.sprintf "timeout 10 dune exec main -- -c ./config/solver/dbg_muval_parallel_exc_tbq_ar.json -p muclp ../gclts-checker/query-generator/%s/%s" dirname filename in
   let start_time = Unix.gettimeofday () in
   let ic = Unix.open_process_in command in
   let rec read_last_line last_line =
@@ -335,6 +335,10 @@ let process_directory path dirname : (string * string * float) list =
     else acc
   ) [] files
 
+let print_total_execution_time results = 
+  let sum = List.fold_left (fun acc (file, outcome, execution_time) -> acc +. execution_time) 0.0 results in 
+  Printf.printf "\nTotal time:%f\n" sum
+
 let print_execution_time_table results =
   Printf.printf "\nResults:\n";
   Printf.printf "| %-30s | %-20s | %-10s |\n" "Filename" "Execution Time (s)" "Result";
@@ -362,7 +366,9 @@ let check_protocol (prot: symbolic_protocol) (dirname: string) : unit =
   if List.for_all (fun (_, contains_invalid, _) -> contains_invalid = "invalid") results 
   then Printf.printf "Implementable\n" 
   else Printf.printf "Non-implementable\n";
-  print_execution_time_table results
+  print_execution_time_table results;
+  print_total_execution_time results 
+
   (* Note to self: no semi-colon after final statement! *)
 
 let () =

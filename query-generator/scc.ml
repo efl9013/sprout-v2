@@ -35,7 +35,7 @@ let fourth_conjunct_from_transition (prot: symbolic_protocol) (tr: symbolic_tran
 	" x1 " ^ 
 	")\n"
 
-let generate_scc_preamble_from_transition_for_participant (prot: symbolic_protocol) (tr: symbolic_transition) (p: participant) = 
+let generate_scc_first_line_for_participant (prot: symbolic_protocol) (p: participant) = 
 	"exists " ^ 
 	"(s1: int) (s'1: int) " ^ 
 	List.fold_left (fun acc r -> acc ^ "(" ^r ^ "1: int) ") "" prot.registers ^ 
@@ -44,34 +44,43 @@ let generate_scc_preamble_from_transition_for_participant (prot: symbolic_protoc
 	List.fold_left (fun acc r -> acc ^ "(" ^r ^ "2: int) ") "" prot.registers ^ 
 	List.fold_left (fun acc r -> acc ^ "(" ^r ^ "'2: int) ") "" prot.registers ^ 
 	"(x1: int)" ^ 
-	". \n" ^
+	". \n" 
+
+let generate_scc_body_from_transition_for_participant (prot: symbolic_protocol) (tr: symbolic_transition) (p: participant) = 
+	"(" ^
 	first_conjunct_from_transition prot tr p ^ 
 	" /\\ \n" ^
 	second_conjunct_from_transition prot tr p ^ 
 	" /\\ \n" ^
 	third_conjunct_from_transition prot tr p ^ 
 	" /\\ \n" ^
-	fourth_conjunct_from_transition prot tr p ^ 
-	"s.t.\n"
+	fourth_conjunct_from_transition prot tr p ^
+	")"
 
-let generate_scc_from_transition_for_participant (prot: symbolic_protocol) (tr: symbolic_transition) (p: participant) = 
-	generate_scc_preamble_from_transition_for_participant prot tr p ^ 
+let generate_scc_preamble_for_participant (prot: symbolic_protocol) (p: participant) = 
+	let transitions = filter_transitions_scc_participant prot.transitions p in 
+	generate_scc_first_line_for_participant prot p ^
+  List.fold_left (fun acc tr -> acc ^ "\n\\/\n" ^ generate_scc_body_from_transition_for_participant prot tr p) "false" transitions ^ 
+	"\ns.t.\n"
+
+let generate_unreach (prot: symbolic_protocol) : string = 
+	let bs_list = all_distinct_participant_pairs prot in 
+	List.fold_left (fun acc (p,q) -> acc ^ "\n" ^ unreach_for_participant_pair prot p q) "" bs_list
+
+let generate_scc_for_participant (prot: symbolic_protocol) (p: participant) = 
+	generate_scc_preamble_for_participant prot p ^ 
 	"\n" ^ 
 	generate_prodreach_for_participant prot p ^ 
 	"\n\n" ^ 
-	unreach_for_participant_pair prot tr.sender tr.receiver 
+	generate_unreach prot 
 
-let generate_scc_filename_from_transition_for_participant (tr: symbolic_transition) (p: participant) = 
-	p ^ "_scc_" ^ string_of_int tr.pre ^ string_of_int tr.post ^ ".hes"
+let generate_scc_filename_for_participant (p: participant) = 
+	p ^ "_scc.hes" 
 
 let generate_scc_queries_for_participant (prot: symbolic_protocol) (p: participant) (dir: string) = 
-  let transitions = filter_transitions_scc_participant prot.transitions p in 
-  List.iter (fun tr -> write_to_file 
-                          (Filename.concat dir (generate_scc_filename_from_transition_for_participant tr p))
-                          (generate_scc_from_transition_for_participant prot tr p))
-            transitions 
+	let filename = generate_scc_filename_for_participant p in 
+	write_to_file (Filename.concat dir filename) (generate_scc_for_participant prot p)
 
 let generate_scc_queries (prot: symbolic_protocol) (dir: string) = 
-  let participants = get_participants prot in 
+	let participants = get_senders prot in 
   List.iter (fun p -> generate_scc_queries_for_participant prot p dir) participants 
-

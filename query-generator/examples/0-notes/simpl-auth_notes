@@ -4,3 +4,4 @@
     fail = 0
     succ = 1
 - verifies in under 15s
+- with merged clauses, ~4s

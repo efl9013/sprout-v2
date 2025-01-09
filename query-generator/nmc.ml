@@ -41,7 +41,7 @@ let fourth_conjunct_from_pair (prot: symbolic_protocol) (pair: symbolic_transiti
 	string_of_formula phi2 ^ 
 	")\n" 
 
-let generate_nmc_preamble_from_pair_for_participant (prot: symbolic_protocol) (pair: symbolic_transition * symbolic_transition) (p: participant) = 
+let generate_nmc_first_line_for_participant (prot: symbolic_protocol) (p: participant) = 
 	"exists " ^ 
 	"(s1: int) " ^ 
 	List.fold_left (fun acc r -> acc ^ "(" ^r ^ "1: int) ") "" prot.registers ^ 
@@ -50,7 +50,10 @@ let generate_nmc_preamble_from_pair_for_participant (prot: symbolic_protocol) (p
 	List.fold_left (fun acc r -> acc ^ "(" ^r ^ "2: int) ") "" prot.registers ^ 
 	List.fold_left (fun acc r -> acc ^ "(" ^r ^ "'2: int) ") "" prot.registers ^ 
 	"(x1: int) (x2: int)" ^ 
-	". \n" ^
+	". \n" 
+
+let generate_nmc_body_from_pair_for_participant (prot: symbolic_protocol) (pair: symbolic_transition * symbolic_transition) (p: participant) = 
+	"(" ^
 	first_conjunct_from_pair prot pair p ^ 
 	" /\\ \n" ^
 	second_conjunct_from_pair prot p ^ 
@@ -58,29 +61,26 @@ let generate_nmc_preamble_from_pair_for_participant (prot: symbolic_protocol) (p
 	third_conjunct_from_pair prot pair p ^ 
 	" /\\ \n" ^
 	fourth_conjunct_from_pair prot pair p ^ 
-	"\n" ^ 
-	"s.t.\n"
+	")"
 
-let generate_nmc_from_pair_for_participant (prot: symbolic_protocol) (pair: symbolic_transition * symbolic_transition) (p: participant) = 
-	generate_nmc_preamble_from_pair_for_participant prot pair p ^ 
+let generate_nmc_preamble_for_participant (prot: symbolic_protocol) (p: participant) = 
+	let transition_pairs = filter_transitions_nmc_participant (all_transition_pairs prot.transitions) p in 
+	generate_nmc_first_line_for_participant prot p ^
+  List.fold_left (fun acc pair -> acc ^ "\n\\/\n" ^ generate_nmc_body_from_pair_for_participant prot pair p) "false" transition_pairs ^ 
+	"\ns.t.\n"
+
+let generate_nmc_for_participant (prot: symbolic_protocol) (p: participant) = 
+	generate_nmc_preamble_for_participant prot p ^ 
 	"\n" ^ 
 	generate_prodreach_for_participant prot p 
 
-let generate_nmc_filename_from_pair_for_participant (pair: symbolic_transition * symbolic_transition) (p: participant) = 
-	let tr1 = fst pair in 
-	let tr2 = snd pair in 
-	p ^ "_nmc_" ^ 
-	string_of_int tr1.pre ^ string_of_int tr1.post ^ "_" ^ 
-	string_of_int tr2.pre ^ string_of_int tr2.post ^
-	".hes"
+let generate_nmc_filename_for_participant (p: participant) = 
+	p ^ "_nmc.hes"
 
 let generate_nmc_queries_for_participant (prot: symbolic_protocol) (p: participant) (dir: string) = 
-  let transition_pairs = filter_transitions_nmc_participant (all_transition_pairs prot.transitions) p in 
-  List.iter (fun pair -> write_to_file  
-                          (Filename.concat dir (generate_nmc_filename_from_pair_for_participant pair p))
-                          (generate_nmc_from_pair_for_participant prot pair p))
-            transition_pairs 
+	let filename = generate_nmc_filename_for_participant p in 
+	write_to_file (Filename.concat dir filename) (generate_nmc_for_participant prot p)
 
 let generate_nmc_queries (prot: symbolic_protocol) (dir: string) = 
-  let participants = get_participants prot in 
+  let participants = intersection (get_senders prot) (get_receivers prot) in 
   List.iter (fun p -> generate_nmc_queries_for_participant prot p dir) participants 
