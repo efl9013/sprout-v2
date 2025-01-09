@@ -1,0 +1,6 @@
+- from Vassor&Yoshida ECOOP2024
+- claims to take inspiration from OAuth from Less is More but little of this is left I would say
+- encoding
+    fail = 0
+    succ = 1
+- verifies in under 15s

@@ -1,0 +1,7 @@
+Initial state: (0)
+Initial register assignments: rp=0, rt=0
+(0) c->s:setpw{rp'=rp/\rt'=rt} (1)
+(1) c->s:pwattempt{rp'=rp/\rt'=pwattempt} (2)
+(2) c->s:m{m=1/\rp=rt/\rp'=rp/\rt'=rt} (3)
+(2) c->s:m{m=0/\(rp<rt\/rp>rt)/\rp'=rp/\rt'=rt} (1)
+Final states: (3)

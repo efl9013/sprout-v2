@@ -1,0 +1,7 @@
+- from "Global Progress for Dynamically Interleaved
+Multiparty Sessions"
+- they start a new session for involving third buyer, we don't so b does not delegate their behaviour subsequently
+- encoding
+    no = 0,
+    ok = 1
+- needs more than 13GB of RAM, also the version where the use of registers is optimised ('three-buyer-red')
