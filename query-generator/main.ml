@@ -302,7 +302,9 @@ let is_substring sub str =
 
 let process_hes_file filename dirname =
   Unix.chdir "/Users/elaineli/Programs/coar";
-  let command = Printf.sprintf "dune exec main -- -c ./config/solver/dbg_muval_parallel_exc_tbq_ar.json -p muclp ../gclts-checker/query-generator/%s/%s" dirname filename in
+  (* Adding "> /dev/null 2>&1" to the end of this command breaks everything! *)
+  let command = Printf.sprintf "timeout 5 dune exec main -- -c ./config/solver/dbg_muval_parallel_exc_tbq_ar.json -p muclp ../gclts-checker/query-generator/%s/%s" dirname filename in
+  let start_time = Unix.gettimeofday () in
   let ic = Unix.open_process_in command in
   let rec read_last_line last_line =
     try
@@ -311,16 +313,38 @@ let process_hes_file filename dirname =
     with End_of_file -> last_line
   in
   let last_line = read_last_line "" in
-  let _ = Unix.close_process_in ic in
-  is_substring "invalid" last_line
+  let exit_status = Unix.close_process_in ic in
+  let end_time = Unix.gettimeofday () in
+  let execution_time = end_time -. start_time in
+  match exit_status with
+  | Unix.WEXITED n when n = 124 -> ("timeout", execution_time)
+  | Unix.WEXITED _ -> 
+      if is_substring "invalid" last_line 
+      then ("invalid", execution_time)
+      else if is_substring "valid" last_line 
+           then ("valid", execution_time)
+         else ("unexpected", execution_time)
+  | _ -> ("unexpected", execution_time) (* Handle unexpected exit statuses gracefully *)
 
-let process_directory path dirname =
+let process_directory path dirname : (string * string * float) list =
   let files = Sys.readdir path in
   Array.fold_left (fun acc file ->
     if check_suffix file ".hes" then
-      (file, process_hes_file file dirname) :: acc
+      let (outcome, execution_time) = process_hes_file file dirname in
+      (file, outcome, execution_time) :: acc
     else acc
   ) [] files
+
+let print_execution_time_table results =
+  Printf.printf "\nResults:\n";
+  Printf.printf "| %-30s | %-20s | %-10s |\n" "Filename" "Execution Time (s)" "Result";
+  Printf.printf "|--------------------------------|----------------------|------------|\n";
+  List.iter (fun (file, outcome, execution_time) ->
+    Printf.printf "| %-30s | %-20.4f | %-10s |\n" 
+      file 
+      execution_time 
+      outcome
+  ) (List.rev results)
 
 let check_protocol (prot: symbolic_protocol) (dirname: string) : unit = 
   Printf.printf "Checking implementability of the following protocol: \n";
@@ -332,12 +356,13 @@ let check_protocol (prot: symbolic_protocol) (dirname: string) : unit =
   generate_nmc_queries prot dirname;
   let path = dirname in 
   let results = process_directory path dirname in 
-  List.iter (fun (file, contains_invalid) ->
-    Printf.printf "%s: %s\n" file (if contains_invalid then "" else "violates implementability!")
+  List.iter (fun (file, outcome, time) ->
+    Printf.printf "%s: %s\n" file outcome
   ) results;
-  if List.for_all (fun (file, contains_invalid) -> contains_invalid) results 
+  if List.for_all (fun (_, contains_invalid, _) -> contains_invalid = "invalid") results 
   then Printf.printf "Implementable\n" 
-  else Printf.printf "Non-implementable\n"
+  else Printf.printf "Non-implementable\n";
+  print_execution_time_table results
   (* Note to self: no semi-colon after final statement! *)
 
 let () =
