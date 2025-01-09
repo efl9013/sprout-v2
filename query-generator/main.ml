@@ -365,11 +365,18 @@ let check_protocol (prot: symbolic_protocol) (dirname: string) (timeout: int) : 
   ) results;
   if List.for_all (fun (_, result, _) -> result = "invalid") results 
   then Printf.printf "Implementable\n" 
+<<<<<<< HEAD
   else if List.exists (fun (_, result, _) -> result = "valid") results 
        then Printf.printf "Non-implementable\n" 
        else Printf.printf "Inconclusive\n";
   print_execution_time_table results;
   print_total_execution_time results 
+=======
+  else Printf.printf "Non-implementable\n";
+  print_execution_time_table results;
+  print_total_execution_time results 
+
+>>>>>>> ea6c735 (added total time printing)
   (* Note to self: no semi-colon after final statement! *)
 
 let () =
