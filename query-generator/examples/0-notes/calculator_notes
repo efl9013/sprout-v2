@@ -4,3 +4,4 @@
 - resetting registers when looping back
 - took almost 4min to show implementability
 - could probably merge states if formula depends on value of simplify -> done so in `calculator-merged` with continuous state numbers in case it matters, verifies in roughly 40 seconds
+- with merged clauses and optimized unreach generation, ~30s
