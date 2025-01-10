@@ -1,0 +1,11 @@
+- inspired by extensible authentication protocol
+- 3 participants p, s, and a and where p wants to authenticate itself to s who relays the required information to authentication service a
+- no list of authentication methods but single one
+- could be parametrised with more services for which this is used 
+- encoding:
+    done: 0
+    login: 1
+    register: 2
+    confirmation: 3
+    succ: 4
+    fail: 5
