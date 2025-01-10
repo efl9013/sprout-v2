@@ -300,10 +300,10 @@ let is_substring sub str =
   in
   check 0
 
-let process_hes_file filename dirname =
+let process_hes_file filename dirname timeout =
   Unix.chdir "/Users/elaineli/Programs/coar";
   (* Adding "> /dev/null 2>&1" to the end of this command breaks everything! *)
-  let command = Printf.sprintf "timeout 5 dune exec main -- -c ./config/solver/dbg_muval_parallel_exc_tbq_ar.json -p muclp ../gclts-checker/query-generator/%s/%s" dirname filename in
+  let command = Printf.sprintf "timeout %i dune exec main -- -c ./config/solver/dbg_muval_parallel_exc_tbq_ar.json -p muclp ../gclts-checker/query-generator/%s/%s" timeout dirname filename in
   let start_time = Unix.gettimeofday () in
   let ic = Unix.open_process_in command in
   let rec read_last_line last_line =
@@ -326,11 +326,11 @@ let process_hes_file filename dirname =
          else ("unexpected", execution_time)
   | _ -> ("unexpected", execution_time) (* Handle unexpected exit statuses gracefully *)
 
-let process_directory path dirname : (string * string * float) list =
+let process_directory path dirname timeout : (string * string * float) list =
   let files = Sys.readdir path in
   Array.fold_left (fun acc file ->
     if check_suffix file ".hes" then
-      let (outcome, execution_time) = process_hes_file file dirname in
+      let (outcome, execution_time) = process_hes_file file dirname timeout in
       (file, outcome, execution_time) :: acc
     else acc
   ) [] files
@@ -350,7 +350,7 @@ let print_execution_time_table results =
       outcome
   ) (List.rev results)
 
-let check_protocol (prot: symbolic_protocol) (dirname: string) : unit = 
+let check_protocol (prot: symbolic_protocol) (dirname: string) (timeout: int) : unit = 
   Printf.printf "Checking implementability of the following protocol: \n";
   print_symbolic_protocol prot; 
   let perm = 0o777 in 
@@ -359,29 +359,31 @@ let check_protocol (prot: symbolic_protocol) (dirname: string) : unit =
   (* generate_rcc_queries prot dirname; *)
   (* generate_nmc_queries prot dirname; *)
   let path = dirname in 
-  let results = process_directory path dirname in 
+  let results = process_directory path dirname timeout in 
   List.iter (fun (file, outcome, time) ->
     Printf.printf "%s: %s\n" file outcome
   ) results;
-  if List.for_all (fun (_, contains_invalid, _) -> contains_invalid = "invalid") results 
+  if List.for_all (fun (_, result, _) -> result = "invalid") results 
   then Printf.printf "Implementable\n" 
-  else Printf.printf "Non-implementable\n";
+  else if List.exists (fun (_, result, _) -> result = "valid") results 
+       then Printf.printf "Non-implementable\n" 
+       else Printf.printf "Inconclusive\n";
   print_execution_time_table results;
   print_total_execution_time results 
-
   (* Note to self: no semi-colon after final statement! *)
 
 let () =
   Logs.set_reporter (Logs.format_reporter ());
-  if Array.length Sys.argv < 2 then
-    Printf.eprintf "Usage: %s <input_file>\n" Sys.argv.(0)
+  if Array.length Sys.argv < 3 then
+    Printf.eprintf "Usage: %s <input_file> <timeout>\n" Sys.argv.(0)
   else
     let filename = Sys.argv.(1) in
+    let timeout = int_of_string Sys.argv.(2) in
     try
       let protocol = parse_file filename in
       let dirname = filename ^ "-generated" in 
       let perm = 0o777 in 
-      check_protocol protocol dirname; 
+      check_protocol protocol dirname timeout; 
     with
     | Sys_error s | Failure s | Invalid_argument s ->
       print_errors [Internal, Loc.dummy, s]
