@@ -303,11 +303,7 @@ let is_substring sub str =
 let process_hes_file filename dirname =
   Unix.chdir "/Users/elaineli/Programs/coar";
   (* Adding "> /dev/null 2>&1" to the end of this command breaks everything! *)
-<<<<<<< HEAD
-  let command = Printf.sprintf "timeout 60 dune exec main -- -c ./config/solver/dbg_muval_parallel_exc_tbq_ar.json -p muclp ../gclts-checker/query-generator/%s/%s" dirname filename in
-=======
-  let command = Printf.sprintf "timeout 10 dune exec main -- -c ./config/solver/dbg_muval_parallel_exc_tbq_ar.json -p muclp ../gclts-checker/query-generator/%s/%s" dirname filename in
->>>>>>> e7ee77a (merging changes from main)
+  let command = Printf.sprintf "timeout 5 dune exec main -- -c ./config/solver/dbg_muval_parallel_exc_tbq_ar.json -p muclp ../gclts-checker/query-generator/%s/%s" dirname filename in
   let start_time = Unix.gettimeofday () in
   let ic = Unix.open_process_in command in
   let rec read_last_line last_line =
@@ -359,9 +355,9 @@ let check_protocol (prot: symbolic_protocol) (dirname: string) : unit =
   print_symbolic_protocol prot; 
   let perm = 0o777 in 
   create_newdir dirname perm; 
-  generate_scc_queries prot dirname; 
-  generate_rcc_queries prot dirname;
-  generate_nmc_queries prot dirname;
+  generate_scc_queries_from_transition_and_state prot dirname; 
+  (* generate_rcc_queries prot dirname; *)
+  (* generate_nmc_queries prot dirname; *)
   let path = dirname in 
   let results = process_directory path dirname in 
   List.iter (fun (file, outcome, time) ->
