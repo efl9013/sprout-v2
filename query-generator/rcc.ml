@@ -84,29 +84,58 @@ let generate_all_avail (prot: symbolic_protocol) : string =
 	let all_distinct_pairs = all_distinct_participant_pairs prot in 
 	List.fold_left (fun acc (p,q) -> acc ^ "\n" ^ generate_avail_for_participant_pair prot p q) "" all_distinct_pairs
 
-let generate_rcc_from_pair_for_participant (prot: symbolic_protocol) (pair: symbolic_transition * symbolic_transition) (p: participant) = 
-	generate_rcc_preamble_from_pair_for_participant prot pair p ^ 
-	"\n" ^
+let generate_rcc_first_line_for_participant (prot: symbolic_protocol) (p: participant) = 
+	"exists " ^ 
+	"(s1: int) (s'1: int) " ^ 
+	List.fold_left (fun acc r -> acc ^ "(" ^r ^ "1: int) ") "" prot.registers ^ 
+	List.fold_left (fun acc r -> acc ^ "(" ^r ^ "'1: int) ") "" prot.registers ^ 
+	"(s2: int) (s'2: int) " ^ 
+	List.fold_left (fun acc r -> acc ^ "(" ^r ^ "2: int) ") "" prot.registers ^ 
+	List.fold_left (fun acc r -> acc ^ "(" ^r ^ "'2: int) ") "" prot.registers ^ 
+	"(x1: int) (x2: int)" ^ 
+	". \n" 
+
+let generate_rcc_body_from_pair_for_participant (prot: symbolic_protocol) (pair: symbolic_transition * symbolic_transition) (p: participant) = 
+	"(" ^ 
+	first_conjunct_from_pair prot pair p ^ 
+	" /\\ \n" ^
+	second_conjunct_from_pair prot p ^ 
+	" /\\ \n" ^
+	third_conjunct_from_pair prot pair p ^ 
+	" /\\ \n" ^
+	fourth_conjunct_from_pair prot pair p ^ 
+	" /\\ \n" ^
+	fifth_conjunct_from_pair prot pair p ^ 
+	")"
+
+let generate_rcc_preamble_for_participant (prot: symbolic_protocol) (p: participant) = 
+  let transition_pairs = filter_transitions_rcc_participant (all_transition_pairs prot.transitions) p in 
+	generate_rcc_first_line_for_participant prot p ^ 
+	List.fold_left (fun acc pair -> acc ^ "\n\\/\n" ^ generate_rcc_body_from_pair_for_participant prot pair p) "false" transition_pairs ^ 
+	"\ns.t.\n"
+
+let generate_rcc_for_participant (prot: symbolic_protocol) (p: participant) = 
+	generate_rcc_preamble_for_participant prot p ^ 
+	"\n" ^ 
 	generate_prodreach_for_participant prot p ^ 
 	"\n" ^ 
 	generate_all_avail prot
 
-let generate_rcc_filename_from_pair_for_participant (pair: symbolic_transition * symbolic_transition) (p: participant) = 
+(* let generate_rcc_filename_from_pair_for_participant (pair: symbolic_transition * symbolic_transition) (p: participant) = 
 	let tr1 = fst pair in 
 	let tr2 = snd pair in 
 	p ^ "_rcc_" ^ 
 	string_of_int tr1.pre ^ string_of_int tr1.post ^ "_" ^ 
 	string_of_int tr2.pre ^ string_of_int tr2.post ^
-	".hes"
+	".hes" *)
+
+let generate_rcc_filename_for_participant (p: participant) = 
+	p ^ "_rcc.hes" 
 
 let generate_rcc_queries_for_participant (prot: symbolic_protocol) (p: participant) (dir: string) = 
-  let transition_pairs = filter_transitions_rcc_participant (all_transition_pairs prot.transitions) p in 
-  List.iter (fun pair -> write_to_file  
-                          (Filename.concat dir (generate_rcc_filename_from_pair_for_participant pair p))
-                          (generate_rcc_from_pair_for_participant prot pair p))
-            transition_pairs 
+	let filename = generate_rcc_filename_for_participant p in 
+	write_to_file (Filename.concat dir filename) (generate_rcc_for_participant prot p)
 
 let generate_rcc_queries (prot: symbolic_protocol) (dir: string) = 
-  let participants = get_participants prot in 
+  let participants = get_receivers prot in 
   List.iter (fun p -> generate_rcc_queries_for_participant prot p dir) participants 
-

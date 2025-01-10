@@ -30,6 +30,24 @@ let get_participants protocol =
   in
   StringSet.elements participant_set
 
+let get_senders protocol =
+  let participant_set = 
+    List.fold_left (fun acc transition ->
+      acc
+      |> StringSet.add transition.sender
+    ) StringSet.empty protocol.transitions
+  in
+  StringSet.elements participant_set
+
+let get_receivers protocol =
+  let participant_set = 
+    List.fold_left (fun acc transition ->
+      acc
+      |> StringSet.add transition.receiver
+    ) StringSet.empty protocol.transitions
+  in
+  StringSet.elements participant_set
+
 let print_participants protocol =
   let participants = get_participants protocol in
   Printf.printf "Participants: {";
@@ -38,6 +56,8 @@ let print_participants protocol =
   ) participants;
   Printf.printf "}\n"
   
+let intersection l1 l2 = List.filter (fun e -> List.mem e l2) l1
+
 let all_distinct_participant_pairs (prot: symbolic_protocol) = 
   let participants = get_participants prot in
   let all_pairs =  List.concat (List.map (fun p -> List.map (fun q -> (p,q)) participants) participants) in 
