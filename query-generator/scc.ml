@@ -8,6 +8,7 @@ open Unreach
 let filter_transitions_scc_participant (ls: symbolic_transition list) (p: participant) =
    filter_by_sender ls p 
 
+(* Optimization: pre-filter the transitions further *)
 let filter_participant_pairs_for_unreach (prot: symbolic_protocol) (p: participant) = 
 	(* Defined like so to avoid repeats *)
 	let all_pairs = all_distinct_participant_pairs prot in 
@@ -83,7 +84,7 @@ let generate_scc_queries_from_transition (prot: symbolic_protocol) (dir: string)
   let participants = get_participants prot in 
   List.iter (fun p -> generate_scc_queries_from_transition_for_participant prot p dir) participants 
 
-(** Second style of SCC generation: one muCLP query per participant **)
+(** Second style of SCC generation: one muCLP query per transition per state *)
 (* These versions of the above functions are for generating queries with SCC factored into one query per (transition, state) *)
 let first_conjunct_from_transition_and_state (prot: symbolic_protocol) (tr: symbolic_transition) (p: participant) = 
 	"(s1 = " ^ string_of_int tr.pre ^ " /\\ s'1 = " ^ string_of_int tr.post ^ ")\n" 
@@ -143,7 +144,7 @@ let generate_scc_queries_from_transition_and_state (prot: symbolic_protocol) (di
   let participants = get_participants prot in 
   List.iter (fun p -> generate_scc_queries_from_transition_and_state_for_participant prot p dir) participants 
 
-(** Third style of SCC generation: one muCLP query per transition per state *)
+(** Third style of SCC generation: one muCLP query per participant **)
 let generate_scc_first_line_for_participant (prot: symbolic_protocol) (p: participant) = 
 	"exists " ^ 
 	"(s1: int) (s'1: int) " ^ 
@@ -191,7 +192,16 @@ let generate_scc_queries_altogether (prot: symbolic_protocol) (dir: string) =
 	let participants = get_senders prot in 
   List.iter (fun p -> generate_scc_queries_for_participant_altogether prot p dir) participants 
 
+(** Optimization: one muCLP query per simultaneously reachable transition and state **)
+(* Where simultaneous reachability is approximated using only participant labels *)
+let generate_scc_queries_from_simreach_transition_and_state_for_participant (prot: symbolic_protocol) (p: participant) (dir: string) = 
+  let transitions = filter_transitions_scc_participant prot.transitions p in 
+  List.iter (fun tr -> List.iter (fun s -> write_to_file 
+                          										(Filename.concat dir (generate_scc_filename_from_transition_and_state_for_participant tr s p))
+                          										(generate_scc_from_transition_and_state_for_participant prot tr s p))
+            										 (simultaneously_reachable_as_for prot tr.pre p))
+  					transitions 
 
-
-
-
+let generate_scc_queries_from_simreach_transition_and_state (prot: symbolic_protocol) (dir: string) = 
+  let participants = get_participants prot in 
+  List.iter (fun p -> generate_scc_queries_from_simreach_transition_and_state_for_participant prot p dir) participants 

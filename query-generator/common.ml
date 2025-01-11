@@ -203,6 +203,7 @@ let append2_variables (ls: variable list) : variable list =
   List.map (fun x -> x ^ "2") ls 
 
 (* Helper functions for pruning search space *)
+(* Currently this function loops forever *)
 let rec simultaneously_reachable_for (prot: symbolic_protocol) (s1: state) (s2: state) (p: participant) : bool = 
   let s1_prestates_1 = List.map (fun tr -> tr.pre) (filter_by_involvement (filter_by_poststate prot.transitions s1) p) in 
   let s2_prestates_1 = List.map (fun tr -> tr.pre) (filter_by_involvement (filter_by_poststate prot.transitions s2) p) in 
@@ -230,8 +231,55 @@ let rec simultaneously_reachable_for (prot: symbolic_protocol) (s1: state) (s2: 
   false 
   s2_prestates_3)
 
+let simultaneously_reachable_for (prot: symbolic_protocol) (s1: state) (s2: state) (p: participant) : bool =
+  let cache = Hashtbl.create 100 in
+  let visited = Hashtbl.create 100 in
+  
+  let rec helper s1 s2 =
+    if Hashtbl.mem visited (s1, s2) then false
+    else if Hashtbl.mem cache (s1, s2) then Hashtbl.find cache (s1, s2)
+    else begin
+      Hashtbl.add visited (s1, s2) true;
+      let result =
+        (let s1_prestates_1 = List.map (fun tr -> tr.pre) (filter_by_involvement (filter_by_poststate prot.transitions s1) p) in 
+        let s2_prestates_1 = List.map (fun tr -> tr.pre) (filter_by_involvement (filter_by_poststate prot.transitions s2) p) in 
+        let s1_prestates_2 = List.map (fun tr -> tr.pre) (filter_by_uninvolvement (filter_by_poststate prot.transitions s1) p) in 
+        let s2_prestates_3 = List.map (fun tr -> tr.pre) (filter_by_uninvolvement (filter_by_poststate prot.transitions s2) p) in 
+        (s1 = prot.initial_state && s2 = prot.initial_state)
+        || 
+        (List.fold_left 
+          (fun acc1 s1_pre -> 
+            acc1 || (List.fold_left 
+                    (fun acc2 s2_pre -> 
+                      acc2 || helper s1_pre s2_pre) 
+                    false 
+                    s2_prestates_1)) 
+        false 
+        s1_prestates_1)
+        || 
+        (List.fold_left 
+          (fun acc s1_pre -> acc || helper s1_pre s2)
+        false 
+        s1_prestates_2)
+        || 
+        (List.fold_left 
+          (fun acc s2_pre -> acc || helper s1 s2_pre)
+        false 
+        s2_prestates_3))
+      in
+      Hashtbl.add cache (s1, s2) result;
+      Hashtbl.remove visited (s1, s2);
+      result
+    end
+  in
+  helper s1 s2
+
+
 let simultaneously_reachable_states_for (prot: symbolic_protocol) (p: participant) : (state * state) list = 
   List.filter (fun (s1, s2) -> simultaneously_reachable_for prot s1 s2 p) (all_state_pairs prot.states)
+
+let simultaneously_reachable_as_for (prot: symbolic_protocol) (s: state) (p: participant) : state list = 
+  List.filter (fun s' -> simultaneously_reachable_for prot s s' p) prot.states 
 
 let print_simultaneously_reachable_states_for (prot: symbolic_protocol) (p: participant) = 
   Printf.printf "Printing simultaneously reachable states:\n";

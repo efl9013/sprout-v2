@@ -356,8 +356,8 @@ let check_protocol (prot: symbolic_protocol) (dirname: string) (timeout: int) : 
   let perm = 0o777 in 
   create_newdir dirname perm; 
   generate_scc_queries_from_transition_and_state prot dirname; 
-  generate_rcc_queries prot dirname;
-  generate_nmc_queries prot dirname;
+  (* generate_rcc_queries prot dirname; *)
+  (* generate_nmc_queries prot dirname; *)
   let path = dirname in 
   let results = process_directory path dirname timeout in 
   List.iter (fun (file, outcome, time) ->
@@ -384,6 +384,7 @@ let () =
       let dirname = filename ^ "-generated" in 
       let perm = 0o777 in 
       check_protocol protocol dirname timeout; 
+      (* print_simultaneously_reachable_states_for protocol "q"; *)
     with
     | Sys_error s | Failure s | Invalid_argument s ->
       print_errors [Internal, Loc.dummy, s]
