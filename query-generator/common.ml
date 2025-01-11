@@ -140,7 +140,10 @@ let participant_uninvolved (tr: symbolic_transition) (p: participant) =
   tr.sender <> p && tr.receiver <> p 
 
 let filter_by_uninvolvement (ls: symbolic_transition list) (p: participant) = 
-  List.filter (fun (tr: symbolic_transition) -> tr.sender <> p && tr.receiver <> p) ls 
+  List.filter (fun (tr: symbolic_transition) -> participant_uninvolved tr p) ls 
+
+let filter_by_involvement (ls: symbolic_transition list) (p: participant) = 
+  List.filter (fun (tr: symbolic_transition) -> participant_involved tr p) ls 
 
 let state_disjunction (ls: state list) (v: variable) =
   List.fold_left (fun acc x -> acc ^ " \\/ " ^ v ^ " = " ^ string_of_int x) "false" ls
@@ -150,6 +153,12 @@ let filter_by_prestate (ls: symbolic_transition list) (s: state) =
 
 let filter_by_poststate (ls: symbolic_transition list) (s: state) = 
   List.filter (fun (tr: symbolic_transition) -> tr.post = s) ls  
+
+let get_prestates (ls: symbolic_transition list) (s: state) = 
+  List.map (fun tr -> tr.pre) (filter_by_poststate ls s)
+
+let get_poststates (ls: symbolic_transition list) (s: state) = 
+  List.map (fun tr -> tr.post) (filter_by_prestate ls s)
 
 let filter_by_participant_signature (ls: symbolic_transition list) (p: participant) (q: participant) = 
   List.filter (fun (tr: symbolic_transition) -> tr.sender = p && tr.receiver = q) ls 
@@ -192,5 +201,38 @@ let append1_variables (ls: variable list) : variable list =
 
 let append2_variables (ls: variable list) : variable list = 
   List.map (fun x -> x ^ "2") ls 
-(** common.ml **)
 
+(* Helper functions for pruning search space *)
+let rec simultaneously_reachable_for (prot: symbolic_protocol) (s1: state) (s2: state) (p: participant) : bool = 
+  let s1_prestates_1 = List.map (fun tr -> tr.pre) (filter_by_involvement (filter_by_poststate prot.transitions s1) p) in 
+  let s2_prestates_1 = List.map (fun tr -> tr.pre) (filter_by_involvement (filter_by_poststate prot.transitions s2) p) in 
+  let s1_prestates_2 = List.map (fun tr -> tr.pre) (filter_by_uninvolvement (filter_by_poststate prot.transitions s1) p) in 
+  let s2_prestates_3 = List.map (fun tr -> tr.pre) (filter_by_uninvolvement (filter_by_poststate prot.transitions s2) p) in 
+  (s1 = prot.initial_state && s2 = prot.initial_state)
+  || 
+  (List.fold_left 
+    (fun acc1 s1_pre -> 
+      acc1 || (List.fold_left 
+              (fun acc2 s2_pre -> 
+                acc2 || simultaneously_reachable_for prot s1_pre s2_pre p) 
+              false 
+              s2_prestates_1)) 
+  false 
+  s1_prestates_1)
+  || 
+  (List.fold_left 
+    (fun acc s1_pre -> acc || simultaneously_reachable_for prot s1_pre s2 p)
+  false 
+  s1_prestates_2)
+  || 
+  (List.fold_left 
+    (fun acc s2_pre -> acc || simultaneously_reachable_for prot s1 s2_pre p)
+  false 
+  s2_prestates_3)
+
+let simultaneously_reachable_states_for (prot: symbolic_protocol) (p: participant) : (state * state) list = 
+  List.filter (fun (s1, s2) -> simultaneously_reachable_for prot s1 s2 p) (all_state_pairs prot.states)
+
+let print_simultaneously_reachable_states_for (prot: symbolic_protocol) (p: participant) = 
+  Printf.printf "Printing simultaneously reachable states:\n";
+  List.iter (fun (s1, s2) -> Printf.printf "(%i,%i)\n" s1 s2) (simultaneously_reachable_states_for prot p)
