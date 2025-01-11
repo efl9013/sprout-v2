@@ -68,7 +68,7 @@ let generate_scc_from_transition_for_participant (prot: symbolic_protocol) (tr: 
 	"\n" ^ 
 	generate_prodreach_for_participant prot p ^ 
 	"\n\n" ^ 
-	unreach_for_participant_pair prot tr.sender tr.receiver 
+	generate_unreach_for_participant_pair prot tr.sender tr.receiver prot.states
 
 let generate_scc_filename_from_transition_for_participant (tr: symbolic_transition) (p: participant) = 
 	p ^ "_scc_" ^ string_of_int tr.pre ^ string_of_int tr.post ^ ".hes"
@@ -99,7 +99,10 @@ let second_conjunct_from_transition_and_state (prot: symbolic_protocol) (tr: sym
 
 let fourth_conjunct_from_transition_and_state (prot: symbolic_protocol) (tr: symbolic_transition) (s: state) (p: participant) = 
 	"(" ^ 
-	"unreach_" ^ p ^ tr.receiver ^ " " ^ string_of_int s ^ " " ^ 
+	"unreach_" ^ p ^ tr.receiver ^ 
+	(* Note that whether space or underscore is used here depends on which version of unreach is used *)
+	"_" ^ 
+	string_of_int s ^ " " ^ 
 	List.fold_left (fun acc r -> acc ^ r ^ "2 ") "" prot.registers ^ 
 	" x1 " ^ 
 	")\n"
@@ -127,7 +130,7 @@ let generate_scc_from_transition_and_state_for_participant (prot: symbolic_proto
 	"\n" ^ 
 	generate_prodreach_for_participant prot p ^ 
 	"\n\n" ^ 
-	unreach_for_participant_pair prot tr.sender tr.receiver 
+	generate_unreach_for_participant_pair_and_state prot tr.sender tr.receiver prot.states
 
 let generate_scc_filename_from_transition_and_state_for_participant (tr: symbolic_transition) (s: state) (p: participant) = 
 	p ^ "_scc_" ^ string_of_int tr.pre ^ string_of_int tr.post ^ "_" ^ string_of_int s ^ ".hes"
@@ -174,8 +177,8 @@ let generate_scc_preamble_for_participant_altogether (prot: symbolic_protocol) (
 	"\ns.t.\n"
 
 let generate_unreach_for_participant_altogether (prot: symbolic_protocol) (p: participant) : string = 
-	let pairs_list = filter_participant_pairs_for_unreach prot p in 
-	List.fold_left (fun acc (p,q) -> acc ^ "\n" ^ unreach_for_participant_pair prot p q) "" pairs_list
+  let pairs_list = filter_participant_pairs_for_unreach prot p in 
+  List.fold_left (fun acc (p,q) -> acc ^ "\n" ^ generate_unreach_for_participant_pair prot p q prot.states) "" pairs_list
 
 let generate_scc_for_participant_altogether (prot: symbolic_protocol) (p: participant) = 
 	generate_scc_preamble_for_participant_altogether prot p ^ 
@@ -199,7 +202,9 @@ let generate_scc_queries_from_simreach_transition_and_state_for_participant (pro
   List.iter (fun tr -> List.iter (fun s -> write_to_file 
                           										(Filename.concat dir (generate_scc_filename_from_transition_and_state_for_participant tr s p))
                           										(generate_scc_from_transition_and_state_for_participant prot tr s p))
-            										 (simultaneously_reachable_as_for prot tr.pre p))
+  															 (* More optimization: toggle for removing queries of the shape _scc_xy_x.hes because they take abnormally long *)
+  															 (simultaneously_reachable_as_for prot tr.pre p))
+            										 (* (List.filter (fun x -> x <> tr.pre) (simultaneously_reachable_as_for prot tr.pre p))) *)
   					transitions 
 
 let generate_scc_queries_from_simreach_transition_and_state (prot: symbolic_protocol) (dir: string) = 
