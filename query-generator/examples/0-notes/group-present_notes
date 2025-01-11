@@ -1,0 +1,5 @@
+- inspired by group present from CONCUR/CAV
+- a coordinator c coordinates a group of three friends to share contributions for a present
+- all are asked if they want to join but the fewer join the higher the contribution and hence it needs repetition
+- distribution of budget: 30, 20, 40 and quote max 100
+- needs more than 13GB
