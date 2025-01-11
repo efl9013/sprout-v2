@@ -356,8 +356,8 @@ let check_protocol (prot: symbolic_protocol) (dirname: string) (timeout: int) : 
   let perm = 0o777 in 
   create_newdir dirname perm; 
   (* generate_scc_queries_altogether prot dirname;  *)
-  (* generate_rcc_queries prot dirname; *)
-  generate_nmc_queries prot dirname;
+  generate_rcc_queries prot dirname;
+  (* generate_nmc_queries prot dirname; *)
   let path = dirname in 
   let results = process_directory path dirname timeout in 
   List.iter (fun (file, outcome, time) ->

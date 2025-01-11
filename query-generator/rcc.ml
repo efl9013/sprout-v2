@@ -10,6 +10,8 @@ open Avail
 let filter_transitions_rcc_participant (ls: (symbolic_transition * symbolic_transition) list) (p: participant) =
    List.filter (fun (tr1,tr2) -> tr1.receiver = p && tr2.receiver = p && tr1.sender <> tr2.sender) ls
 
+let filter_simreach_transitions_rcc_participant (prot: symbolic_protocol) (ls: (symbolic_transition * symbolic_transition) list) (p: participant) =
+   List.filter (fun (tr1,tr2) -> tr1.receiver = p && tr2.receiver = p && tr1.sender <> tr2.sender && simultaneously_reachable_for prot tr1.pre tr2.pre p) ls
 (* For each pair of transitions, generate five conjuncts *)
 (* The first four conjuncts are all identical to and borrowed from NMC *)
 
@@ -109,7 +111,9 @@ let generate_rcc_body_from_pair_for_participant (prot: symbolic_protocol) (pair:
 	")"
 
 let generate_rcc_preamble_for_participant (prot: symbolic_protocol) (p: participant) = 
-  let transition_pairs = filter_transitions_rcc_participant (all_transition_pairs prot.transitions) p in 
+	(* Toggle the following line to only generate simultaneously reachable transition pairs, or generate all pairs without optimization *)
+  (* let transition_pairs = filter_transitions_rcc_participant (all_transition_pairs prot.transitions) p in  *)
+	let transition_pairs = filter_simreach_transitions_rcc_participant prot (all_transition_pairs prot.transitions) p in 
 	generate_rcc_first_line_for_participant prot p ^ 
 	List.fold_left (fun acc pair -> acc ^ "\n\\/\n" ^ generate_rcc_body_from_pair_for_participant prot pair p) "false" transition_pairs ^ 
 	"\ns.t.\n"

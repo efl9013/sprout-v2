@@ -5,3 +5,4 @@ Multiparty Sessions"
     no = 0,
     ok = 1
 - needs more than 13GB of RAM, also the version where the use of registers is optimised ('three-buyer-red')
+- RCC takes unusually long, 9s for b_rcc.hes, 3s for a/s_rcc.hes -> <3s total after simreach optimization

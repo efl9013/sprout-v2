@@ -9,3 +9,5 @@
     confirmation: 3
     succ: 4
     fail: 5
+- RCC takes an unusually long time, s_rcc.hes 14s
+- Optimized RCC <2s  

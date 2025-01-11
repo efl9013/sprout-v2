@@ -1,5 +1,6 @@
 - inspired from CONCUR/CAV load balancer but refine to not use same worker twice
 - trick for exiting: done=0 and workload>0
-- repots "unexpected" with timeout 30s for c_scc twice
+- reports "unexpected" with timeout 30s for c_scc twice
 | c_scc_01.hes                   | 30.1955              | unexpected |
 | c_scc_05.hes                   | 30.2063              | unexpected |
+- s_rcc.hes takes unusually long, 8s -> 4s with simreach optimization
