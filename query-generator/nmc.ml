@@ -7,6 +7,8 @@ open Prodreach
 let filter_transitions_nmc_participant (ls: (symbolic_transition * symbolic_transition) list) (p: participant) =
    List.filter (fun (tr1,tr2) -> tr1.sender = p && tr2.receiver = p) ls
 
+let filter_simreach_transitions_nmc_participant (prot: symbolic_protocol) (ls: (symbolic_transition * symbolic_transition) list) (p: participant) =
+   List.filter (fun (tr1,tr2) -> tr1.sender = p && tr2.receiver = p && simultaneously_reachable_for prot tr1.pre tr2.pre p) ls
 (* For each pair of transitions, generate four conjuncts *)
 (* First conjunct specifies the prestates of the transitions under consideration *)
 (* i.e. the values of s1 and s2 in the existential quantification of NMC *) 
@@ -64,7 +66,9 @@ let generate_nmc_body_from_pair_for_participant (prot: symbolic_protocol) (pair:
 	")"
 
 let generate_nmc_preamble_for_participant (prot: symbolic_protocol) (p: participant) = 
-	let transition_pairs = filter_transitions_nmc_participant (all_transition_pairs prot.transitions) p in 
+	(* Toggle the following line to only generate simultaneously reachable transition pairs, or generate all pairs without optimization *)
+	let transition_pairs = filter_simreach_transitions_nmc_participant prot (all_transition_pairs prot.transitions) p in 
+	(* let transition_pairs = filter_transitions_nmc_participant (all_transition_pairs prot.transitions) p in  *)
 	generate_nmc_first_line_for_participant prot p ^
   List.fold_left (fun acc pair -> acc ^ "\n\\/\n" ^ generate_nmc_body_from_pair_for_participant prot pair p) "false" transition_pairs ^ 
 	"\ns.t.\n"
@@ -72,7 +76,7 @@ let generate_nmc_preamble_for_participant (prot: symbolic_protocol) (p: particip
 let generate_nmc_for_participant (prot: symbolic_protocol) (p: participant) = 
 	generate_nmc_preamble_for_participant prot p ^ 
 	"\n" ^ 
-	generate_prodreach_for_participant prot p 
+	generate_prodreach_for_participant prot p
 
 let generate_nmc_filename_for_participant (p: participant) = 
 	p ^ "_nmc.hes"

@@ -7,3 +7,5 @@
     accept = 3,
     confirmed = 4
 - needs more than 13GB RAM
+- NMC takes unusually long for this example
+- NMC optimized takes <1s

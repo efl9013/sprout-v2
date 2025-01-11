@@ -204,7 +204,7 @@ let append2_variables (ls: variable list) : variable list =
 
 (* Helper functions for pruning search space *)
 (* Currently this function loops forever *)
-let rec simultaneously_reachable_for (prot: symbolic_protocol) (s1: state) (s2: state) (p: participant) : bool = 
+(* let rec simultaneously_reachable_for (prot: symbolic_protocol) (s1: state) (s2: state) (p: participant) : bool = 
   let s1_prestates_1 = List.map (fun tr -> tr.pre) (filter_by_involvement (filter_by_poststate prot.transitions s1) p) in 
   let s2_prestates_1 = List.map (fun tr -> tr.pre) (filter_by_involvement (filter_by_poststate prot.transitions s2) p) in 
   let s1_prestates_2 = List.map (fun tr -> tr.pre) (filter_by_uninvolvement (filter_by_poststate prot.transitions s1) p) in 
@@ -229,7 +229,7 @@ let rec simultaneously_reachable_for (prot: symbolic_protocol) (s1: state) (s2: 
   (List.fold_left 
     (fun acc s2_pre -> acc || simultaneously_reachable_for prot s1 s2_pre p)
   false 
-  s2_prestates_3)
+  s2_prestates_3) *)
 
 let simultaneously_reachable_for (prot: symbolic_protocol) (s1: state) (s2: state) (p: participant) : bool =
   let cache = Hashtbl.create 100 in

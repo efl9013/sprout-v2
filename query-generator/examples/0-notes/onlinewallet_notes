@@ -7,3 +7,5 @@
     payauth: 3
     quit: 4
 - needs more than 13GB RAM
+- NMC takes unusually long for this example
+- NMC optimized for only simreach transition pairs <3s

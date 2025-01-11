@@ -72,3 +72,7 @@
  (modules parser)
  (flags --explain))
 
+(rule 
+ (alias ungenerate)
+ (deps (universe))
+ (action (system "rm -rf examples/*-generated")))
