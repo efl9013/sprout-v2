@@ -187,8 +187,8 @@ let generate_scc_queries_v1a (prot: symbolic_protocol) (dir: string) =
 (** First' style of SCC generation: one muCLP query per participant **)
 (* The difference is that the preamble is for each (s1->s'1, s2) pair, 
 	 and thus the values of s1, s'1, s2 are propagated into each of the conjuncts literally *)
-
-let generate_scc_v1a (prot: symbolic_protocol) (p: participant) = 
+	 
+let generate_scc_v1'a (prot: symbolic_protocol) (p: participant) = 
 	let transitions = filter_by_sender prot.transitions p in 
 	(* Defined like so to avoid repetition *)
 	let unreach_pairs = intersection (all_distinct_participant_pairs prot) (List.map (fun tr -> (p, tr.receiver)) transitions) in  
@@ -209,7 +209,7 @@ let generate_scc_v1a (prot: symbolic_protocol) (p: participant) =
 
 (* When generating version b. of unreach, now we only want to generate the predicates that are relevant *)
 (* But we need to define them upfront so we can unduplicate them *)
-let generate_scc_v1b (prot: symbolic_protocol) (p: participant) = 
+let generate_scc_v1'b (prot: symbolic_protocol) (p: participant) = 
 	let transitions = filter_by_sender prot.transitions p in 
 	let unreach_pairs = unduplicate (List.fold_left (fun acc tr -> 
 																									acc @ List.map (fun s2 -> (tr.receiver,s2)) (simultaneously_reachable_as_for prot tr.pre p))
@@ -230,13 +230,13 @@ let generate_scc_v1b (prot: symbolic_protocol) (p: participant) =
 	"\n\n" ^ 
 	List.fold_left (fun acc (q,s2) -> acc ^ "\n" ^ unreach_for_participant_pair_and_state prot p q s2) "" unreach_pairs 
 
-let generate_scc_queries_v1a (prot: symbolic_protocol) (dir: string) = 
+let generate_scc_queries_v1'a (prot: symbolic_protocol) (dir: string) = 
 	let participants = get_senders prot in 
-	List.iter (fun p -> write_to_file (Filename.concat dir (p ^ "_scc.hes")) (generate_scc_v1a prot p)) participants 
+	List.iter (fun p -> write_to_file (Filename.concat dir (p ^ "_scc.hes")) (generate_scc_v1'a prot p)) participants 
 
-let generate_scc_queries_v1b (prot: symbolic_protocol) (dir: string) = 
+let generate_scc_queries_v1'b (prot: symbolic_protocol) (dir: string) = 
 	let participants = get_senders prot in 
-	List.iter (fun p -> write_to_file (Filename.concat dir (p ^ "_scc.hes")) (generate_scc_v1b prot p)) participants 
+	List.iter (fun p -> write_to_file (Filename.concat dir (p ^ "_scc.hes")) (generate_scc_v1'b prot p)) participants 
 
 (** Second style of SCC generation: one muCLP query per transition **)
 (* The preamble is thus a disjunction of clauses, one for each state *)
@@ -287,7 +287,7 @@ let generate_scc_queries_v2b (prot: symbolic_protocol) (dir: string) =
 
 (** Second' style of SCC generation: one muCLP query per transition **)
 (* The difference is again that the values of s1, s'1, s2 are propagated into each of the conjuncts literally *)
-let generate_scc_v2a (prot: symbolic_protocol) (tr: symbolic_transition) (p: participant) = 
+let generate_scc_v2'a (prot: symbolic_protocol) (tr: symbolic_transition) (p: participant) = 
 	let unreach_states = simultaneously_reachable_as_for prot tr.pre p in 
 	first_line prot ^
   List.fold_left (fun acc s2 -> acc ^ "\n\\/\n" ^ scc_body_for_transition_and_s2_a prot tr s2 p) 
@@ -299,7 +299,7 @@ let generate_scc_v2a (prot: symbolic_protocol) (tr: symbolic_transition) (p: par
 	"\n\n" ^ 
 	unreach_for_participant_pair prot p tr.receiver unreach_states
 
-let generate_scc_v2b (prot: symbolic_protocol) (tr: symbolic_transition) (p: participant) = 
+let generate_scc_v2'b (prot: symbolic_protocol) (tr: symbolic_transition) (p: participant) = 
 	let unreach_states = simultaneously_reachable_as_for prot tr.pre p in 
 	first_line prot ^
 	List.fold_left (fun acc s2 -> acc ^ "\n\\/\n" ^ scc_body_for_transition_and_s2_b prot tr s2 p) 
@@ -311,7 +311,7 @@ let generate_scc_v2b (prot: symbolic_protocol) (tr: symbolic_transition) (p: par
 	"\n\n" ^ 
 	generate_unreach_for_participant_pair_and_state prot p tr.receiver unreach_states 
 
-let generate_scc_queries_v2a (prot: symbolic_protocol) (dir: string) = 
+let generate_scc_queries_v2'a (prot: symbolic_protocol) (dir: string) = 
 	let participants = get_senders prot in 
 	List.iter (fun p -> 
 						(* For each participant that is a sender in the protocol *)
@@ -319,11 +319,11 @@ let generate_scc_queries_v2a (prot: symbolic_protocol) (dir: string) =
 											(* Generate a muCLP file for each transition it is sender in *)
 											write_to_file 
                          (Filename.concat dir (p ^ "_scc_" ^ string_of_int tr.pre ^ string_of_int tr.post ^ ".hes"))
-                         (generate_scc_v2a prot tr p))
+                         (generate_scc_v2'a prot tr p))
 											(List.filter (fun tr -> tr.sender = p) prot.transitions))
             participants 
 
-let generate_scc_queries_v2b (prot: symbolic_protocol) (dir: string) = 
+let generate_scc_queries_v2'b (prot: symbolic_protocol) (dir: string) = 
 	let participants = get_senders prot in 
 	List.iter (fun p -> 
 						(* For each participant that is a sender in the protocol *)
@@ -331,64 +331,13 @@ let generate_scc_queries_v2b (prot: symbolic_protocol) (dir: string) =
 											(* Generate a muCLP file for each transition it is sender in *)
 											write_to_file 
                          (Filename.concat dir (p ^ "_scc_" ^ string_of_int tr.pre ^ string_of_int tr.post ^ ".hes"))
-                         (generate_scc_v2b prot tr p))
+                         (generate_scc_v2'b prot tr p))
 											(List.filter (fun tr -> tr.sender = p) prot.transitions))
             participants 
 
 
 
-(** Third style of SCC generation: one muCLP query per transition per state **) 
-(* Note that unreach cannot be filtered upfront because unreach calls itself *)
-let generate_scc_v3a (prot: symbolic_protocol) (tr: symbolic_transition) (s2: state) (p: participant) = 
-	first_line prot ^
-	scc_body_for_transition_and_s2_a prot tr s2 p ^ 
-	"\ns.t.\n" ^
-	"\n" ^ 
-	generate_prodreach_for_participant prot p ^ 
-	"\n\n" ^ 
-	unreach_for_participant_pair prot p tr.receiver prot.states 
-
-let generate_scc_v3b (prot: symbolic_protocol) (tr: symbolic_transition) (s2: state) (p: participant) = 
-	first_line prot ^
-	scc_body_for_transition_and_s2_b prot tr s2 p ^ 
-	"\ns.t.\n" ^
-	"\n" ^ 
-	generate_prodreach_for_participant prot p ^ 
-	"\n\n" ^ 
-	generate_unreach_for_participant_pair_and_state prot p tr.receiver prot.states
-
-let generate_scc_queries_v3a (prot: symbolic_protocol) (dir: string) = 
-	let participants = get_senders prot in 
-	List.iter (fun p -> 
-						(* For each participant that is a sender in the protocol *)
-						List.iter (fun tr -> 
-											(* For each transition that it is sender in *)
-											List.iter (fun s2 -> 
-																(* For every state simultaneously reachable with the pre-state *)
-																(* Generate a muCLP file for the transition and state *)
-																write_to_file 
-			                         (Filename.concat dir (p ^ "_scc_" ^ string_of_int tr.pre ^ string_of_int tr.post ^ "_" ^ string_of_int s2 ^ ".hes"))
-			                         (generate_scc_v3a prot tr s2 p))
-											(simultaneously_reachable_as_for prot tr.pre p))
-											(List.filter (fun tr -> tr.sender = p) prot.transitions))
-            participants 
-
-let generate_scc_queries_v3b (prot: symbolic_protocol) (dir: string) = 
-	let participants = get_senders prot in 
-	List.iter (fun p -> 
-						(* For each participant that is a sender in the protocol *)
-						List.iter (fun tr -> 
-											(* For each transition that it is sender in *)
-											List.iter (fun s2 -> 
-																(* For every state simultaneously reachable with the pre-state *)
-																(* Generate a muCLP file for the transition and state *)
-																write_to_file 
-			                         (Filename.concat dir (p ^ "_scc_" ^ string_of_int tr.pre ^ string_of_int tr.post ^ "_" ^ string_of_int s2 ^ ".hes"))
-			                         (generate_scc_v3b prot tr s2 p))
-											(simultaneously_reachable_as_for prot tr.pre p))
-											(List.filter (fun tr -> tr.sender = p) prot.transitions))
-            participants 
-
+(** Third style of SCC generation: one muCLP query per transition per state *)
 (* These versions of the above functions are for generating queries with SCC factored into one query per (transition, state) *)
 (* let first_conjunct_from_transition_and_state (prot: symbolic_protocol) (tr: symbolic_transition) (p: participant) = 
 	"(s1 = " ^ string_of_int tr.pre ^ " /\\ s'1 = " ^ string_of_int tr.post ^ ")\n" 

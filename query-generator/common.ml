@@ -1,6 +1,18 @@
 (** common.ml **)
 open Ast 
 
+(* Basic *)
+let unduplicate lst =
+  let rec aux seen = function
+    | [] -> List.rev seen
+    | x :: xs ->
+      if List.mem x seen then
+        aux seen xs  (* Skip duplicates *)
+      else
+        aux (x :: seen) xs  (* Add to seen and continue *)
+  in
+  aux [] lst
+  
 (* System utilities *)
 let write_to_file filename contents =
   let oc = open_out filename in
