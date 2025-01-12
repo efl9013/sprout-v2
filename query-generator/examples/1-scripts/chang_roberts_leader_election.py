@@ -1,7 +1,7 @@
 import typer
 from typing_extensions import Annotated
 from pathlib import Path
-from random import shuffle
+from itertools import chain
 
 NO_LEADER=-1
 TRUE=1
@@ -23,17 +23,15 @@ def cr(n: Annotated[int, typer.Option(help="the number of processes")] = 3,
     with open(file, "w") as out:
         out.write("Initial state: (0)\n")
         out.write("Initial register assignments: ")
-        ids = [i for i in range(n)] # FIXME: create different ids in range [0;n) with symbolic values
-        shuffle(ids)
         for i in range(n):
             if i > 0:
                 out.write(", ")
-            out.write(f"id_i={ids[i]}, leader_{i}={NO_LEADER}, highest_{i}={NO_LEADER}")
+            out.write(f"leader_{i}={NO_LEADER}, highest_{i}={NO_LEADER}")
         out.write("\n")
         def loop(i: int) -> int:
-            return i+1
-        def done(i: int) -> int:
             return n+i+1
+        def done(i: int) -> int:
+            return 2*n+i+1
         def frame(*args: int) -> str:
             acc = []
             avoid = set(args)
@@ -41,8 +39,13 @@ def cr(n: Annotated[int, typer.Option(help="the number of processes")] = 3,
                 if i not in avoid:
                     acc.append(f"highest_{i}'=highest_{i}/\\leader_{i}'=leader_{i}")
             return "/\\".join(acc)
+        # initialization
+        all_different = "/\\".join(f"id_{i}'!=id_{j}" for i in range(n) for j in chain(range(i), range(i+1,n)))
+        for i in range(0, n):
+            j = (i+1) % n
+            out.write(f"({i}) p{i}->p{j}:x{{id_{j}'>0/\\{all_different}/\\highest_{j}'=highest_{j}/\\leader_{j}'=leader_{j}/\\{frame(j)}}} ({loop(1)})\n")
         # trigger
-        out.write(f"(0) p0->p1:id_0{{highest_0'=id_0/\\highest_0<id_0/\\id_1>id_0/\\highest_1'=id_1/\\leader_0'=leader_0/\\leader_1'=leader_1/\\{frame(0,1)}}} ({loop(1)})\n")
+        out.write(f"({loop(0)}) p0->p1:id_0{{highest_0'=id_0/\\highest_0<id_0/\\id_1>id_0/\\highest_1'=id_1/\\leader_0'=leader_0/\\leader_1'=leader_1/\\{frame(0,1)}}} ({loop(1)})\n")
         # loop
         for i in range(0,n):
             j = (i+1) % n

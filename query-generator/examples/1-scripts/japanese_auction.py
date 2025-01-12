@@ -20,7 +20,7 @@ def japanese(n: Annotated[int, typer.Option(help="the number of buyers")] = 3,
         out.write("Initial state: (0)\n")
         out.write("Initial register assignments: price=0")
         for i in range(n):
-            out.write(f", bid_{i}>0, present_{i}={TRUE}")
+            out.write(f", present_{i}={TRUE}")
         out.write("\n")
         def frame(i: Optional[int] = None, p: bool = True) -> str:
             r = range(n) if i is None else chain(range(0,i), range(i+1,n))
@@ -30,14 +30,22 @@ def japanese(n: Annotated[int, typer.Option(help="the number of buyers")] = 3,
                 return "price'=price/\\" + bid + "/\\" + present
             else:
                 return bid + "/\\" + present
-        end = 2 * n
+
+        end = 3 * n
+        def turn(i: int) -> int:
+            return n + 2 * i
+
+        # initialize the bids
+        for i in range(n):
+            out.write(f"({i}) null->b{i}:x{{bid_{i}'>0/\\present_{i}'=present_{i}/\\{frame(i)}}}({i+1})\n")
+
         # main loop
         def alone(i: int) -> str:
             return "/\\".join(f"present_{j}={FALSE}" for j in chain(range(0,i), range(i+1, n)))
         def not_alone(i: int) -> str:
             return "(" + "\\/".join(f"present_{j}={TRUE}" for j in chain(range(0,i), range(i+1, n))) + ")"
         for i in range(n):
-            s = 2 * i
+            s = turn(i)
             # tell the buyer the price or that it won
             out.write(f"({s}) s->b{i}:price{{present_{i}={TRUE}/\\{not_alone(i)}/\\{frame()}}} ({s+1})\n")
             out.write(f"({s}) s->b{i}:win{{win={WIN}/\\present_{i}={TRUE}/\\{alone(i)}/\\{frame()}}} ({end})\n")
