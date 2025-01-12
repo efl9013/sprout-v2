@@ -13,6 +13,9 @@ open Unreach
 	 a. One unreach predicate altogether, containing a disjunction for each state,
 	 b. One unreach predicate for each state argument, i.e. curried unreach *) 
 
+(* All of the versions use the simreach optimization *)
+(* None of the versions currently eliminate redundant unreach definitions *)
+
 (* The SCC preamble of a first line doing existential quantification, followed by four conjuncts: 
 	- First conjunct constrains s1, s'1, s2
 	- Second conjunct calls prodreach on s1 and s2 
@@ -190,8 +193,6 @@ let generate_scc_queries_v1a (prot: symbolic_protocol) (dir: string) =
 
 let generate_scc_v1a (prot: symbolic_protocol) (p: participant) = 
 	let transitions = filter_by_sender prot.transitions p in 
-	(* Defined like so to avoid repetition *)
-	let unreach_pairs = intersection (all_distinct_participant_pairs prot) (List.map (fun tr -> (p, tr.receiver)) transitions) in  
 	first_line prot ^
   List.fold_left (fun acc tr -> 
   								acc ^ "\n\\/\n" ^
@@ -205,16 +206,12 @@ let generate_scc_v1a (prot: symbolic_protocol) (p: participant) =
 	"\n" ^ 
 	generate_prodreach_for_participant prot p ^ 
 	"\n\n" ^ 
-	List.fold_left (fun acc (p,q) -> acc ^ "\n" ^ unreach_for_participant_pair prot p q prot.states) "" unreach_pairs 
+	List.fold_left (fun acc tr -> acc ^ "\n" ^ generate_unreach_va prot p tr.receiver prot.states) "" transitions 
 
 (* When generating version b. of unreach, now we only want to generate the predicates that are relevant *)
 (* But we need to define them upfront so we can unduplicate them *)
 let generate_scc_v1b (prot: symbolic_protocol) (p: participant) = 
 	let transitions = filter_by_sender prot.transitions p in 
-	let unreach_pairs = unduplicate (List.fold_left (fun acc tr -> 
-																									acc @ List.map (fun s2 -> (tr.receiver,s2)) (simultaneously_reachable_as_for prot tr.pre p))
-																									[]
-																									transitions) in
 	first_line prot ^
   List.fold_left (fun acc tr -> 
   								acc ^ "\n\\/\n" ^
@@ -228,7 +225,7 @@ let generate_scc_v1b (prot: symbolic_protocol) (p: participant) =
 	"\n" ^ 
 	generate_prodreach_for_participant prot p ^ 
 	"\n\n" ^ 
-	List.fold_left (fun acc (q,s2) -> acc ^ "\n" ^ unreach_for_participant_pair_and_state prot p q s2) "" unreach_pairs 
+	List.fold_left (fun acc tr -> acc ^ "\n" ^ generate_unreach_vb prot p tr.receiver prot.states) "" transitions 
 
 let generate_scc_queries_v1a (prot: symbolic_protocol) (dir: string) = 
 	let participants = get_senders prot in 
@@ -288,7 +285,6 @@ let generate_scc_queries_v2b (prot: symbolic_protocol) (dir: string) =
 (** Second' style of SCC generation: one muCLP query per transition **)
 (* The difference is again that the values of s1, s'1, s2 are propagated into each of the conjuncts literally *)
 let generate_scc_v2a (prot: symbolic_protocol) (tr: symbolic_transition) (p: participant) = 
-	let unreach_states = simultaneously_reachable_as_for prot tr.pre p in 
 	first_line prot ^
   List.fold_left (fun acc s2 -> acc ^ "\n\\/\n" ^ scc_body_for_transition_and_s2_a prot tr s2 p) 
   							  "false" 
@@ -297,10 +293,9 @@ let generate_scc_v2a (prot: symbolic_protocol) (tr: symbolic_transition) (p: par
 	"\n" ^ 
 	generate_prodreach_for_participant prot p ^ 
 	"\n\n" ^ 
-	unreach_for_participant_pair prot p tr.receiver unreach_states
+	generate_unreach_va prot p tr.receiver prot.states
 
 let generate_scc_v2b (prot: symbolic_protocol) (tr: symbolic_transition) (p: participant) = 
-	let unreach_states = simultaneously_reachable_as_for prot tr.pre p in 
 	first_line prot ^
 	List.fold_left (fun acc s2 -> acc ^ "\n\\/\n" ^ scc_body_for_transition_and_s2_b prot tr s2 p) 
   							  "false" 
@@ -309,7 +304,7 @@ let generate_scc_v2b (prot: symbolic_protocol) (tr: symbolic_transition) (p: par
 	"\n" ^ 
 	generate_prodreach_for_participant prot p ^ 
 	"\n\n" ^ 
-	generate_unreach_for_participant_pair_and_state prot p tr.receiver unreach_states 
+	generate_unreach_vb prot p tr.receiver prot.states 
 
 let generate_scc_queries_v2a (prot: symbolic_protocol) (dir: string) = 
 	let participants = get_senders prot in 
@@ -346,7 +341,7 @@ let generate_scc_v3a (prot: symbolic_protocol) (tr: symbolic_transition) (s2: st
 	"\n" ^ 
 	generate_prodreach_for_participant prot p ^ 
 	"\n\n" ^ 
-	unreach_for_participant_pair prot p tr.receiver prot.states 
+	generate_unreach_va prot p tr.receiver prot.states 
 
 let generate_scc_v3b (prot: symbolic_protocol) (tr: symbolic_transition) (s2: state) (p: participant) = 
 	first_line prot ^
@@ -355,7 +350,7 @@ let generate_scc_v3b (prot: symbolic_protocol) (tr: symbolic_transition) (s2: st
 	"\n" ^ 
 	generate_prodreach_for_participant prot p ^ 
 	"\n\n" ^ 
-	generate_unreach_for_participant_pair_and_state prot p tr.receiver prot.states
+	generate_unreach_vb prot p tr.receiver prot.states
 
 let generate_scc_queries_v3a (prot: symbolic_protocol) (dir: string) = 
 	let participants = get_senders prot in 

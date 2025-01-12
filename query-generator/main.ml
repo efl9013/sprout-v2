@@ -355,7 +355,7 @@ let check_protocol (prot: symbolic_protocol) (dirname: string) (timeout: int) : 
   print_symbolic_protocol prot; 
   let perm = 0o777 in 
   create_newdir dirname perm; 
-  generate_scc_queries_v3b prot dirname; 
+  generate_scc_queries_v3a prot dirname; 
   (* generate_scc_queries_from_simreach_transition_and_state prot dirname;  *)
   (* generate_rcc_queries prot dirname; *)
   (* generate_nmc_queries prot dirname; *)

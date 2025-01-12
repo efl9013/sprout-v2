@@ -81,7 +81,7 @@ let second_conjunct_vb (prot: symbolic_protocol) (p: participant) (q: participan
 
 (* Defining the entire conjunct for a state, for unreach for a pair of participants *)
 (* This version is the body of the version a. that includes all disjuncts together *)
-let unreach_for_participant_pair_and_state_body (prot: symbolic_protocol) (p: participant) (q: participant) (s: state) : string = 
+let unreach_body_va (prot: symbolic_protocol) (p: participant) (q: participant) (s: state) : string = 
   "(\n" ^ 
   "s = " ^ string_of_int s ^ " " ^
   first_conjunct_va prot p q s ^ 
@@ -89,21 +89,21 @@ let unreach_for_participant_pair_and_state_body (prot: symbolic_protocol) (p: pa
   ")"
 
 (** Version (1) of unreach_pq (s: int) for a list of states, with one disjunct per state **)
-let unreach_for_participant_pair (prot: symbolic_protocol) (p: participant) (q: participant) (ls: state list) : string = 
+let generate_unreach_va (prot: symbolic_protocol) (p: participant) (q: participant) (ls: state list) : string = 
   "unreach_" ^ p ^ q ^ " (s:int) " ^ all_registers prot ^ "(x:int): bool =nu\n" ^
-  List.fold_left (fun acc x -> acc ^ " \\/ " ^ unreach_for_participant_pair_and_state_body prot p q x) "false" ls ^ 
+  List.fold_left (fun acc x -> acc ^ " \\/ " ^ unreach_body_va prot p q x) "false" ls ^ 
   ";"
 
 (** Version (2) of unreach_pq_s, with one query per state **)
-let unreach_for_participant_pair_and_state (prot: symbolic_protocol) (p: participant) (q: participant) (s: state) : string = 
+let unreach_body_vb (prot: symbolic_protocol) (p: participant) (q: participant) (s: state) : string = 
   "unreach_" ^ p ^ q ^ "_" ^ string_of_int s ^ all_registers prot ^ "(x:int): bool =nu\n" ^
   "(" ^ 
   first_conjunct_vb prot p q s ^ 
   second_conjunct_vb prot p q s ^
   ");\n"
 
-let generate_unreach_for_participant_pair_and_state (prot: symbolic_protocol) (p: participant) (q: participant) (ls: state list) : string = 
-  List.fold_left (fun acc s -> acc ^ unreach_for_participant_pair_and_state prot p q s) "" ls
+let generate_unreach_vb (prot: symbolic_protocol) (p: participant) (q: participant) (ls: state list) : string = 
+  List.fold_left (fun acc s -> acc ^ unreach_body_vb prot p q s) "" ls
 
 
 
