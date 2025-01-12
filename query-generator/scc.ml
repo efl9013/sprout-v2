@@ -13,7 +13,11 @@ open Unreach
 	 a. One unreach predicate altogether, containing a disjunction for each state,
 	 b. One unreach predicate for each state argument, i.e. curried unreach *) 
 
-(* All of the versions use the simreach optimization *)
+(* Optimizations present in all versions: 
+	- Pre-filter for simultaneously reachable states according to participant projection of transition labels, 
+	- Eliminate state equality predicates and directly instantiate values in inductive predicates,
+*) 
+
 (* None of the versions currently eliminate redundant unreach definitions *)
 
 (* The SCC preamble of a first line doing existential quantification, followed by four conjuncts: 
@@ -148,6 +152,14 @@ let fourth_conjunct_for_transition_and_s2_b (prot: symbolic_protocol) (tr: symbo
 	fourth_conjunct_for_transition_b prot tr p ^
 	")" *)
 
+(* Optimizing conjunct for SCC queries of the form p_scc_xy_x.hes *)
+(* This conjunct states that the registers in S1 and S2 are not equal *)
+let fifth_conjunct_for_transition_and_s2 (prot: symbolic_protocol) (tr: symbolic_transition) (s2: state) = 
+	if tr.pre <> s2 then "true" else 
+	"(" ^ 
+	List.fold_left (fun acc r -> acc ^ " \\/ " ^ r ^ "1 != " ^ r ^ "2") "false" prot.registers ^
+	")"
+
 let scc_body_for_transition_and_s2_a (prot: symbolic_protocol) (tr: symbolic_transition) (s2: state) (p: participant) = 
 	"(" ^
 	(* First conjunct consisting of equalities constraining s1, s'1 and s2 disappears *)  
@@ -156,6 +168,8 @@ let scc_body_for_transition_and_s2_a (prot: symbolic_protocol) (tr: symbolic_tra
 	third_conjunct_for_transition prot tr p ^ 
 	" /\\ \n" ^
 	fourth_conjunct_for_transition_and_s2_a prot tr s2 p ^
+	" /\\ \n" ^
+	fifth_conjunct_for_transition_and_s2 prot tr s2 ^
 	")"
 
 let scc_body_for_transition_and_s2_b (prot: symbolic_protocol) (tr: symbolic_transition) (s2: state) (p: participant) = 
@@ -166,6 +180,8 @@ let scc_body_for_transition_and_s2_b (prot: symbolic_protocol) (tr: symbolic_tra
 	third_conjunct_for_transition prot tr p ^ 
 	" /\\ \n" ^
 	fourth_conjunct_for_transition_and_s2_b prot tr s2 p ^
+	" /\\ \n" ^
+	fifth_conjunct_for_transition_and_s2 prot tr s2 ^
 	")"
 
 (** First style of SCC generation: one muCLP query per participant **)
@@ -206,7 +222,7 @@ let generate_scc_v1a (prot: symbolic_protocol) (p: participant) =
 	"\n" ^ 
 	generate_prodreach_for_participant prot p ^ 
 	"\n\n" ^ 
-	List.fold_left (fun acc tr -> acc ^ "\n" ^ generate_unreach_va prot p tr.receiver prot.states) "" transitions 
+	List.fold_left (fun acc q -> acc ^ "\n" ^ generate_unreach_va prot p q prot.states) "" (get_participants prot)
 
 (* When generating version b. of unreach, now we only want to generate the predicates that are relevant *)
 (* But we need to define them upfront so we can unduplicate them *)
@@ -225,7 +241,7 @@ let generate_scc_v1b (prot: symbolic_protocol) (p: participant) =
 	"\n" ^ 
 	generate_prodreach_for_participant prot p ^ 
 	"\n\n" ^ 
-	List.fold_left (fun acc tr -> acc ^ "\n" ^ generate_unreach_vb prot p tr.receiver prot.states) "" transitions 
+	List.fold_left (fun acc q -> acc ^ "\n" ^ generate_unreach_vb prot p q prot.states) "" (get_participants prot)
 
 let generate_scc_queries_v1a (prot: symbolic_protocol) (dir: string) = 
 	let participants = get_senders prot in 
