@@ -12,7 +12,7 @@ let make_symbolic_protocol states registers transitions initial_state initial_re
 %token <string> IDENT
 %token <string> IDENT_PRIME
 %token TRUE FALSE AND OR NOT 
-%token EQUALS GT LT PLUS MINUS TIMES DIV
+%token EQUALS GT LT GEQ LEQ NEQ PLUS MINUS TIMES DIV 
 %token LPAREN RPAREN LBRACE RBRACE COMMA COLON ARROW 
 %token EOF
 %token INIT_HEADER FINAL_HEADER REGISTER_HEADER
@@ -71,6 +71,9 @@ formula:
   | expr EQUALS expr { Ast.Eq($1, $3) }
   | expr LT expr { Ast.Lt($1, $3) }
   | expr GT expr { Ast.Gt($1, $3) }
+  | expr NEQ expr { Ast.Neq($1, $3) }
+  | expr LEQ expr { Ast.Leq($1, $3) }
+  | expr GEQ expr { Ast.Geq($1, $3) }
   | formula AND formula { Ast.And($1, $3) }
   | formula OR formula { Ast.Or($1, $3) }
   | NOT formula { Ast.Not($2) }

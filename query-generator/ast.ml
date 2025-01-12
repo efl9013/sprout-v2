@@ -10,8 +10,11 @@ type formula =
   | True
   | False
   | Eq of expr * expr
+  | Neq of expr * expr 
   | Lt of expr * expr
+  | Leq of expr * expr 
   | Gt of expr * expr
+  | Geq of expr * expr 
   | And of formula * formula
   | Or of formula * formula
   | Not of formula
@@ -60,7 +63,10 @@ let rec expr_eq e1 e2 =
 let rec formula_eq f1 f2 =
   match (f1, f2) with
   | (True, True) | (False, False) -> true
+  | (Neq (e1, e2), Neq (e3, e4)) -> expr_eq e1 e3 && expr_eq e2 e4
   | (Eq (e1, e2), Eq (e3, e4)) -> expr_eq e1 e3 && expr_eq e2 e4
+  | (Leq (e1, e2), Neq (e3, e4)) -> expr_eq e1 e3 && expr_eq e2 e4
+  | (Geq (e1, e2), Neq (e3, e4)) -> expr_eq e1 e3 && expr_eq e2 e4
   | (Lt (e1, e2), Lt (e3, e4)) -> expr_eq e1 e3 && expr_eq e2 e4
   | (Gt (e1, e2), Gt (e3, e4)) -> expr_eq e1 e3 && expr_eq e2 e4
   | (And (a1, b1), And (a2, b2)) -> formula_eq a1 a2 && formula_eq b1 b2
@@ -111,6 +117,9 @@ let rec string_of_formula = function
   | True -> "true"
   | False -> "false"
   | Eq (e1, e2) -> "(" ^ string_of_expr e1 ^ " = " ^ string_of_expr e2 ^ ")"
+  | Neq (e1, e2) -> "(" ^ string_of_expr e1 ^ " != " ^ string_of_expr e2 ^ ")"
+  | Geq (e1, e2) -> "(" ^ string_of_expr e1 ^ " >= " ^ string_of_expr e2 ^ ")"
+  | Leq (e1, e2) -> "(" ^ string_of_expr e1 ^ " <= " ^ string_of_expr e2 ^ ")"
   | Lt (e1, e2) -> "(" ^ string_of_expr e1 ^ " < " ^ string_of_expr e2 ^ ")"
   | Gt (e1, e2) -> "(" ^ string_of_expr e1 ^ " > " ^ string_of_expr e2 ^ ")"
   | And (f1, f2) -> "(" ^ string_of_formula f1 ^ " /\\ " ^ string_of_formula f2 ^ ")"
@@ -255,6 +264,9 @@ let rec print_formula = function
   | Eq (e1, e2) -> printf "Eq("; print_expr e1; printf ", "; print_expr e2; printf ")"
   | Lt (e1, e2) -> printf "Lt("; print_expr e1; printf ", "; print_expr e2; printf ")"
   | Gt (e1, e2) -> printf "Gt("; print_expr e1; printf ", "; print_expr e2; printf ")"
+  | Neq (e1, e2) -> printf "Neq("; print_expr e1; printf ", "; print_expr e2; printf ")"
+  | Leq (e1, e2) -> printf "Leq("; print_expr e1; printf ", "; print_expr e2; printf ")"
+  | Geq (e1, e2) -> printf "Geq("; print_expr e1; printf ", "; print_expr e2; printf ")"  
   | And (f1, f2) -> printf "And("; print_formula f1; printf ", "; print_formula f2; printf ")"
   | Or (f1, f2) -> printf "Or("; print_formula f1; printf ", "; print_formula f2; printf ")"
   | Not f -> printf "Not("; print_formula f; printf ")"

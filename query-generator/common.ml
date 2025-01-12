@@ -90,6 +90,9 @@ let rec substitute (phi: formula) (x: variable) (y: variable) : formula =
   | True -> True 
   | False -> False 
   | Eq (e1, e2) -> Eq (substitute_expr e1 x y, substitute_expr e2 x y)
+  | Neq (e1, e2) -> Neq (substitute_expr e1 x y, substitute_expr e2 x y)
+  | Leq (e1, e2) -> Leq (substitute_expr e1 x y, substitute_expr e2 x y)
+  | Geq (e1, e2) -> Geq (substitute_expr e1 x y, substitute_expr e2 x y)
   | Lt (e1, e2) -> Lt (substitute_expr e1 x y, substitute_expr e2 x y) 
   | Gt (e1, e2) -> Gt (substitute_expr e1 x y, substitute_expr e2 x y)
   | And (phi1, phi2) -> And (substitute phi1 x y, substitute phi2 x y)
@@ -111,6 +114,9 @@ let rec append1 (phi: formula) : formula =
   | True -> True 
   | False -> False 
   | Eq (e1, e2) -> Eq (append1_expr e1, append1_expr e2) 
+  | Neq (e1, e2) -> Neq (append1_expr e1, append1_expr e2)
+  | Leq (e1, e2) -> Leq (append1_expr e1, append1_expr e2)
+  | Geq (e1, e2) -> Geq (append1_expr e1, append1_expr e2)
   | Lt (e1, e2) -> Lt (append1_expr e1, append1_expr e2) 
   | Gt (e1, e2) -> Gt (append1_expr e1, append1_expr e2)
   | And (phi1, phi2) -> And (append1 phi1, append1 phi2)
@@ -132,6 +138,9 @@ let rec append2 (phi: formula) : formula =
   | True -> True 
   | False -> False 
   | Eq (e1, e2) -> Eq (append2_expr e1, append2_expr e2) 
+  | Neq (e1, e2) -> Neq (append2_expr e1, append2_expr e2)
+  | Leq (e1, e2) -> Leq (append2_expr e1, append2_expr e2)
+  | Geq (e1, e2) -> Geq (append2_expr e1, append2_expr e2)
   | Lt (e1, e2) -> Lt (append2_expr e1, append2_expr e2) 
   | Gt (e1, e2) -> Gt (append2_expr e1, append2_expr e2)
   | And (phi1, phi2) -> And (append2 phi1, append2 phi2)
