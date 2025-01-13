@@ -210,7 +210,7 @@ let generate_scc_queries_v1a (prot: symbolic_protocol) (dir: string) =
 let generate_scc_v1a (prot: symbolic_protocol) (p: participant) = 
 	let transitions = filter_by_sender prot.transitions p in 
 	first_line prot ^
-  List.fold_left (fun acc tr -> 
+  	List.fold_left (fun acc tr -> 
   								acc ^ "\n\\/\n" ^
   								List.fold_left (fun acc s2 -> 
   																acc ^ "\n\\/\n" ^ scc_body_for_transition_and_s2_a prot tr s2 p) 
@@ -396,6 +396,49 @@ let generate_scc_queries_v3b (prot: symbolic_protocol) (dir: string) =
 																write_to_file 
 			                         (Filename.concat dir (p ^ "_scc_" ^ string_of_int tr.pre ^ string_of_int tr.post ^ "_" ^ string_of_int s2 ^ ".hes"))
 			                         (generate_scc_v3b prot tr s2 p))
+											(simultaneously_reachable_as_for prot tr.pre p))
+											(List.filter (fun tr -> tr.sender = p) prot.transitions))
+            participants 
+
+(** Fourth style of SCC generation: v3b, but with prodreach curried **) 
+let second_conjunct_for_s1_s2_b (prot: symbolic_protocol) (s1: state) (s2: state) (p: participant) = 
+	"(prodreach_" ^ p ^ "_" ^
+	string_of_int s1 ^ "_" ^
+	string_of_int s2 ^ " " ^
+	List.fold_left (fun acc r -> acc ^ r ^ "1 ") "" prot.registers ^ 
+	List.fold_left (fun acc r -> acc ^ r ^ "2 ") "" prot.registers ^ 
+	")\n"
+
+let generate_scc_v3bb (prot: symbolic_protocol) (tr: symbolic_transition) (s2: state) (p: participant) = 
+	first_line prot ^
+	"(" ^
+	(* First conjunct consisting of equalities constraining s1, s'1 and s2 disappears *)  
+	second_conjunct_for_s1_s2_b prot tr.pre s2 p ^ 
+	" /\\ \n" ^
+	third_conjunct_for_transition prot tr p ^ 
+	" /\\ \n" ^
+	fourth_conjunct_for_transition_and_s2_b prot tr s2 p ^
+	" /\\ \n" ^
+	fifth_conjunct_for_transition_and_s2 prot tr s2 ^
+	")" ^ 
+	"\ns.t.\n" ^
+	"\n" ^ 
+	generate_prodreach_vb prot p ^ 
+	"\n\n" ^ 
+	generate_unreach_vb prot p tr.receiver prot.states
+
+let generate_scc_queries_v3bb (prot: symbolic_protocol) (dir: string) = 
+	let participants = get_senders prot in 
+	List.iter (fun p -> 
+						(* For each participant that is a sender in the protocol *)
+						List.iter (fun tr -> 
+											(* For each transition that it is sender in *)
+											List.iter (fun s2 -> 
+																(* For every state simultaneously reachable with the pre-state *)
+																(* Generate a muCLP file for the transition and state *)
+																write_to_file 
+			                         (Filename.concat dir (p ^ "_scc_" ^ string_of_int tr.pre ^ string_of_int tr.post ^ "_" ^ string_of_int s2 ^ ".hes"))
+			                         (generate_scc_v3bb prot tr s2 p))
 											(simultaneously_reachable_as_for prot tr.pre p))
 											(List.filter (fun tr -> tr.sender = p) prot.transitions))
             participants 
