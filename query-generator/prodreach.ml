@@ -114,7 +114,9 @@ let second_disjunct_va (prot: symbolic_protocol) (p: participant) : string =
 
 let filter_transitions_third_fourth_disjunct (ls: symbolic_transition list) (s: state) (p: participant) =
    List.filter (fun tr -> tr.post = s && participant_uninvolved tr p) ls  
-       
+
+(* In the transition tr, tr.post is s'1 in the original arguments of prodreach
+   s1 which is tr.pre from this transition, along with s'2  which is reused, are the new arguments to the new prodreach call *)
 let third_disjunct_for_transition_va (prot: symbolic_protocol) (tr: symbolic_transition) (p: participant) : string = 
   let phi1 = substitute (append1 tr.predicate) (tr.comm_var ^ "1") "x1" in 
   "(" ^ 
@@ -148,17 +150,20 @@ let third_disjunct_for_transition_vb (prot: symbolic_protocol) (tr: symbolic_tra
   string_of_formula phi1 ^ 
   ")) \n"
 
+(* The s here is actually s'1 *)
 let third_disjunct_for_s_va (prot: symbolic_protocol) (s: state) (p: participant) : string = 
   let transitions = filter_transitions_third_fourth_disjunct prot.transitions s p in 
   List.fold_left (fun acc x -> acc ^ "\\/ \n" ^ third_disjunct_for_transition_va prot x p) "" transitions 
 
-let third_disjunct_for_s_vb (prot: symbolic_protocol) (s: state) (p: participant) : string = 
+let third_disjunct_for_s_vb (prot: symbolic_protocol) (s: state) (s2: state) (p: participant) : string = 
   let transitions = filter_transitions_third_fourth_disjunct prot.transitions s p in 
-  List.fold_left (fun acc x -> acc ^ "\\/ \n" ^ third_disjunct_for_transition_vb prot x s p) "" transitions 
+  List.fold_left (fun acc x -> acc ^ "\\/ \n" ^ third_disjunct_for_transition_vb prot x s2 p) "" transitions 
 
 let third_disjunct_va (prot: symbolic_protocol) (p: participant) : string = 
   List.fold_left (fun acc s -> acc ^ third_disjunct_for_s_va prot s p) "" prot.states 
 
+(* In the transition tr, tr.post is s'2 in the original arguments of prodreach
+   s'1 which is reused, and tr.pre from this transition which is s2, are the new arguments to the new prodreach call *)
 let fourth_disjunct_for_transition_va (prot: symbolic_protocol) (tr: symbolic_transition) (p: participant) : string = 
   let phi2 = substitute (append2 tr.predicate) (tr.comm_var ^ "2") "x2" in 
   "(" ^ 
@@ -192,13 +197,14 @@ let fourth_disjunct_for_transition_vb (prot: symbolic_protocol) (tr: symbolic_tr
   string_of_formula phi2 ^ 
   ")) \n"
 
+(* The s here is actually s'2 *)
 let fourth_disjunct_for_s_va (prot: symbolic_protocol) (s: state) (p: participant) : string = 
   let transitions = filter_transitions_third_fourth_disjunct prot.transitions s p in 
   List.fold_left (fun acc x -> acc ^ "\\/ \n" ^ fourth_disjunct_for_transition_va prot x p) "" transitions  
   
-let fourth_disjunct_for_s_vb (prot: symbolic_protocol) (s: state) (p: participant) : string = 
+let fourth_disjunct_for_s_vb (prot: symbolic_protocol) (s: state) (s1: state) (p: participant) : string = 
   let transitions = filter_transitions_third_fourth_disjunct prot.transitions s p in 
-  List.fold_left (fun acc x -> acc ^ "\\/ \n" ^ fourth_disjunct_for_transition_vb prot x s p) "" transitions  
+  List.fold_left (fun acc x -> acc ^ "\\/ \n" ^ fourth_disjunct_for_transition_vb prot x s1 p) "" transitions  
   
 let fourth_disjunct_va (prot: symbolic_protocol) (p: participant) : string = 
   List.fold_left (fun acc s -> acc ^ fourth_disjunct_for_s_va prot s p) "" prot.states 
@@ -231,8 +237,8 @@ let generate_prodreach_for_s1_s2 (prot: symbolic_protocol) (s1: state) (s2: stat
   "\n" ^
   first_disjunct_vb prot s1 s2 ^ 
   second_disjunct_for_s1_s2_vb prot s1 s2 p ^ 
-  third_disjunct_for_s_vb prot s1 p ^
-  fourth_disjunct_for_s_vb prot s2 p ^
+  third_disjunct_for_s_vb prot s1 s2 p ^
+  fourth_disjunct_for_s_vb prot s2 s1 p ^
   ";"
 
 let generate_prodreach_vb (prot: symbolic_protocol) (p: participant) : string =

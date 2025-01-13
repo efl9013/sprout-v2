@@ -191,7 +191,9 @@ let all_transition_pairs (ls: symbolic_transition list) : (symbolic_transition *
   List.concat (List.map (fun x -> List.map (fun y -> (x, y)) ls) ls) 
 
 let all_state_pairs (ls: state list) : (state * state) list = 
-  List.concat (List.map (fun x -> List.map (fun y -> (x, y)) (List.rev ls)) (List.rev ls))
+  (* To reproduce the least fixpoint ordering bug in MuVal *)
+  (* e.g. fibonacci generates invalid muCLP queries when using parallel_exc mode *)
+  List.concat (List.map (fun x -> List.map (fun y -> (x, y)) ls) ls)
 
 let parenthesize (s: string) : string = 
   "(" ^ s ^ ")"
