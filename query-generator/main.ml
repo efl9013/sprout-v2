@@ -11,6 +11,7 @@ open Printf
 open Lexer 
 open Parser 
 open Unix 
+open Config
 open Filename 
 
 let send_validity_yes : symbolic_protocol = {
@@ -301,12 +302,12 @@ let is_substring sub str =
   check 0
 
 let process_hes_file filename dirname timeout =
-  Unix.chdir "/Users/elaineli/Programs/coar";
+  Unix.chdir Config.coar_location; 
   (* Adding "> /dev/null 2>&1" to the end of this command breaks everything! *)
   (* Currently there is a bug in MuVal for the parallel_exc version of the tool, 
     which is sensitive to equation ordering for least fixpoints *)
   (* So we should use the parallel version until it is fixed *) 
-  let command = Printf.sprintf "timeout %i dune exec main -- -c ./config/solver/dbg_muval_parallel_tbq_ar.json -p muclp ../gclts-checker/query-generator/%s/%s" timeout dirname filename in
+  let command = Printf.sprintf "timeout %i dune exec main -- -c ./config/solver/dbg_muval_parallel_tbq_ar.json -p muclp %s/%s/%s" timeout Config.dir_location dirname filename in
   let start_time = Unix.gettimeofday () in
   let ic = Unix.open_process_in command in
   let rec read_last_line last_line =
