@@ -1,7 +1,7 @@
 (executable
  (name main)
  (public_name query-generator)
- (libraries unix logs util ast common prodreach unreach avail scc rcc nmc lexer parser config)
+ (libraries unix logs util ast common prodreach unreach avail scc rcc nmc lexer parser config visual)
  (modules Main)
  (preprocess (pps ppx_custom_printf)))
 
@@ -68,6 +68,11 @@
  (name nmc)
  (libraries ast common prodreach)
  (modules Nmc))
+
+(library
+ (name visual)
+ (libraries ast common)
+ (modules Visual))
 
 (ocamllex
  (modules lexer))

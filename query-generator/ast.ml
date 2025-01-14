@@ -258,6 +258,7 @@ let rec print_expr = function
   | Times (e1, e2) -> printf "Times("; print_expr e1; printf ", "; print_expr e2; printf ")"
   | Div (e1, e2) -> printf "Div("; print_expr e1; printf ", "; print_expr e2; printf ")"
 
+
 let rec print_formula = function
   | True -> printf "True"
   | False -> printf "False"
@@ -271,6 +272,7 @@ let rec print_formula = function
   | Or (f1, f2) -> printf "Or("; print_formula f1; printf ", "; print_formula f2; printf ")"
   | Not f -> printf "Not("; print_formula f; printf ")"
 
+
 let print_symbolic_transition t =
   printf "{\n";
   printf "  pre = %d;\n" t.pre;
@@ -280,6 +282,21 @@ let print_symbolic_transition t =
   printf "  predicate = "; print_formula t.predicate; printf ";\n";
   printf "  post = %d;\n" t.post;
   printf "}"
+
+(* let get_string_for_symbolic_transition t =
+  let buffer = Buffer.create 256 in
+  Buffer.add_string buffer "{\n";
+  Buffer.add_string buffer (Printf.sprintf "  pre = %d;\n" t.pre);
+  Buffer.add_string buffer (Printf.sprintf "  sender = \"%s\";\n" t.sender);
+  Buffer.add_string buffer (Printf.sprintf "  receiver = \"%s\";\n" t.receiver);
+  Buffer.add_string buffer (Printf.sprintf "  comm_var = \"%s\";\n" t.comm_var);
+  Buffer.add_string buffer "  predicate = ";
+  Buffer.add_string buffer (get_string_for_formula t.predicate); (* Assuming `print_formula` returns a string *)
+  Buffer.add_string buffer ";\n";
+  Buffer.add_string buffer (Printf.sprintf "  post = %d;\n" t.post);
+  Buffer.add_string buffer "}";
+  Buffer.contents buffer *)
+
 
 let print_symbolic_protocol p =
   printf "{\n";
@@ -342,3 +359,31 @@ let print_symbolic_protocol (protocol: symbolic_protocol) =
     print_transition_stdout t
   ) protocol.transitions *)
 
+(* Print functions for visualization*)
+
+  let rec get_string_for_expr = function
+  | Const n -> Printf.sprintf "%d" n
+  | Var v -> Printf.sprintf "%s" v
+  | VarPrime v -> Printf.sprintf "%s'" v (* TODO: unclear if this works as supposed to *)
+  | Plus (e1, e2) -> 
+      Printf.sprintf "(%s+%s)" (get_string_for_expr e1) (get_string_for_expr e2)
+  | Minus (e1, e2) -> 
+      Printf.sprintf "(%s-%s)" (get_string_for_expr e1) (get_string_for_expr e2)
+  | Times (e1, e2) -> 
+      Printf.sprintf "(%s*%s)" (get_string_for_expr e1) (get_string_for_expr e2)
+  | Div (e1, e2) -> 
+      Printf.sprintf "(%s/%s)" (get_string_for_expr e1) (get_string_for_expr e2)
+
+
+let rec get_string_for_formula = function
+  | True -> "True"
+  | False -> "False"
+  | Eq (e1, e2) -> Printf.sprintf "(%s=%s)" (get_string_for_expr e1) (get_string_for_expr e2)
+  | Lt (e1, e2) -> Printf.sprintf "(%s<%s)" (get_string_for_expr e1) (get_string_for_expr e2)
+  | Gt (e1, e2) -> Printf.sprintf "(%s>%s)" (get_string_for_expr e1) (get_string_for_expr e2)
+  | Neq (e1, e2) -> Printf.sprintf "(%s!=%s)" (get_string_for_expr e1) (get_string_for_expr e2)
+  | Leq (e1, e2) -> Printf.sprintf "(%s<=%s)" (get_string_for_expr e1) (get_string_for_expr e2)
+  | Geq (e1, e2) -> Printf.sprintf "(%s>=%s)" (get_string_for_expr e1) (get_string_for_expr e2)
+  | And (f1, f2) -> Printf.sprintf "(%s/\\\\%s)" (get_string_for_formula f1) (get_string_for_formula f2)
+  | Or (f1, f2) -> Printf.sprintf "(%s\\\\/%s)" (get_string_for_formula f1) (get_string_for_formula f2)
+  | Not f -> Printf.sprintf "~%s" (get_string_for_formula f)

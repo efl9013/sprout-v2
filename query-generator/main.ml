@@ -10,6 +10,7 @@ open Rcc
 open Printf
 open Lexer 
 open Parser 
+open Visual
 open Unix 
 open Config
 open Filename 
@@ -309,6 +310,8 @@ let process_hes_file filename dirname timeout =
   (* So we should use the parallel version until it is fixed *) 
   let command = Printf.sprintf "timeout %i dune exec main -- -c ./config/solver/dbg_muval_parallel_tbq_ar.json -p muclp %s/%s/%s" timeout Config.dir_location dirname filename in
   let start_time = Unix.gettimeofday () in
+  Printf.printf "Checking %s \n" filename;
+  flush Stdlib.stdout;
   let ic = Unix.open_process_in command in
   let rec read_last_line last_line =
     try
@@ -362,7 +365,7 @@ let check_protocol (prot: symbolic_protocol) (dirname: string) (timeout: int) : 
   Printf.printf "Checking implementability of the following protocol: \n";
   print_symbolic_protocol prot; 
   let perm = 0o777 in 
-  create_newdir dirname perm; 
+  (* create_newdir dirname perm;  *)
   generate_scc_queries prot dirname; 
   generate_rcc_queries prot dirname;
   generate_nmc_queries prot dirname;
@@ -391,7 +394,13 @@ let () =
       let protocol = parse_file filename in
       let dirname = filename ^ "-generated" in 
       let perm = 0o777 in 
-      check_protocol protocol dirname timeout; 
+      (* moved this out of check_protocol *)
+      create_newdir dirname perm;  
+      store_visualization protocol dirname;
+      (* to see visualization, run 
+        dot -Tsvg visualization.dot > visualization.svg 
+        in the respective folder and open svg-file *)
+      check_protocol protocol dirname timeout;
       (* print_simultaneously_reachable_states_for protocol "q"; *)
     with
     | Sys_error s | Failure s | Invalid_argument s ->
