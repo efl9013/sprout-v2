@@ -81,9 +81,10 @@ let rec substitute_expr (e: expr) (x: variable) (y: variable) : expr =
   | Var v -> if v = x then Var y else Var v
   | VarPrime v -> if v ^ "'" = x then Var y else VarPrime v 
   | Plus (e1, e2) -> Plus (substitute_expr e1 x y, substitute_expr e2 x y)
-  | Minus (e1, e2) -> Plus (substitute_expr e1 x y, substitute_expr e2 x y)
-  | Times (e1, e2) -> Plus (substitute_expr e1 x y, substitute_expr e2 x y)
-  | Div (e1, e2) -> Plus (substitute_expr e1 x y, substitute_expr e2 x y)
+  | Minus (e1, e2) -> Minus (substitute_expr e1 x y, substitute_expr e2 x y)
+  | Times (e1, e2) -> Times (substitute_expr e1 x y, substitute_expr e2 x y)
+  | Div (e1, e2) -> Div (substitute_expr e1 x y, substitute_expr e2 x y)
+  | Mod (e1, e2) -> Mod (substitute_expr e1 x y, substitute_expr e2 x y)
 
 let rec substitute (phi: formula) (x: variable) (y: variable) : formula = 
   match phi with 
@@ -105,9 +106,10 @@ let rec append1_expr (e: expr) : expr =
   | Var v -> Var (v ^ "1")
   | VarPrime v -> VarPrime (v ^ "1")
   | Plus (e1, e2) -> Plus (append1_expr e1, append1_expr e2)
-  | Minus (e1, e2) -> Plus (append1_expr e1, append1_expr e2)
-  | Times (e1, e2) -> Plus (append1_expr e1, append1_expr e2)
-  | Div (e1, e2) -> Plus (append1_expr e1, append1_expr e2)
+  | Minus (e1, e2) -> Minus (append1_expr e1, append1_expr e2)
+  | Times (e1, e2) -> Times (append1_expr e1, append1_expr e2)
+  | Div (e1, e2) -> Div (append1_expr e1, append1_expr e2)
+  | Mod (e1, e2) -> Mod (append1_expr e1, append1_expr e2)
 
 let rec append1 (phi: formula) : formula = 
   match phi with 
@@ -129,9 +131,10 @@ let rec append2_expr (e: expr) : expr =
   | Var v -> Var (v ^ "2")
   | VarPrime v -> VarPrime (v ^ "2")
   | Plus (e1, e2) -> Plus (append2_expr e1, append2_expr e2)
-  | Minus (e1, e2) -> Plus (append2_expr e1, append2_expr e2)
-  | Times (e1, e2) -> Plus (append2_expr e1, append2_expr e2)
-  | Div (e1, e2) -> Plus (append2_expr e1, append2_expr e2)
+  | Minus (e1, e2) -> Minus (append2_expr e1, append2_expr e2)
+  | Times (e1, e2) -> Times (append2_expr e1, append2_expr e2)
+  | Div (e1, e2) -> Div (append2_expr e1, append2_expr e2)
+  | Mod (e1, e2) -> Mod (append2_expr e1, append2_expr e2)
 
 let rec append2 (phi: formula) : formula = 
   match phi with 

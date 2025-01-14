@@ -46,6 +46,7 @@ rule token = parse
   | '-'                     { MINUS }
   | '*'                     { TIMES }
   | '/'                     { DIV }
+  | '%'                     { MOD }
   | identifier as id        { IDENT id }
   | identifier as id "'"    { IDENT_PRIME id }
   | integer as num          { INT (int_of_string num) }

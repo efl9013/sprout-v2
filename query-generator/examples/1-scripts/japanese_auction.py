@@ -57,11 +57,11 @@ def japanese(n: Annotated[int, typer.Option(help="the number of buyers")] = 3,
             # buyer stays or leaves
             s += 1
             if i < n-1:
-                out.write(f"({s}) b{i}->s:stay{{stay={STAY}/\\price<=bid{i}/\\{frame()}}} ({s+1})\n")
-                out.write(f"({s}) b{i}->s:leave{{leave={LEAVE}/\\price>bid{i}/\\present_{i}={FALSE}/\\{frame(i)}}} ({s+1})\n")
+                out.write(f"({s}) b{i}->s:stay{{stay={STAY}/\\price<=bid_{i}/\\{frame()}}} ({s+1})\n")
+                out.write(f"({s}) b{i}->s:leave{{leave={LEAVE}/\\price>bid_{i}/\\present_{i}={FALSE}/\\{frame(i)}}} ({s+1})\n")
             else:
-                out.write(f"({s}) b{i}->s:stay{{stay={STAY}/\\price<=bid{i}/\\price'=price+1/\\{frame(p=False)}}} (0)\n")
-                out.write(f"({s}) b{i}->s:leave{{leave={LEAVE}/\\price>bid{i}/\\price'=price+1/\\present_{i}={FALSE}/\\{frame(i,False)}}} (0)\n")
+                out.write(f"({s}) b{i}->s:stay{{stay={STAY}/\\price<=bid_{i}/\\price'=price+1/\\{frame(p=False)}}} (0)\n")
+                out.write(f"({s}) b{i}->s:leave{{leave={LEAVE}/\\price>bid_{i}/\\price'=price+1/\\present_{i}={FALSE}/\\{frame(i,False)}}} (0)\n")
         # inform dummy process that it is over
         out.write(f"({end}) s->null:win{{win={WIN}/\\{frame()}}} ({end+1})\n")
         out.write(f"Final states: ({end+1})\n")

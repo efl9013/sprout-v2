@@ -51,7 +51,7 @@ def cr(n: Annotated[int, typer.Option(help="the number of processes")] = 3,
             j = (i+1) % n
             out.write(f"({loop(i)}) p{i}->p{j}:highest_{i}{{highest_{i}>highest_{j}/\\highest_{i}<id_{j}/\\highest_{j}'=id_{j}/\\leader_{j}'=leader_{j}/\\{frame(j)}}} ({loop(j)})\n")
             out.write(f"({loop(i)}) p{i}->p{j}:highest_{i}{{highest_{i}>highest_{j}/\\highest_{i}>id_{j}/\\highest_{j}'=highest_{i}/\\leader_{j}'=leader_{j}/\\{frame(j)}}} ({loop(j)})\n")
-            out.write(f"({loop(i)}) p{i}->p{j}:highest_{i}{{highest_{i}=highest_{j}/\\/\\highest_{j}'=highest_{j}/\\leader_{j}'=highest_{i}/\\{frame(j)}}} ({done(j)})\n")
+            out.write(f"({loop(i)}) p{i}->p{j}:highest_{i}{{highest_{i}=highest_{j}/\\highest_{j}'=highest_{j}/\\leader_{j}'=highest_{i}/\\{frame(j)}}} ({done(j)})\n")
         # done
         for i in range(n):
             j = (i+1) % n

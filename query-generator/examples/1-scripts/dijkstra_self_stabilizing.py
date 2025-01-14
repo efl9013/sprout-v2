@@ -19,8 +19,8 @@ def dijkstra(n: Annotated[int, typer.Option(help="the number of processes")] = 3
             return "/\\".join(f"s_{i}'=s_{i}" for i in chain(range(0,i), range(i+1,n)))
         for i in range(n-1):
             out.write(f"({i}) p{i}->p{i+1}:s_{i}{{s_{i+1}'=s_{i}/\\{frame(i+1)}}} ({i+1})\n")
-        out.write(f"({n-1}) p{n-1}->p0:s_{n-1}{{((s_{n-1}=s_0/\\s_0'=(s_0+1)%{k})\\//(s_{n-1}!=s_0/\\s_0'=s_0))/\\{frame(0)}}} (0)\n")
-        out.write(f"Final states: (0)\n") # NOTE: final state does not really make sense here
+        out.write(f"({n-1}) p{n-1}->p0:s_{n-1}{{((s_{n-1}=s_0/\\s_0'=(s_0+1)%{k})\\/(s_{n-1}!=s_0/\\s_0'=s_0))/\\{frame(0)}}} (0)\n")
+        out.write(f"Final states: ({n})\n") # FIXME: the protocol does not have a final state...
 
 
 if __name__ == "__main__":

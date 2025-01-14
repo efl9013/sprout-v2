@@ -47,8 +47,8 @@ def dutch(start_price: Annotated[Optional[int], typer.Option(help="The auction's
             if i < n-1:
                 out.write(f"({s}) b{i}->s:pass{{pass={PASS}/\\price>bid_{i}/\\{frame()}}} ({s+1})\n")
             else:
-                out.write(f"({s}) b{i}->s:pass{{pass={PASS}/\\price>bid_{i}/\\price'=price-1/\\price>1/\\{bframe}}} (0))\n")
-                out.write(f"({s}) b{i}->s:pass{{pass={PASS}/\\price>bid_{i}/\\price'=0/\\price<=1/\\{bframe}}} ({end}))\n")
+                out.write(f"({s}) b{i}->s:pass{{pass={PASS}/\\price>bid_{i}/\\price'=price-1/\\price>1/\\{bframe}}} ({turn(0)})\n")
+                out.write(f"({s}) b{i}->s:pass{{pass={PASS}/\\price>bid_{i}/\\price'=0/\\price<=1/\\{bframe}}} ({end})\n")
         # tells everbody the auction is over
         for i in range(n):
             out.write(f"({end+i}) s->b{i}:exit{{exit={EXIT}/\\{frame()}}} ({end+i+1})\n")

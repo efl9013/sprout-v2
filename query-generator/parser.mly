@@ -12,7 +12,7 @@ let make_symbolic_protocol states registers transitions initial_state initial_re
 %token <string> IDENT
 %token <string> IDENT_PRIME
 %token TRUE FALSE AND OR NOT 
-%token EQUALS GT LT GEQ LEQ NEQ PLUS MINUS TIMES DIV 
+%token EQUALS GT LT GEQ LEQ NEQ PLUS MINUS TIMES DIV MOD
 %token LPAREN RPAREN LBRACE RBRACE COMMA COLON ARROW 
 %token EOF
 %token INIT_HEADER FINAL_HEADER REGISTER_HEADER
@@ -56,6 +56,7 @@ register_assignments:
 
 register_assignment:
   | IDENT EQUALS INT { ($1, $3) }
+  | IDENT EQUALS MINUS INT { ($1, ~- $4) }
 
 transitions:
   | /* empty */ { [] }
@@ -81,10 +82,12 @@ formula:
   
 expr:
   | INT { Ast.Const $1 }
+  | MINUS INT { Ast.Const (~- $2) }
   | IDENT { Ast.Var $1 }
   | IDENT_PRIME { Ast.VarPrime $1 }
   | expr PLUS expr { Ast.Plus($1, $3) }
   | expr MINUS expr { Ast.Minus($1, $3) }
   | expr TIMES expr { Ast.Times($1, $3) }
   | expr DIV expr { Ast.Div($1, $3) }
+  | expr MOD expr { Ast.Mod($1, $3) }
   | LPAREN expr RPAREN { $2 } 

@@ -27,6 +27,7 @@ and expr =
   | Minus of expr * expr
   | Times of expr * expr
   | Div of expr * expr
+  | Mod of expr * expr
 
 (* Define symbolic transition *)
 type symbolic_transition = {
@@ -58,6 +59,7 @@ let rec expr_eq e1 e2 =
   | (Minus (a1, b1), Minus (a2, b2)) -> expr_eq a1 a2 && expr_eq b1 b2
   | (Times (a1, b1), Times (a2, b2)) -> expr_eq a1 a2 && expr_eq b1 b2
   | (Div (a1, b1), Div (a2, b2)) -> expr_eq a1 a2 && expr_eq b1 b2
+  | (Mod (a1, b1), Mod (a2, b2)) -> expr_eq a1 a2 && expr_eq b1 b2
   | _ -> false
 
 let rec formula_eq f1 f2 =
@@ -112,6 +114,7 @@ let rec string_of_expr = function
   | Minus (e1, e2) -> "(" ^ string_of_expr e1 ^ " - " ^ string_of_expr e2 ^ ")"
   | Times (e1, e2) -> "(" ^ string_of_expr e1 ^ " * " ^ string_of_expr e2 ^ ")"
   | Div (e1, e2) -> "(" ^ string_of_expr e1 ^ " / " ^ string_of_expr e2 ^ ")"
+  | Mod (e1, e2) -> "(" ^ string_of_expr e1 ^ " % " ^ string_of_expr e2 ^ ")"
 
 let rec string_of_formula = function
   | True -> "true"
@@ -257,6 +260,7 @@ let rec print_expr = function
   | Minus (e1, e2) -> printf "Minus("; print_expr e1; printf ", "; print_expr e2; printf ")"
   | Times (e1, e2) -> printf "Times("; print_expr e1; printf ", "; print_expr e2; printf ")"
   | Div (e1, e2) -> printf "Div("; print_expr e1; printf ", "; print_expr e2; printf ")"
+  | Mod (e1, e2) -> printf "Mod("; print_expr e1; printf ", "; print_expr e2; printf ")"
 
 
 let rec print_formula = function
@@ -373,6 +377,8 @@ let print_symbolic_protocol (protocol: symbolic_protocol) =
       Printf.sprintf "(%s*%s)" (get_string_for_expr e1) (get_string_for_expr e2)
   | Div (e1, e2) -> 
       Printf.sprintf "(%s/%s)" (get_string_for_expr e1) (get_string_for_expr e2)
+  | Mod (e1, e2) -> 
+      Printf.sprintf "(%s%%%s)" (get_string_for_expr e1) (get_string_for_expr e2)
 
 
 let rec get_string_for_formula = function
