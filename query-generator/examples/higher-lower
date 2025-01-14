@@ -2,7 +2,7 @@ Initial state: (0)
 Initial register assignments: rn=0, rt=0, rx=0
 (0) a->b:n{(0=n\/0<n)/\n<100/\rn'=n/\rt'=rt/\rx'=rx} (1)
 (1) a->b:t{t>0/\rn'=rn/\rt'=t/\rx=rx'} (2)
-(2) c->b:x{(0=x\/0<x)/\x<100/\rx=x/\rn'=rn/\rt'=rt} (3)
+(2) c->b:x{(0=x\/0<x)/\x<100/\rx'=x/\rn'=rn/\rt'=rt} (3)
 (3) b->c:h{h=3/\rn>rx/\rt>1/\rn'=rn/\rt'=rt/\rx'=rx} (4)
 (4) b->a:h{h=3/\rn'=rn/\rt'=rt-1/\rx'=rx} (2)
 (3) b->c:r{r=1/\rn=rx/\rn'=rn/\rt'=rt/\rx'=rx} (5)
