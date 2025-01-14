@@ -42,8 +42,8 @@ let first_line (prot: symbolic_protocol) =
 	". \n" 
 
 (* First conjunct *) 
-let first_conjunct_for_transition_and_s2 (tr: symbolic_transition) (s2: state) = 
-	"(s1 = " ^ string_of_int tr.pre ^ " /\\ s'1 = " ^ string_of_int tr.post ^ " /\\ s2 = " ^ string_of_int s2 ^ ")"
+(* let first_conjunct_for_transition_and_s2 (tr: symbolic_transition) (s2: state) =  *)
+	(* "(s1 = " ^ string_of_int tr.pre ^ " /\\ s'1 = " ^ string_of_int tr.post ^ " /\\ s2 = " ^ string_of_int s2 ^ ")" *)
 
 (* First conjunct for version (2) enumerates all states for a given transition *)
 (* let first_conjunct_for_transition (prot: symbolic_protocol) (tr: symbolic_transition) (p: participant) = 

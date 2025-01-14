@@ -357,18 +357,15 @@ let print_execution_time_table results =
       outcome
   ) (List.rev results)
 
-let generate_scc_queries (prot: symbolic_protocol) (dirname: string) = 
+let generate_queries (prot: symbolic_protocol) (dirname: string) = 
   (* Currently the most optimized version *)
-  generate_scc_queries_v3bb prot dirname
+  (* generate_scc_queries_v3bb prot dirname; *)
+  generate_rcc_queries prot dirname
+  (* generate_nmc_queries prot dirname *)
 
 let check_protocol (prot: symbolic_protocol) (dirname: string) (timeout: int) : unit = 
   Printf.printf "Checking implementability of the following protocol: \n";
   print_symbolic_protocol prot; 
-  let perm = 0o777 in 
-  (* create_newdir dirname perm;  *)
-  generate_scc_queries prot dirname; 
-  generate_rcc_queries prot dirname;
-  generate_nmc_queries prot dirname;
   let path = dirname in 
   let results = process_directory path dirname timeout in 
   List.iter (fun (file, outcome, time) ->
@@ -394,14 +391,13 @@ let () =
       let protocol = parse_file filename in
       let dirname = filename ^ "-generated" in 
       let perm = 0o777 in 
-      (* moved this out of check_protocol *)
       create_newdir dirname perm;  
       store_visualization protocol dirname;
       (* to see visualization, run 
         dot -Tsvg visualization.dot > visualization.svg 
         in the respective folder and open svg-file *)
+      generate_queries protocol dirname; 
       check_protocol protocol dirname timeout;
-      (* print_simultaneously_reachable_states_for protocol "q"; *)
     with
     | Sys_error s | Failure s | Invalid_argument s ->
       print_errors [Internal, Loc.dummy, s]

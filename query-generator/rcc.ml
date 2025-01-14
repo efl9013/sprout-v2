@@ -3,6 +3,16 @@ open Common
 open Prodreach 
 open Avail 
 
+(* This file defines 2 versions of NMC: 
+	 Each version can choose between 2 versions of prodreach generation: 
+	 a. One prodreach predicate altogether, containing a disjunction for each pair of states,
+	 b. One prodreach predicate for each pair of states, i.e. curried prodreach *) 
+
+(* Optimizations present in all versions: 
+	- Pre-filter for simultaneously reachable states according to participant projection of transition labels, 
+	- Eliminate state equality predicates and directly instantiate values in inductive predicates,
+*) 
+
 (* RCC is first split into a set of queries for each participant p, 
    then it enumerates pairs of transitions in which p is the receiver in both 
    and the senders are not the same *)
@@ -27,11 +37,23 @@ let first_conjunct_from_pair (prot: symbolic_protocol) (pair: symbolic_transitio
 	")\n" 
 
 (* Second conjunct calls prodreach_p on the prestates and prestate registers of each copy *)
-let second_conjunct_from_pair (prot: symbolic_protocol) (p: participant) : string = 
+let second_conjunct_from_pair (prot: symbolic_protocol) (pair: symbolic_transition * symbolic_transition) (p: participant) : string = 
+	let tr1 = fst pair in 
+	let tr2 = snd pair in 
 	"(prodreach_" ^ p ^ " " ^
-	"s1 " ^ 
+	string_of_int tr1.pre ^ " " ^ 
 	List.fold_left (fun acc r -> acc ^ r ^ "1 ") "" prot.registers ^ 
-	"s2 " ^ 
+	string_of_int tr2.pre ^ " " ^ 
+	List.fold_left (fun acc r -> acc ^ r ^ "2 ") "" prot.registers ^ 
+	")\n"
+
+let second_conjunct_from_pair_vb (prot: symbolic_protocol) (pair: symbolic_transition * symbolic_transition) (p: participant) : string = 
+	let tr1 = fst pair in 
+	let tr2 = snd pair in 
+	"(prodreach_" ^ p ^ "_" ^
+	string_of_int tr1.pre ^ "_" ^ 
+	string_of_int tr2.pre ^ " " ^ 
+	List.fold_left (fun acc r -> acc ^ r ^ "1 ") "" prot.registers ^ 
 	List.fold_left (fun acc r -> acc ^ r ^ "2 ") "" prot.registers ^ 
 	")\n"
 
@@ -54,25 +76,48 @@ let fourth_conjunct_from_pair (prot: symbolic_protocol) (pair: symbolic_transiti
 (* Fifth conjunct calls avail on the sender of tr1, the receiver p, the blocked set {p} *)
 let fifth_conjunct_from_pair (prot: symbolic_protocol) (pair: symbolic_transition * symbolic_transition) (p: participant) = 
 	let tr1 = fst pair in 
+	let tr2 = snd pair in 
 	"(avail_" ^ tr1.sender ^ p ^ "_" ^ p ^ " " ^
 	"x1 " ^ 
-	"s'2 " ^ 
+	string_of_int tr2.post ^ " " ^ 
 	List.fold_left (fun acc r -> acc ^ r ^ "'2 ") "" prot.registers ^ 
 	")\n"
 
 let generate_rcc_preamble_from_pair_for_participant (prot: symbolic_protocol) (pair: symbolic_transition * symbolic_transition) (p: participant) = 
 	"exists " ^ 
-	"(s1: int) (s'1: int) " ^ 
+	(* "(s1: int) (s'1: int) " ^  *)
 	List.fold_left (fun acc r -> acc ^ "(" ^r ^ "1: int) ") "" prot.registers ^ 
 	List.fold_left (fun acc r -> acc ^ "(" ^r ^ "'1: int) ") "" prot.registers ^ 
-	"(s2: int) (s'2: int) " ^ 
+	(* "(s2: int) (s'2: int) " ^  *)
 	List.fold_left (fun acc r -> acc ^ "(" ^r ^ "2: int) ") "" prot.registers ^ 
 	List.fold_left (fun acc r -> acc ^ "(" ^r ^ "'2: int) ") "" prot.registers ^ 
 	"(x1: int) (x2: int)" ^ 
 	". \n" ^
-	first_conjunct_from_pair prot pair p ^ 
+	(* first_conjunct_from_pair prot pair p ^  *)
+	(* " /\\ \n" ^ *)
+	second_conjunct_from_pair prot pair p ^ 
 	" /\\ \n" ^
-	second_conjunct_from_pair prot p ^ 
+	third_conjunct_from_pair prot pair p ^ 
+	" /\\ \n" ^
+	fourth_conjunct_from_pair prot pair p ^ 
+	" /\\ \n" ^
+	fifth_conjunct_from_pair prot pair p ^ 
+	"\n" ^ 
+	"s.t.\n"
+
+let generate_rcc_preamble_from_pair_for_participant_vb (prot: symbolic_protocol) (pair: symbolic_transition * symbolic_transition) (p: participant) = 
+	"exists " ^ 
+	(* "(s1: int) (s'1: int) " ^  *)
+	List.fold_left (fun acc r -> acc ^ "(" ^r ^ "1: int) ") "" prot.registers ^ 
+	List.fold_left (fun acc r -> acc ^ "(" ^r ^ "'1: int) ") "" prot.registers ^ 
+	(* "(s2: int) (s'2: int) " ^  *)
+	List.fold_left (fun acc r -> acc ^ "(" ^r ^ "2: int) ") "" prot.registers ^ 
+	List.fold_left (fun acc r -> acc ^ "(" ^r ^ "'2: int) ") "" prot.registers ^ 
+	"(x1: int) (x2: int)" ^ 
+	". \n" ^
+	(* first_conjunct_from_pair prot pair p ^  *)
+	(* " /\\ \n" ^ *)
+	second_conjunct_from_pair_vb prot pair p ^ 
 	" /\\ \n" ^
 	third_conjunct_from_pair prot pair p ^ 
 	" /\\ \n" ^
@@ -88,10 +133,10 @@ let generate_all_avail (prot: symbolic_protocol) : string =
 
 let generate_rcc_first_line_for_participant (prot: symbolic_protocol) (p: participant) = 
 	"exists " ^ 
-	"(s1: int) (s'1: int) " ^ 
+	(* "(s1: int) (s'1: int) " ^  *)
 	List.fold_left (fun acc r -> acc ^ "(" ^r ^ "1: int) ") "" prot.registers ^ 
 	List.fold_left (fun acc r -> acc ^ "(" ^r ^ "'1: int) ") "" prot.registers ^ 
-	"(s2: int) (s'2: int) " ^ 
+	(* "(s2: int) (s'2: int) " ^  *)
 	List.fold_left (fun acc r -> acc ^ "(" ^r ^ "2: int) ") "" prot.registers ^ 
 	List.fold_left (fun acc r -> acc ^ "(" ^r ^ "'2: int) ") "" prot.registers ^ 
 	"(x1: int) (x2: int)" ^ 
@@ -99,9 +144,9 @@ let generate_rcc_first_line_for_participant (prot: symbolic_protocol) (p: partic
 
 let generate_rcc_body_from_pair_for_participant (prot: symbolic_protocol) (pair: symbolic_transition * symbolic_transition) (p: participant) = 
 	"(" ^ 
-	first_conjunct_from_pair prot pair p ^ 
-	" /\\ \n" ^
-	second_conjunct_from_pair prot p ^ 
+	(* first_conjunct_from_pair prot pair p ^  *)
+	(* " /\\ \n" ^ *)
+	second_conjunct_from_pair prot pair p ^ 
 	" /\\ \n" ^
 	third_conjunct_from_pair prot pair p ^ 
 	" /\\ \n" ^
@@ -110,18 +155,43 @@ let generate_rcc_body_from_pair_for_participant (prot: symbolic_protocol) (pair:
 	fifth_conjunct_from_pair prot pair p ^ 
 	")"
 
-let generate_rcc_preamble_for_participant (prot: symbolic_protocol) (p: participant) = 
+let generate_rcc_body_from_pair_for_participant_vb (prot: symbolic_protocol) (pair: symbolic_transition * symbolic_transition) (p: participant) = 
+	"(" ^ 
+	(* first_conjunct_from_pair prot pair p ^  *)
+	(* " /\\ \n" ^ *)
+	second_conjunct_from_pair_vb prot pair p ^ 
+	" /\\ \n" ^
+	third_conjunct_from_pair prot pair p ^ 
+	" /\\ \n" ^
+	fourth_conjunct_from_pair prot pair p ^ 
+	" /\\ \n" ^
+	fifth_conjunct_from_pair prot pair p ^ 
+	")"
+
+let generate_rcc_preamble_for_participant (prot: symbolic_protocol) (p: participant) (ls : (symbolic_transition * symbolic_transition) list) = 
 	(* Toggle the following line to only generate simultaneously reachable transition pairs, or generate all pairs without optimization *)
   (* let transition_pairs = filter_transitions_rcc_participant (all_transition_pairs prot.transitions) p in  *)
-	let transition_pairs = filter_simreach_transitions_rcc_participant prot (all_transition_pairs prot.transitions) p in 
+	(* let transition_pairs = filter_simreach_transitions_rcc_participant prot (all_transition_pairs prot.transitions) p in  *)
 	generate_rcc_first_line_for_participant prot p ^ 
-	List.fold_left (fun acc pair -> acc ^ "\n\\/\n" ^ generate_rcc_body_from_pair_for_participant prot pair p) "false" transition_pairs ^ 
+	List.fold_left (fun acc pair -> acc ^ "\n\\/\n" ^ generate_rcc_body_from_pair_for_participant prot pair p) "false" ls ^ 
 	"\ns.t.\n"
 
-let generate_rcc_for_participant (prot: symbolic_protocol) (p: participant) = 
-	generate_rcc_preamble_for_participant prot p ^ 
+let generate_rcc_preamble_for_participant_vb (prot: symbolic_protocol) (p: participant) (ls : (symbolic_transition * symbolic_transition) list) = 
+	generate_rcc_first_line_for_participant prot p ^ 
+	List.fold_left (fun acc pair -> acc ^ "\n\\/\n" ^ generate_rcc_body_from_pair_for_participant_vb prot pair p) "false" ls ^ 
+	"\ns.t.\n"
+
+let generate_rcc_for_participant (prot: symbolic_protocol) (p: participant) (ls : (symbolic_transition * symbolic_transition) list) = 
+	generate_rcc_preamble_for_participant prot p ls ^ 
 	"\n" ^ 
 	generate_prodreach_for_participant prot p ^ 
+	"\n" ^ 
+	generate_all_avail prot
+
+let generate_rcc_for_participant_vb (prot: symbolic_protocol) (p: participant) (ls : (symbolic_transition * symbolic_transition) list) = 
+	generate_rcc_preamble_for_participant_vb prot p ls ^ 
+	"\n" ^ 
+	generate_prodreach_vb prot p ^ 
 	"\n" ^ 
 	generate_all_avail prot
 
@@ -133,13 +203,25 @@ let generate_rcc_for_participant (prot: symbolic_protocol) (p: participant) =
 	string_of_int tr2.pre ^ string_of_int tr2.post ^
 	".hes" *)
 
-let generate_rcc_filename_for_participant (p: participant) = 
-	p ^ "_rcc.hes" 
-
-let generate_rcc_queries_for_participant (prot: symbolic_protocol) (p: participant) (dir: string) = 
-	let filename = generate_rcc_filename_for_participant p in 
-	write_to_file (Filename.concat dir filename) (generate_rcc_for_participant prot p)
+let generate_rcc_queries_for_participant (prot: symbolic_protocol) (p: participant) (dir: string) =
+	(* Toggle the following line to only generate simultaneously reachable transition pairs, or generate all pairs without optimization *)
+  	(* let transition_pairs = filter_transitions_rcc_participant (all_transition_pairs prot.transitions) p in  *)
+	let transition_pairs = filter_simreach_transitions_rcc_participant prot (all_transition_pairs prot.transitions) p in 
+	if transition_pairs <> [] 
+	then (let filename = p ^ "_rcc.hes" in 
+			write_to_file (Filename.concat dir filename) (generate_rcc_for_participant prot p transition_pairs))
+	else ()
 
 let generate_rcc_queries (prot: symbolic_protocol) (dir: string) = 
   let participants = get_receivers prot in 
   List.iter (fun p -> generate_rcc_queries_for_participant prot p dir) participants 
+
+let generate_rcc_queries_vb (prot: symbolic_protocol) (dir: string) = 
+  let participants = get_receivers prot in 
+  List.iter (fun p -> let transition_pairs = filter_simreach_transitions_rcc_participant prot (all_transition_pairs prot.transitions) p in 
+							if transition_pairs <> [] 
+							then (let filename = p ^ "_rcc.hes" in 
+									write_to_file (Filename.concat dir filename) (generate_rcc_for_participant_vb prot p transition_pairs))
+							else ()) 
+  				participants 
+
