@@ -380,16 +380,37 @@ let print_symbolic_protocol (protocol: symbolic_protocol) =
   | Mod (e1, e2) -> 
       Printf.sprintf "(%s%%%s)" (get_string_for_expr e1) (get_string_for_expr e2)
 
+(* Omitting parentheses not according to precedence but associativity only for /\ and \/ *)
+type enum = LastAnd | LastOr | LastDiff
 
+let remove_empty_and_parenthesize s1 s2 op parenL parenR = 
+  match s1, s2 with 
+    None, None -> None
+  | Some s1', None -> Some s1'
+  | None, Some s2' -> Some s2'
+  | Some s1', Some s2' -> Some (Printf.sprintf "%s%s%s%s%s" parenL s1' op s2' parenR)
+
+  (* 2nd parameter gives last operator for omitting parentheses, 
+     3rd if all before were /\ because then rx'=rx can be omitted *)
 let rec get_string_for_formula = function
-  | True -> "True"
-  | False -> "False"
-  | Eq (e1, e2) -> Printf.sprintf "(%s=%s)" (get_string_for_expr e1) (get_string_for_expr e2)
-  | Lt (e1, e2) -> Printf.sprintf "(%s<%s)" (get_string_for_expr e1) (get_string_for_expr e2)
-  | Gt (e1, e2) -> Printf.sprintf "(%s>%s)" (get_string_for_expr e1) (get_string_for_expr e2)
-  | Neq (e1, e2) -> Printf.sprintf "(%s!=%s)" (get_string_for_expr e1) (get_string_for_expr e2)
-  | Leq (e1, e2) -> Printf.sprintf "(%s<=%s)" (get_string_for_expr e1) (get_string_for_expr e2)
-  | Geq (e1, e2) -> Printf.sprintf "(%s>=%s)" (get_string_for_expr e1) (get_string_for_expr e2)
-  | And (f1, f2) -> Printf.sprintf "(%s/\\\\%s)" (get_string_for_formula f1) (get_string_for_formula f2)
-  | Or (f1, f2) -> Printf.sprintf "(%s\\\\/%s)" (get_string_for_formula f1) (get_string_for_formula f2)
-  | Not f -> Printf.sprintf "~%s" (get_string_for_formula f)
+  | (True, _, _) -> Some("True")
+  | (False, _, _) -> Some("False")
+  | (Eq ((VarPrime v: expr), (Var v': expr)), _, true) when v = v' -> None 
+  | (Eq ((Var v: expr), (VarPrime v': expr)), _, true) when v = v' -> None
+  | (Eq (e1, e2), _, _) -> Some(Printf.sprintf " %s=%s " (get_string_for_expr e1) (get_string_for_expr e2))
+  | (Lt (e1, e2), _, _) -> Some(Printf.sprintf " %s<%s " (get_string_for_expr e1) (get_string_for_expr e2))
+  | (Gt (e1, e2), _, _) -> Some(Printf.sprintf " %s>%s " (get_string_for_expr e1) (get_string_for_expr e2))
+  | (Neq (e1, e2), _, _) -> Some(Printf.sprintf " %s!=%s " (get_string_for_expr e1) (get_string_for_expr e2))
+  | (Leq (e1, e2), _,_) -> Some(Printf.sprintf " %s<=%s " (get_string_for_expr e1) (get_string_for_expr e2))
+  | (Geq (e1, e2), _, _) -> Some(Printf.sprintf " %s>=%s " (get_string_for_expr e1) (get_string_for_expr e2))
+  | (And (f1, f2), LastAnd, v) -> remove_empty_and_parenthesize (get_string_for_formula (f1, LastAnd, v)) (get_string_for_formula (f2, LastAnd, v)) "/\\\\" "" ""
+  | (And (f1, f2), _, v) -> remove_empty_and_parenthesize (get_string_for_formula (f1, LastAnd, v)) (get_string_for_formula (f2, LastAnd, v)) "/\\\\" " (" ") "
+  | (Or (f1, f2), LastOr, _) -> remove_empty_and_parenthesize (get_string_for_formula (f1, LastOr, false)) (get_string_for_formula (f2, LastOr, false)) "\\\\/" "" ""
+  | (Or (f1, f2), _, _) -> remove_empty_and_parenthesize (get_string_for_formula (f1, LastOr, false)) (get_string_for_formula (f2, LastOr, false)) "\\\\/" " (" ") "
+  | (Not f, _, _) -> match get_string_for_formula (f, LastDiff, false) with 
+                              None -> Some "EmptyNot" (* probably raise error *)
+                            | Some s -> Some (Printf.sprintf "~%s" s) 
+
+let get_string_for_option_string = function
+    None -> "True"
+  | Some s -> s

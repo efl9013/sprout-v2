@@ -359,9 +359,9 @@ let print_execution_time_table results =
 
 let generate_queries (prot: symbolic_protocol) (dirname: string) = 
   (* Currently the most optimized version *)
-  (* generate_scc_queries_v3bb prot dirname; *)
-  generate_rcc_queries prot dirname
-  (* generate_nmc_queries prot dirname *)
+  generate_scc_queries_v3bb prot dirname;
+  generate_rcc_queries prot dirname; 
+  generate_nmc_queries prot dirname
 
 let check_protocol (prot: symbolic_protocol) (dirname: string) (timeout: int) : unit = 
   Printf.printf "Checking implementability of the following protocol: \n";

@@ -7,7 +7,7 @@ let visualize_transition (t: symbolic_transition) : string =
   Buffer.add_string buffer (Printf.sprintf "%d -> %d " t.pre t.post);
   Buffer.add_string buffer 
     (Printf.sprintf "[label=\"%s->%s : %s {%s}\"]; \n"
-      t.sender t.receiver t.comm_var (get_string_for_formula t.predicate));
+      t.sender t.receiver t.comm_var (get_string_for_option_string (get_string_for_formula (t.predicate, LastAnd, true))));
   Buffer.contents buffer
 
 let visualize_final_state (s: state) : string = 
@@ -17,8 +17,7 @@ let visualize_final_state (s: state) : string =
   Buffer.contents buffer
 
 let visualize_protocol (prot: symbolic_protocol) : string = 
-  (* Printf.printf "Visualizing the following protocol: \n";
-  print_symbolic_protocol prot;  *)
+  (* Printf.printf "Visualizing the following protocol: \n"; *)
   Printf.printf "\n"; 
   let buffer = Buffer.create 256 in
   Buffer.add_string buffer "digraph G {\n\n";
