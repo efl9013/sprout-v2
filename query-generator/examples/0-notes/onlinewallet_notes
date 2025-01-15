@@ -10,3 +10,7 @@
 - NMC takes unusually long for this example
 - NMC optimized for only simreach transition pairs <3s
 - RCC takes unusually long for this example, c/s_rcc.hes 4-5s -> 5s total after simreach optimization
+
+Resolved Issues: 
+- 11->6: superfluous update to ra
+=> still unimplementable though

@@ -11,3 +11,8 @@
     fail: 5
 - RCC takes an unusually long time, s_rcc.hes 14s
 - Optimized RCC <2s  
+
+Resolved Issues: 
+- 3->4: password should not be updated but acknowledged by sending it or just "ack" back -> choosing confirmation
+- check for user+password inequality should be OR not AND
+- last messages should be forwarded to participant (that might be an option for a "mistake")
