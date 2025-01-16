@@ -4,4 +4,4 @@
   win = 1
   lower = 2
   higher = 3
-- needs more than 13GB RAM
+- "_original" informs A about higher/lower and bounds n and x to be at most 100; the other version does not 
