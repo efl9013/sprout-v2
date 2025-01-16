@@ -1,0 +1,14 @@
+Example to reproduce ordering bug in MuVal: 
+Command: 
+dune exec main -- -c ./config/solver/dbg_muval_parallel_tbq_ar.json -p muclp <filename>
+
+Listing prodreach in 00 ~ 44 order: invalid 
+Listing prodreach in 44 ~ 00 order: valid 
+Listing prodreach as a monolithic predicate: invalid 
+
+Command: 
+dune exec main -- -c ./config/solver/dbg_muval_parallel_exc_tbq_ar.json -p muclp <filename>
+
+Listing prodreach in 00 ~ 44 order: invalid 
+Listing prodreach in 44 ~ 00 order: valid 
+Listing prodreach as a monolithic predicate: invalid 

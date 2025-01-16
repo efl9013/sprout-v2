@@ -1,0 +1,108 @@
+exists (s1: int) (s'1: int) (rx1: int) (ry1: int) (rx'1: int) (ry'1: int) (s2: int) (rx2: int) (ry2: int) (rx'2: int) (ry'2: int) (x1: int). 
+((prodreach_b_3_3 rx1 ry1 rx2 ry2 )
+ /\ 
+((((x1 = (rx1 + ry1)) /\ (ry'1 = rx1)) /\ (ry'1 = x1)))
+ /\ 
+(unreach_ba_3 rx2 ry2  x1 )
+ /\ 
+(false \/ rx1 != rx2 \/ ry1 != ry2))
+s.t.
+
+prodreach_b_4_4 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+false \/ 
+((exists (x1:int) (x2:int) (rx1: int)(rx2: int)(ry1: int)(ry2: int). prodreach_b_0_0 rx1 ry1 rx2 ry2  /\ (((x1 = 0) /\ (rx'1 = rx1)) /\ (ry'1 = ry1)) /\ (((x2 = 0) /\ (rx'2 = rx2)) /\ (ry'2 = ry2)) /\ x1 = x2)) 
+;
+prodreach_b_4_3 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+false \/ 
+((exists (x1:int) (x2:int) (rx1: int)(rx2: int)(ry1: int)(ry2: int). prodreach_b_0_2 rx1 ry1 rx2 ry2  /\ (((x1 = 0) /\ (rx'1 = rx1)) /\ (ry'1 = ry1)) /\ ((rx'2 = rx2) /\ (ry'2 = x2)) /\ x1 = x2)) 
+;
+prodreach_b_4_2 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+false \/ 
+((exists (x1:int) (x2:int) (rx1: int)(rx2: int)(ry1: int)(ry2: int). prodreach_b_0_1 rx1 ry1 rx2 ry2  /\ (((x1 = 0) /\ (rx'1 = rx1)) /\ (ry'1 = ry1)) /\ ((rx'2 = x2) /\ (ry'2 = ry2)) /\ x1 = x2)) 
+;
+prodreach_b_4_1 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+false \/ 
+((exists (x1:int) (x2:int) (rx1: int)(rx2: int)(ry1: int)(ry2: int). prodreach_b_0_0 rx1 ry1 rx2 ry2  /\ (((x1 = 0) /\ (rx'1 = rx1)) /\ (ry'1 = ry1)) /\ (((x2 = 1) /\ (rx'2 = rx2)) /\ (ry'2 = ry2)) /\ x1 = x2)) 
+;
+prodreach_b_4_0 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+false;
+prodreach_b_3_4 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+false \/ 
+((exists (x1:int) (x2:int) (rx1: int)(rx2: int)(ry1: int)(ry2: int). prodreach_b_2_0 rx1 ry1 rx2 ry2  /\ ((rx'1 = rx1) /\ (ry'1 = x1)) /\ (((x2 = 0) /\ (rx'2 = rx2)) /\ (ry'2 = ry2)) /\ x1 = x2)) 
+;
+prodreach_b_3_3 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+false \/ 
+((exists (x1:int) (x2:int) (rx1: int)(rx2: int)(ry1: int)(ry2: int). prodreach_b_2_2 rx1 ry1 rx2 ry2  /\ ((rx'1 = rx1) /\ (ry'1 = x1)) /\ ((rx'2 = rx2) /\ (ry'2 = x2)) /\ x1 = x2)) 
+;
+prodreach_b_3_2 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+false \/ 
+((exists (x1:int) (x2:int) (rx1: int)(rx2: int)(ry1: int)(ry2: int). prodreach_b_2_1 rx1 ry1 rx2 ry2  /\ ((rx'1 = rx1) /\ (ry'1 = x1)) /\ ((rx'2 = x2) /\ (ry'2 = ry2)) /\ x1 = x2)) 
+;
+prodreach_b_3_1 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+false \/ 
+((exists (x1:int) (x2:int) (rx1: int)(rx2: int)(ry1: int)(ry2: int). prodreach_b_2_0 rx1 ry1 rx2 ry2  /\ ((rx'1 = rx1) /\ (ry'1 = x1)) /\ (((x2 = 1) /\ (rx'2 = rx2)) /\ (ry'2 = ry2)) /\ x1 = x2)) 
+;
+prodreach_b_3_0 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+false;
+prodreach_b_2_4 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+false \/ 
+((exists (x1:int) (x2:int) (rx1: int)(rx2: int)(ry1: int)(ry2: int). prodreach_b_1_0 rx1 ry1 rx2 ry2  /\ ((rx'1 = x1) /\ (ry'1 = ry1)) /\ (((x2 = 0) /\ (rx'2 = rx2)) /\ (ry'2 = ry2)) /\ x1 = x2)) 
+;
+prodreach_b_2_3 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+false \/ 
+((exists (x1:int) (x2:int) (rx1: int)(rx2: int)(ry1: int)(ry2: int). prodreach_b_1_2 rx1 ry1 rx2 ry2  /\ ((rx'1 = x1) /\ (ry'1 = ry1)) /\ ((rx'2 = rx2) /\ (ry'2 = x2)) /\ x1 = x2)) 
+;
+prodreach_b_2_2 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+false \/ 
+((exists (x1:int) (x2:int) (rx1: int)(rx2: int)(ry1: int)(ry2: int). prodreach_b_1_1 rx1 ry1 rx2 ry2  /\ ((rx'1 = x1) /\ (ry'1 = ry1)) /\ ((rx'2 = x2) /\ (ry'2 = ry2)) /\ x1 = x2)) 
+;
+prodreach_b_2_1 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+false \/ 
+((exists (x1:int) (x2:int) (rx1: int)(rx2: int)(ry1: int)(ry2: int). prodreach_b_1_0 rx1 ry1 rx2 ry2  /\ ((rx'1 = x1) /\ (ry'1 = ry1)) /\ (((x2 = 1) /\ (rx'2 = rx2)) /\ (ry'2 = ry2)) /\ x1 = x2)) 
+;
+prodreach_b_2_0 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+false;
+prodreach_b_1_4 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+false \/ 
+((exists (x1:int) (x2:int) (rx1: int)(rx2: int)(ry1: int)(ry2: int). prodreach_b_0_0 rx1 ry1 rx2 ry2  /\ (((x1 = 1) /\ (rx'1 = rx1)) /\ (ry'1 = ry1)) /\ (((x2 = 0) /\ (rx'2 = rx2)) /\ (ry'2 = ry2)) /\ x1 = x2)) 
+;
+prodreach_b_1_3 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+false \/ 
+((exists (x1:int) (x2:int) (rx1: int)(rx2: int)(ry1: int)(ry2: int). prodreach_b_0_2 rx1 ry1 rx2 ry2  /\ (((x1 = 1) /\ (rx'1 = rx1)) /\ (ry'1 = ry1)) /\ ((rx'2 = rx2) /\ (ry'2 = x2)) /\ x1 = x2)) 
+;
+prodreach_b_1_2 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+false \/ 
+((exists (x1:int) (x2:int) (rx1: int)(rx2: int)(ry1: int)(ry2: int). prodreach_b_0_1 rx1 ry1 rx2 ry2  /\ (((x1 = 1) /\ (rx'1 = rx1)) /\ (ry'1 = ry1)) /\ ((rx'2 = x2) /\ (ry'2 = ry2)) /\ x1 = x2)) 
+;
+prodreach_b_1_1 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+false \/ 
+((exists (x1:int) (x2:int) (rx1: int)(rx2: int)(ry1: int)(ry2: int). prodreach_b_0_0 rx1 ry1 rx2 ry2  /\ (((x1 = 1) /\ (rx'1 = rx1)) /\ (ry'1 = ry1)) /\ (((x2 = 1) /\ (rx'2 = rx2)) /\ (ry'2 = ry2)) /\ x1 = x2)) 
+;
+prodreach_b_1_0 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+false;
+prodreach_b_0_4 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+false;
+prodreach_b_0_3 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+false;
+prodreach_b_0_2 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+false;
+prodreach_b_0_1 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+false;
+prodreach_b_0_0 (rx'1: int) (ry'1: int) (rx'2: int) (ry'2: int) : bool =mu 
+(true /\ rx'1 = 0 /\ ry'1 = 1 /\ true /\ rx'2 = 0 /\ ry'2 = 1)
+ \/ 
+((exists (x1:int) (x2:int) (rx1: int)(rx2: int)(ry1: int)(ry2: int). prodreach_b_3_3 rx1 ry1 rx2 ry2  /\ (((x1 = (rx1 + ry1)) /\ (ry'1 = rx1)) /\ (ry'1 = x1)) /\ (((x2 = (rx2 + ry2)) /\ (ry'2 = rx2)) /\ (ry'2 = x2)) /\ x1 = x2)) 
+;
+
+
+unreach_ba_0(rx:int)(ry:int)(x:int): bool =nu
+(true);
+unreach_ba_1(rx:int)(ry:int)(x:int): bool =nu
+(true);
+unreach_ba_2(rx:int)(ry:int)(x:int): bool =nu
+(true);
+unreach_ba_3(rx:int)(ry:int)(x:int): bool =nu
+(true/\ (forall(rx': int)(ry': int). (((x = (rx + ry)) /\ (ry' = rx)) /\ (ry' = x)) => false) 
+);
+unreach_ba_4(rx:int)(ry:int)(x:int): bool =nu
+(true);
