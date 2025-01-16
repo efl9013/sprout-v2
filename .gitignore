@@ -6,3 +6,5 @@ _build/
 *.opam
 venv/
 *.ocamlformat
+__pycache__/
+_opam/
