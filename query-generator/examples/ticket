@@ -1,7 +1,8 @@
 Initial state: (0)
 Initial register assignments: rc=1000, rs=0, ri=0, rx=0
-(0) c->s:x{(x>0\/x=0)/\(x<rc+1)/\rc'=rc/\rs'=rs/\ri'=ri/\rx'=x} (1)
-(1) s->c:m{m=1/\rc'=rc/\rs'=rs/\ri'=ri/\rx'=rx} (2)
-(2) s->c:y{y=ri/\rc'=rc-rx/\rs'=rs+rx/\ri'=ri+1/\rx'=rx} (1)
-(1) s->c:m{m=0/\rc'=rc/\rs'=rs/\ri'=ri/\rx'=rx} (3)
-Final states: (3)
+(0) c->s:x{x>=0/\x<=rc/\rc'=rc/\rs'=rs/\ri'=ri/\rx'=x} (1)
+(1) s->c:ok{ok=1/\ri<1000/\rc'=rc/\rs'=rs/\ri'=ri/\rx'=rx} (2)
+(2) s->c:count{count=ri/\rc'=rc/\rs'=rs/\ri'=ri/\rx'=rx} (3)
+(3) s->c:y{y=ri/\rc'=rc-rx/\rs'=rs+rx/\ri'=ri+1/\rx'=rx} (1)
+(1) s->c:ko{ko=0/\rc'=rc/\rs'=rs/\ri'=ri/\rx'=rx} (4)
+Final states: (4)
