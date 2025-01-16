@@ -302,13 +302,14 @@ let is_substring sub str =
   in
   check 0
 
-let process_hes_file filename dirname timeout =
+let process_hes_file filename dirname timeout mode =
   Unix.chdir Config.coar_location; 
   (* Adding "> /dev/null 2>&1" to the end of this command breaks everything! *)
   (* Currently there is a bug in MuVal for the parallel_exc version of the tool, 
     which is sensitive to equation ordering for least fixpoints *)
   (* So we should use the parallel version until it is fixed *) 
-  let command = Printf.sprintf "timeout %i dune exec main -- -c ./config/solver/dbg_muval_parallel_tbq_ar.json -p muclp %s/%s/%s" timeout Config.dir_location dirname filename in
+  (* Update: found a bug in the parallel version as well *)
+  let command = Printf.sprintf "timeout %i dune exec main -- -c ./config/solver/dbg_muval_%s_tbq_ar.json -p muclp %s/%s/%s" timeout mode Config.dir_location dirname filename in
   let start_time = Unix.gettimeofday () in
   Printf.printf "Checking %s \n" filename;
   flush Stdlib.stdout;
@@ -332,12 +333,12 @@ let process_hes_file filename dirname timeout =
            then ("valid", execution_time)
          else ("unexpected", execution_time)
   | _ -> ("unexpected", execution_time) (* Handle unexpected exit statuses gracefully *)
-
-let process_directory path dirname timeout : (string * string * float) list =
+  
+let process_directory path dirname timeout mode : (string * string * float) list =
   let files = Sys.readdir path in
   Array.fold_left (fun acc file ->
     if check_suffix file ".hes" then
-      let (outcome, execution_time) = process_hes_file file dirname timeout in
+      let (outcome, execution_time) = process_hes_file file dirname timeout mode in
       (file, outcome, execution_time) :: acc
     else acc
   ) [] files
@@ -357,17 +358,45 @@ let print_execution_time_table results =
       outcome
   ) (List.rev results)
 
-let generate_queries (prot: symbolic_protocol) (dirname: string) = 
+let generate_queries (prot: symbolic_protocol) (dirname: string) (version: string) = 
   (* Currently the most optimized version *)
+  match version with 
+  | "v3bb" -> 
   generate_scc_queries_v3bb prot dirname;
-  generate_rcc_queries prot dirname; 
-  generate_nmc_queries prot dirname
+  generate_rcc_queries_vb prot dirname; 
+  generate_nmc_queries_vb prot dirname;
+  | "v3b" -> 
+  generate_scc_queries_v3b prot dirname;
+  generate_rcc_queries_vb prot dirname; 
+  generate_nmc_queries_vb prot dirname;
+  | "v3a" -> 
+  generate_scc_queries_v3a prot dirname;
+  generate_rcc_queries_vb prot dirname; 
+  generate_nmc_queries_vb prot dirname;
+  | "v2b" -> 
+  generate_scc_queries_v2b prot dirname;
+  generate_rcc_queries_vb prot dirname; 
+  generate_nmc_queries_vb prot dirname;
+  | "v2a" -> 
+  generate_scc_queries_v2a prot dirname;
+  generate_rcc_queries_vb prot dirname; 
+  generate_nmc_queries_vb prot dirname;
+  | "v1b" -> 
+  generate_scc_queries_v1b prot dirname;
+  generate_rcc_queries_vb prot dirname; 
+  generate_nmc_queries_vb prot dirname;
+  | "v1a" -> 
+  generate_scc_queries_v1a prot dirname;
+  generate_rcc_queries_vb prot dirname; 
+  generate_nmc_queries_vb prot dirname;
+  | _ -> Printf.eprintf "Version invalid\n" 
 
-let check_protocol (prot: symbolic_protocol) (dirname: string) (timeout: int) : unit = 
+
+let check_protocol (prot: symbolic_protocol) (dirname: string) (timeout: int) (mode: string) : unit = 
   Printf.printf "Checking implementability of the following protocol: \n";
   print_symbolic_protocol prot; 
   let path = dirname in 
-  let results = process_directory path dirname timeout in 
+  let results = process_directory path dirname timeout mode in 
   List.iter (fun (file, outcome, time) ->
     Printf.printf "%s: %s\n" file outcome
   ) results;
@@ -382,11 +411,16 @@ let check_protocol (prot: symbolic_protocol) (dirname: string) (timeout: int) : 
 
 let () =
   Logs.set_reporter (Logs.format_reporter ());
-  if Array.length Sys.argv < 3 then
-    Printf.eprintf "Usage: %s <input_file> <timeout>\n" Sys.argv.(0)
+  if Array.length Sys.argv < 5 then
+    Printf.eprintf "Usage: %s <input_file> <timeout> <version> <parallel | parallel/exc> \n" Sys.argv.(0)
   else
     let filename = Sys.argv.(1) in
     let timeout = int_of_string Sys.argv.(2) in
+    let version = Sys.argv.(3) in 
+    let mode = Sys.argv.(4) in 
+    if mode <> "parallel" && mode <> "parallel_exc" then 
+    Printf.eprintf "Mode invalid \n" 
+  else 
     try
       let protocol = parse_file filename in
       let dirname = filename ^ "-generated" in 
@@ -396,8 +430,8 @@ let () =
       (* to see visualization, run 
         dot -Tsvg visualization.dot > visualization.svg 
         in the respective folder and open svg-file *)
-      generate_queries protocol dirname; 
-      check_protocol protocol dirname timeout;
+      generate_queries protocol dirname version; 
+      check_protocol protocol dirname timeout mode;
     with
     | Sys_error s | Failure s | Invalid_argument s ->
       print_errors [Internal, Loc.dummy, s]

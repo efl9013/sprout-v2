@@ -104,6 +104,7 @@ let unreach_body_vb (prot: symbolic_protocol) (p: participant) (q: participant) 
 
 let generate_unreach_vb (prot: symbolic_protocol) (p: participant) (q: participant) (ls: state list) : string = 
   List.fold_left (fun acc s -> acc ^ unreach_body_vb prot p q s) "" ls
+  (* List.fold_left (fun acc s -> acc ^ unreach_body_vb prot p q s) "" (List.rev ls) *)
 
 
 

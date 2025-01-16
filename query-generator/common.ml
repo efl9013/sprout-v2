@@ -194,8 +194,11 @@ let all_transition_pairs (ls: symbolic_transition list) : (symbolic_transition *
   List.concat (List.map (fun x -> List.map (fun y -> (x, y)) ls) ls) 
 
 let all_state_pairs (ls: state list) : (state * state) list = 
-  (* To reproduce the least fixpoint ordering bug in MuVal *)
-  (* e.g. fibonacci generates invalid muCLP queries when using parallel_exc mode *)
+  (* To reproduce the least fixpoint ordering bug in MuVal: toggle ls to List.rev ls *)
+  (* Observe that e.g. fibonacci query b_scc_30_3 is now valid, when prodreaches are ordered from 44 ~ 00 *) 
+  (* Whereas previously invalid *) 
+  (* This happens in both parallel and parallel_exc mode *) 
+  (* List.concat (List.map (fun x -> List.map (fun y -> (x, y)) (List.rev ls)) (List.rev ls)) *)
   List.concat (List.map (fun x -> List.map (fun y -> (x, y)) ls) ls)
 
 let parenthesize (s: string) : string = 
