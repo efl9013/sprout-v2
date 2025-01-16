@@ -412,7 +412,7 @@ let check_protocol (prot: symbolic_protocol) (dirname: string) (timeout: int) (m
 let () =
   Logs.set_reporter (Logs.format_reporter ());
   if Array.length Sys.argv < 5 then
-    Printf.eprintf "Usage: %s <input_file> <timeout> <version> <parallel | parallel/exc> \n" Sys.argv.(0)
+    Printf.eprintf "Usage: %s <input_file> <timeout> <version> <parallel | parallel_exc> \n" Sys.argv.(0)
   else
     let filename = Sys.argv.(1) in
     let timeout = int_of_string Sys.argv.(2) in
