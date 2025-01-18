@@ -17,6 +17,7 @@ class Transition:
 
     def frame(self, all_registers: set[Register]) -> Transition:
         updated = self.predicate.primed_registers()
-        to_frame = all_registers - updated
+        to_frame = list(all_registers - updated)
+        to_frame.sort(key=lambda x: str(x))
         frame = And([Prime(r).eq(r) for r in to_frame])
         return replace(self, predicate=self.predicate & frame)

@@ -1,6 +1,9 @@
 Initial state: (0)
-Initial register assignments: sone=0, stwo=0, szero=0
-(0) p0->p1:szero{sone'=szero/\szero'=szero/\stwo'=stwo} (1)
-(1) p1->p2:sone{stwo'=sone/\szero'=szero/\sone'=sone} (2)
-(2) p2->p0:stwo{((stwo=szero/\szero'=(szero+1)%4)\/(stwo!=szero/\szero'=szero))/\sone'=sone/\stwo'=stwo} (0)
-Final states: (3)
+Initial register assignments: szero = 0, sone = 0, stwo = 0
+(0) p0->p1:x{sone' >= 0 /\ sone' < 4 /\ stwo' = stwo /\ szero' = szero} (1)
+(1) p1->p2:x{stwo' >= 0 /\ stwo' < 4 /\ sone' = sone /\ szero' = szero} (2)
+(2) p2->p0:x{szero' >= 0 /\ szero' < 4 /\ sone' = sone /\ stwo' = stwo} (3)
+(3) p0->p1:szero{sone' = szero /\ stwo' = stwo /\ szero' = szero} (4)
+(4) p1->p2:sone{stwo' = sone /\ sone' = sone /\ szero' = szero} (5)
+(5) p2->p0:stwo{((stwo = szero /\ szero' = (szero' + 1) % 4) \/ (stwo != szero /\ szero' = szero)) /\ sone' = sone /\ stwo' = stwo} (3)
+Final states: 
