@@ -51,5 +51,37 @@ let generate_determinism_queries (prot: symbolic_protocol) (dir: string) =
 			prot.states 
 
 (* 2) Deadlock-freedom picks out non-final states *)
+let filter_states_for_deadlock_freedom (prot: symbolic_protocol) =
+   List.filter (fun x -> not (List.mem x prot.final_states)) prot.states 
 
+let generate_disjuncts_for_deadlock_free (prot: symbolic_protocol) (s: state) (ls: symbolic_transition list) : string = 
+	let transitions = List.filter (fun tr -> tr.pre = s) prot.transitions in 
+	List.fold_left (fun acc tr -> acc ^ " \\/ " ^ string_of_formula (substitute tr.predicate (tr.comm_var) "x")) "" transitions 
 
+let generate_df_for_state (prot: symbolic_protocol) (s: state) : string = 
+	"df_" ^ string_of_int s ^ 
+	": bool =mu " ^ 
+	"forall (x:int) " ^ 
+  	List.fold_left (fun acc x -> acc ^ " " ^ parenthesize (x ^ ": int")) "" prot.registers ^ 
+  	".\n" ^
+  	"(" ^ 
+  	"reach_" ^ string_of_int s ^ " " ^
+  	List.fold_left (fun acc x -> acc ^ x ^ " ") "" prot.registers ^
+  	" ==> " ^ 
+  	"(" ^
+  	"exists (x:int) " ^ 
+  	generate_disjuncts_for_deadlock_free prot s prot.transitions ^ 
+  	")" ^
+  	";"
+
+let generate_deadlock_free (prot: symbolic_protocol) : string = 
+	List.fold_left (fun acc s -> acc ^ " /\\ df_" ^ string_of_int s) "true" prot.states ^
+	"\ns.t.\n" ^ 
+	generate_reach prot ^ 
+	"\n" ^ 
+	List.fold_left (fun acc s -> acc ^ "\n" ^ generate_df_for_state prot s) "" prot.states 
+
+let generate_deadlock_free_queries (prot: symbolic_protocol) (dirname: string) = 
+	write_to_file
+			     (Filename.concat dirname ("df.hes"))
+			     (generate_deadlock_free prot)

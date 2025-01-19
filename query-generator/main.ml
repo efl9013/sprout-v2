@@ -4,6 +4,7 @@ open Common
 open Prodreach
 open Unreach
 open Avail 
+open Gclts
 open Scc
 open Nmc 
 open Rcc 
@@ -362,9 +363,10 @@ let generate_queries (prot: symbolic_protocol) (dirname: string) (version: strin
   (* Currently the most optimized version *)
   match version with 
   | "v3bb" -> 
-  generate_scc_queries_v3bb prot dirname;
-  generate_rcc_queries_vb prot dirname; 
-  generate_nmc_queries_vb prot dirname;
+  generate_deadlock_free_queries prot dirname;
+  (* generate_scc_queries_v3bb prot dirname; *)
+  (* generate_rcc_queries prot dirname;  *)
+  (* generate_nmc_queries_vb prot dirname; *)
   | "v3b" -> 
   generate_scc_queries_v3b prot dirname;
   generate_rcc_queries_vb prot dirname; 

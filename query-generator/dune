@@ -1,7 +1,7 @@
 (executable
  (name main)
  (public_name query-generator)
- (libraries unix logs util ast common prodreach unreach avail scc rcc nmc lexer parser config visual)
+ (libraries unix logs util ast common prodreach reach unreach avail gclts scc rcc nmc lexer parser config visual)
  (modules Main)
  (preprocess (pps ppx_custom_printf)))
 
@@ -45,6 +45,11 @@
  (modules Prodreach))
 
 (library
+ (name reach)
+ (libraries ast common)
+ (modules Reach))
+
+(library
  (name unreach)
  (libraries ast common)
  (modules Unreach))
@@ -53,6 +58,11 @@
  (name avail)
  (libraries ast common)
  (modules Avail))
+
+(library 
+ (name gclts)
+ (libraries ast common reach)
+ (modules Gclts))
 
 (library
  (name scc)
