@@ -16,4 +16,6 @@ Initial register assignments: ra=0, rb=0, rc=0, sa=0, sb=0, sc=0
 (8) a->b:x{sa<0 /\ x=0-sa /\ sb'=0-x /\ sa = ra /\ ra'=ra /\ rb'=rb /\ rc'=rc /\ sa'=sa /\ sc'=sc} (9)
 
 (9) b->c:x{sb<0 /\ x=0-sb /\ sc'=0-x /\ sb = rb /\ ra'=ra /\ rb'=rb /\ rc'=rc /\ sa'=sa /\ sb'=sb} (10)
-Final states: (6), (12)
+
+(12) a->s:restart{restart=0 /\ ra'=0 /\ rb'=0 /\ rc'=0 /\ sa'=0 /\ sb'=0 /\ sc'=0} (0)
+Final states: (6)
