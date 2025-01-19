@@ -309,7 +309,7 @@ let process_hes_file filename dirname timeout mode =
     which is sensitive to equation ordering for least fixpoints *)
   (* So we should use the parallel version until it is fixed *) 
   (* Update: found a bug in the parallel version as well *)
-  let command = Printf.sprintf "timeout %i dune exec main -- -c ./config/solver/dbg_muval_%s_tbq_ar.json -p muclp %s/%s/%s" timeout mode Config.dir_location dirname filename in
+  let command = Printf.sprintf "timeout %i ./_build/default/main.exe -c ./config/solver/muval_%s_tbq_ar.json -p muclp %s/%s/%s" timeout mode Config.dir_location dirname filename in
   let start_time = Unix.gettimeofday () in
   Printf.printf "Checking %s \n" filename;
   flush Stdlib.stdout;
