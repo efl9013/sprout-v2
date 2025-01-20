@@ -335,10 +335,19 @@ let process_hes_file filename dirname timeout mode =
          else ("unexpected", execution_time)
   | _ -> ("unexpected", execution_time) (* Handle unexpected exit statuses gracefully *)
   
-let process_directory path dirname timeout mode : (string * string * float) list =
-  let files = Sys.readdir path in
+let process_directory dirname timeout mode : (string * string * float) list =
+  let files = Sys.readdir dirname in
   Array.fold_left (fun acc file ->
     if check_suffix file ".hes" then
+      let (outcome, execution_time) = process_hes_file file dirname timeout mode in
+      (file, outcome, execution_time) :: acc
+    else acc
+  ) [] files
+
+let process_directory_gclts dirname timeout mode : (string * string * float) list =
+  let files = Sys.readdir dirname in
+  Array.fold_left (fun acc file ->
+    if check_suffix file "gclts.hes" then
       let (outcome, execution_time) = process_hes_file file dirname timeout mode in
       (file, outcome, execution_time) :: acc
     else acc
@@ -359,14 +368,17 @@ let print_execution_time_table results =
       outcome
   ) (List.rev results)
 
-let generate_queries (prot: symbolic_protocol) (dirname: string) (version: string) = 
+let generate_gclts_queries (prot: symbolic_protocol) (dirname: string) = 
+  generate_determinism_queries prot dirname; 
+  generate_deadlock_free_queries prot dirname 
+
+let generate_implementability_queries (prot: symbolic_protocol) (dirname: string) (version: string) = 
   (* Currently the most optimized version *)
   match version with 
   | "v3bb" -> 
-  generate_deadlock_free_queries prot dirname;
-  (* generate_scc_queries_v3bb prot dirname; *)
-  (* generate_rcc_queries prot dirname;  *)
-  (* generate_nmc_queries_vb prot dirname; *)
+  generate_scc_queries_v3bb prot dirname;
+  generate_rcc_queries prot dirname; 
+  generate_nmc_queries_vb prot dirname;
   | "v3b" -> 
   generate_scc_queries_v3b prot dirname;
   generate_rcc_queries_vb prot dirname; 
@@ -393,15 +405,27 @@ let generate_queries (prot: symbolic_protocol) (dirname: string) (version: strin
   generate_nmc_queries_vb prot dirname;
   | _ -> Printf.eprintf "Version invalid\n" 
 
+let check_gclts (prot: symbolic_protocol) (dirname: string) (timeout: int) (mode: string) : bool = 
+  Printf.printf "Checking GCLTS eligibility...\n";
+  (* print_symbolic_protocol prot;  *)
+  (* First do syntactic checks *)
+  if (not (sender_driven prot))
+  then (Printf.printf "Protocol is not sender-driven\n"; false) 
+  else if (not (sink_final prot))
+       then (Printf.printf "Protocol is not sink-final\n"; false) 
+       else (let results = process_directory_gclts dirname timeout mode in 
+            List.iter (fun (file, outcome, time) -> Printf.printf "%s: %s\n" file outcome) results;
+            if List.for_all (fun (_, result, _) -> result = "invalid") results 
+            then (Printf.printf "GCLTS eligible\n"; true)
+            else if List.exists (fun (_, result, _) -> result = "valid") results 
+                 then (Printf.printf "GCLTS ineligible\n"; false)
+                 else (Printf.printf "Inconclusive\n"; false))
 
-let check_protocol (prot: symbolic_protocol) (dirname: string) (timeout: int) (mode: string) : unit = 
-  Printf.printf "Checking implementability of the following protocol: \n";
-  print_symbolic_protocol prot; 
-  let path = dirname in 
-  let results = process_directory path dirname timeout mode in 
-  List.iter (fun (file, outcome, time) ->
-    Printf.printf "%s: %s\n" file outcome
-  ) results;
+let check_implementability (prot: symbolic_protocol) (dirname: string) (timeout: int) (mode: string) : unit = 
+  Printf.printf "Checking implementability...\n";
+  (* print_symbolic_protocol prot;  *)
+  let results = process_directory dirname timeout mode in 
+  List.iter (fun (file, outcome, time) -> Printf.printf "%s: %s\n" file outcome) results;
   if List.for_all (fun (_, result, _) -> result = "invalid") results 
   then Printf.printf "Implementable\n" 
   else if List.exists (fun (_, result, _) -> result = "valid") results 
@@ -432,8 +456,12 @@ let () =
       (* to see visualization, run 
         dot -Tsvg visualization.dot > visualization.svg 
         in the respective folder and open svg-file *)
-      generate_queries protocol dirname version; 
-      check_protocol protocol dirname timeout mode;
+      generate_gclts_queries protocol dirname; 
+      generate_implementability_queries protocol dirname version; 
+      (* let _ = check_gclts protocol dirname timeout mode in  *)
+      (* Not sure why this is currently throwing a No such file or directory error *)
+      (* So generating everything together for now *)
+      check_implementability protocol dirname timeout mode
     with
     | Sys_error s | Failure s | Invalid_argument s ->
       print_errors [Internal, Loc.dummy, s]

@@ -12,7 +12,17 @@ let unduplicate lst =
         aux (x :: seen) xs  (* Add to seen and continue *)
   in
   aux [] lst
-  
+
+let is_substring sub str =
+  let sub_len = String.length sub in
+  let str_len = String.length str in
+  let rec check i =
+    if i > str_len - sub_len then false
+    else if String.sub str i sub_len = sub then true
+    else check (i + 1)
+  in
+  check 0
+
 (* System utilities *)
 let write_to_file filename contents =
   let oc = open_out filename in
