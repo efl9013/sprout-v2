@@ -3,7 +3,7 @@ open Common
 open Prodreach 
 open Avail 
 
-(* This file defines 2 versions of NMC: 
+(* This file defines 2 versions of RCC: 
 	 Each version can choose between 2 versions of prodreach generation: 
 	 a. One prodreach predicate altogether, containing a disjunction for each pair of states,
 	 b. One prodreach predicate for each pair of states, i.e. curried prodreach *) 
@@ -169,9 +169,6 @@ let generate_rcc_body_from_pair_for_participant_vb (prot: symbolic_protocol) (pa
 	")"
 
 let generate_rcc_preamble_for_participant (prot: symbolic_protocol) (p: participant) (ls : (symbolic_transition * symbolic_transition) list) = 
-	(* Toggle the following line to only generate simultaneously reachable transition pairs, or generate all pairs without optimization *)
-  (* let transition_pairs = filter_transitions_rcc_participant (all_transition_pairs prot.transitions) p in  *)
-	(* let transition_pairs = filter_simreach_transitions_rcc_participant prot (all_transition_pairs prot.transitions) p in  *)
 	generate_rcc_first_line_for_participant prot p ^ 
 	List.fold_left (fun acc pair -> acc ^ "\n\\/\n" ^ generate_rcc_body_from_pair_for_participant prot pair p) "false" ls ^ 
 	"\ns.t.\n"
@@ -222,6 +219,27 @@ let generate_rcc_queries_vb (prot: symbolic_protocol) (dir: string) =
 							if transition_pairs <> [] 
 							then (let filename = p ^ "_rcc.hes" in 
 									write_to_file (Filename.concat dir filename) (generate_rcc_for_participant_vb prot p transition_pairs))
+							else ()) 
+  				participants 
+
+
+let generate_rcc_for_pair_v2b (prot: symbolic_protocol) (p: participant) (pair : symbolic_transition * symbolic_transition) = 
+	generate_rcc_first_line_for_participant prot p ^ 
+	generate_rcc_body_from_pair_for_participant_vb prot pair p ^ 
+	"\ns.t.\n" ^
+	"\n" ^ 
+	generate_prodreach_vb prot p ^ 
+	"\n" ^ 
+	generate_all_avail prot
+
+let generate_rcc_queries_v2b (prot: symbolic_protocol) (dir: string) = 
+  let participants = get_receivers prot in 
+  List.iter (fun p -> let transition_pairs = filter_simreach_transitions_rcc_participant prot (all_transition_pairs prot.transitions) p in 
+							if transition_pairs <> [] 
+							then (List.iter (fun (tr1, tr2) -> write_to_file 
+																						(Filename.concat dir (p ^ "_" ^ string_of_int tr1.pre ^ string_of_int tr1.post ^ "_" ^ string_of_int tr2.pre ^ string_of_int tr2.post ^ "_rcc.hes"))
+																						(generate_rcc_for_pair_v2b prot p (tr1,tr2)))
+										transition_pairs)
 							else ()) 
   				participants 
 

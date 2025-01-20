@@ -377,7 +377,7 @@ let generate_implementability_queries (prot: symbolic_protocol) (dirname: string
   match version with 
   | "v3bb" -> 
   generate_scc_queries_v3bb prot dirname;
-  generate_rcc_queries prot dirname; 
+  generate_rcc_queries_v2b prot dirname; 
   generate_nmc_queries_vb prot dirname;
   | "v3b" -> 
   generate_scc_queries_v3b prot dirname;
