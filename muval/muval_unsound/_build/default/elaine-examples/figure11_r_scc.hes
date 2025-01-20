@@ -1,0 +1,104 @@
+/* 
+Modified (implementable) protocol from Figure 11: 
+States: {0,1,2,3}
+Registers: {rx,ry}
+Initial register values: rx=0, ry=0
+
+Conventions: 
+- Communication variable is always v 
+- Register preservation is included explicitly 
+   (0) p->q:v{rx'=v/\ry'=ry} (1)
+   (1) q->r:v{ry'=v/\v>rx/\rx'=rx} (2)
+   (2) r->p:v{v>ry/\rx'=rx/\ry'=ry} (3)
+*/
+ 
+/* Symbolic Send Coherence for participant r for this protocol enumerates the following pairs of states and transitions: 
+- (2) r->p:v{v>ry/\rx'=rx/\ry'=ry} (3), (0)
+- (2) r->p:v{v>ry/\rx'=rx/\ry'=ry} (3), (1)
+- (2) r->p:v{v>ry/\rx'=rx/\ry'=ry} (3), (2)
+- (2) r->p:v{v>ry/\rx'=rx/\ry'=ry} (3), (3)
+*/ 
+
+/* The following is the negation of SSC, because apparently the tool cannot handle implies false */ 
+
+/* Expected result: invalid */ 
+/* Result: invalid */ 
+
+exists (s1:int) (s1':int) (x1:int) (rx_1:int) (ry_1:int) (rx_1':int) (ry_1':int) (s2:int) (rx_2:int) (ry_2:int). 
+(((s1=2 /\ s1'=3 /\ s2=0)
+\/ (s1=2 /\ s1'=3 /\ s2=1)
+\/ (s1=2 /\ s1'=3 /\ s2=2)
+\/ (s1=2 /\ s1'=3 /\ s2=3))
+/\
+(prodreach_r s1 rx_1 ry_1 s2 rx_2 ry_2)
+/\ 
+(x1>ry_1 /\ rx_1'=rx_1 /\ ry_1'=ry_1)
+/\
+(unreach_rp s2 rx_2 ry_2 x1))
+s.t. 
+/* Defining prodreach_r */ 
+prodreach_r (s1:int) (rx_1:int) (ry_1:int) (s2:int) (rx_2:int) (ry_2:int): bool =mu 
+/* First disjunct: base case */ 
+(s1 = 0 /\ s2 = 0 /\ rx_1 = 0 /\ ry_1 = 0 /\ rx_1 = 0 /\ ry_1 = 0)
+\/ 
+/* Second disjuncts: both copies take a step */ 
+/* Enumerating pairs of states where both copies can take a simultaneous step: */ 
+/*    (1) q->r:v{ry'=v/\v>rx/\rx'=rx} (2) */ 
+(s1 = 2 /\ s2 = 2 /\ 
+(exists (x1:int) (x2:int) (rx_1pre:int) (ry_1pre:int) (rx_2pre:int) (ry_2pre:int). prodreach_r 1 rx_1pre ry_1pre 1 rx_2pre ry_2pre 
+/\ 
+ry_1 = x1 /\ x1 > rx_1pre /\ rx_1 = rx_1pre 
+/\ 
+ry_2 = x2 /\ x2 > rx_2pre /\ rx_2 = rx_2pre 
+/\ 
+x1 = x2))
+\/ 
+/*    (2) r->p:v{v>ry/\rx'=rx/\ry'=ry} (3) */ 
+(s1 = 3 /\ s2 = 3 
+/\ 
+(exists (x1:int) (x2:int) (rx_1pre:int) (ry_1pre:int) (rx_2pre:int) (ry_2pre:int). prodreach_r 2 rx_1pre ry_1pre 1 rx_2pre ry_2pre 
+/\ 
+x1 > ry_1pre /\ rx_1 = rx_1pre /\ ry_1 = ry_1pre 
+/\
+x2 > ry_2pre /\ rx_2 = rx_2pre /\ ry_2 = ry_2pre 
+/\ 
+x1 = x2))
+\/ 
+/* Third disjuncts: first copy takes an epsilon step */ 
+/* Enumerating states where the first copy takes an epsilon step */ 
+/*    (0) p->q:v{rx'=v/\ry'=ry} (1) */ 
+(s1 = 1 
+/\ 
+(exists (x1:int) (rx_1pre:int) (ry_1pre:int). prodreach_r 0 rx_1pre ry_1pre s2 rx_2 ry_2 
+/\ 
+rx_1 = x1 /\ ry_1 = ry_1pre)) 
+\/ 
+/* Fourth disjuncts: second copy takes an epsilon step */ 
+/* Enumerating states where the second copy takes an epsilon step */ 
+/*    (0) p->q:v{rx'=v/\ry'=ry} (1) */ 
+(s2 = 1 
+/\ 
+(exists (x2:int) (rx_2pre:int) (ry_2pre:int). prodreach_r s1 rx_1 ry_1 0 rx_2pre ry_2pre 
+/\ 
+rx_2 = x2 /\ ry_2 = ry_2pre));
+
+
+/* Defining unreach_rp */
+/* Note that because this definition is a series of conjunctions, 
+   the case analysis on s must occur outside the conjunctions! */ 
+unreach_rp (s:int) (rx:int) (ry:int) (x:int): bool =nu
+(s = 0
+/\
+(forall (v:int) (rx':int) (ry':int). rx'=v\/ry=ry => unreach_rp 1 rx' ry' x))
+\/
+(s = 1)
+\/ 
+(s = 2
+/\
+(forall (rx':int) (ry':int). x>ry/\rx'=rx/\ry'=ry => false))
+\/
+(s = 3);
+/* First conjuncts: r->p transition, but predicate disabled */ 
+/*    (2) r->p:v{v>ry/\rx'=rx/\ry'=ry} (3) */ 
+/* Second conjuncts: epsilon transition */ 
+/*    (0) p->q:v{rx'=v/\ry'=ry} (1) */ 

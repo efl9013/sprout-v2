@@ -1,0 +1,797 @@
+
+type token = 
+  | WHERE
+  | TRUE
+  | SEMI
+  | RPAREN
+  | REALL of (
+# 17 "lib/muCLP/HESParser.mly"
+       (string)
+# 11 "lib/muCLP/HESParser__mock.ml.mock"
+)
+  | REAL
+  | PREDSYM of (
+# 15 "lib/muCLP/HESParser.mly"
+       (Ast.LogicOld.pred_sym)
+# 17 "lib/muCLP/HESParser__mock.ml.mock"
+)
+  | OR
+  | NOT
+  | MULT
+  | MOD
+  | MINUS
+  | LPAREN
+  | INTL of (
+# 16 "lib/muCLP/HESParser.mly"
+       (int)
+# 28 "lib/muCLP/HESParser__mock.ml.mock"
+)
+  | INT
+  | IMPLY
+  | IFF
+  | ID of (
+# 20 "lib/muCLP/HESParser.mly"
+       (string)
+# 36 "lib/muCLP/HESParser__mock.ml.mock"
+)
+  | FALSE
+  | EQFIX of (
+# 9 "lib/muCLP/HESParser.mly"
+       (Ast.LogicOld.Predicate.fixpoint)
+# 42 "lib/muCLP/HESParser__mock.ml.mock"
+)
+  | EOF
+  | DOT
+  | DIV
+  | CORON
+  | BOOL
+  | BINDER of (
+# 10 "lib/muCLP/HESParser.mly"
+       (Ast.LogicOld.Formula.binder)
+# 52 "lib/muCLP/HESParser__mock.ml.mock"
+)
+  | AND
+  | ADD
+
+# 1 "lib/muCLP/HESParser.mly"
+  
+  open Core
+  open Ast
+  open Ast.LogicOld
+
+# 63 "lib/muCLP/HESParser__mock.ml.mock"
+
+let menhir_begin_marker =
+  0
+
+and (xv_toplevel, xv_formula, xv_T_numNeg, xv_T_numMultDivMod, xv_T_numAtom, xv_T_numAddSub, xv_T_num, xv_T_bool, xv_Sort, xv_Funs, xv_Fun, xv_FormulaOr, xv_FormulaNegParen, xv_FormulaNeg, xv_FormulaImply, xv_FormulaIff, xv_FormulaBinder, xv_FormulaAtom, xv_FormulaAnd, xv_Formula, xv_Bounds, xv_AtomAppArgs, xv_Atom) =
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 38 "lib/muCLP/HESParser.mly"
+                                  _4
+# 72 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 38 "lib/muCLP/HESParser.mly"
+                        preds
+# 76 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_Funs) (_startpos_preds_ : Lexing.position) (_endpos_preds_ : Lexing.position) (_startofs_preds_ : int) (_endofs_preds_ : int) (_loc_preds_ : Lexing.position * Lexing.position) (
+# 38 "lib/muCLP/HESParser.mly"
+                 _2
+# 80 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 38 "lib/muCLP/HESParser.mly"
+    query
+# 84 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_Formula) (_startpos_query_ : Lexing.position) (_endpos_query_ : Lexing.position) (_startofs_query_ : int) (_endofs_query_ : int) (_loc_query_ : Lexing.position * Lexing.position) : (
+# 23 "lib/muCLP/HESParser.mly"
+      (Problem.t)
+# 88 "lib/muCLP/HESParser__mock.ml.mock"
+  ) ->
+    (
+# 38 "lib/muCLP/HESParser.mly"
+                                       ( Problem.make preds query )
+# 93 "lib/muCLP/HESParser__mock.ml.mock"
+     : 'tv_toplevel) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 41 "lib/muCLP/HESParser.mly"
+               _2
+# 98 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 41 "lib/muCLP/HESParser.mly"
+    fml
+# 102 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_Formula) (_startpos_fml_ : Lexing.position) (_endpos_fml_ : Lexing.position) (_startofs_fml_ : int) (_endofs_fml_ : int) (_loc_fml_ : Lexing.position * Lexing.position) : (
+# 25 "lib/muCLP/HESParser.mly"
+      (Ast.LogicOld.Formula.t)
+# 106 "lib/muCLP/HESParser__mock.ml.mock"
+  ) ->
+    (
+# 41 "lib/muCLP/HESParser.mly"
+                    ( fml )
+# 111 "lib/muCLP/HESParser__mock.ml.mock"
+     : 'tv_formula) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 125 "lib/muCLP/HESParser.mly"
+          t
+# 116 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_T_numNeg) (_startpos_t_ : Lexing.position) (_endpos_t_ : Lexing.position) (_startofs_t_ : int) (_endofs_t_ : int) (_loc_t_ : Lexing.position * Lexing.position) (
+# 125 "lib/muCLP/HESParser.mly"
+   _1
+# 120 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_T_numNeg ->
+    
+# 125 "lib/muCLP/HESParser.mly"
+                     ( T_num.mk_nneg t )
+# 125 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 124 "lib/muCLP/HESParser.mly"
+    t
+# 130 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_T_numAtom) (_startpos_t_ : Lexing.position) (_endpos_t_ : Lexing.position) (_startofs_t_ : int) (_endofs_t_ : int) (_loc_t_ : Lexing.position * Lexing.position) : 'tv_T_numNeg ->
+    
+# 124 "lib/muCLP/HESParser.mly"
+                ( t )
+# 135 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 121 "lib/muCLP/HESParser.mly"
+                           t2
+# 140 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_T_numNeg) (_startpos_t2_ : Lexing.position) (_endpos_t2_ : Lexing.position) (_startofs_t2_ : int) (_endofs_t2_ : int) (_loc_t2_ : Lexing.position * Lexing.position) (
+# 121 "lib/muCLP/HESParser.mly"
+                      _2
+# 144 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 121 "lib/muCLP/HESParser.mly"
+    t1
+# 148 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_T_numMultDivMod) (_startpos_t1_ : Lexing.position) (_endpos_t1_ : Lexing.position) (_startofs_t1_ : int) (_endofs_t1_ : int) (_loc_t1_ : Lexing.position * Lexing.position) : 'tv_T_numMultDivMod ->
+    
+# 121 "lib/muCLP/HESParser.mly"
+                                       ( T_int.mk_mod(*ToDo*) t1 t2 )
+# 153 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 120 "lib/muCLP/HESParser.mly"
+                           t2
+# 158 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_T_numNeg) (_startpos_t2_ : Lexing.position) (_endpos_t2_ : Lexing.position) (_startofs_t2_ : int) (_endofs_t2_ : int) (_loc_t2_ : Lexing.position * Lexing.position) (
+# 120 "lib/muCLP/HESParser.mly"
+                      _2
+# 162 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 120 "lib/muCLP/HESParser.mly"
+    t1
+# 166 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_T_numMultDivMod) (_startpos_t1_ : Lexing.position) (_endpos_t1_ : Lexing.position) (_startofs_t1_ : int) (_endofs_t1_ : int) (_loc_t1_ : Lexing.position * Lexing.position) : 'tv_T_numMultDivMod ->
+    
+# 120 "lib/muCLP/HESParser.mly"
+                                       ( T_num.mk_ndiv t1 t2 )
+# 171 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 119 "lib/muCLP/HESParser.mly"
+                            t2
+# 176 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_T_numNeg) (_startpos_t2_ : Lexing.position) (_endpos_t2_ : Lexing.position) (_startofs_t2_ : int) (_endofs_t2_ : int) (_loc_t2_ : Lexing.position * Lexing.position) (
+# 119 "lib/muCLP/HESParser.mly"
+                      _2
+# 180 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 119 "lib/muCLP/HESParser.mly"
+    t1
+# 184 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_T_numMultDivMod) (_startpos_t1_ : Lexing.position) (_endpos_t1_ : Lexing.position) (_startofs_t1_ : int) (_endofs_t1_ : int) (_loc_t1_ : Lexing.position * Lexing.position) : 'tv_T_numMultDivMod ->
+    
+# 119 "lib/muCLP/HESParser.mly"
+                                        ( T_num.mk_nmult t1 t2 )
+# 189 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 118 "lib/muCLP/HESParser.mly"
+    t
+# 194 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_T_numNeg) (_startpos_t_ : Lexing.position) (_endpos_t_ : Lexing.position) (_startofs_t_ : int) (_endofs_t_ : int) (_loc_t_ : Lexing.position * Lexing.position) : 'tv_T_numMultDivMod ->
+    
+# 118 "lib/muCLP/HESParser.mly"
+               ( t )
+# 199 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 131 "lib/muCLP/HESParser.mly"
+    varname
+# 204 "lib/muCLP/HESParser__mock.ml.mock"
+   : (
+# 20 "lib/muCLP/HESParser.mly"
+       (string)
+# 208 "lib/muCLP/HESParser__mock.ml.mock"
+  )) (_startpos_varname_ : Lexing.position) (_endpos_varname_ : Lexing.position) (_startofs_varname_ : int) (_endofs_varname_ : int) (_loc_varname_ : Lexing.position * Lexing.position) : 'tv_T_numAtom ->
+    
+# 131 "lib/muCLP/HESParser.mly"
+               ( Term.mk_var (Ident.Tvar varname) @@ Sort.mk_fresh_svar () )
+# 213 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 130 "lib/muCLP/HESParser.mly"
+    n
+# 218 "lib/muCLP/HESParser__mock.ml.mock"
+   : (
+# 17 "lib/muCLP/HESParser.mly"
+       (string)
+# 222 "lib/muCLP/HESParser__mock.ml.mock"
+  )) (_startpos_n_ : Lexing.position) (_endpos_n_ : Lexing.position) (_startofs_n_ : int) (_endofs_n_ : int) (_loc_n_ : Lexing.position * Lexing.position) : 'tv_T_numAtom ->
+    
+# 130 "lib/muCLP/HESParser.mly"
+            ( T_real.mk_real (Q.of_string n) )
+# 227 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 129 "lib/muCLP/HESParser.mly"
+    n
+# 232 "lib/muCLP/HESParser__mock.ml.mock"
+   : (
+# 16 "lib/muCLP/HESParser.mly"
+       (int)
+# 236 "lib/muCLP/HESParser__mock.ml.mock"
+  )) (_startpos_n_ : Lexing.position) (_endpos_n_ : Lexing.position) (_startofs_n_ : int) (_endofs_n_ : int) (_loc_n_ : Lexing.position * Lexing.position) : 'tv_T_numAtom ->
+    
+# 129 "lib/muCLP/HESParser.mly"
+           ( T_int.from_int n )
+# 241 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 128 "lib/muCLP/HESParser.mly"
+                  _3
+# 246 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 128 "lib/muCLP/HESParser.mly"
+           t
+# 250 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_T_num) (_startpos_t_ : Lexing.position) (_endpos_t_ : Lexing.position) (_startofs_t_ : int) (_endofs_t_ : int) (_loc_t_ : Lexing.position * Lexing.position) (
+# 127 "lib/muCLP/HESParser.mly"
+          _1
+# 255 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_T_numAtom ->
+    
+# 128 "lib/muCLP/HESParser.mly"
+                          ( t )
+# 260 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 115 "lib/muCLP/HESParser.mly"
+                         t2
+# 265 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_T_numMultDivMod) (_startpos_t2_ : Lexing.position) (_endpos_t2_ : Lexing.position) (_startofs_t2_ : int) (_endofs_t2_ : int) (_loc_t2_ : Lexing.position * Lexing.position) (
+# 115 "lib/muCLP/HESParser.mly"
+                  _2
+# 269 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 115 "lib/muCLP/HESParser.mly"
+    t1
+# 273 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_T_numAddSub) (_startpos_t1_ : Lexing.position) (_endpos_t1_ : Lexing.position) (_startofs_t1_ : int) (_endofs_t1_ : int) (_loc_t1_ : Lexing.position * Lexing.position) : 'tv_T_numAddSub ->
+    
+# 115 "lib/muCLP/HESParser.mly"
+                                            ( T_num.mk_nsub t1 t2 )
+# 278 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 114 "lib/muCLP/HESParser.mly"
+                       t2
+# 283 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_T_numMultDivMod) (_startpos_t2_ : Lexing.position) (_endpos_t2_ : Lexing.position) (_startofs_t2_ : int) (_endofs_t2_ : int) (_loc_t2_ : Lexing.position * Lexing.position) (
+# 114 "lib/muCLP/HESParser.mly"
+                  _2
+# 287 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 114 "lib/muCLP/HESParser.mly"
+    t1
+# 291 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_T_numAddSub) (_startpos_t1_ : Lexing.position) (_endpos_t1_ : Lexing.position) (_startofs_t1_ : int) (_endofs_t1_ : int) (_loc_t1_ : Lexing.position * Lexing.position) : 'tv_T_numAddSub ->
+    
+# 114 "lib/muCLP/HESParser.mly"
+                                          ( T_num.mk_nadd t1 t2 )
+# 296 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 113 "lib/muCLP/HESParser.mly"
+    t
+# 301 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_T_numMultDivMod) (_startpos_t_ : Lexing.position) (_endpos_t_ : Lexing.position) (_startofs_t_ : int) (_endofs_t_ : int) (_loc_t_ : Lexing.position * Lexing.position) : 'tv_T_numAddSub ->
+    
+# 113 "lib/muCLP/HESParser.mly"
+                      ( t )
+# 306 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 110 "lib/muCLP/HESParser.mly"
+    t
+# 311 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_T_numAddSub) (_startpos_t_ : Lexing.position) (_endpos_t_ : Lexing.position) (_startofs_t_ : int) (_endofs_t_ : int) (_loc_t_ : Lexing.position * Lexing.position) : 'tv_T_num ->
+    
+# 110 "lib/muCLP/HESParser.mly"
+                  ( t )
+# 316 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 135 "lib/muCLP/HESParser.mly"
+                        t2
+# 321 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_T_num) (_startpos_t2_ : Lexing.position) (_endpos_t2_ : Lexing.position) (_startofs_t2_ : int) (_endofs_t2_ : int) (_loc_t2_ : Lexing.position * Lexing.position) (
+# 135 "lib/muCLP/HESParser.mly"
+             op
+# 325 "lib/muCLP/HESParser__mock.ml.mock"
+   : (
+# 15 "lib/muCLP/HESParser.mly"
+       (Ast.LogicOld.pred_sym)
+# 329 "lib/muCLP/HESParser__mock.ml.mock"
+  )) (_startpos_op_ : Lexing.position) (_endpos_op_ : Lexing.position) (_startofs_op_ : int) (_endofs_op_ : int) (_loc_op_ : Lexing.position * Lexing.position) (
+# 135 "lib/muCLP/HESParser.mly"
+    t1
+# 333 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_T_num) (_startpos_t1_ : Lexing.position) (_endpos_t1_ : Lexing.position) (_startofs_t1_ : int) (_endofs_t1_ : int) (_loc_t1_ : Lexing.position * Lexing.position) : 'tv_T_bool ->
+    
+# 135 "lib/muCLP/HESParser.mly"
+                                 ( Atom.mk_app (Predicate.mk_psym op) [t1; t2] )
+# 338 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 148 "lib/muCLP/HESParser.mly"
+   _1
+# 343 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_Sort ->
+    
+# 148 "lib/muCLP/HESParser.mly"
+         ( T_real.SReal )
+# 348 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 147 "lib/muCLP/HESParser.mly"
+   _1
+# 353 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_Sort ->
+    
+# 147 "lib/muCLP/HESParser.mly"
+         ( T_bool.SBool )
+# 358 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 145 "lib/muCLP/HESParser.mly"
+     _1
+# 364 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_Sort ->
+    
+# 146 "lib/muCLP/HESParser.mly"
+        ( T_int.SInt )
+# 369 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 45 "lib/muCLP/HESParser.mly"
+         _2
+# 374 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 45 "lib/muCLP/HESParser.mly"
+    f
+# 378 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_Fun) (_startpos_f_ : Lexing.position) (_endpos_f_ : Lexing.position) (_startofs_f_ : int) (_endofs_f_ : int) (_loc_f_ : Lexing.position * Lexing.position) : 'tv_Funs ->
+    
+# 45 "lib/muCLP/HESParser.mly"
+               ( [f] )
+# 383 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 44 "lib/muCLP/HESParser.mly"
+               preds
+# 388 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_Funs) (_startpos_preds_ : Lexing.position) (_endpos_preds_ : Lexing.position) (_startofs_preds_ : int) (_endofs_preds_ : int) (_loc_preds_ : Lexing.position * Lexing.position) (
+# 44 "lib/muCLP/HESParser.mly"
+         _2
+# 392 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 44 "lib/muCLP/HESParser.mly"
+    f
+# 396 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_Fun) (_startpos_f_ : Lexing.position) (_endpos_f_ : Lexing.position) (_startofs_f_ : int) (_endofs_f_ : int) (_loc_f_ : Lexing.position * Lexing.position) : 'tv_Funs ->
+    
+# 44 "lib/muCLP/HESParser.mly"
+                          ( f :: preds )
+# 401 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 48 "lib/muCLP/HESParser.mly"
+                                                  body
+# 406 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_Formula) (_startpos_body_ : Lexing.position) (_endpos_body_ : Lexing.position) (_startofs_body_ : int) (_endofs_body_ : int) (_loc_body_ : Lexing.position * Lexing.position) (
+# 48 "lib/muCLP/HESParser.mly"
+                                        fix
+# 410 "lib/muCLP/HESParser__mock.ml.mock"
+   : (
+# 9 "lib/muCLP/HESParser.mly"
+       (Ast.LogicOld.Predicate.fixpoint)
+# 414 "lib/muCLP/HESParser__mock.ml.mock"
+  )) (_startpos_fix_ : Lexing.position) (_endpos_fix_ : Lexing.position) (_startofs_fix_ : int) (_endofs_fix_ : int) (_loc_fix_ : Lexing.position * Lexing.position) (
+# 48 "lib/muCLP/HESParser.mly"
+                                  _4
+# 418 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 48 "lib/muCLP/HESParser.mly"
+                            _3
+# 422 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 48 "lib/muCLP/HESParser.mly"
+               bounds
+# 426 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_Bounds) (_startpos_bounds_ : Lexing.position) (_endpos_bounds_ : Lexing.position) (_startofs_bounds_ : int) (_endofs_bounds_ : int) (_loc_bounds_ : Lexing.position * Lexing.position) (
+# 48 "lib/muCLP/HESParser.mly"
+    funname
+# 430 "lib/muCLP/HESParser__mock.ml.mock"
+   : (
+# 20 "lib/muCLP/HESParser.mly"
+       (string)
+# 434 "lib/muCLP/HESParser__mock.ml.mock"
+  )) (_startpos_funname_ : Lexing.position) (_endpos_funname_ : Lexing.position) (_startofs_funname_ : int) (_endofs_funname_ : int) (_loc_funname_ : Lexing.position * Lexing.position) : 'tv_Fun ->
+    
+# 48 "lib/muCLP/HESParser.mly"
+                                                               (
+      Pred.make fix (Ident.Pvar funname) bounds body
+    )
+# 441 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 71 "lib/muCLP/HESParser.mly"
+    fml
+# 446 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_FormulaAnd) (_startpos_fml_ : Lexing.position) (_endpos_fml_ : Lexing.position) (_startofs_fml_ : int) (_endofs_fml_ : int) (_loc_fml_ : Lexing.position * Lexing.position) : 'tv_FormulaOr ->
+    
+# 71 "lib/muCLP/HESParser.mly"
+                   ( fml )
+# 451 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 70 "lib/muCLP/HESParser.mly"
+                       right
+# 456 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_FormulaOr) (_startpos_right_ : Lexing.position) (_endpos_right_ : Lexing.position) (_startofs_right_ : int) (_endofs_right_ : int) (_loc_right_ : Lexing.position * Lexing.position) (
+# 70 "lib/muCLP/HESParser.mly"
+                   _2
+# 460 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 70 "lib/muCLP/HESParser.mly"
+    left
+# 464 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_FormulaAnd) (_startpos_left_ : Lexing.position) (_endpos_left_ : Lexing.position) (_startofs_left_ : int) (_endofs_left_ : int) (_loc_left_ : Lexing.position * Lexing.position) : 'tv_FormulaOr ->
+    
+# 70 "lib/muCLP/HESParser.mly"
+                                       ( Formula.mk_or left right )
+# 469 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 83 "lib/muCLP/HESParser.mly"
+                      _3
+# 474 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 83 "lib/muCLP/HESParser.mly"
+           fml
+# 478 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_Formula) (_startpos_fml_ : Lexing.position) (_endpos_fml_ : Lexing.position) (_startofs_fml_ : int) (_endofs_fml_ : int) (_loc_fml_ : Lexing.position * Lexing.position) (
+# 83 "lib/muCLP/HESParser.mly"
+   _1
+# 482 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_FormulaNegParen ->
+    
+# 83 "lib/muCLP/HESParser.mly"
+                              ( fml )
+# 487 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 82 "lib/muCLP/HESParser.mly"
+        fml
+# 492 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_FormulaNegParen) (_startpos_fml_ : Lexing.position) (_endpos_fml_ : Lexing.position) (_startofs_fml_ : int) (_endofs_fml_ : int) (_loc_fml_ : Lexing.position * Lexing.position) (
+# 81 "lib/muCLP/HESParser.mly"
+                _1
+# 497 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_FormulaNegParen ->
+    
+# 82 "lib/muCLP/HESParser.mly"
+                            ( Formula.mk_neg fml )
+# 502 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 79 "lib/muCLP/HESParser.mly"
+    fml
+# 507 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_FormulaAtom) (_startpos_fml_ : Lexing.position) (_endpos_fml_ : Lexing.position) (_startofs_fml_ : int) (_endofs_fml_ : int) (_loc_fml_ : Lexing.position * Lexing.position) : 'tv_FormulaNeg ->
+    
+# 79 "lib/muCLP/HESParser.mly"
+                    ( fml )
+# 512 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 78 "lib/muCLP/HESParser.mly"
+        fml
+# 517 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_FormulaNegParen) (_startpos_fml_ : Lexing.position) (_endpos_fml_ : Lexing.position) (_startofs_fml_ : int) (_endofs_fml_ : int) (_loc_fml_ : Lexing.position * Lexing.position) (
+# 77 "lib/muCLP/HESParser.mly"
+           _1
+# 522 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_FormulaNeg ->
+    
+# 78 "lib/muCLP/HESParser.mly"
+                            ( Formula.mk_neg fml )
+# 527 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 67 "lib/muCLP/HESParser.mly"
+    fml
+# 532 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_FormulaOr) (_startpos_fml_ : Lexing.position) (_endpos_fml_ : Lexing.position) (_startofs_fml_ : int) (_endofs_fml_ : int) (_loc_fml_ : Lexing.position * Lexing.position) : 'tv_FormulaImply ->
+    
+# 67 "lib/muCLP/HESParser.mly"
+                  ( fml )
+# 537 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 66 "lib/muCLP/HESParser.mly"
+                         right
+# 542 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_FormulaImply) (_startpos_right_ : Lexing.position) (_endpos_right_ : Lexing.position) (_startofs_right_ : int) (_endofs_right_ : int) (_loc_right_ : Lexing.position * Lexing.position) (
+# 66 "lib/muCLP/HESParser.mly"
+                  _2
+# 546 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 66 "lib/muCLP/HESParser.mly"
+    left
+# 550 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_FormulaOr) (_startpos_left_ : Lexing.position) (_endpos_left_ : Lexing.position) (_startofs_left_ : int) (_endofs_left_ : int) (_loc_left_ : Lexing.position * Lexing.position) : 'tv_FormulaImply ->
+    
+# 66 "lib/muCLP/HESParser.mly"
+                                            ( Formula.mk_imply left right )
+# 555 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 63 "lib/muCLP/HESParser.mly"
+    fml
+# 560 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_FormulaImply) (_startpos_fml_ : Lexing.position) (_endpos_fml_ : Lexing.position) (_startofs_fml_ : int) (_endofs_fml_ : int) (_loc_fml_ : Lexing.position * Lexing.position) : 'tv_FormulaIff ->
+    
+# 63 "lib/muCLP/HESParser.mly"
+                     ( fml )
+# 565 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 62 "lib/muCLP/HESParser.mly"
+                          right
+# 570 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_FormulaImply) (_startpos_right_ : Lexing.position) (_endpos_right_ : Lexing.position) (_startofs_right_ : int) (_endofs_right_ : int) (_loc_right_ : Lexing.position * Lexing.position) (
+# 62 "lib/muCLP/HESParser.mly"
+                     _2
+# 574 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 62 "lib/muCLP/HESParser.mly"
+    left
+# 578 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_FormulaImply) (_startpos_left_ : Lexing.position) (_endpos_left_ : Lexing.position) (_startofs_left_ : int) (_endofs_left_ : int) (_loc_left_ : Lexing.position * Lexing.position) : 'tv_FormulaIff ->
+    
+# 62 "lib/muCLP/HESParser.mly"
+                                             ( Formula.mk_iff left right )
+# 583 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 59 "lib/muCLP/HESParser.mly"
+    fml
+# 588 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_FormulaIff) (_startpos_fml_ : Lexing.position) (_endpos_fml_ : Lexing.position) (_startofs_fml_ : int) (_endofs_fml_ : int) (_loc_fml_ : Lexing.position * Lexing.position) : 'tv_FormulaBinder ->
+    
+# 59 "lib/muCLP/HESParser.mly"
+                   ( fml )
+# 593 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 58 "lib/muCLP/HESParser.mly"
+                                    body
+# 598 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_Formula) (_startpos_body_ : Lexing.position) (_endpos_body_ : Lexing.position) (_startofs_body_ : int) (_endofs_body_ : int) (_loc_body_ : Lexing.position * Lexing.position) (
+# 58 "lib/muCLP/HESParser.mly"
+                               _3
+# 602 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 58 "lib/muCLP/HESParser.mly"
+                  bounds
+# 606 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_Bounds) (_startpos_bounds_ : Lexing.position) (_endpos_bounds_ : Lexing.position) (_startofs_bounds_ : int) (_endofs_bounds_ : int) (_loc_bounds_ : Lexing.position * Lexing.position) (
+# 58 "lib/muCLP/HESParser.mly"
+    binder
+# 610 "lib/muCLP/HESParser__mock.ml.mock"
+   : (
+# 10 "lib/muCLP/HESParser.mly"
+       (Ast.LogicOld.Formula.binder)
+# 614 "lib/muCLP/HESParser__mock.ml.mock"
+  )) (_startpos_binder_ : Lexing.position) (_endpos_binder_ : Lexing.position) (_startofs_binder_ : int) (_endofs_binder_ : int) (_loc_binder_ : Lexing.position * Lexing.position) : 'tv_FormulaBinder ->
+    
+# 58 "lib/muCLP/HESParser.mly"
+                                                 ( Formula.mk_bind binder bounds body )
+# 619 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 87 "lib/muCLP/HESParser.mly"
+                      _3
+# 624 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 87 "lib/muCLP/HESParser.mly"
+           fml
+# 628 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_Formula) (_startpos_fml_ : Lexing.position) (_endpos_fml_ : Lexing.position) (_startofs_fml_ : int) (_endofs_fml_ : int) (_loc_fml_ : Lexing.position * Lexing.position) (
+# 87 "lib/muCLP/HESParser.mly"
+   _1
+# 632 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_FormulaAtom ->
+    
+# 87 "lib/muCLP/HESParser.mly"
+                              ( fml )
+# 637 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 86 "lib/muCLP/HESParser.mly"
+    atom
+# 642 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_Atom) (_startpos_atom_ : Lexing.position) (_endpos_atom_ : Lexing.position) (_startofs_atom_ : int) (_endofs_atom_ : int) (_loc_atom_ : Lexing.position * Lexing.position) : 'tv_FormulaAtom ->
+    
+# 86 "lib/muCLP/HESParser.mly"
+              ( Formula.mk_atom atom )
+# 647 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 75 "lib/muCLP/HESParser.mly"
+    fml
+# 652 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_FormulaNeg) (_startpos_fml_ : Lexing.position) (_endpos_fml_ : Lexing.position) (_startofs_fml_ : int) (_endofs_fml_ : int) (_loc_fml_ : Lexing.position * Lexing.position) : 'tv_FormulaAnd ->
+    
+# 75 "lib/muCLP/HESParser.mly"
+                   ( fml )
+# 657 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 74 "lib/muCLP/HESParser.mly"
+                        right
+# 662 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_FormulaAnd) (_startpos_right_ : Lexing.position) (_endpos_right_ : Lexing.position) (_startofs_right_ : int) (_endofs_right_ : int) (_loc_right_ : Lexing.position * Lexing.position) (
+# 74 "lib/muCLP/HESParser.mly"
+                   _2
+# 666 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 74 "lib/muCLP/HESParser.mly"
+    left
+# 670 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_FormulaNeg) (_startpos_left_ : Lexing.position) (_endpos_left_ : Lexing.position) (_startofs_left_ : int) (_endofs_left_ : int) (_loc_left_ : Lexing.position * Lexing.position) : 'tv_FormulaAnd ->
+    
+# 74 "lib/muCLP/HESParser.mly"
+                                         ( Formula.mk_and left right )
+# 675 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 55 "lib/muCLP/HESParser.mly"
+    fml
+# 680 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_FormulaBinder) (_startpos_fml_ : Lexing.position) (_endpos_fml_ : Lexing.position) (_startofs_fml_ : int) (_endofs_fml_ : int) (_loc_fml_ : Lexing.position * Lexing.position) : 'tv_Formula ->
+    
+# 55 "lib/muCLP/HESParser.mly"
+                      ( fml )
+# 685 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 153 "lib/muCLP/HESParser.mly"
+                                             bounds
+# 690 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_Bounds) (_startpos_bounds_ : Lexing.position) (_endpos_bounds_ : Lexing.position) (_startofs_bounds_ : int) (_endofs_bounds_ : int) (_loc_bounds_ : Lexing.position * Lexing.position) (
+# 153 "lib/muCLP/HESParser.mly"
+                                     _5
+# 694 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 153 "lib/muCLP/HESParser.mly"
+                            sort
+# 698 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_Sort) (_startpos_sort_ : Lexing.position) (_endpos_sort_ : Lexing.position) (_startofs_sort_ : int) (_endofs_sort_ : int) (_loc_sort_ : Lexing.position * Lexing.position) (
+# 153 "lib/muCLP/HESParser.mly"
+                     _3
+# 702 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 153 "lib/muCLP/HESParser.mly"
+           varname
+# 706 "lib/muCLP/HESParser__mock.ml.mock"
+   : (
+# 20 "lib/muCLP/HESParser.mly"
+       (string)
+# 710 "lib/muCLP/HESParser__mock.ml.mock"
+  )) (_startpos_varname_ : Lexing.position) (_endpos_varname_ : Lexing.position) (_startofs_varname_ : int) (_endofs_varname_ : int) (_loc_varname_ : Lexing.position * Lexing.position) (
+# 153 "lib/muCLP/HESParser.mly"
+   _1
+# 714 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_Bounds ->
+    
+# 153 "lib/muCLP/HESParser.mly"
+                                                           (
+    (Ident.Tvar varname, sort) :: bounds
+  )
+# 721 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) : 'tv_Bounds ->
+    
+# 152 "lib/muCLP/HESParser.mly"
+    ( [] )
+# 727 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 101 "lib/muCLP/HESParser.mly"
+                  args
+# 732 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_AtomAppArgs) (_startpos_args_ : Lexing.position) (_endpos_args_ : Lexing.position) (_startofs_args_ : int) (_endofs_args_ : int) (_loc_args_ : Lexing.position * Lexing.position) (
+# 101 "lib/muCLP/HESParser.mly"
+    arg
+# 736 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_T_numAtom) (_startpos_arg_ : Lexing.position) (_endpos_arg_ : Lexing.position) (_startofs_arg_ : int) (_endofs_arg_ : int) (_loc_arg_ : Lexing.position * Lexing.position) : 'tv_AtomAppArgs ->
+    
+# 101 "lib/muCLP/HESParser.mly"
+                                   ( arg :: args )
+# 741 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) : 'tv_AtomAppArgs ->
+    
+# 100 "lib/muCLP/HESParser.mly"
+    ( [] )
+# 747 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 97 "lib/muCLP/HESParser.mly"
+   _1
+# 752 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_Atom ->
+    
+# 97 "lib/muCLP/HESParser.mly"
+          ( Atom.False Dummy )
+# 757 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 96 "lib/muCLP/HESParser.mly"
+   _1
+# 762 "lib/muCLP/HESParser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_Atom ->
+    
+# 96 "lib/muCLP/HESParser.mly"
+         ( Atom.True Dummy )
+# 767 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 95 "lib/muCLP/HESParser.mly"
+    atom
+# 772 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_T_bool) (_startpos_atom_ : Lexing.position) (_endpos_atom_ : Lexing.position) (_startofs_atom_ : int) (_endofs_atom_ : int) (_loc_atom_ : Lexing.position * Lexing.position) : 'tv_Atom ->
+    
+# 95 "lib/muCLP/HESParser.mly"
+                ( atom )
+# 777 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 92 "lib/muCLP/HESParser.mly"
+               args
+# 782 "lib/muCLP/HESParser__mock.ml.mock"
+   : 'tv_AtomAppArgs) (_startpos_args_ : Lexing.position) (_endpos_args_ : Lexing.position) (_startofs_args_ : int) (_endofs_args_ : int) (_loc_args_ : Lexing.position * Lexing.position) (
+# 92 "lib/muCLP/HESParser.mly"
+    funname
+# 786 "lib/muCLP/HESParser__mock.ml.mock"
+   : (
+# 20 "lib/muCLP/HESParser.mly"
+       (string)
+# 790 "lib/muCLP/HESParser__mock.ml.mock"
+  )) (_startpos_funname_ : Lexing.position) (_endpos_funname_ : Lexing.position) (_startofs_funname_ : int) (_endofs_funname_ : int) (_loc_funname_ : Lexing.position * Lexing.position) : 'tv_Atom ->
+    
+# 92 "lib/muCLP/HESParser.mly"
+                                (
+      Atom.mk_pvar_app (Ident.Pvar funname) (List.map args ~f:Term.sort_of) args
+    )
+# 797 "lib/muCLP/HESParser__mock.ml.mock"
+     in
+  ((let rec diverge() = diverge() in diverge()) : 'tv_toplevel * 'tv_formula * 'tv_T_numNeg * 'tv_T_numMultDivMod * 'tv_T_numAtom * 'tv_T_numAddSub * 'tv_T_num * 'tv_T_bool * 'tv_Sort * 'tv_Funs * 'tv_Fun * 'tv_FormulaOr * 'tv_FormulaNegParen * 'tv_FormulaNeg * 'tv_FormulaImply * 'tv_FormulaIff * 'tv_FormulaBinder * 'tv_FormulaAtom * 'tv_FormulaAnd * 'tv_Formula * 'tv_Bounds * 'tv_AtomAppArgs * 'tv_Atom)
+
+and menhir_end_marker =
+  0

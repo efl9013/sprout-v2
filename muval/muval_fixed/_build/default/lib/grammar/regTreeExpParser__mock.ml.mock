@@ -1,0 +1,280 @@
+
+type token = 
+  | UIDENT of (
+# 14 "lib/grammar/regTreeExpParser.mly"
+       (string)
+# 7 "lib/grammar/regTreeExpParser__mock.ml.mock"
+)
+  | TYPE
+  | RPAREN
+  | RBRACKET
+  | QUESTION
+  | LPAREN
+  | LIDENT of (
+# 13 "lib/grammar/regTreeExpParser.mly"
+       (string)
+# 17 "lib/grammar/regTreeExpParser__mock.ml.mock"
+)
+  | LBRACKET
+  | EQUAL
+  | EOF
+  | COMMA
+  | BAR
+  | AST
+
+# 1 "lib/grammar/regTreeExpParser.mly"
+  
+let print_error_information () =
+  let st = Parsing.symbol_start_pos () in
+  let en = Parsing.symbol_end_pos () in
+  print_string ("File \"" ^ st.Lexing.pos_fname);
+  Format.printf "\", line %d" st.Lexing.pos_lnum;
+  Format.printf ", characters %d-%d:\n"
+    (st.Lexing.pos_cnum - st.Lexing.pos_bol)
+    (en.Lexing.pos_cnum - en.Lexing.pos_bol)
+
+# 37 "lib/grammar/regTreeExpParser__mock.ml.mock"
+
+let menhir_begin_marker =
+  0
+
+and (xv_regtreeexpdefs, xv_regtreeexpdef, xv_regtreeexp) =
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 41 "lib/grammar/regTreeExpParser.mly"
+ _1
+# 46 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : 'tv_error) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : (
+# 31 "lib/grammar/regTreeExpParser.mly"
+      ((string * (string, string) RegTreeExp.t) list)
+# 50 "lib/grammar/regTreeExpParser__mock.ml.mock"
+  ) ->
+    (
+# 42 "lib/grammar/regTreeExpParser.mly"
+    ( print_error_information ();
+      raise (Failure "Syntax error") )
+# 56 "lib/grammar/regTreeExpParser__mock.ml.mock"
+     : 'tv_regtreeexpdefs) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 39 "lib/grammar/regTreeExpParser.mly"
+                              _3
+# 61 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) ((
+# 39 "lib/grammar/regTreeExpParser.mly"
+               _2
+# 65 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : 'tv_regtreeexpdefs) : (
+# 31 "lib/grammar/regTreeExpParser.mly"
+      ((string * (string, string) RegTreeExp.t) list)
+# 69 "lib/grammar/regTreeExpParser__mock.ml.mock"
+  )) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 39 "lib/grammar/regTreeExpParser.mly"
+ _1
+# 73 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : 'tv_regtreeexpdef) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : (
+# 31 "lib/grammar/regTreeExpParser.mly"
+      ((string * (string, string) RegTreeExp.t) list)
+# 77 "lib/grammar/regTreeExpParser__mock.ml.mock"
+  ) ->
+    (
+# 40 "lib/grammar/regTreeExpParser.mly"
+    ( _1::_2 )
+# 82 "lib/grammar/regTreeExpParser__mock.ml.mock"
+     : 'tv_regtreeexpdefs) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) : (
+# 31 "lib/grammar/regTreeExpParser.mly"
+      ((string * (string, string) RegTreeExp.t) list)
+# 87 "lib/grammar/regTreeExpParser__mock.ml.mock"
+  ) ->
+    (
+# 38 "lib/grammar/regTreeExpParser.mly"
+    ( [] )
+# 92 "lib/grammar/regTreeExpParser__mock.ml.mock"
+     : 'tv_regtreeexpdefs) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 46 "lib/grammar/regTreeExpParser.mly"
+                   _4
+# 97 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : 'tv_regtreeexp) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 46 "lib/grammar/regTreeExpParser.mly"
+             _3
+# 101 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 46 "lib/grammar/regTreeExpParser.mly"
+      _2
+# 105 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : (
+# 14 "lib/grammar/regTreeExpParser.mly"
+       (string)
+# 109 "lib/grammar/regTreeExpParser__mock.ml.mock"
+  )) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 45 "lib/grammar/regTreeExpParser.mly"
+              _1
+# 114 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_regtreeexpdef ->
+    
+# 47 "lib/grammar/regTreeExpParser.mly"
+    ( _2, _4 )
+# 119 "lib/grammar/regTreeExpParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 66 "lib/grammar/regTreeExpParser.mly"
+                   _3
+# 124 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 66 "lib/grammar/regTreeExpParser.mly"
+        _2
+# 128 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : 'tv_regtreeexp) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 66 "lib/grammar/regTreeExpParser.mly"
+ _1
+# 132 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_regtreeexp ->
+    
+# 67 "lib/grammar/regTreeExpParser.mly"
+    ( _2 )
+# 137 "lib/grammar/regTreeExpParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 64 "lib/grammar/regTreeExpParser.mly"
+            _2
+# 142 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 64 "lib/grammar/regTreeExpParser.mly"
+ _1
+# 146 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : 'tv_regtreeexp) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_regtreeexp ->
+    
+# 65 "lib/grammar/regTreeExpParser.mly"
+    ( RegTreeExp.Option _1 )
+# 151 "lib/grammar/regTreeExpParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 62 "lib/grammar/regTreeExpParser.mly"
+            _2
+# 156 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 62 "lib/grammar/regTreeExpParser.mly"
+ _1
+# 160 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : 'tv_regtreeexp) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_regtreeexp ->
+    
+# 63 "lib/grammar/regTreeExpParser.mly"
+    ( RegTreeExp.Kleene _1 )
+# 165 "lib/grammar/regTreeExpParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 60 "lib/grammar/regTreeExpParser.mly"
+                _3
+# 170 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : 'tv_regtreeexp) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 60 "lib/grammar/regTreeExpParser.mly"
+            _2
+# 174 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 60 "lib/grammar/regTreeExpParser.mly"
+ _1
+# 178 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : 'tv_regtreeexp) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_regtreeexp ->
+    
+# 61 "lib/grammar/regTreeExpParser.mly"
+    ( RegTreeExp.Alter (_1, _3) )
+# 183 "lib/grammar/regTreeExpParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 58 "lib/grammar/regTreeExpParser.mly"
+                            _4
+# 188 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : unit) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 58 "lib/grammar/regTreeExpParser.mly"
+                 _3
+# 192 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : 'tv_regtreeexp) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 58 "lib/grammar/regTreeExpParser.mly"
+        _2
+# 196 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 58 "lib/grammar/regTreeExpParser.mly"
+ _1
+# 200 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : (
+# 13 "lib/grammar/regTreeExpParser.mly"
+       (string)
+# 204 "lib/grammar/regTreeExpParser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_regtreeexp ->
+    
+# 59 "lib/grammar/regTreeExpParser.mly"
+    ( RegTreeExp.Label (_1, _3) )
+# 209 "lib/grammar/regTreeExpParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 56 "lib/grammar/regTreeExpParser.mly"
+                 _3
+# 214 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 56 "lib/grammar/regTreeExpParser.mly"
+        _2
+# 218 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 56 "lib/grammar/regTreeExpParser.mly"
+ _1
+# 222 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : (
+# 13 "lib/grammar/regTreeExpParser.mly"
+       (string)
+# 226 "lib/grammar/regTreeExpParser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_regtreeexp ->
+    
+# 57 "lib/grammar/regTreeExpParser.mly"
+    ( RegTreeExp.Label (_1, RegTreeExp.Nil) )
+# 231 "lib/grammar/regTreeExpParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 54 "lib/grammar/regTreeExpParser.mly"
+                  _3
+# 236 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : 'tv_regtreeexp) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 54 "lib/grammar/regTreeExpParser.mly"
+            _2
+# 240 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 54 "lib/grammar/regTreeExpParser.mly"
+ _1
+# 244 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : 'tv_regtreeexp) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_regtreeexp ->
+    
+# 55 "lib/grammar/regTreeExpParser.mly"
+    ( RegTreeExp.Concat (_1, _3) )
+# 249 "lib/grammar/regTreeExpParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 52 "lib/grammar/regTreeExpParser.mly"
+ _1
+# 254 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : (
+# 14 "lib/grammar/regTreeExpParser.mly"
+       (string)
+# 258 "lib/grammar/regTreeExpParser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_regtreeexp ->
+    
+# 53 "lib/grammar/regTreeExpParser.mly"
+    ( RegTreeExp.Symbol _1 )
+# 263 "lib/grammar/regTreeExpParser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 50 "lib/grammar/regTreeExpParser.mly"
+        _2
+# 268 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 49 "lib/grammar/regTreeExpParser.mly"
+           _1
+# 273 "lib/grammar/regTreeExpParser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_regtreeexp ->
+    
+# 51 "lib/grammar/regTreeExpParser.mly"
+    ( RegTreeExp.Nil )
+# 278 "lib/grammar/regTreeExpParser__mock.ml.mock"
+     in
+  ((let rec diverge() = diverge() in diverge()) : 'tv_regtreeexpdefs * 'tv_regtreeexpdef * 'tv_regtreeexp)
+
+and menhir_end_marker =
+  0

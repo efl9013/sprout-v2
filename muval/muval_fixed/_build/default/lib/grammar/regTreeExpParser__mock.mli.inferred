@@ -1,0 +1,20 @@
+type token =
+    UIDENT of string
+  | TYPE
+  | RPAREN
+  | RBRACKET
+  | QUESTION
+  | LPAREN
+  | LIDENT of string
+  | LBRACKET
+  | EQUAL
+  | EOF
+  | COMMA
+  | BAR
+  | AST
+val print_error_information : unit -> unit
+val menhir_begin_marker : int
+val xv_regtreeexpdefs : (string * (string, string) RegTreeExp.t) list
+val xv_regtreeexpdef : string * (string, string) RegTreeExp.t
+val xv_regtreeexp : (string, string) RegTreeExp.t
+val menhir_end_marker : int

@@ -1,0 +1,54 @@
+type token =
+    WHERE
+  | TRUE
+  | SEMI
+  | RPAREN
+  | REALL of string
+  | REAL
+  | PREDSYM of Ast.LogicOld.pred_sym
+  | OR
+  | NOT
+  | MULT
+  | MOD
+  | MINUS
+  | LPAREN
+  | INTL of int
+  | INT
+  | IMPLY
+  | IFF
+  | ID of string
+  | FALSE
+  | EQFIX of Ast.LogicOld.Predicate.fixpoint
+  | EOF
+  | DOT
+  | DIV
+  | CORON
+  | BOOL
+  | BINDER of Ast.LogicOld.Formula.binder
+  | AND
+  | ADD
+val menhir_begin_marker : int
+val xv_toplevel : Problem.t
+val xv_formula : Problem.query
+val xv_T_numNeg : Ast.LogicOld.Term.t
+val xv_T_numMultDivMod : Ast.LogicOld.Term.t
+val xv_T_numAtom : Ast.LogicOld.Term.t
+val xv_T_numAddSub : Ast.LogicOld.Term.t
+val xv_T_num : Ast.LogicOld.Term.t
+val xv_T_bool : Ast.LogicOld.Atom.t
+val xv_Sort : Ast.LogicOld.Sort.t
+val xv_Funs : Pred.t list
+val xv_Fun : Pred.t
+val xv_FormulaOr : Problem.query
+val xv_FormulaNegParen : Problem.query
+val xv_FormulaNeg : Problem.query
+val xv_FormulaImply : Problem.query
+val xv_FormulaIff : Problem.query
+val xv_FormulaBinder : Problem.query
+val xv_FormulaAtom : Problem.query
+val xv_FormulaAnd : Problem.query
+val xv_Formula : Problem.query
+val xv_Bounds : Ast.LogicOld.sort_env_list
+val xv_AtomAppArgs : Ast.LogicOld.Term.t list
+val xv_Atom : Ast.LogicOld.Atom.t
+val menhir_end_marker : int

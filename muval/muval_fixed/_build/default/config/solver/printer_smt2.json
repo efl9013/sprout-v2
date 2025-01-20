@@ -1,0 +1,15 @@
+[
+    "Printer",
+    {
+        "lts_format": [
+            "MuCLP"
+        ],
+        "smt_format": [
+            "SMT2"
+        ],
+        "preprocessor": [
+            "Filename",
+            "./config/pcsat/preprocessor/enable.json"
+        ]
+    }
+]

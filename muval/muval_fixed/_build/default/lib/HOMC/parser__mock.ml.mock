@@ -1,0 +1,1071 @@
+
+type token = 
+  | UIDENT of (
+# 26 "lib/HOMC/parser.mly"
+       (string)
+# 7 "lib/HOMC/parser__mock.ml.mock"
+)
+  | TRUE
+  | RPAREN
+  | PERIOD
+  | OR
+  | OF
+  | MINUS_RANGLE
+  | LPAREN
+  | LIDENT of (
+# 25 "lib/HOMC/parser.mly"
+       (string)
+# 19 "lib/HOMC/parser__mock.ml.mock"
+)
+  | INT of (
+# 27 "lib/HOMC/parser.mly"
+       (int)
+# 24 "lib/HOMC/parser__mock.ml.mock"
+)
+  | GEN
+  | FALSE
+  | EQUAL_RANGLE
+  | EQUAL
+  | EOF
+  | ENDT
+  | ENDR
+  | ENDG
+  | ENDATA
+  | ENDA
+  | COPY
+  | COMMA
+  | COLON
+  | COERCE
+  | CASE
+  | BEGINT
+  | BEGINR
+  | BEGING
+  | BEGINATA
+  | BEGINA
+  | BAR
+  | AND
+
+# 1 "lib/HOMC/parser.mly"
+  
+open Ast
+
+let print_error_information () =
+  let st = Parsing.symbol_start_pos () in
+  let en = Parsing.symbol_end_pos () in
+  print_string ("File \"" ^ st.Lexing.pos_fname);
+  Format.printf "\", line %d" st.Lexing.pos_lnum;
+  Format.printf ", characters %d-%d:\n"
+    (st.Lexing.pos_cnum - st.Lexing.pos_bol)
+    (en.Lexing.pos_cnum - en.Lexing.pos_bol)
+
+let coerce_idx = ref 1
+
+# 64 "lib/HOMC/parser__mock.ml.mock"
+
+let menhir_begin_marker =
+  0
+
+and (xv_typedefs, xv_typedef, xv_typ, xv_tta_transitions, xv_tree_automata, xv_term, xv_simple_term, xv_rules, xv_rule, xv_pats, xv_pat, xv_lidents, xv_hors, xv_hmtt, xv_dnf, xv_cube, xv_ata_transitions, xv_ata_arities) =
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 168 "lib/HOMC/parser.mly"
+ _1
+# 73 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : (
+# 42 "lib/HOMC/parser.mly"
+      ((Ident.tvar * Ident.tvar RefType.t) list)
+# 77 "lib/HOMC/parser__mock.ml.mock"
+  ) ->
+    (
+# 169 "lib/HOMC/parser.mly"
+    ( [] )
+# 82 "lib/HOMC/parser__mock.ml.mock"
+     : 'tv_typedefs) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) ((
+# 166 "lib/HOMC/parser.mly"
+         _2
+# 87 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_typedefs) : (
+# 42 "lib/HOMC/parser.mly"
+      ((Ident.tvar * Ident.tvar RefType.t) list)
+# 91 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 166 "lib/HOMC/parser.mly"
+ _1
+# 95 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_typedef) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : (
+# 42 "lib/HOMC/parser.mly"
+      ((Ident.tvar * Ident.tvar RefType.t) list)
+# 99 "lib/HOMC/parser__mock.ml.mock"
+  ) ->
+    (
+# 167 "lib/HOMC/parser.mly"
+    ( _1::_2 )
+# 104 "lib/HOMC/parser__mock.ml.mock"
+     : 'tv_typedefs) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) : (
+# 42 "lib/HOMC/parser.mly"
+      ((Ident.tvar * Ident.tvar RefType.t) list)
+# 109 "lib/HOMC/parser__mock.ml.mock"
+  ) ->
+    (
+# 165 "lib/HOMC/parser.mly"
+    ( [] )
+# 114 "lib/HOMC/parser__mock.ml.mock"
+     : 'tv_typedefs) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 174 "lib/HOMC/parser.mly"
+                  _4
+# 119 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 174 "lib/HOMC/parser.mly"
+              _3
+# 123 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_typ) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 174 "lib/HOMC/parser.mly"
+        _2
+# 127 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 174 "lib/HOMC/parser.mly"
+ _1
+# 131 "lib/HOMC/parser__mock.ml.mock"
+   : (
+# 25 "lib/HOMC/parser.mly"
+       (string)
+# 135 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_typedef ->
+    
+# 175 "lib/HOMC/parser.mly"
+    ( Ident.Tvar _1, _3 )
+# 140 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 172 "lib/HOMC/parser.mly"
+                  _4
+# 145 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 172 "lib/HOMC/parser.mly"
+              _3
+# 149 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_typ) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 172 "lib/HOMC/parser.mly"
+        _2
+# 153 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 171 "lib/HOMC/parser.mly"
+        _1
+# 158 "lib/HOMC/parser__mock.ml.mock"
+   : (
+# 26 "lib/HOMC/parser.mly"
+       (string)
+# 162 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_typedef ->
+    
+# 173 "lib/HOMC/parser.mly"
+    ( Ident.Tvar _1, _3 )
+# 167 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 182 "lib/HOMC/parser.mly"
+            _3
+# 172 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 182 "lib/HOMC/parser.mly"
+        _2
+# 176 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_typ) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 182 "lib/HOMC/parser.mly"
+ _1
+# 180 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_typ ->
+    
+# 183 "lib/HOMC/parser.mly"
+    ( _2 )
+# 185 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 180 "lib/HOMC/parser.mly"
+                  _3
+# 190 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_typ) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 180 "lib/HOMC/parser.mly"
+     _2
+# 194 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 180 "lib/HOMC/parser.mly"
+ _1
+# 198 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_typ) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_typ ->
+    
+# 181 "lib/HOMC/parser.mly"
+    ( RefType.Func(_1, _3) )
+# 203 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 177 "lib/HOMC/parser.mly"
+    _1
+# 209 "lib/HOMC/parser__mock.ml.mock"
+   : (
+# 25 "lib/HOMC/parser.mly"
+       (string)
+# 213 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_typ ->
+    
+# 179 "lib/HOMC/parser.mly"
+    ( RefType.Base(Ident.Tvar _1) )
+# 218 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 133 "lib/HOMC/parser.mly"
+ _1
+# 223 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : (
+# 41 "lib/HOMC/parser.mly"
+      (Automata.TTA.pre_trs)
+# 227 "lib/HOMC/parser__mock.ml.mock"
+  ) ->
+    (
+# 134 "lib/HOMC/parser.mly"
+    ( [] )
+# 232 "lib/HOMC/parser__mock.ml.mock"
+     : 'tv_tta_transitions) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) ((
+# 131 "lib/HOMC/parser.mly"
+                                           _6
+# 237 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_tta_transitions) : (
+# 41 "lib/HOMC/parser.mly"
+      (Automata.TTA.pre_trs)
+# 241 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__6_ : Lexing.position) (_endpos__6_ : Lexing.position) (_startofs__6_ : int) (_endofs__6_ : int) (_loc__6_ : Lexing.position * Lexing.position) (
+# 131 "lib/HOMC/parser.mly"
+                                    _5
+# 245 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 131 "lib/HOMC/parser.mly"
+                            _4
+# 249 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_lidents) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 131 "lib/HOMC/parser.mly"
+               _3
+# 253 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 131 "lib/HOMC/parser.mly"
+        _2
+# 257 "lib/HOMC/parser__mock.ml.mock"
+   : (
+# 25 "lib/HOMC/parser.mly"
+       (string)
+# 261 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 131 "lib/HOMC/parser.mly"
+ _1
+# 265 "lib/HOMC/parser__mock.ml.mock"
+   : (
+# 25 "lib/HOMC/parser.mly"
+       (string)
+# 269 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : (
+# 41 "lib/HOMC/parser.mly"
+      (Automata.TTA.pre_trs)
+# 273 "lib/HOMC/parser__mock.ml.mock"
+  ) ->
+    (
+# 132 "lib/HOMC/parser.mly"
+    ( (_1, (_2, List.map Ident.name_of_tvar _4)) :: _6 )
+# 278 "lib/HOMC/parser__mock.ml.mock"
+     : 'tv_tta_transitions) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) : (
+# 41 "lib/HOMC/parser.mly"
+      (Automata.TTA.pre_trs)
+# 283 "lib/HOMC/parser__mock.ml.mock"
+  ) ->
+    (
+# 130 "lib/HOMC/parser.mly"
+    ( [] )
+# 288 "lib/HOMC/parser__mock.ml.mock"
+     : 'tv_tta_transitions) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 66 "lib/HOMC/parser.mly"
+ _1
+# 293 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_error) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : (
+# 40 "lib/HOMC/parser.mly"
+      (Automata.TreeAutomaton.t)
+# 297 "lib/HOMC/parser__mock.ml.mock"
+  ) ->
+    (
+# 67 "lib/HOMC/parser.mly"
+    ( print_error_information ();
+      raise (Failure "Syntax error") )
+# 303 "lib/HOMC/parser__mock.ml.mock"
+     : 'tv_tree_automata) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 64 "lib/HOMC/parser.mly"
+                                                  _6
+# 308 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__6_ : Lexing.position) (_endpos__6_ : Lexing.position) (_startofs__6_ : int) (_endofs__6_ : int) (_loc__6_ : Lexing.position * Lexing.position) (
+# 64 "lib/HOMC/parser.mly"
+                                  _5
+# 312 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_ata_transitions) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 64 "lib/HOMC/parser.mly"
+                         _4
+# 316 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 64 "lib/HOMC/parser.mly"
+                    _3
+# 320 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 64 "lib/HOMC/parser.mly"
+        _2
+# 324 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_ata_arities) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 64 "lib/HOMC/parser.mly"
+ _1
+# 328 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : (
+# 40 "lib/HOMC/parser.mly"
+      (Automata.TreeAutomaton.t)
+# 332 "lib/HOMC/parser__mock.ml.mock"
+  ) ->
+    (
+# 65 "lib/HOMC/parser.mly"
+    ( Automata.TreeAutomaton.ATA (_2, Automata.ATA.make _5) )
+# 337 "lib/HOMC/parser__mock.ml.mock"
+     : 'tv_tree_automata) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 62 "lib/HOMC/parser.mly"
+                        _3
+# 342 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) ((
+# 62 "lib/HOMC/parser.mly"
+        _2
+# 346 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_tta_transitions) : (
+# 41 "lib/HOMC/parser.mly"
+      (Automata.TTA.pre_trs)
+# 350 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 61 "lib/HOMC/parser.mly"
+              _1
+# 355 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : (
+# 40 "lib/HOMC/parser.mly"
+      (Automata.TreeAutomaton.t)
+# 359 "lib/HOMC/parser__mock.ml.mock"
+  ) ->
+    (
+# 63 "lib/HOMC/parser.mly"
+    ( Automata.TreeAutomaton.TTA (Automata.TTA.make _2) )
+# 364 "lib/HOMC/parser__mock.ml.mock"
+     : 'tv_tree_automata) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 109 "lib/HOMC/parser.mly"
+     _2
+# 369 "lib/HOMC/parser__mock.ml.mock"
+   : (
+# 25 "lib/HOMC/parser.mly"
+       (string)
+# 373 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 109 "lib/HOMC/parser.mly"
+ _1
+# 377 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_term ->
+    
+# 110 "lib/HOMC/parser.mly"
+    ( EHMTT.Tree(Ident.Tvar _2) )
+# 382 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 107 "lib/HOMC/parser.mly"
+      _2
+# 387 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_simple_term) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 107 "lib/HOMC/parser.mly"
+ _1
+# 391 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_term ->
+    
+# 108 "lib/HOMC/parser.mly"
+    ( EHMTT.Copy(_2) )
+# 396 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 101 "lib/HOMC/parser.mly"
+               _3
+# 401 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_simple_term) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 101 "lib/HOMC/parser.mly"
+        _2
+# 405 "lib/HOMC/parser__mock.ml.mock"
+   : (
+# 25 "lib/HOMC/parser.mly"
+       (string)
+# 409 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 101 "lib/HOMC/parser.mly"
+ _1
+# 413 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_term ->
+    
+# 102 "lib/HOMC/parser.mly"
+    ( 
+      let idx = !coerce_idx in
+      coerce_idx := idx + 1;
+      EHMTT.Coerce(Ident.Tvar _2, _3, idx) 
+    )
+# 422 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 99 "lib/HOMC/parser.mly"
+                _4
+# 427 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_pats) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 99 "lib/HOMC/parser.mly"
+             _3
+# 431 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 99 "lib/HOMC/parser.mly"
+      _2
+# 435 "lib/HOMC/parser__mock.ml.mock"
+   : (
+# 25 "lib/HOMC/parser.mly"
+       (string)
+# 439 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 99 "lib/HOMC/parser.mly"
+ _1
+# 443 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_term ->
+    
+# 100 "lib/HOMC/parser.mly"
+    ( EHMTT.Case(Ident.Tvar _2, _4) )
+# 448 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 97 "lib/HOMC/parser.mly"
+      _2
+# 453 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_simple_term) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 97 "lib/HOMC/parser.mly"
+ _1
+# 457 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_term) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_term ->
+    
+# 98 "lib/HOMC/parser.mly"
+    ( EHMTT.App(_1, _2) )
+# 462 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 94 "lib/HOMC/parser.mly"
+     _1
+# 468 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_simple_term) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_term ->
+    
+# 96 "lib/HOMC/parser.mly"
+    ( _1 )
+# 473 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 91 "lib/HOMC/parser.mly"
+ _1
+# 478 "lib/HOMC/parser__mock.ml.mock"
+   : (
+# 27 "lib/HOMC/parser.mly"
+       (int)
+# 482 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_simple_term ->
+    
+# 92 "lib/HOMC/parser.mly"
+    ( EHMTT.Fd _1 )
+# 487 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 89 "lib/HOMC/parser.mly"
+ _1
+# 492 "lib/HOMC/parser__mock.ml.mock"
+   : (
+# 26 "lib/HOMC/parser.mly"
+       (string)
+# 496 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_simple_term ->
+    
+# 90 "lib/HOMC/parser.mly"
+    ( EHMTT.Nonterm(Ident.Tvar _1) )
+# 501 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 87 "lib/HOMC/parser.mly"
+ _1
+# 506 "lib/HOMC/parser__mock.ml.mock"
+   : (
+# 25 "lib/HOMC/parser.mly"
+       (string)
+# 510 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_simple_term ->
+    
+# 88 "lib/HOMC/parser.mly"
+    ( EHMTT.VarOrTerm(Ident.Tvar _1) )
+# 515 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 85 "lib/HOMC/parser.mly"
+             _3
+# 520 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 85 "lib/HOMC/parser.mly"
+        _2
+# 524 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_term) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 84 "lib/HOMC/parser.mly"
+            _1
+# 529 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_simple_term ->
+    
+# 86 "lib/HOMC/parser.mly"
+    ( _2 )
+# 534 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 75 "lib/HOMC/parser.mly"
+ _1
+# 539 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : (
+# 39 "lib/HOMC/parser.mly"
+      (EHMTT.t)
+# 543 "lib/HOMC/parser__mock.ml.mock"
+  ) ->
+    (
+# 76 "lib/HOMC/parser.mly"
+    ( [] )
+# 548 "lib/HOMC/parser__mock.ml.mock"
+     : 'tv_rules) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) ((
+# 73 "lib/HOMC/parser.mly"
+      _2
+# 553 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_rules) : (
+# 39 "lib/HOMC/parser.mly"
+      (EHMTT.t)
+# 557 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 73 "lib/HOMC/parser.mly"
+ _1
+# 561 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_rule) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : (
+# 39 "lib/HOMC/parser.mly"
+      (EHMTT.t)
+# 565 "lib/HOMC/parser__mock.ml.mock"
+  ) ->
+    (
+# 74 "lib/HOMC/parser.mly"
+    ( _1::_2 )
+# 570 "lib/HOMC/parser__mock.ml.mock"
+     : 'tv_rules) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) : (
+# 39 "lib/HOMC/parser.mly"
+      (EHMTT.t)
+# 575 "lib/HOMC/parser__mock.ml.mock"
+  ) ->
+    (
+# 72 "lib/HOMC/parser.mly"
+    ( [] )
+# 580 "lib/HOMC/parser__mock.ml.mock"
+     : 'tv_rules) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 81 "lib/HOMC/parser.mly"
+                           _5
+# 585 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 81 "lib/HOMC/parser.mly"
+                      _4
+# 589 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_term) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 81 "lib/HOMC/parser.mly"
+                _3
+# 593 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 81 "lib/HOMC/parser.mly"
+        _2
+# 597 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_lidents) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 81 "lib/HOMC/parser.mly"
+ _1
+# 601 "lib/HOMC/parser__mock.ml.mock"
+   : (
+# 26 "lib/HOMC/parser.mly"
+       (string)
+# 605 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_rule ->
+    
+# 82 "lib/HOMC/parser.mly"
+    ( Ident.Tvar _1, (_2, EHMTT.elimVarOrTerm _2 _4) )
+# 610 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 79 "lib/HOMC/parser.mly"
+                                  _5
+# 615 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 79 "lib/HOMC/parser.mly"
+                             _4
+# 619 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_term) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 79 "lib/HOMC/parser.mly"
+                _3
+# 623 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 79 "lib/HOMC/parser.mly"
+        _2
+# 627 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_lidents) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 78 "lib/HOMC/parser.mly"
+     _1
+# 632 "lib/HOMC/parser__mock.ml.mock"
+   : (
+# 26 "lib/HOMC/parser.mly"
+       (string)
+# 636 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_rule ->
+    
+# 80 "lib/HOMC/parser.mly"
+    ( Ident.Tvar _1, (_2, EHMTT.elimVarOrTerm _2 _4) )
+# 641 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 115 "lib/HOMC/parser.mly"
+         _3
+# 646 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_pats) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 115 "lib/HOMC/parser.mly"
+     _2
+# 650 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 115 "lib/HOMC/parser.mly"
+ _1
+# 654 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_pat) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_pats ->
+    
+# 116 "lib/HOMC/parser.mly"
+    ( _1::_3 )
+# 659 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 112 "lib/HOMC/parser.mly"
+     _1
+# 665 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_pat) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_pats ->
+    
+# 114 "lib/HOMC/parser.mly"
+    ( [_1] )
+# 670 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 119 "lib/HOMC/parser.mly"
+                             _4
+# 675 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_term) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 119 "lib/HOMC/parser.mly"
+                _3
+# 679 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 119 "lib/HOMC/parser.mly"
+        _2
+# 683 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_lidents) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 118 "lib/HOMC/parser.mly"
+    _1
+# 688 "lib/HOMC/parser__mock.ml.mock"
+   : (
+# 25 "lib/HOMC/parser.mly"
+       (string)
+# 692 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_pat ->
+    
+# 120 "lib/HOMC/parser.mly"
+    ( Ident.Tvar _1, (_2, _4) )
+# 697 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 125 "lib/HOMC/parser.mly"
+        _2
+# 702 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_lidents) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 125 "lib/HOMC/parser.mly"
+ _1
+# 706 "lib/HOMC/parser__mock.ml.mock"
+   : (
+# 25 "lib/HOMC/parser.mly"
+       (string)
+# 710 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_lidents ->
+    
+# 126 "lib/HOMC/parser.mly"
+    ( (Ident.Tvar _1) :: _2 )
+# 715 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) : 'tv_lidents ->
+    
+# 124 "lib/HOMC/parser.mly"
+    ( [] )
+# 721 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 50 "lib/HOMC/parser.mly"
+ _1
+# 726 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_error) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : (
+# 37 "lib/HOMC/parser.mly"
+      (EHMTT.t * Automata.TreeAutomaton.t)
+# 730 "lib/HOMC/parser__mock.ml.mock"
+  ) ->
+    (
+# 51 "lib/HOMC/parser.mly"
+    ( print_error_information ();
+      raise (Failure "Syntax error") )
+# 736 "lib/HOMC/parser__mock.ml.mock"
+     : 'tv_hors) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 48 "lib/HOMC/parser.mly"
+                                 _5
+# 741 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) ((
+# 48 "lib/HOMC/parser.mly"
+                   _4
+# 745 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_tree_automata) : (
+# 40 "lib/HOMC/parser.mly"
+      (Automata.TreeAutomaton.t)
+# 749 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 48 "lib/HOMC/parser.mly"
+              _3
+# 753 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) ((
+# 48 "lib/HOMC/parser.mly"
+        _2
+# 757 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_rules) : (
+# 39 "lib/HOMC/parser.mly"
+      (EHMTT.t)
+# 761 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 47 "lib/HOMC/parser.mly"
+     _1
+# 766 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : (
+# 37 "lib/HOMC/parser.mly"
+      (EHMTT.t * Automata.TreeAutomaton.t)
+# 770 "lib/HOMC/parser__mock.ml.mock"
+  ) ->
+    (
+# 49 "lib/HOMC/parser.mly"
+    ( _2, _4 )
+# 775 "lib/HOMC/parser__mock.ml.mock"
+     : 'tv_hors) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 57 "lib/HOMC/parser.mly"
+ _1
+# 780 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_error) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : (
+# 38 "lib/HOMC/parser.mly"
+      (EHMTT.t * Automata.TTA.pre_trs * (Ident.tvar * Ident.tvar RefType.t))
+# 784 "lib/HOMC/parser__mock.ml.mock"
+  ) ->
+    (
+# 58 "lib/HOMC/parser.mly"
+    ( print_error_information ();
+      raise (Failure "Syntax error") )
+# 790 "lib/HOMC/parser__mock.ml.mock"
+     : 'tv_hmtt) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 55 "lib/HOMC/parser.mly"
+                                                                   _10
+# 795 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__10_ : Lexing.position) (_endpos__10_ : Lexing.position) (_startofs__10_ : int) (_endofs__10_ : int) (_loc__10_ : Lexing.position * Lexing.position) (
+# 55 "lib/HOMC/parser.mly"
+                                                              _9
+# 799 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__9_ : Lexing.position) (_endpos__9_ : Lexing.position) (_startofs__9_ : int) (_endofs__9_ : int) (_loc__9_ : Lexing.position * Lexing.position) (
+# 55 "lib/HOMC/parser.mly"
+                                                      _8
+# 803 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_typedef) (_startpos__8_ : Lexing.position) (_endpos__8_ : Lexing.position) (_startofs__8_ : int) (_endofs__8_ : int) (_loc__8_ : Lexing.position * Lexing.position) (
+# 55 "lib/HOMC/parser.mly"
+                                               _7
+# 807 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__7_ : Lexing.position) (_endpos__7_ : Lexing.position) (_startofs__7_ : int) (_endofs__7_ : int) (_loc__7_ : Lexing.position * Lexing.position) (
+# 55 "lib/HOMC/parser.mly"
+                                          _6
+# 811 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__6_ : Lexing.position) (_endpos__6_ : Lexing.position) (_startofs__6_ : int) (_endofs__6_ : int) (_loc__6_ : Lexing.position * Lexing.position) ((
+# 55 "lib/HOMC/parser.mly"
+                          _5
+# 815 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_tta_transitions) : (
+# 41 "lib/HOMC/parser.mly"
+      (Automata.TTA.pre_trs)
+# 819 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 55 "lib/HOMC/parser.mly"
+                   _4
+# 823 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 55 "lib/HOMC/parser.mly"
+              _3
+# 827 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) ((
+# 55 "lib/HOMC/parser.mly"
+        _2
+# 831 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_rules) : (
+# 39 "lib/HOMC/parser.mly"
+      (EHMTT.t)
+# 835 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 54 "lib/HOMC/parser.mly"
+     _1
+# 840 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : (
+# 38 "lib/HOMC/parser.mly"
+      (EHMTT.t * Automata.TTA.pre_trs * (Ident.tvar * Ident.tvar RefType.t))
+# 844 "lib/HOMC/parser__mock.ml.mock"
+  ) ->
+    (
+# 56 "lib/HOMC/parser.mly"
+    ( _2, _5, _8 )
+# 849 "lib/HOMC/parser__mock.ml.mock"
+     : 'tv_hmtt) in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 155 "lib/HOMC/parser.mly"
+         _3
+# 854 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_dnf) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 155 "lib/HOMC/parser.mly"
+      _2
+# 858 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 155 "lib/HOMC/parser.mly"
+ _1
+# 862 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_cube) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_dnf ->
+    
+# 155 "lib/HOMC/parser.mly"
+              ( _1 :: _3 )
+# 867 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 154 "lib/HOMC/parser.mly"
+ _1
+# 872 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_cube) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_dnf ->
+    
+# 154 "lib/HOMC/parser.mly"
+       ( [_1] )
+# 877 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 152 "lib/HOMC/parser.mly"
+    _1
+# 883 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_dnf ->
+    
+# 153 "lib/HOMC/parser.mly"
+        ( [] )
+# 888 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 160 "lib/HOMC/parser.mly"
+                                    _7
+# 893 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_cube) (_startpos__7_ : Lexing.position) (_endpos__7_ : Lexing.position) (_startofs__7_ : int) (_endofs__7_ : int) (_loc__7_ : Lexing.position * Lexing.position) (
+# 160 "lib/HOMC/parser.mly"
+                                _6
+# 897 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__6_ : Lexing.position) (_endpos__6_ : Lexing.position) (_startofs__6_ : int) (_endofs__6_ : int) (_loc__6_ : Lexing.position * Lexing.position) (
+# 160 "lib/HOMC/parser.mly"
+                         _5
+# 901 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 160 "lib/HOMC/parser.mly"
+                  _4
+# 905 "lib/HOMC/parser__mock.ml.mock"
+   : (
+# 25 "lib/HOMC/parser.mly"
+       (string)
+# 909 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 160 "lib/HOMC/parser.mly"
+            _3
+# 913 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 160 "lib/HOMC/parser.mly"
+        _2
+# 917 "lib/HOMC/parser__mock.ml.mock"
+   : (
+# 27 "lib/HOMC/parser.mly"
+       (int)
+# 921 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 160 "lib/HOMC/parser.mly"
+ _1
+# 925 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_cube ->
+    
+# 160 "lib/HOMC/parser.mly"
+                                          ( (_2, _4) :: _7 )
+# 930 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 159 "lib/HOMC/parser.mly"
+                         _5
+# 935 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 159 "lib/HOMC/parser.mly"
+                  _4
+# 939 "lib/HOMC/parser__mock.ml.mock"
+   : (
+# 25 "lib/HOMC/parser.mly"
+       (string)
+# 943 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 159 "lib/HOMC/parser.mly"
+            _3
+# 947 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 159 "lib/HOMC/parser.mly"
+        _2
+# 951 "lib/HOMC/parser__mock.ml.mock"
+   : (
+# 27 "lib/HOMC/parser.mly"
+       (int)
+# 955 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 159 "lib/HOMC/parser.mly"
+ _1
+# 959 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_cube ->
+    
+# 159 "lib/HOMC/parser.mly"
+                                 ( [(_2, _4)] )
+# 964 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 157 "lib/HOMC/parser.mly"
+     _1
+# 970 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_cube ->
+    
+# 158 "lib/HOMC/parser.mly"
+       ( [] )
+# 975 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 149 "lib/HOMC/parser.mly"
+ _1
+# 980 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_ata_transitions ->
+    
+# 150 "lib/HOMC/parser.mly"
+    ( [] )
+# 985 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 147 "lib/HOMC/parser.mly"
+                                       _6
+# 990 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_ata_transitions) (_startpos__6_ : Lexing.position) (_endpos__6_ : Lexing.position) (_startofs__6_ : int) (_endofs__6_ : int) (_loc__6_ : Lexing.position * Lexing.position) (
+# 147 "lib/HOMC/parser.mly"
+                                _5
+# 994 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 147 "lib/HOMC/parser.mly"
+                            _4
+# 998 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_dnf) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 147 "lib/HOMC/parser.mly"
+               _3
+# 1002 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 147 "lib/HOMC/parser.mly"
+        _2
+# 1006 "lib/HOMC/parser__mock.ml.mock"
+   : (
+# 25 "lib/HOMC/parser.mly"
+       (string)
+# 1010 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 147 "lib/HOMC/parser.mly"
+ _1
+# 1014 "lib/HOMC/parser__mock.ml.mock"
+   : (
+# 25 "lib/HOMC/parser.mly"
+       (string)
+# 1018 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_ata_transitions ->
+    
+# 148 "lib/HOMC/parser.mly"
+    ( (_1, (_2, _4)) :: _6 )
+# 1023 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) : 'tv_ata_transitions ->
+    
+# 146 "lib/HOMC/parser.mly"
+    ( [] )
+# 1029 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 141 "lib/HOMC/parser.mly"
+ _1
+# 1034 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_ata_arities ->
+    
+# 142 "lib/HOMC/parser.mly"
+    ( [] )
+# 1039 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 139 "lib/HOMC/parser.mly"
+                                _5
+# 1044 "lib/HOMC/parser__mock.ml.mock"
+   : 'tv_ata_arities) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 139 "lib/HOMC/parser.mly"
+                         _4
+# 1048 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__4_ : Lexing.position) (_endpos__4_ : Lexing.position) (_startofs__4_ : int) (_endofs__4_ : int) (_loc__4_ : Lexing.position * Lexing.position) (
+# 139 "lib/HOMC/parser.mly"
+                     _3
+# 1052 "lib/HOMC/parser__mock.ml.mock"
+   : (
+# 27 "lib/HOMC/parser.mly"
+       (int)
+# 1056 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 139 "lib/HOMC/parser.mly"
+        _2
+# 1060 "lib/HOMC/parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 139 "lib/HOMC/parser.mly"
+ _1
+# 1064 "lib/HOMC/parser__mock.ml.mock"
+   : (
+# 25 "lib/HOMC/parser.mly"
+       (string)
+# 1068 "lib/HOMC/parser__mock.ml.mock"
+  )) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) : 'tv_ata_arities ->
+    
+# 140 "lib/HOMC/parser.mly"
+    ( (_1, _3) :: _5 )
+# 1073 "lib/HOMC/parser__mock.ml.mock"
+     in
+  let _ = fun (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) : 'tv_ata_arities ->
+    
+# 138 "lib/HOMC/parser.mly"
+    ( [] )
+# 1079 "lib/HOMC/parser__mock.ml.mock"
+     in
+  ((let rec diverge() = diverge() in diverge()) : 'tv_typedefs * 'tv_typedef * 'tv_typ * 'tv_tta_transitions * 'tv_tree_automata * 'tv_term * 'tv_simple_term * 'tv_rules * 'tv_rule * 'tv_pats * 'tv_pat * 'tv_lidents * 'tv_hors * 'tv_hmtt * 'tv_dnf * 'tv_cube * 'tv_ata_transitions * 'tv_ata_arities)
+
+and menhir_end_marker =
+  0

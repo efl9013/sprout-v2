@@ -1,0 +1,3888 @@
+(lang dune 3.17)
+(name CoAR)
+(version 3.1)
+(sections (lib .) (libexec .) (bin ../../bin) (doc ../../doc/CoAR))
+(files
+ (lib
+  (CHCOpt/CHCOpt.a
+   CHCOpt/CHCOpt.cma
+   CHCOpt/CHCOpt.cmxa
+   CHCOpt/cHCOpt.cmi
+   CHCOpt/cHCOpt.cmt
+   CHCOpt/cHCOpt.cmx
+   CHCOpt/cHCOpt.ml
+   CHCOpt/cHCOpt__Problem.cmi
+   CHCOpt/cHCOpt__Problem.cmt
+   CHCOpt/cHCOpt__Problem.cmx
+   CHCOpt/problem.ml
+   CHCOptSolver/CHCOptSolver.a
+   CHCOptSolver/CHCOptSolver.cma
+   CHCOptSolver/CHCOptSolver.cmxa
+   CHCOptSolver/cHCOptSolver.cmi
+   CHCOptSolver/cHCOptSolver.cmt
+   CHCOptSolver/cHCOptSolver.cmx
+   CHCOptSolver/cHCOptSolver.ml
+   CHCOptSolver/cHCOptSolver__Config.cmi
+   CHCOptSolver/cHCOptSolver__Config.cmt
+   CHCOptSolver/cHCOptSolver__Config.cmx
+   CHCOptSolver/cHCOptSolver__Solver.cmi
+   CHCOptSolver/cHCOptSolver__Solver.cmt
+   CHCOptSolver/cHCOptSolver__Solver.cmx
+   CHCOptSolver/config.ml
+   CHCOptSolver/solver.ml
+   CoAR.a
+   CoAR.cma
+   CoAR.cmxa
+   EffCaml/EffCaml.a
+   EffCaml/EffCaml.cma
+   EffCaml/EffCaml.cmxa
+   EffCaml/cgen.ml
+   EffCaml/config.ml
+   EffCaml/effCaml.cmi
+   EffCaml/effCaml.cmt
+   EffCaml/effCaml.cmx
+   EffCaml/effCaml.ml
+   EffCaml/effCaml__Cgen.cmi
+   EffCaml/effCaml__Cgen.cmt
+   EffCaml/effCaml__Cgen.cmx
+   EffCaml/effCaml__Config.cmi
+   EffCaml/effCaml__Config.cmt
+   EffCaml/effCaml__Config.cmx
+   EffCaml/effCaml__Solver.cmi
+   EffCaml/effCaml__Solver.cmt
+   EffCaml/effCaml__Solver.cmx
+   EffCaml/solver.ml
+   HOMC/EHMTT.ml
+   HOMC/HOMC.a
+   HOMC/HOMC.cma
+   HOMC/HOMC.cmxa
+   HOMC/RSFD.ml
+   HOMC/hOMC.cmi
+   HOMC/hOMC.cmt
+   HOMC/hOMC.cmx
+   HOMC/hOMC.ml
+   HOMC/hOMC__EHMTT.cmi
+   HOMC/hOMC__EHMTT.cmt
+   HOMC/hOMC__EHMTT.cmx
+   HOMC/hOMC__Lexer.cmi
+   HOMC/hOMC__Lexer.cmt
+   HOMC/hOMC__Lexer.cmx
+   HOMC/hOMC__Parser.cmi
+   HOMC/hOMC__Parser.cmt
+   HOMC/hOMC__Parser.cmti
+   HOMC/hOMC__Parser.cmx
+   HOMC/hOMC__Problem.cmi
+   HOMC/hOMC__Problem.cmt
+   HOMC/hOMC__Problem.cmx
+   HOMC/hOMC__RSFD.cmi
+   HOMC/hOMC__RSFD.cmt
+   HOMC/hOMC__RSFD.cmx
+   HOMC/hOMC__Reducer.cmi
+   HOMC/hOMC__Reducer.cmt
+   HOMC/hOMC__Reducer.cmx
+   HOMC/hOMC__RefType.cmi
+   HOMC/hOMC__RefType.cmt
+   HOMC/hOMC__RefType.cmx
+   HOMC/hOMC__TypeSystem.cmi
+   HOMC/hOMC__TypeSystem.cmt
+   HOMC/hOMC__TypeSystem.cmx
+   HOMC/lexer.ml
+   HOMC/parser.ml
+   HOMC/parser.mli
+   HOMC/problem.ml
+   HOMC/reducer.ml
+   HOMC/refType.ml
+   HOMC/typeSystem.ml
+   HOMCSolver/HOMCSolver.a
+   HOMCSolver/HOMCSolver.cma
+   HOMCSolver/HOMCSolver.cmxa
+   HOMCSolver/config.ml
+   HOMCSolver/hOMCSolver.cmi
+   HOMCSolver/hOMCSolver.cmt
+   HOMCSolver/hOMCSolver.cmx
+   HOMCSolver/hOMCSolver.ml
+   HOMCSolver/hOMCSolver__Config.cmi
+   HOMCSolver/hOMCSolver__Config.cmt
+   HOMCSolver/hOMCSolver__Config.cmx
+   HOMCSolver/hOMCSolver__Solver.cmi
+   HOMCSolver/hOMCSolver__Solver.cmt
+   HOMCSolver/hOMCSolver__Solver.cmx
+   HOMCSolver/solver.ml
+   Hoice/Hoice.a
+   Hoice/Hoice.cma
+   Hoice/Hoice.cmxa
+   Hoice/config.ml
+   Hoice/hoice.cmi
+   Hoice/hoice.cmt
+   Hoice/hoice.cmx
+   Hoice/hoice.ml
+   Hoice/hoice__Config.cmi
+   Hoice/hoice__Config.cmt
+   Hoice/hoice__Config.cmx
+   Hoice/hoice__Solver.cmi
+   Hoice/hoice__Solver.cmt
+   Hoice/hoice__Solver.cmx
+   Hoice/solver.ml
+   HorSat2/HorSat2.a
+   HorSat2/HorSat2.cma
+   HorSat2/HorSat2.cmxa
+   HorSat2/config.ml
+   HorSat2/horSat2.cmi
+   HorSat2/horSat2.cmt
+   HorSat2/horSat2.cmx
+   HorSat2/horSat2.ml
+   HorSat2/horSat2__Config.cmi
+   HorSat2/horSat2__Config.cmt
+   HorSat2/horSat2__Config.cmx
+   HorSat2/horSat2__Solver.cmi
+   HorSat2/horSat2__Solver.cmt
+   HorSat2/horSat2__Solver.cmx
+   HorSat2/solver.ml
+   LTS/LTS.a
+   LTS/LTS.cma
+   LTS/LTS.cmxa
+   LTS/T2Lexer.ml
+   LTS/T2Parser.ml
+   LTS/T2Parser.mli
+   LTS/lTS.cmi
+   LTS/lTS.cmt
+   LTS/lTS.cmx
+   LTS/lTS.ml
+   LTS/lTS__Parser.cmi
+   LTS/lTS__Parser.cmt
+   LTS/lTS__Parser.cmx
+   LTS/lTS__Problem.cmi
+   LTS/lTS__Problem.cmt
+   LTS/lTS__Problem.cmx
+   LTS/lTS__T2Lexer.cmi
+   LTS/lTS__T2Lexer.cmt
+   LTS/lTS__T2Lexer.cmx
+   LTS/lTS__T2Parser.cmi
+   LTS/lTS__T2Parser.cmt
+   LTS/lTS__T2Parser.cmti
+   LTS/lTS__T2Parser.cmx
+   LTS/parser.ml
+   LTS/problem.ml
+   META
+   MiniSat/MiniSat.a
+   MiniSat/MiniSat.cma
+   MiniSat/MiniSat.cmxa
+   MiniSat/config.ml
+   MiniSat/miniSat.cmi
+   MiniSat/miniSat.cmt
+   MiniSat/miniSat.cmx
+   MiniSat/miniSat.ml
+   MiniSat/miniSat__Config.cmi
+   MiniSat/miniSat__Config.cmt
+   MiniSat/miniSat__Config.cmx
+   MiniSat/miniSat__Solver.cmi
+   MiniSat/miniSat__Solver.cmt
+   MiniSat/miniSat__Solver.cmx
+   MiniSat/solver.ml
+   MuCyc/MuCyc.a
+   MuCyc/MuCyc.cma
+   MuCyc/MuCyc.cmxa
+   MuCyc/config.ml
+   MuCyc/lemma.ml
+   MuCyc/muCyc.cmi
+   MuCyc/muCyc.cmt
+   MuCyc/muCyc.cmx
+   MuCyc/muCyc.ml
+   MuCyc/muCyc__Config.cmi
+   MuCyc/muCyc__Config.cmt
+   MuCyc/muCyc__Config.cmx
+   MuCyc/muCyc__Lemma.cmi
+   MuCyc/muCyc__Lemma.cmt
+   MuCyc/muCyc__Lemma.cmx
+   MuCyc/muCyc__Problem.cmi
+   MuCyc/muCyc__Problem.cmt
+   MuCyc/muCyc__Problem.cmx
+   MuCyc/muCyc__ProofSearch.cmi
+   MuCyc/muCyc__ProofSearch.cmt
+   MuCyc/muCyc__ProofSearch.cmx
+   MuCyc/muCyc__ProofTree.cmi
+   MuCyc/muCyc__ProofTree.cmt
+   MuCyc/muCyc__ProofTree.cmx
+   MuCyc/muCyc__RelProofSearch.cmi
+   MuCyc/muCyc__RelProofSearch.cmt
+   MuCyc/muCyc__RelProofSearch.cmx
+   MuCyc/muCyc__Sequent.cmi
+   MuCyc/muCyc__Sequent.cmt
+   MuCyc/muCyc__Sequent.cmx
+   MuCyc/muCyc__Solver.cmi
+   MuCyc/muCyc__Solver.cmt
+   MuCyc/muCyc__Solver.cmx
+   MuCyc/problem.ml
+   MuCyc/proofSearch.ml
+   MuCyc/proofTree.ml
+   MuCyc/relProofSearch.ml
+   MuCyc/sequent.ml
+   MuCyc/solver.ml
+   MuVal/MuVal.a
+   MuVal/MuVal.cma
+   MuVal/MuVal.cmxa
+   MuVal/config.ml
+   MuVal/muVal.cmi
+   MuVal/muVal.cmt
+   MuVal/muVal.cmx
+   MuVal/muVal.ml
+   MuVal/muVal__Config.cmi
+   MuVal/muVal__Config.cmt
+   MuVal/muVal__Config.cmx
+   MuVal/muVal__Solver.cmi
+   MuVal/muVal__Solver.cmt
+   MuVal/muVal__Solver.cmx
+   MuVal/solver.ml
+   OptPCSat/OptPCSat.a
+   OptPCSat/OptPCSat.cma
+   OptPCSat/OptPCSat.cmxa
+   OptPCSat/config.ml
+   OptPCSat/lexicoNonOptChecker.ml
+   OptPCSat/maximalityChecker.ml
+   OptPCSat/minimalityChecker.ml
+   OptPCSat/nonOptChecker.ml
+   OptPCSat/optPCSat.cmi
+   OptPCSat/optPCSat.cmt
+   OptPCSat/optPCSat.cmx
+   OptPCSat/optPCSat.ml
+   OptPCSat/optPCSat__Config.cmi
+   OptPCSat/optPCSat__Config.cmt
+   OptPCSat/optPCSat__Config.cmx
+   OptPCSat/optPCSat__LexicoNonOptChecker.cmi
+   OptPCSat/optPCSat__LexicoNonOptChecker.cmt
+   OptPCSat/optPCSat__LexicoNonOptChecker.cmx
+   OptPCSat/optPCSat__MaximalityChecker.cmi
+   OptPCSat/optPCSat__MaximalityChecker.cmt
+   OptPCSat/optPCSat__MaximalityChecker.cmx
+   OptPCSat/optPCSat__MinimalityChecker.cmi
+   OptPCSat/optPCSat__MinimalityChecker.cmt
+   OptPCSat/optPCSat__MinimalityChecker.cmx
+   OptPCSat/optPCSat__NonOptChecker.cmi
+   OptPCSat/optPCSat__NonOptChecker.cmt
+   OptPCSat/optPCSat__NonOptChecker.cmx
+   OptPCSat/optPCSat__OptimalityChecker.cmi
+   OptPCSat/optPCSat__OptimalityChecker.cmt
+   OptPCSat/optPCSat__OptimalityChecker.cmx
+   OptPCSat/optPCSat__Optimizer.cmi
+   OptPCSat/optPCSat__Optimizer.cmt
+   OptPCSat/optPCSat__Optimizer.cmx
+   OptPCSat/optPCSat__Solver.cmi
+   OptPCSat/optPCSat__Solver.cmt
+   OptPCSat/optPCSat__Solver.cmx
+   OptPCSat/optPCSat__TupleExtracter.cmi
+   OptPCSat/optPCSat__TupleExtracter.cmt
+   OptPCSat/optPCSat__TupleExtracter.cmx
+   OptPCSat/optimalityChecker.ml
+   OptPCSat/optimizer.ml
+   OptPCSat/solver.ml
+   OptPCSat/tupleExtracter.ml
+   PCSPSolver/PCSPSolver.a
+   PCSPSolver/PCSPSolver.cma
+   PCSPSolver/PCSPSolver.cmxa
+   PCSPSolver/config.ml
+   PCSPSolver/pCSPSolver.cmi
+   PCSPSolver/pCSPSolver.cmt
+   PCSPSolver/pCSPSolver.cmx
+   PCSPSolver/pCSPSolver.ml
+   PCSPSolver/pCSPSolver__Config.cmi
+   PCSPSolver/pCSPSolver__Config.cmt
+   PCSPSolver/pCSPSolver__Config.cmx
+   PCSPSolver/pCSPSolver__Solver.cmi
+   PCSPSolver/pCSPSolver__Solver.cmt
+   PCSPSolver/pCSPSolver__Solver.cmx
+   PCSPSolver/solver.ml
+   PCSat/PCSat.a
+   PCSat/PCSat.cma
+   PCSat/PCSat.cmxa
+   PCSat/bf_synthesis/BFSynthesizer.ml
+   PCSat/bf_synthesis/DT_BFSynthesizer.ml
+   PCSat/bf_synthesis/MCTS_BFSynthesizer.ml
+   PCSat/bf_synthesis/SCQM_BFSynthesizer.ml
+   PCSat/bf_synthesis/bf_synthesis.a
+   PCSat/bf_synthesis/bf_synthesis.cma
+   PCSat/bf_synthesis/bf_synthesis.cmi
+   PCSat/bf_synthesis/bf_synthesis.cmt
+   PCSat/bf_synthesis/bf_synthesis.cmx
+   PCSat/bf_synthesis/bf_synthesis.cmxa
+   PCSat/bf_synthesis/bf_synthesis.ml
+   PCSat/bf_synthesis/bf_synthesis__BFSynthesizer.cmi
+   PCSat/bf_synthesis/bf_synthesis__BFSynthesizer.cmt
+   PCSat/bf_synthesis/bf_synthesis__BFSynthesizer.cmx
+   PCSat/bf_synthesis/bf_synthesis__BoolFunction.cmi
+   PCSat/bf_synthesis/bf_synthesis__BoolFunction.cmt
+   PCSat/bf_synthesis/bf_synthesis__BoolFunction.cmx
+   PCSat/bf_synthesis/bf_synthesis__DT_BFSynthesizer.cmi
+   PCSat/bf_synthesis/bf_synthesis__DT_BFSynthesizer.cmt
+   PCSat/bf_synthesis/bf_synthesis__DT_BFSynthesizer.cmx
+   PCSat/bf_synthesis/bf_synthesis__DecisionTree.cmi
+   PCSat/bf_synthesis/bf_synthesis__DecisionTree.cmt
+   PCSat/bf_synthesis/bf_synthesis__DecisionTree.cmx
+   PCSat/bf_synthesis/bf_synthesis__MCTS_BFSynthesizer.cmi
+   PCSat/bf_synthesis/bf_synthesis__MCTS_BFSynthesizer.cmt
+   PCSat/bf_synthesis/bf_synthesis__MCTS_BFSynthesizer.cmx
+   PCSat/bf_synthesis/bf_synthesis__SCQM_BFSynthesizer.cmi
+   PCSat/bf_synthesis/bf_synthesis__SCQM_BFSynthesizer.cmt
+   PCSat/bf_synthesis/bf_synthesis__SCQM_BFSynthesizer.cmx
+   PCSat/bf_synthesis/boolFunction.ml
+   PCSat/bf_synthesis/decisionTree.ml
+   PCSat/classification/BFSB_Classifier.ml
+   PCSat/classification/DT_WFClassifier.ml
+   PCSat/classification/FNClassifier.ml
+   PCSat/classification/RGB_FNClassifier.ml
+   PCSat/classification/TB_Classifier.ml
+   PCSat/classification/WFClassifier.ml
+   PCSat/classification/classification.a
+   PCSat/classification/classification.cma
+   PCSat/classification/classification.cmi
+   PCSat/classification/classification.cmt
+   PCSat/classification/classification.cmx
+   PCSat/classification/classification.cmxa
+   PCSat/classification/classification.ml
+   PCSat/classification/classification__BFSB_Classifier.cmi
+   PCSat/classification/classification__BFSB_Classifier.cmt
+   PCSat/classification/classification__BFSB_Classifier.cmx
+   PCSat/classification/classification__Classifier.cmi
+   PCSat/classification/classification__Classifier.cmt
+   PCSat/classification/classification__Classifier.cmx
+   PCSat/classification/classification__DT_WFClassifier.cmi
+   PCSat/classification/classification__DT_WFClassifier.cmt
+   PCSat/classification/classification__DT_WFClassifier.cmx
+   PCSat/classification/classification__FNClassifier.cmi
+   PCSat/classification/classification__FNClassifier.cmt
+   PCSat/classification/classification__FNClassifier.cmx
+   PCSat/classification/classification__RGB_FNClassifier.cmi
+   PCSat/classification/classification__RGB_FNClassifier.cmt
+   PCSat/classification/classification__RGB_FNClassifier.cmx
+   PCSat/classification/classification__TB_Classifier.cmi
+   PCSat/classification/classification__TB_Classifier.cmt
+   PCSat/classification/classification__TB_Classifier.cmx
+   PCSat/classification/classification__WFClassifier.cmi
+   PCSat/classification/classification__WFClassifier.cmt
+   PCSat/classification/classification__WFClassifier.cmx
+   PCSat/classification/classifier.ml
+   PCSat/common/PCSatCommon.a
+   PCSat/common/PCSatCommon.cma
+   PCSat/common/PCSatCommon.cmxa
+   PCSat/common/QDep.ml
+   PCSat/common/RLConfig.ml
+   PCSat/common/clauseGraph.ml
+   PCSat/common/context.ml
+   PCSat/common/exAtom.ml
+   PCSat/common/exAtomSet.ml
+   PCSat/common/exClause.ml
+   PCSat/common/exClauseSet.ml
+   PCSat/common/hypSpace.ml
+   PCSat/common/pCSatCommon.cmi
+   PCSat/common/pCSatCommon.cmt
+   PCSat/common/pCSatCommon.cmx
+   PCSat/common/pCSatCommon.ml
+   PCSat/common/pCSatCommon__ClauseGraph.cmi
+   PCSat/common/pCSatCommon__ClauseGraph.cmt
+   PCSat/common/pCSatCommon__ClauseGraph.cmx
+   PCSat/common/pCSatCommon__Context.cmi
+   PCSat/common/pCSatCommon__Context.cmt
+   PCSat/common/pCSatCommon__Context.cmx
+   PCSat/common/pCSatCommon__ExAtom.cmi
+   PCSat/common/pCSatCommon__ExAtom.cmt
+   PCSat/common/pCSatCommon__ExAtom.cmx
+   PCSat/common/pCSatCommon__ExAtomSet.cmi
+   PCSat/common/pCSatCommon__ExAtomSet.cmt
+   PCSat/common/pCSatCommon__ExAtomSet.cmx
+   PCSat/common/pCSatCommon__ExClause.cmi
+   PCSat/common/pCSatCommon__ExClause.cmt
+   PCSat/common/pCSatCommon__ExClause.cmx
+   PCSat/common/pCSatCommon__ExClauseSet.cmi
+   PCSat/common/pCSatCommon__ExClauseSet.cmt
+   PCSat/common/pCSatCommon__ExClauseSet.cmx
+   PCSat/common/pCSatCommon__HypSpace.cmi
+   PCSat/common/pCSatCommon__HypSpace.cmt
+   PCSat/common/pCSatCommon__HypSpace.cmx
+   PCSat/common/pCSatCommon__QDep.cmi
+   PCSat/common/pCSatCommon__QDep.cmt
+   PCSat/common/pCSatCommon__QDep.cmx
+   PCSat/common/pCSatCommon__RLConfig.cmi
+   PCSat/common/pCSatCommon__RLConfig.cmt
+   PCSat/common/pCSatCommon__RLConfig.cmx
+   PCSat/common/pCSatCommon__State.cmi
+   PCSat/common/pCSatCommon__State.cmt
+   PCSat/common/pCSatCommon__State.cmx
+   PCSat/common/pCSatCommon__TruthTable.cmi
+   PCSat/common/pCSatCommon__TruthTable.cmt
+   PCSat/common/pCSatCommon__TruthTable.cmx
+   PCSat/common/pCSatCommon__VersionSpace.cmi
+   PCSat/common/pCSatCommon__VersionSpace.cmt
+   PCSat/common/pCSatCommon__VersionSpace.cmx
+   PCSat/common/state.ml
+   PCSat/common/truthTable.ml
+   PCSat/common/versionSpace.ml
+   PCSat/config.ml
+   PCSat/coordination/coordination.a
+   PCSat/coordination/coordination.cma
+   PCSat/coordination/coordination.cmi
+   PCSat/coordination/coordination.cmt
+   PCSat/coordination/coordination.cmx
+   PCSat/coordination/coordination.cmxa
+   PCSat/coordination/coordination.ml
+   PCSat/coordination/coordination__Coordinator.cmi
+   PCSat/coordination/coordination__Coordinator.cmt
+   PCSat/coordination/coordination__Coordinator.cmx
+   PCSat/coordination/coordinator.ml
+   PCSat/labeling/NWFLoopDetector.ml
+   PCSat/labeling/labeler.ml
+   PCSat/labeling/labeling.a
+   PCSat/labeling/labeling.cma
+   PCSat/labeling/labeling.cmi
+   PCSat/labeling/labeling.cmt
+   PCSat/labeling/labeling.cmx
+   PCSat/labeling/labeling.cmxa
+   PCSat/labeling/labeling.ml
+   PCSat/labeling/labeling__Labeler.cmi
+   PCSat/labeling/labeling__Labeler.cmt
+   PCSat/labeling/labeling__Labeler.cmx
+   PCSat/labeling/labeling__LoopDetector.cmi
+   PCSat/labeling/labeling__LoopDetector.cmt
+   PCSat/labeling/labeling__LoopDetector.cmx
+   PCSat/labeling/labeling__NWFLoopDetector.cmi
+   PCSat/labeling/labeling__NWFLoopDetector.cmt
+   PCSat/labeling/labeling__NWFLoopDetector.cmx
+   PCSat/labeling/loopDetector.ml
+   PCSat/pCSat.cmi
+   PCSat/pCSat.cmt
+   PCSat/pCSat.cmx
+   PCSat/pCSat.ml
+   PCSat/pCSat__Config.cmi
+   PCSat/pCSat__Config.cmt
+   PCSat/pCSat__Config.cmx
+   PCSat/pCSat__SolPrinter.cmi
+   PCSat/pCSat__SolPrinter.cmt
+   PCSat/pCSat__SolPrinter.cmx
+   PCSat/pCSat__Solver.cmi
+   PCSat/pCSat__Solver.cmt
+   PCSat/pCSat__Solver.cmx
+   PCSat/preprocessing/dimReducer.ml
+   PCSat/preprocessing/preprocessing.a
+   PCSat/preprocessing/preprocessing.cma
+   PCSat/preprocessing/preprocessing.cmi
+   PCSat/preprocessing/preprocessing.cmt
+   PCSat/preprocessing/preprocessing.cmx
+   PCSat/preprocessing/preprocessing.cmxa
+   PCSat/preprocessing/preprocessing.ml
+   PCSat/preprocessing/preprocessing__DimReducer.cmi
+   PCSat/preprocessing/preprocessing__DimReducer.cmt
+   PCSat/preprocessing/preprocessing__DimReducer.cmx
+   PCSat/preprocessing/preprocessing__Preprocessor.cmi
+   PCSat/preprocessing/preprocessing__Preprocessor.cmt
+   PCSat/preprocessing/preprocessing__Preprocessor.cmx
+   PCSat/preprocessing/preprocessing__PvarEliminator.cmi
+   PCSat/preprocessing/preprocessing__PvarEliminator.cmt
+   PCSat/preprocessing/preprocessing__PvarEliminator.cmx
+   PCSat/preprocessing/preprocessor.ml
+   PCSat/preprocessing/pvarEliminator.ml
+   PCSat/qualifier/NN.ml
+   PCSat/qualifier/SVM.ml
+   PCSat/qualifier/allTheory.ml
+   PCSat/qualifier/arrayTheory.ml
+   PCSat/qualifier/dtTheory.ml
+   PCSat/qualifier/generator.ml
+   PCSat/qualifier/interval.ml
+   PCSat/qualifier/null.ml
+   PCSat/qualifier/octagon.ml
+   PCSat/qualifier/octahedron.ml
+   PCSat/qualifier/polyhedron.ml
+   PCSat/qualifier/polynomial.ml
+   PCSat/qualifier/qualifier.a
+   PCSat/qualifier/qualifier.cma
+   PCSat/qualifier/qualifier.cmi
+   PCSat/qualifier/qualifier.cmt
+   PCSat/qualifier/qualifier.cmx
+   PCSat/qualifier/qualifier.cmxa
+   PCSat/qualifier/qualifier.ml
+   PCSat/qualifier/qualifier__AllTheory.cmi
+   PCSat/qualifier/qualifier__AllTheory.cmt
+   PCSat/qualifier/qualifier__AllTheory.cmx
+   PCSat/qualifier/qualifier__ArrayTheory.cmi
+   PCSat/qualifier/qualifier__ArrayTheory.cmt
+   PCSat/qualifier/qualifier__ArrayTheory.cmx
+   PCSat/qualifier/qualifier__DtTheory.cmi
+   PCSat/qualifier/qualifier__DtTheory.cmt
+   PCSat/qualifier/qualifier__DtTheory.cmx
+   PCSat/qualifier/qualifier__Generator.cmi
+   PCSat/qualifier/qualifier__Generator.cmt
+   PCSat/qualifier/qualifier__Generator.cmx
+   PCSat/qualifier/qualifier__Interval.cmi
+   PCSat/qualifier/qualifier__Interval.cmt
+   PCSat/qualifier/qualifier__Interval.cmx
+   PCSat/qualifier/qualifier__NN.cmi
+   PCSat/qualifier/qualifier__NN.cmt
+   PCSat/qualifier/qualifier__NN.cmx
+   PCSat/qualifier/qualifier__Null.cmi
+   PCSat/qualifier/qualifier__Null.cmt
+   PCSat/qualifier/qualifier__Null.cmx
+   PCSat/qualifier/qualifier__Octagon.cmi
+   PCSat/qualifier/qualifier__Octagon.cmt
+   PCSat/qualifier/qualifier__Octagon.cmx
+   PCSat/qualifier/qualifier__Octahedron.cmi
+   PCSat/qualifier/qualifier__Octahedron.cmt
+   PCSat/qualifier/qualifier__Octahedron.cmx
+   PCSat/qualifier/qualifier__Polyhedron.cmi
+   PCSat/qualifier/qualifier__Polyhedron.cmt
+   PCSat/qualifier/qualifier__Polyhedron.cmx
+   PCSat/qualifier/qualifier__Polynomial.cmi
+   PCSat/qualifier/qualifier__Polynomial.cmt
+   PCSat/qualifier/qualifier__Polynomial.cmx
+   PCSat/qualifier/qualifier__SVM.cmi
+   PCSat/qualifier/qualifier__SVM.cmt
+   PCSat/qualifier/qualifier__SVM.cmx
+   PCSat/qualifier/qualifier__Union.cmi
+   PCSat/qualifier/qualifier__Union.cmt
+   PCSat/qualifier/qualifier__Union.cmx
+   PCSat/qualifier/union.ml
+   PCSat/regression/DT_Regressor.ml
+   PCSat/regression/regression.a
+   PCSat/regression/regression.cma
+   PCSat/regression/regression.cmi
+   PCSat/regression/regression.cmt
+   PCSat/regression/regression.cmx
+   PCSat/regression/regression.cmxa
+   PCSat/regression/regression.ml
+   PCSat/regression/regression__DT_Regressor.cmi
+   PCSat/regression/regression__DT_Regressor.cmt
+   PCSat/regression/regression__DT_Regressor.cmx
+   PCSat/regression/regression__Regressor.cmi
+   PCSat/regression/regression__Regressor.cmt
+   PCSat/regression/regression__Regressor.cmx
+   PCSat/regression/regressor.ml
+   PCSat/resolution/SMTResolver.ml
+   PCSat/resolution/graphResolver.ml
+   PCSat/resolution/oldResolver.ml
+   PCSat/resolution/resolution.a
+   PCSat/resolution/resolution.cma
+   PCSat/resolution/resolution.cmi
+   PCSat/resolution/resolution.cmt
+   PCSat/resolution/resolution.cmx
+   PCSat/resolution/resolution.cmxa
+   PCSat/resolution/resolution.ml
+   PCSat/resolution/resolution__GraphResolver.cmi
+   PCSat/resolution/resolution__GraphResolver.cmt
+   PCSat/resolution/resolution__GraphResolver.cmx
+   PCSat/resolution/resolution__OldResolver.cmi
+   PCSat/resolution/resolution__OldResolver.cmt
+   PCSat/resolution/resolution__OldResolver.cmx
+   PCSat/resolution/resolution__Resolver.cmi
+   PCSat/resolution/resolution__Resolver.cmt
+   PCSat/resolution/resolution__Resolver.cmx
+   PCSat/resolution/resolution__SMTResolver.cmi
+   PCSat/resolution/resolution__SMTResolver.cmt
+   PCSat/resolution/resolution__SMTResolver.cmx
+   PCSat/resolution/resolver.ml
+   PCSat/solPrinter.ml
+   PCSat/solver.ml
+   PCSat/synthesis/CBSynthTemplateUpdateStrategy.ml
+   PCSat/synthesis/CBSynthesizer.ml
+   PCSat/synthesis/CandidateChecker.ml
+   PCSat/synthesis/PASynthesizer.ml
+   PCSat/synthesis/TBSynthesizer.ml
+   PCSat/synthesis/solutionTemplate.ml
+   PCSat/synthesis/synthesis.a
+   PCSat/synthesis/synthesis.cma
+   PCSat/synthesis/synthesis.cmi
+   PCSat/synthesis/synthesis.cmt
+   PCSat/synthesis/synthesis.cmx
+   PCSat/synthesis/synthesis.cmxa
+   PCSat/synthesis/synthesis.ml
+   PCSat/synthesis/synthesis__CBSynthTemplateUpdateStrategy.cmi
+   PCSat/synthesis/synthesis__CBSynthTemplateUpdateStrategy.cmt
+   PCSat/synthesis/synthesis__CBSynthTemplateUpdateStrategy.cmx
+   PCSat/synthesis/synthesis__CBSynthesizer.cmi
+   PCSat/synthesis/synthesis__CBSynthesizer.cmt
+   PCSat/synthesis/synthesis__CBSynthesizer.cmx
+   PCSat/synthesis/synthesis__CandidateChecker.cmi
+   PCSat/synthesis/synthesis__CandidateChecker.cmt
+   PCSat/synthesis/synthesis__CandidateChecker.cmx
+   PCSat/synthesis/synthesis__PASynthesizer.cmi
+   PCSat/synthesis/synthesis__PASynthesizer.cmt
+   PCSat/synthesis/synthesis__PASynthesizer.cmx
+   PCSat/synthesis/synthesis__SolutionTemplate.cmi
+   PCSat/synthesis/synthesis__SolutionTemplate.cmt
+   PCSat/synthesis/synthesis__SolutionTemplate.cmx
+   PCSat/synthesis/synthesis__Synthesizer.cmi
+   PCSat/synthesis/synthesis__Synthesizer.cmt
+   PCSat/synthesis/synthesis__Synthesizer.cmx
+   PCSat/synthesis/synthesis__TBSynthesizer.cmi
+   PCSat/synthesis/synthesis__TBSynthesizer.cmt
+   PCSat/synthesis/synthesis__TBSynthesizer.cmx
+   PCSat/synthesis/synthesis__TemplateUpdateStrategy.cmi
+   PCSat/synthesis/synthesis__TemplateUpdateStrategy.cmt
+   PCSat/synthesis/synthesis__TemplateUpdateStrategy.cmx
+   PCSat/synthesis/synthesizer.ml
+   PCSat/synthesis/templateUpdateStrategy.ml
+   PCSat/template/FNPredicate.ml
+   PCSat/template/FNPredicateFlex.ml
+   PCSat/template/NEPredicate.ml
+   PCSat/template/NWFPredicate.ml
+   PCSat/template/WFPredicate.ml
+   PCSat/template/WFPredicateFlex.ml
+   PCSat/template/admPredicate.ml
+   PCSat/template/arith.ml
+   PCSat/template/function.ml
+   PCSat/template/generator.ml
+   PCSat/template/intFunction.ml
+   PCSat/template/intFunctionFlex.ml
+   PCSat/template/integPredicate.ml
+   PCSat/template/predicateArrays.ml
+   PCSat/template/predicateDNF.ml
+   PCSat/template/predicateFlex.ml
+   PCSat/template/regEx.ml
+   PCSat/template/template.a
+   PCSat/template/template.cma
+   PCSat/template/template.cmi
+   PCSat/template/template.cmt
+   PCSat/template/template.cmx
+   PCSat/template/template.cmxa
+   PCSat/template/template.ml
+   PCSat/template/template__AdmPredicate.cmi
+   PCSat/template/template__AdmPredicate.cmt
+   PCSat/template/template__AdmPredicate.cmx
+   PCSat/template/template__Arith.cmi
+   PCSat/template/template__Arith.cmt
+   PCSat/template/template__Arith.cmx
+   PCSat/template/template__FNPredicate.cmi
+   PCSat/template/template__FNPredicate.cmt
+   PCSat/template/template__FNPredicate.cmx
+   PCSat/template/template__FNPredicateFlex.cmi
+   PCSat/template/template__FNPredicateFlex.cmt
+   PCSat/template/template__FNPredicateFlex.cmx
+   PCSat/template/template__Function.cmi
+   PCSat/template/template__Function.cmt
+   PCSat/template/template__Function.cmx
+   PCSat/template/template__Generator.cmi
+   PCSat/template/template__Generator.cmt
+   PCSat/template/template__Generator.cmx
+   PCSat/template/template__IntFunction.cmi
+   PCSat/template/template__IntFunction.cmt
+   PCSat/template/template__IntFunction.cmx
+   PCSat/template/template__IntFunctionFlex.cmi
+   PCSat/template/template__IntFunctionFlex.cmt
+   PCSat/template/template__IntFunctionFlex.cmx
+   PCSat/template/template__IntegPredicate.cmi
+   PCSat/template/template__IntegPredicate.cmt
+   PCSat/template/template__IntegPredicate.cmx
+   PCSat/template/template__NEPredicate.cmi
+   PCSat/template/template__NEPredicate.cmt
+   PCSat/template/template__NEPredicate.cmx
+   PCSat/template/template__NWFPredicate.cmi
+   PCSat/template/template__NWFPredicate.cmt
+   PCSat/template/template__NWFPredicate.cmx
+   PCSat/template/template__PredicateArrays.cmi
+   PCSat/template/template__PredicateArrays.cmt
+   PCSat/template/template__PredicateArrays.cmx
+   PCSat/template/template__PredicateDNF.cmi
+   PCSat/template/template__PredicateDNF.cmt
+   PCSat/template/template__PredicateDNF.cmx
+   PCSat/template/template__PredicateFlex.cmi
+   PCSat/template/template__PredicateFlex.cmt
+   PCSat/template/template__PredicateFlex.cmx
+   PCSat/template/template__RegEx.cmi
+   PCSat/template/template__RegEx.cmt
+   PCSat/template/template__RegEx.cmx
+   PCSat/template/template__WFPredicate.cmi
+   PCSat/template/template__WFPredicate.cmt
+   PCSat/template/template__WFPredicate.cmx
+   PCSat/template/template__WFPredicateFlex.cmi
+   PCSat/template/template__WFPredicateFlex.cmt
+   PCSat/template/template__WFPredicateFlex.cmx
+   PCSat/validation/validation.a
+   PCSat/validation/validation.cma
+   PCSat/validation/validation.cmi
+   PCSat/validation/validation.cmt
+   PCSat/validation/validation.cmx
+   PCSat/validation/validation.cmxa
+   PCSat/validation/validation.ml
+   PCSat/validation/validation__Validator.cmi
+   PCSat/validation/validation__Validator.cmt
+   PCSat/validation/validation__Validator.cmx
+   PCSat/validation/validator.ml
+   PLTS/PLTS.a
+   PLTS/PLTS.cma
+   PLTS/PLTS.cmxa
+   PLTS/pLTS.cmi
+   PLTS/pLTS.cmt
+   PLTS/pLTS.cmx
+   PLTS/pLTS.ml
+   PLTS/pLTS__Parser.cmi
+   PLTS/pLTS__Parser.cmt
+   PLTS/pLTS__Parser.cmx
+   PLTS/pLTS__Problem.cmi
+   PLTS/pLTS__Problem.cmt
+   PLTS/pLTS__Problem.cmx
+   PLTS/parser.ml
+   PLTS/problem.ml
+   Printer/Printer.a
+   Printer/Printer.cma
+   Printer/Printer.cmxa
+   Printer/config.ml
+   Printer/printer.cmi
+   Printer/printer.cmt
+   Printer/printer.cmx
+   Printer/printer.ml
+   Printer/printer__Config.cmi
+   Printer/printer__Config.cmt
+   Printer/printer__Config.cmx
+   Printer/printer__Smtlib2.cmi
+   Printer/printer__Smtlib2.cmt
+   Printer/printer__Smtlib2.cmx
+   Printer/printer__Solver.cmi
+   Printer/printer__Solver.cmt
+   Printer/printer__Solver.cmx
+   Printer/smtlib2.ml
+   Printer/solver.ml
+   QSMT/QSMT.a
+   QSMT/QSMT.cma
+   QSMT/QSMT.cmxa
+   QSMT/qSMT.cmi
+   QSMT/qSMT.cmt
+   QSMT/qSMT.cmx
+   QSMT/qSMT.ml
+   QSMT/qSMT__StrategySynthesis.cmi
+   QSMT/qSMT__StrategySynthesis.cmt
+   QSMT/qSMT__StrategySynthesis.cmx
+   QSMT/strategySynthesis.ml
+   RCaml/MBcgen.ml
+   RCaml/MBcsol.ml
+   RCaml/RCaml.a
+   RCaml/RCaml.cma
+   RCaml/RCaml.cmxa
+   RCaml/cgen.ml
+   RCaml/config.ml
+   RCaml/problem.ml
+   RCaml/rCaml.cmi
+   RCaml/rCaml.cmt
+   RCaml/rCaml.cmx
+   RCaml/rCaml.ml
+   RCaml/rCaml__Cgen.cmi
+   RCaml/rCaml__Cgen.cmt
+   RCaml/rCaml__Cgen.cmx
+   RCaml/rCaml__Config.cmi
+   RCaml/rCaml__Config.cmt
+   RCaml/rCaml__Config.cmx
+   RCaml/rCaml__MBcgen.cmi
+   RCaml/rCaml__MBcgen.cmt
+   RCaml/rCaml__MBcgen.cmx
+   RCaml/rCaml__MBcsol.cmi
+   RCaml/rCaml__MBcsol.cmt
+   RCaml/rCaml__MBcsol.cmx
+   RCaml/rCaml__Problem.cmi
+   RCaml/rCaml__Problem.cmt
+   RCaml/rCaml__Problem.cmx
+   RCaml/rCaml__Solver.cmi
+   RCaml/rCaml__Solver.cmt
+   RCaml/rCaml__Solver.cmx
+   RCaml/solver.ml
+   SAT/SAT.a
+   SAT/SAT.cma
+   SAT/SAT.cmxa
+   SAT/parser.ml
+   SAT/problem.ml
+   SAT/sAT.cmi
+   SAT/sAT.cmt
+   SAT/sAT.cmx
+   SAT/sAT.ml
+   SAT/sAT__Parser.cmi
+   SAT/sAT__Parser.cmt
+   SAT/sAT__Parser.cmx
+   SAT/sAT__Problem.cmi
+   SAT/sAT__Problem.cmt
+   SAT/sAT__Problem.cmx
+   SATSolver/SATSolver.a
+   SATSolver/SATSolver.cma
+   SATSolver/SATSolver.cmxa
+   SATSolver/config.ml
+   SATSolver/sATSolver.cmi
+   SATSolver/sATSolver.cmt
+   SATSolver/sATSolver.cmx
+   SATSolver/sATSolver.ml
+   SATSolver/sATSolver__Config.cmi
+   SATSolver/sATSolver__Config.cmt
+   SATSolver/sATSolver__Config.cmx
+   SATSolver/sATSolver__Solver.cmi
+   SATSolver/sATSolver__Solver.cmt
+   SATSolver/sATSolver__Solver.cmx
+   SATSolver/solver.ml
+   SMT/SMT.a
+   SMT/SMT.cma
+   SMT/SMT.cmxa
+   SMT/lexer.ml
+   SMT/parser.ml
+   SMT/parser.mli
+   SMT/printer.ml
+   SMT/problem.ml
+   SMT/sMT.cmi
+   SMT/sMT.cmt
+   SMT/sMT.cmx
+   SMT/sMT.ml
+   SMT/sMT__Lexer.cmi
+   SMT/sMT__Lexer.cmt
+   SMT/sMT__Lexer.cmx
+   SMT/sMT__Parser.cmi
+   SMT/sMT__Parser.cmt
+   SMT/sMT__Parser.cmti
+   SMT/sMT__Parser.cmx
+   SMT/sMT__Printer.cmi
+   SMT/sMT__Printer.cmt
+   SMT/sMT__Printer.cmx
+   SMT/sMT__Problem.cmi
+   SMT/sMT__Problem.cmt
+   SMT/sMT__Problem.cmx
+   SMT/sMT__Smtlib2.cmi
+   SMT/sMT__Smtlib2.cmt
+   SMT/sMT__Smtlib2.cmx
+   SMT/smtlib2.ml
+   SMTSolver/SMTSolver.a
+   SMTSolver/SMTSolver.cma
+   SMTSolver/SMTSolver.cmxa
+   SMTSolver/config.ml
+   SMTSolver/sMTSolver.cmi
+   SMTSolver/sMTSolver.cmt
+   SMTSolver/sMTSolver.cmx
+   SMTSolver/sMTSolver.ml
+   SMTSolver/sMTSolver__Config.cmi
+   SMTSolver/sMTSolver__Config.cmt
+   SMTSolver/sMTSolver__Config.cmx
+   SMTSolver/sMTSolver__Solver.cmi
+   SMTSolver/sMTSolver__Solver.cmt
+   SMTSolver/sMTSolver__Solver.cmx
+   SMTSolver/solver.ml
+   SPACER/SPACER.a
+   SPACER/SPACER.cma
+   SPACER/SPACER.cmxa
+   SPACER/config.ml
+   SPACER/sPACER.cmi
+   SPACER/sPACER.cmt
+   SPACER/sPACER.cmx
+   SPACER/sPACER.ml
+   SPACER/sPACER__Config.cmi
+   SPACER/sPACER__Config.cmt
+   SPACER/sPACER__Config.cmx
+   SPACER/sPACER__Solver.cmi
+   SPACER/sPACER__Solver.cmt
+   SPACER/sPACER__Solver.cmx
+   SPACER/solver.ml
+   SyGuS/SyGuS.a
+   SyGuS/SyGuS.cma
+   SyGuS/SyGuS.cmxa
+   SyGuS/parser.ml
+   SyGuS/printer.ml
+   SyGuS/problem.ml
+   SyGuS/syGuS.cmi
+   SyGuS/syGuS.cmt
+   SyGuS/syGuS.cmx
+   SyGuS/syGuS.ml
+   SyGuS/syGuS__Parser.cmi
+   SyGuS/syGuS__Parser.cmt
+   SyGuS/syGuS__Parser.cmx
+   SyGuS/syGuS__Printer.cmi
+   SyGuS/syGuS__Printer.cmt
+   SyGuS/syGuS__Printer.cmx
+   SyGuS/syGuS__Problem.cmi
+   SyGuS/syGuS__Problem.cmt
+   SyGuS/syGuS__Problem.cmx
+   TRecS/TRecS.a
+   TRecS/TRecS.cma
+   TRecS/TRecS.cmxa
+   TRecS/config.ml
+   TRecS/solver.ml
+   TRecS/tRecS.cmi
+   TRecS/tRecS.cmt
+   TRecS/tRecS.cmx
+   TRecS/tRecS.ml
+   TRecS/tRecS__Config.cmi
+   TRecS/tRecS__Config.cmt
+   TRecS/tRecS__Config.cmx
+   TRecS/tRecS__Solver.cmi
+   TRecS/tRecS__Solver.cmt
+   TRecS/tRecS__Solver.cmx
+   Z3Sat/Z3Sat.a
+   Z3Sat/Z3Sat.cma
+   Z3Sat/Z3Sat.cmxa
+   Z3Sat/config.ml
+   Z3Sat/solver.ml
+   Z3Sat/z3Sat.cmi
+   Z3Sat/z3Sat.cmt
+   Z3Sat/z3Sat.cmx
+   Z3Sat/z3Sat.ml
+   Z3Sat/z3Sat__Config.cmi
+   Z3Sat/z3Sat__Config.cmt
+   Z3Sat/z3Sat__Config.cmx
+   Z3Sat/z3Sat__Solver.cmi
+   Z3Sat/z3Sat__Solver.cmt
+   Z3Sat/z3Sat__Solver.cmx
+   Z3Sat/z3Sat__Z3interface.cmi
+   Z3Sat/z3Sat__Z3interface.cmt
+   Z3Sat/z3Sat__Z3interface.cmx
+   Z3Sat/z3interface.ml
+   Z3Smt/Z3Smt.a
+   Z3Smt/Z3Smt.cma
+   Z3Smt/Z3Smt.cmxa
+   Z3Smt/config.ml
+   Z3Smt/solver.ml
+   Z3Smt/z3Smt.cmi
+   Z3Smt/z3Smt.cmt
+   Z3Smt/z3Smt.cmx
+   Z3Smt/z3Smt.ml
+   Z3Smt/z3Smt__Config.cmi
+   Z3Smt/z3Smt__Config.cmt
+   Z3Smt/z3Smt__Config.cmx
+   Z3Smt/z3Smt__Solver.cmi
+   Z3Smt/z3Smt__Solver.cmt
+   Z3Smt/z3Smt__Solver.cmx
+   Z3Smt/z3Smt__Z3interface.cmi
+   Z3Smt/z3Smt__Z3interface.cmt
+   Z3Smt/z3Smt__Z3interface.cmx
+   Z3Smt/z3Smt__Z3interfaceNew.cmi
+   Z3Smt/z3Smt__Z3interfaceNew.cmt
+   Z3Smt/z3Smt__Z3interfaceNew.cmx
+   Z3Smt/z3interface.ml
+   Z3Smt/z3interfaceNew.ml
+   ast/affine.ml
+   ast/affine.mli
+   ast/affineTerm.ml
+   ast/arithTerm.ml
+   ast/assertion.ml
+   ast/ast.a
+   ast/ast.cma
+   ast/ast.cmi
+   ast/ast.cmt
+   ast/ast.cmx
+   ast/ast.cmxa
+   ast/ast.ml
+   ast/ast__Affine.cmi
+   ast/ast__Affine.cmt
+   ast/ast__Affine.cmti
+   ast/ast__Affine.cmx
+   ast/ast__AffineTerm.cmi
+   ast/ast__AffineTerm.cmt
+   ast/ast__AffineTerm.cmx
+   ast/ast__ArithTerm.cmi
+   ast/ast__ArithTerm.cmt
+   ast/ast__ArithTerm.cmx
+   ast/ast__Assertion.cmi
+   ast/ast__Assertion.cmt
+   ast/ast__Assertion.cmx
+   ast/ast__CandSol.cmi
+   ast/ast__CandSol.cmt
+   ast/ast__CandSol.cmx
+   ast/ast__CandSolOld.cmi
+   ast/ast__CandSolOld.cmt
+   ast/ast__CandSolOld.cmx
+   ast/ast__Clause.cmi
+   ast/ast__Clause.cmt
+   ast/ast__Clause.cmx
+   ast/ast__ClauseOld.cmi
+   ast/ast__ClauseOld.cmt
+   ast/ast__ClauseOld.cmx
+   ast/ast__ClauseSet.cmi
+   ast/ast__ClauseSet.cmt
+   ast/ast__ClauseSet.cmx
+   ast/ast__ClauseSetOld.cmi
+   ast/ast__ClauseSetOld.cmt
+   ast/ast__ClauseSetOld.cmx
+   ast/ast__Evaluator.cmi
+   ast/ast__Evaluator.cmt
+   ast/ast__Evaluator.cmx
+   ast/ast__Ident.cmi
+   ast/ast__Ident.cmt
+   ast/ast__Ident.cmx
+   ast/ast__Kind.cmi
+   ast/ast__Kind.cmt
+   ast/ast__Kind.cmx
+   ast/ast__Logic.cmi
+   ast/ast__Logic.cmt
+   ast/ast__Logic.cmx
+   ast/ast__LogicOld.cmi
+   ast/ast__LogicOld.cmt
+   ast/ast__LogicOld.cmx
+   ast/ast__Mbp.cmi
+   ast/ast__Mbp.cmt
+   ast/ast__Mbp.cmx
+   ast/ast__Normalizer.cmi
+   ast/ast__Normalizer.cmt
+   ast/ast__Normalizer.cmx
+   ast/ast__Pattern.cmi
+   ast/ast__Pattern.cmt
+   ast/ast__Pattern.cmx
+   ast/ast__PropLogic.cmi
+   ast/ast__PropLogic.cmt
+   ast/ast__PropLogic.cmx
+   ast/ast__Qelim.cmi
+   ast/ast__Qelim.cmt
+   ast/ast__Qelim.cmx
+   ast/ast__Rank.cmi
+   ast/ast__Rank.cmt
+   ast/ast__Rank.cmx
+   ast/ast__Rtype.cmi
+   ast/ast__Rtype.cmt
+   ast/ast__Rtype.cmx
+   ast/ast__RtypeLexer.cmi
+   ast/ast__RtypeLexer.cmt
+   ast/ast__RtypeLexer.cmx
+   ast/ast__RtypeParser.cmi
+   ast/ast__RtypeParser.cmt
+   ast/ast__RtypeParser.cmti
+   ast/ast__RtypeParser.cmx
+   ast/ast__SimpleFormula.cmi
+   ast/ast__SimpleFormula.cmt
+   ast/ast__SimpleFormula.cmti
+   ast/ast__SimpleFormula.cmx
+   ast/ast__SolSpace.cmi
+   ast/ast__SolSpace.cmt
+   ast/ast__SolSpace.cmx
+   ast/ast__Typeinf.cmi
+   ast/ast__Typeinf.cmt
+   ast/ast__Typeinf.cmx
+   ast/candSol.ml
+   ast/candSolOld.ml
+   ast/clause.ml
+   ast/clauseOld.ml
+   ast/clauseSet.ml
+   ast/clauseSetOld.ml
+   ast/evaluator.ml
+   ast/ident.ml
+   ast/kind.ml
+   ast/logic.ml
+   ast/logicOld.ml
+   ast/mbp.ml
+   ast/normalizer.ml
+   ast/pattern.ml
+   ast/propLogic.ml
+   ast/qelim.ml
+   ast/rank.ml
+   ast/rtype.ml
+   ast/rtypeLexer.ml
+   ast/rtypeParser.ml
+   ast/rtypeParser.mli
+   ast/simpleFormula.ml
+   ast/simpleFormula.mli
+   ast/solSpace.ml
+   ast/typeinf.ml
+   automata/ATA.ml
+   automata/RTA.ml
+   automata/TTA.ml
+   automata/automata.a
+   automata/automata.cma
+   automata/automata.cmi
+   automata/automata.cmt
+   automata/automata.cmx
+   automata/automata.cmxa
+   automata/automata.ml
+   automata/automata__ATA.cmi
+   automata/automata__ATA.cmt
+   automata/automata__ATA.cmx
+   automata/automata__RTA.cmi
+   automata/automata__RTA.cmt
+   automata/automata__RTA.cmx
+   automata/automata__TTA.cmi
+   automata/automata__TTA.cmt
+   automata/automata__TTA.cmx
+   automata/automata__TreeAutomaton.cmi
+   automata/automata__TreeAutomaton.cmt
+   automata/automata__TreeAutomaton.cmx
+   automata/treeAutomaton.ml
+   c/baLexer.ml
+   c/baParser.ml
+   c/baParser.mli
+   c/baParsing.ml
+   c/baParsing.mli
+   c/c.a
+   c/c.cma
+   c/c.cmi
+   c/c.cmt
+   c/c.cmx
+   c/c.cmxa
+   c/c.ml
+   c/cCtlLexer.ml
+   c/cCtlParser.ml
+   c/cCtlParser.mli
+   c/cLtlLexer.ml
+   c/cLtlParser.ml
+   c/cLtlParser.mli
+   c/cSyntax.ml
+   c/c__BaLexer.cmi
+   c/c__BaLexer.cmt
+   c/c__BaLexer.cmx
+   c/c__BaParser.cmi
+   c/c__BaParser.cmt
+   c/c__BaParser.cmti
+   c/c__BaParser.cmx
+   c/c__BaParsing.cmi
+   c/c__BaParsing.cmt
+   c/c__BaParsing.cmti
+   c/c__BaParsing.cmx
+   c/c__CCtlLexer.cmi
+   c/c__CCtlLexer.cmt
+   c/c__CCtlLexer.cmx
+   c/c__CCtlParser.cmi
+   c/c__CCtlParser.cmt
+   c/c__CCtlParser.cmti
+   c/c__CCtlParser.cmx
+   c/c__CLtlLexer.cmi
+   c/c__CLtlLexer.cmt
+   c/c__CLtlLexer.cmx
+   c/c__CLtlParser.cmi
+   c/c__CLtlParser.cmt
+   c/c__CLtlParser.cmti
+   c/c__CLtlParser.cmx
+   c/c__CSyntax.cmi
+   c/c__CSyntax.cmt
+   c/c__CSyntax.cmx
+   c/c__HesOf.cmi
+   c/c__HesOf.cmt
+   c/c__HesOf.cmti
+   c/c__HesOf.cmx
+   c/c__Linked.cmi
+   c/c__Linked.cmt
+   c/c__Linked.cmx
+   c/c__LogicConverter.cmi
+   c/c__LogicConverter.cmt
+   c/c__LogicConverter.cmti
+   c/c__LogicConverter.cmx
+   c/c__Optimizer.cmi
+   c/c__Optimizer.cmt
+   c/c__Optimizer.cmx
+   c/c__Parser.cmi
+   c/c__Parser.cmt
+   c/c__Parser.cmti
+   c/c__Parser.cmx
+   c/c__Variables.cmi
+   c/c__Variables.cmt
+   c/c__Variables.cmx
+   c/hesOf.ml
+   c/hesOf.mli
+   c/linked.ml
+   c/logicConverter.ml
+   c/logicConverter.mli
+   c/optimizer.ml
+   c/parser.ml
+   c/parser.mli
+   c/variables.ml
+   coAR.cmi
+   coAR.cmt
+   coAR.cmx
+   coAR.ml
+   coAR__Solver.cmi
+   coAR__Solver.cmt
+   coAR__Solver.cmx
+   common/combinator.ml
+   common/common.a
+   common/common.cma
+   common/common.cmi
+   common/common.cmt
+   common/common.cmx
+   common/common.cmxa
+   common/common.ml
+   common/common__Combinator.cmi
+   common/common__Combinator.cmt
+   common/common__Combinator.cmx
+   common/common__ContFrac.cmi
+   common/common__ContFrac.cmt
+   common/common__ContFrac.cmx
+   common/common__Debug.cmi
+   common/common__Debug.cmt
+   common/common__Debug.cmx
+   common/common__Ext.cmi
+   common/common__Ext.cmt
+   common/common__Ext.cmx
+   common/common__LazyList.cmi
+   common/common__LazyList.cmt
+   common/common__LazyList.cmx
+   common/common__Messenger.cmi
+   common/common__Messenger.cmt
+   common/common__Messenger.cmx
+   common/common__Timer.cmi
+   common/common__Timer.cmt
+   common/common__Timer.cmx
+   common/common__UnionFind.cmi
+   common/common__UnionFind.cmt
+   common/common__UnionFind.cmti
+   common/common__UnionFind.cmx
+   common/common__UnionFindInt.cmi
+   common/common__UnionFindInt.cmt
+   common/common__UnionFindInt.cmx
+   common/common__Util.cmi
+   common/common__Util.cmt
+   common/common__Util.cmx
+   common/common__Zipper.cmi
+   common/common__Zipper.cmt
+   common/common__Zipper.cmx
+   common/contFrac.ml
+   common/debug.ml
+   common/ext.ml
+   common/lazyList.ml
+   common/messenger.ml
+   common/timer.ml
+   common/unionFind.ml
+   common/unionFind.mli
+   common/unionFindInt.ml
+   common/util.ml
+   common/zipper.ml
+   dune-package
+   grammar/grammar.a
+   grammar/grammar.cma
+   grammar/grammar.cmi
+   grammar/grammar.cmt
+   grammar/grammar.cmx
+   grammar/grammar.cmxa
+   grammar/grammar.ml
+   grammar/grammar__RegTreeExp.cmi
+   grammar/grammar__RegTreeExp.cmt
+   grammar/grammar__RegTreeExp.cmx
+   grammar/grammar__RegTreeExpLexer.cmi
+   grammar/grammar__RegTreeExpLexer.cmt
+   grammar/grammar__RegTreeExpLexer.cmx
+   grammar/grammar__RegTreeExpParser.cmi
+   grammar/grammar__RegTreeExpParser.cmt
+   grammar/grammar__RegTreeExpParser.cmti
+   grammar/grammar__RegTreeExpParser.cmx
+   grammar/grammar__RegWordExp.cmi
+   grammar/grammar__RegWordExp.cmt
+   grammar/grammar__RegWordExp.cmx
+   grammar/regTreeExp.ml
+   grammar/regTreeExpLexer.ml
+   grammar/regTreeExpParser.ml
+   grammar/regTreeExpParser.mli
+   grammar/regWordExp.ml
+   muCLP/HESLexer.ml
+   muCLP/HESParser.ml
+   muCLP/HESParser.mli
+   muCLP/muCLP.a
+   muCLP/muCLP.cma
+   muCLP/muCLP.cmi
+   muCLP/muCLP.cmt
+   muCLP/muCLP.cmx
+   muCLP/muCLP.cmxa
+   muCLP/muCLP.ml
+   muCLP/muCLP__HESLexer.cmi
+   muCLP/muCLP__HESLexer.cmt
+   muCLP/muCLP__HESLexer.cmx
+   muCLP/muCLP__HESParser.cmi
+   muCLP/muCLP__HESParser.cmt
+   muCLP/muCLP__HESParser.cmti
+   muCLP/muCLP__HESParser.cmx
+   muCLP/muCLP__Optimizer.cmi
+   muCLP/muCLP__Optimizer.cmt
+   muCLP/muCLP__Optimizer.cmx
+   muCLP/muCLP__Parser.cmi
+   muCLP/muCLP__Parser.cmt
+   muCLP/muCLP__Parser.cmti
+   muCLP/muCLP__Parser.cmx
+   muCLP/muCLP__Pred.cmi
+   muCLP/muCLP__Pred.cmt
+   muCLP/muCLP__Pred.cmti
+   muCLP/muCLP__Pred.cmx
+   muCLP/muCLP__Problem.cmi
+   muCLP/muCLP__Problem.cmt
+   muCLP/muCLP__Problem.cmti
+   muCLP/muCLP__Problem.cmx
+   muCLP/muCLP__Qelim.cmi
+   muCLP/muCLP__Qelim.cmt
+   muCLP/muCLP__Qelim.cmx
+   muCLP/muCLP__Reducer.cmi
+   muCLP/muCLP__Reducer.cmt
+   muCLP/muCLP__Reducer.cmx
+   muCLP/optimizer.ml
+   muCLP/parser.ml
+   muCLP/parser.mli
+   muCLP/pred.ml
+   muCLP/pred.mli
+   muCLP/problem.ml
+   muCLP/problem.mli
+   muCLP/qelim.ml
+   muCLP/reducer.ml
+   opam
+   pCSP/LPLexer.ml
+   pCSP/LPParser.ml
+   pCSP/LPParser.mli
+   pCSP/forwardPropagate.ml
+   pCSP/pCSP.a
+   pCSP/pCSP.cma
+   pCSP/pCSP.cmi
+   pCSP/pCSP.cmt
+   pCSP/pCSP.cmx
+   pCSP/pCSP.cmxa
+   pCSP/pCSP.ml
+   pCSP/pCSP__ForwardPropagate.cmi
+   pCSP/pCSP__ForwardPropagate.cmt
+   pCSP/pCSP__ForwardPropagate.cmx
+   pCSP/pCSP__LPLexer.cmi
+   pCSP/pCSP__LPLexer.cmt
+   pCSP/pCSP__LPLexer.cmx
+   pCSP/pCSP__LPParser.cmi
+   pCSP/pCSP__LPParser.cmt
+   pCSP/pCSP__LPParser.cmti
+   pCSP/pCSP__LPParser.cmx
+   pCSP/pCSP__Params.cmi
+   pCSP/pCSP__Params.cmt
+   pCSP/pCSP__Params.cmx
+   pCSP/pCSP__Parser.cmi
+   pCSP/pCSP__Parser.cmt
+   pCSP/pCSP__Parser.cmx
+   pCSP/pCSP__Problem.cmi
+   pCSP/pCSP__Problem.cmt
+   pCSP/pCSP__Problem.cmti
+   pCSP/pCSP__Problem.cmx
+   pCSP/params.ml
+   pCSP/parser.ml
+   pCSP/problem.ml
+   pCSP/problem.mli
+   solver.ml))
+ (libexec
+  (CHCOpt/CHCOpt.cmxs
+   CHCOptSolver/CHCOptSolver.cmxs
+   CoAR.cmxs
+   EffCaml/EffCaml.cmxs
+   HOMC/HOMC.cmxs
+   HOMCSolver/HOMCSolver.cmxs
+   Hoice/Hoice.cmxs
+   HorSat2/HorSat2.cmxs
+   LTS/LTS.cmxs
+   MiniSat/MiniSat.cmxs
+   MuCyc/MuCyc.cmxs
+   MuVal/MuVal.cmxs
+   OptPCSat/OptPCSat.cmxs
+   PCSPSolver/PCSPSolver.cmxs
+   PCSat/PCSat.cmxs
+   PCSat/bf_synthesis/bf_synthesis.cmxs
+   PCSat/classification/classification.cmxs
+   PCSat/common/PCSatCommon.cmxs
+   PCSat/coordination/coordination.cmxs
+   PCSat/labeling/labeling.cmxs
+   PCSat/preprocessing/preprocessing.cmxs
+   PCSat/qualifier/qualifier.cmxs
+   PCSat/regression/regression.cmxs
+   PCSat/resolution/resolution.cmxs
+   PCSat/synthesis/synthesis.cmxs
+   PCSat/template/template.cmxs
+   PCSat/validation/validation.cmxs
+   PLTS/PLTS.cmxs
+   Printer/Printer.cmxs
+   QSMT/QSMT.cmxs
+   RCaml/RCaml.cmxs
+   SAT/SAT.cmxs
+   SATSolver/SATSolver.cmxs
+   SMT/SMT.cmxs
+   SMTSolver/SMTSolver.cmxs
+   SPACER/SPACER.cmxs
+   SyGuS/SyGuS.cmxs
+   TRecS/TRecS.cmxs
+   Z3Sat/Z3Sat.cmxs
+   Z3Smt/Z3Smt.cmxs
+   ast/ast.cmxs
+   automata/automata.cmxs
+   c/c.cmxs
+   common/common.cmxs
+   grammar/grammar.cmxs
+   muCLP/muCLP.cmxs
+   pCSP/pCSP.cmxs))
+ (bin (main))
+ (doc (LICENSE README.md)))
+(library
+ (name CoAR)
+ (kind normal)
+ (archives (byte CoAR.cma) (native CoAR.cmxa))
+ (plugins (byte CoAR.cma) (native CoAR.cmxs))
+ (native_archives CoAR.a)
+ (requires
+  core
+  CoAR.Z3Sat
+  CoAR.MiniSat
+  CoAR.Z3Smt
+  CoAR.TRecS
+  CoAR.HorSat2
+  CoAR.SPACER
+  CoAR.Hoice
+  CoAR.SyGuS
+  CoAR.PCSat
+  CoAR.MuVal
+  CoAR.MuCyc
+  CoAR.Printer
+  CoAR.RCaml
+  CoAR.EffCaml
+  CoAR.c
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime
+  yojson)
+ (main_module_name CoAR)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name coAR)
+     (visibility public)
+     (kind alias)
+     (source (path CoAR) (impl (path coAR.ml-gen))))
+    (name CoAR)
+    (modules
+     (module
+      (obj_name coAR__Solver)
+      (visibility public)
+      (source (path Solver) (impl (path solver.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.CHCOpt)
+ (kind normal)
+ (archives (byte CHCOpt/CHCOpt.cma) (native CHCOpt/CHCOpt.cmxa))
+ (plugins (byte CHCOpt/CHCOpt.cma) (native CHCOpt/CHCOpt.cmxs))
+ (native_archives CHCOpt/CHCOpt.a)
+ (requires
+  core
+  yojson
+  CoAR.common
+  CoAR.pCSP
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name CHCOpt)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name cHCOpt)
+     (visibility public)
+     (kind alias)
+     (source (path CHCOpt) (impl (path CHCOpt/cHCOpt.ml-gen))))
+    (name CHCOpt)
+    (modules
+     (module
+      (obj_name cHCOpt__Problem)
+      (visibility public)
+      (source (path Problem) (impl (path CHCOpt/problem.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.CHCOptSolver)
+ (kind normal)
+ (archives
+  (byte CHCOptSolver/CHCOptSolver.cma)
+  (native CHCOptSolver/CHCOptSolver.cmxa))
+ (plugins
+  (byte CHCOptSolver/CHCOptSolver.cma)
+  (native CHCOptSolver/CHCOptSolver.cmxs))
+ (native_archives CHCOptSolver/CHCOptSolver.a)
+ (requires
+  core
+  yojson
+  CoAR.common
+  CoAR.ast
+  CoAR.CHCOpt
+  CoAR.OptPCSat
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name CHCOptSolver)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name cHCOptSolver)
+     (visibility public)
+     (kind alias)
+     (source
+      (path CHCOptSolver)
+      (impl (path CHCOptSolver/cHCOptSolver.ml-gen))))
+    (name CHCOptSolver)
+    (modules
+     (module
+      (obj_name cHCOptSolver__Config)
+      (visibility public)
+      (source (path Config) (impl (path CHCOptSolver/config.ml))))
+     (module
+      (obj_name cHCOptSolver__Solver)
+      (visibility public)
+      (source (path Solver) (impl (path CHCOptSolver/solver.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.EffCaml)
+ (kind normal)
+ (archives (byte EffCaml/EffCaml.cma) (native EffCaml/EffCaml.cmxa))
+ (plugins (byte EffCaml/EffCaml.cma) (native EffCaml/EffCaml.cmxs))
+ (native_archives EffCaml/EffCaml.a)
+ (requires
+  core
+  yojson
+  compiler-libs.bytecomp
+  compiler-libs.common
+  CoAR.common
+  CoAR.ast
+  CoAR.automata
+  CoAR.HOMC
+  CoAR.HOMCSolver
+  CoAR.RCaml
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name EffCaml)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name effCaml)
+     (visibility public)
+     (kind alias)
+     (source (path EffCaml) (impl (path EffCaml/effCaml.ml-gen))))
+    (name EffCaml)
+    (modules
+     (module
+      (obj_name effCaml__Cgen)
+      (visibility public)
+      (source (path Cgen) (impl (path EffCaml/cgen.ml))))
+     (module
+      (obj_name effCaml__Config)
+      (visibility public)
+      (source (path Config) (impl (path EffCaml/config.ml))))
+     (module
+      (obj_name effCaml__Solver)
+      (visibility public)
+      (source (path Solver) (impl (path EffCaml/solver.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.HOMC)
+ (kind normal)
+ (archives (byte HOMC/HOMC.cma) (native HOMC/HOMC.cmxa))
+ (plugins (byte HOMC/HOMC.cma) (native HOMC/HOMC.cmxs))
+ (native_archives HOMC/HOMC.a)
+ (requires
+  core
+  yojson
+  CoAR.common
+  CoAR.ast
+  CoAR.automata
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name HOMC)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name hOMC)
+     (visibility public)
+     (kind alias)
+     (source (path HOMC) (impl (path HOMC/hOMC.ml-gen))))
+    (name HOMC)
+    (modules
+     (module
+      (obj_name hOMC__EHMTT)
+      (visibility public)
+      (source (path EHMTT) (impl (path HOMC/EHMTT.ml))))
+     (module
+      (obj_name hOMC__Lexer)
+      (visibility public)
+      (source (path Lexer) (impl (path HOMC/lexer.ml))))
+     (module
+      (obj_name hOMC__Parser)
+      (visibility public)
+      (source
+       (path Parser)
+       (intf (path HOMC/parser.mli))
+       (impl (path HOMC/parser.ml))))
+     (module
+      (obj_name hOMC__Problem)
+      (visibility public)
+      (source (path Problem) (impl (path HOMC/problem.ml))))
+     (module
+      (obj_name hOMC__RSFD)
+      (visibility public)
+      (source (path RSFD) (impl (path HOMC/RSFD.ml))))
+     (module
+      (obj_name hOMC__Reducer)
+      (visibility public)
+      (source (path Reducer) (impl (path HOMC/reducer.ml))))
+     (module
+      (obj_name hOMC__RefType)
+      (visibility public)
+      (source (path RefType) (impl (path HOMC/refType.ml))))
+     (module
+      (obj_name hOMC__TypeSystem)
+      (visibility public)
+      (source (path TypeSystem) (impl (path HOMC/typeSystem.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.HOMCSolver)
+ (kind normal)
+ (archives
+  (byte HOMCSolver/HOMCSolver.cma)
+  (native HOMCSolver/HOMCSolver.cmxa))
+ (plugins
+  (byte HOMCSolver/HOMCSolver.cma)
+  (native HOMCSolver/HOMCSolver.cmxs))
+ (native_archives HOMCSolver/HOMCSolver.a)
+ (requires
+  core
+  yojson
+  CoAR.common
+  CoAR.ast
+  CoAR.HOMC
+  CoAR.TRecS
+  CoAR.HorSat2
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name HOMCSolver)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name hOMCSolver)
+     (visibility public)
+     (kind alias)
+     (source (path HOMCSolver) (impl (path HOMCSolver/hOMCSolver.ml-gen))))
+    (name HOMCSolver)
+    (modules
+     (module
+      (obj_name hOMCSolver__Config)
+      (visibility public)
+      (source (path Config) (impl (path HOMCSolver/config.ml))))
+     (module
+      (obj_name hOMCSolver__Solver)
+      (visibility public)
+      (source (path Solver) (impl (path HOMCSolver/solver.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.Hoice)
+ (kind normal)
+ (archives (byte Hoice/Hoice.cma) (native Hoice/Hoice.cmxa))
+ (plugins (byte Hoice/Hoice.cma) (native Hoice/Hoice.cmxs))
+ (native_archives Hoice/Hoice.a)
+ (requires
+  core
+  yojson
+  str
+  z3
+  CoAR.common
+  CoAR.Z3Smt
+  CoAR.pCSP
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name Hoice)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name hoice)
+     (visibility public)
+     (kind alias)
+     (source (path Hoice) (impl (path Hoice/hoice.ml-gen))))
+    (name Hoice)
+    (modules
+     (module
+      (obj_name hoice__Config)
+      (visibility public)
+      (source (path Config) (impl (path Hoice/config.ml))))
+     (module
+      (obj_name hoice__Solver)
+      (visibility public)
+      (source (path Solver) (impl (path Hoice/solver.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.HorSat2)
+ (kind normal)
+ (archives (byte HorSat2/HorSat2.cma) (native HorSat2/HorSat2.cmxa))
+ (plugins (byte HorSat2/HorSat2.cma) (native HorSat2/HorSat2.cmxs))
+ (native_archives HorSat2/HorSat2.a)
+ (requires
+  core
+  CoAR.HOMC
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime
+  yojson)
+ (main_module_name HorSat2)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name horSat2)
+     (visibility public)
+     (kind alias)
+     (source (path HorSat2) (impl (path HorSat2/horSat2.ml-gen))))
+    (name HorSat2)
+    (modules
+     (module
+      (obj_name horSat2__Config)
+      (visibility public)
+      (source (path Config) (impl (path HorSat2/config.ml))))
+     (module
+      (obj_name horSat2__Solver)
+      (visibility public)
+      (source (path Solver) (impl (path HorSat2/solver.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.LTS)
+ (kind normal)
+ (synopsis "Labeled Transition Systems")
+ (archives (byte LTS/LTS.cma) (native LTS/LTS.cmxa))
+ (plugins (byte LTS/LTS.cma) (native LTS/LTS.cmxs))
+ (native_archives LTS/LTS.a)
+ (requires ocamlgraph CoAR.ast CoAR.Z3Smt)
+ (main_module_name LTS)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name lTS)
+     (visibility public)
+     (kind alias)
+     (source (path LTS) (impl (path LTS/lTS.ml-gen))))
+    (name LTS)
+    (modules
+     (module
+      (obj_name lTS__Parser)
+      (visibility public)
+      (source (path Parser) (impl (path LTS/parser.ml))))
+     (module
+      (obj_name lTS__Problem)
+      (visibility public)
+      (source (path Problem) (impl (path LTS/problem.ml))))
+     (module
+      (obj_name lTS__T2Lexer)
+      (visibility public)
+      (source (path T2Lexer) (impl (path LTS/T2Lexer.ml))))
+     (module
+      (obj_name lTS__T2Parser)
+      (visibility public)
+      (source
+       (path T2Parser)
+       (intf (path LTS/T2Parser.mli))
+       (impl (path LTS/T2Parser.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.MiniSat)
+ (kind normal)
+ (archives (byte MiniSat/MiniSat.cma) (native MiniSat/MiniSat.cmxa))
+ (plugins (byte MiniSat/MiniSat.cma) (native MiniSat/MiniSat.cmxs))
+ (native_archives MiniSat/MiniSat.a)
+ (requires
+  minisat
+  core
+  CoAR.SAT
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime
+  yojson)
+ (main_module_name MiniSat)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name miniSat)
+     (visibility public)
+     (kind alias)
+     (source (path MiniSat) (impl (path MiniSat/miniSat.ml-gen))))
+    (name MiniSat)
+    (modules
+     (module
+      (obj_name miniSat__Config)
+      (visibility public)
+      (source (path Config) (impl (path MiniSat/config.ml))))
+     (module
+      (obj_name miniSat__Solver)
+      (visibility public)
+      (source (path Solver) (impl (path MiniSat/solver.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.MuCyc)
+ (kind normal)
+ (synopsis "A fixpoint logic validity checker based on cyclic-proof search")
+ (archives (byte MuCyc/MuCyc.cma) (native MuCyc/MuCyc.cmxa))
+ (plugins (byte MuCyc/MuCyc.cma) (native MuCyc/MuCyc.cmxs))
+ (native_archives MuCyc/MuCyc.a)
+ (requires
+  core
+  yojson
+  CoAR.common
+  CoAR.ast
+  CoAR.muCLP
+  CoAR.PCSPSolver
+  CoAR.Z3Smt
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name MuCyc)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name muCyc)
+     (visibility public)
+     (kind alias)
+     (source (path MuCyc) (impl (path MuCyc/muCyc.ml-gen))))
+    (name MuCyc)
+    (modules
+     (module
+      (obj_name muCyc__Config)
+      (visibility public)
+      (source (path Config) (impl (path MuCyc/config.ml))))
+     (module
+      (obj_name muCyc__Lemma)
+      (visibility public)
+      (source (path Lemma) (impl (path MuCyc/lemma.ml))))
+     (module
+      (obj_name muCyc__Problem)
+      (visibility public)
+      (source (path Problem) (impl (path MuCyc/problem.ml))))
+     (module
+      (obj_name muCyc__ProofSearch)
+      (visibility public)
+      (source (path ProofSearch) (impl (path MuCyc/proofSearch.ml))))
+     (module
+      (obj_name muCyc__ProofTree)
+      (visibility public)
+      (source (path ProofTree) (impl (path MuCyc/proofTree.ml))))
+     (module
+      (obj_name muCyc__RelProofSearch)
+      (visibility public)
+      (source (path RelProofSearch) (impl (path MuCyc/relProofSearch.ml))))
+     (module
+      (obj_name muCyc__Sequent)
+      (visibility public)
+      (source (path Sequent) (impl (path MuCyc/sequent.ml))))
+     (module
+      (obj_name muCyc__Solver)
+      (visibility public)
+      (source (path Solver) (impl (path MuCyc/solver.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.MuVal)
+ (kind normal)
+ (synopsis "A fixpoint logic validity checker based on pfwCSP solving")
+ (archives (byte MuVal/MuVal.cma) (native MuVal/MuVal.cmxa))
+ (plugins (byte MuVal/MuVal.cma) (native MuVal/MuVal.cmxs))
+ (native_archives MuVal/MuVal.a)
+ (requires
+  core
+  CoAR.ast
+  CoAR.muCLP
+  CoAR.PCSPSolver
+  CoAR.Z3Smt
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime
+  yojson)
+ (main_module_name MuVal)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name muVal)
+     (visibility public)
+     (kind alias)
+     (source (path MuVal) (impl (path MuVal/muVal.ml-gen))))
+    (name MuVal)
+    (modules
+     (module
+      (obj_name muVal__Config)
+      (visibility public)
+      (source (path Config) (impl (path MuVal/config.ml))))
+     (module
+      (obj_name muVal__Solver)
+      (visibility public)
+      (source (path Solver) (impl (path MuVal/solver.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.OptPCSat)
+ (kind normal)
+ (synopsis "An optimizing CHC solver based on pfwnCSP solving")
+ (archives (byte OptPCSat/OptPCSat.cma) (native OptPCSat/OptPCSat.cmxa))
+ (plugins (byte OptPCSat/OptPCSat.cma) (native OptPCSat/OptPCSat.cmxs))
+ (native_archives OptPCSat/OptPCSat.a)
+ (requires
+  core
+  yojson
+  CoAR.common
+  CoAR.ast
+  CoAR.SMT
+  CoAR.pCSP
+  CoAR.Z3Smt
+  CoAR.PCSPSolver
+  CoAR.CHCOpt
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name OptPCSat)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name optPCSat)
+     (visibility public)
+     (kind alias)
+     (source (path OptPCSat) (impl (path OptPCSat/optPCSat.ml-gen))))
+    (name OptPCSat)
+    (modules
+     (module
+      (obj_name optPCSat__Config)
+      (visibility public)
+      (source (path Config) (impl (path OptPCSat/config.ml))))
+     (module
+      (obj_name optPCSat__LexicoNonOptChecker)
+      (visibility public)
+      (source
+       (path LexicoNonOptChecker)
+       (impl (path OptPCSat/lexicoNonOptChecker.ml))))
+     (module
+      (obj_name optPCSat__MaximalityChecker)
+      (visibility public)
+      (source
+       (path MaximalityChecker)
+       (impl (path OptPCSat/maximalityChecker.ml))))
+     (module
+      (obj_name optPCSat__MinimalityChecker)
+      (visibility public)
+      (source
+       (path MinimalityChecker)
+       (impl (path OptPCSat/minimalityChecker.ml))))
+     (module
+      (obj_name optPCSat__NonOptChecker)
+      (visibility public)
+      (source (path NonOptChecker) (impl (path OptPCSat/nonOptChecker.ml))))
+     (module
+      (obj_name optPCSat__OptimalityChecker)
+      (visibility public)
+      (source
+       (path OptimalityChecker)
+       (impl (path OptPCSat/optimalityChecker.ml))))
+     (module
+      (obj_name optPCSat__Optimizer)
+      (visibility public)
+      (source (path Optimizer) (impl (path OptPCSat/optimizer.ml))))
+     (module
+      (obj_name optPCSat__Solver)
+      (visibility public)
+      (source (path Solver) (impl (path OptPCSat/solver.ml))))
+     (module
+      (obj_name optPCSat__TupleExtracter)
+      (visibility public)
+      (source (path TupleExtracter) (impl (path OptPCSat/tupleExtracter.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.PCSPSolver)
+ (kind normal)
+ (archives
+  (byte PCSPSolver/PCSPSolver.cma)
+  (native PCSPSolver/PCSPSolver.cmxa))
+ (plugins
+  (byte PCSPSolver/PCSPSolver.cma)
+  (native PCSPSolver/PCSPSolver.cmxs))
+ (native_archives PCSPSolver/PCSPSolver.a)
+ (requires
+  core
+  yojson
+  CoAR.common
+  CoAR.ast
+  CoAR.pCSP
+  CoAR.PCSat
+  CoAR.Hoice
+  CoAR.SPACER
+  CoAR.Printer
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name PCSPSolver)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name pCSPSolver)
+     (visibility public)
+     (kind alias)
+     (source (path PCSPSolver) (impl (path PCSPSolver/pCSPSolver.ml-gen))))
+    (name PCSPSolver)
+    (modules
+     (module
+      (obj_name pCSPSolver__Config)
+      (visibility public)
+      (source (path Config) (impl (path PCSPSolver/config.ml))))
+     (module
+      (obj_name pCSPSolver__Solver)
+      (visibility public)
+      (source (path Solver) (impl (path PCSPSolver/solver.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.PCSat)
+ (kind normal)
+ (synopsis "A CHC/pfwnCSP/SyGuS solver based on CEGIS")
+ (archives (byte PCSat/PCSat.cma) (native PCSat/PCSat.cmxa))
+ (plugins (byte PCSat/PCSat.cma) (native PCSat/PCSat.cmxs))
+ (native_archives PCSat/PCSat.a)
+ (requires
+  CoAR.pCSP
+  CoAR.SMT
+  CoAR.PCSat.template
+  CoAR.PCSat.coordination
+  CoAR.PCSat.preprocessing
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime
+  yojson)
+ (main_module_name PCSat)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name pCSat)
+     (visibility public)
+     (kind alias)
+     (source (path PCSat) (impl (path PCSat/pCSat.ml-gen))))
+    (name PCSat)
+    (modules
+     (module
+      (obj_name pCSat__Config)
+      (visibility public)
+      (source (path Config) (impl (path PCSat/config.ml))))
+     (module
+      (obj_name pCSat__SolPrinter)
+      (visibility public)
+      (source (path SolPrinter) (impl (path PCSat/solPrinter.ml))))
+     (module
+      (obj_name pCSat__Solver)
+      (visibility public)
+      (source (path Solver) (impl (path PCSat/solver.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.PCSat.bf_synthesis)
+ (kind normal)
+ (archives
+  (byte PCSat/bf_synthesis/bf_synthesis.cma)
+  (native PCSat/bf_synthesis/bf_synthesis.cmxa))
+ (plugins
+  (byte PCSat/bf_synthesis/bf_synthesis.cma)
+  (native PCSat/bf_synthesis/bf_synthesis.cmxs))
+ (native_archives PCSat/bf_synthesis/bf_synthesis.a)
+ (requires
+  core
+  yojson
+  CoAR.SMT
+  CoAR.pCSP
+  CoAR.Z3Smt
+  CoAR.PCSat.common
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name Bf_synthesis)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name bf_synthesis)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Bf_synthesis)
+      (impl (path PCSat/bf_synthesis/bf_synthesis.ml-gen))))
+    (name Bf_synthesis)
+    (modules
+     (module
+      (obj_name bf_synthesis__BFSynthesizer)
+      (visibility public)
+      (source
+       (path BFSynthesizer)
+       (impl (path PCSat/bf_synthesis/BFSynthesizer.ml))))
+     (module
+      (obj_name bf_synthesis__BoolFunction)
+      (visibility public)
+      (source
+       (path BoolFunction)
+       (impl (path PCSat/bf_synthesis/boolFunction.ml))))
+     (module
+      (obj_name bf_synthesis__DT_BFSynthesizer)
+      (visibility public)
+      (source
+       (path DT_BFSynthesizer)
+       (impl (path PCSat/bf_synthesis/DT_BFSynthesizer.ml))))
+     (module
+      (obj_name bf_synthesis__DecisionTree)
+      (visibility public)
+      (source
+       (path DecisionTree)
+       (impl (path PCSat/bf_synthesis/decisionTree.ml))))
+     (module
+      (obj_name bf_synthesis__MCTS_BFSynthesizer)
+      (visibility public)
+      (source
+       (path MCTS_BFSynthesizer)
+       (impl (path PCSat/bf_synthesis/MCTS_BFSynthesizer.ml))))
+     (module
+      (obj_name bf_synthesis__SCQM_BFSynthesizer)
+      (visibility public)
+      (source
+       (path SCQM_BFSynthesizer)
+       (impl (path PCSat/bf_synthesis/SCQM_BFSynthesizer.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.PCSat.classification)
+ (kind normal)
+ (archives
+  (byte PCSat/classification/classification.cma)
+  (native PCSat/classification/classification.cmxa))
+ (plugins
+  (byte PCSat/classification/classification.cma)
+  (native PCSat/classification/classification.cmxs))
+ (native_archives PCSat/classification/classification.a)
+ (requires
+  core
+  yojson
+  CoAR.Z3Smt
+  CoAR.PCSat.common
+  CoAR.PCSat.bf_synthesis
+  CoAR.PCSat.regression
+  CoAR.PCSat.template
+  CoAR.PCSat.qualifier
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name Classification)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name classification)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Classification)
+      (impl (path PCSat/classification/classification.ml-gen))))
+    (name Classification)
+    (modules
+     (module
+      (obj_name classification__BFSB_Classifier)
+      (visibility public)
+      (source
+       (path BFSB_Classifier)
+       (impl (path PCSat/classification/BFSB_Classifier.ml))))
+     (module
+      (obj_name classification__Classifier)
+      (visibility public)
+      (source
+       (path Classifier)
+       (impl (path PCSat/classification/classifier.ml))))
+     (module
+      (obj_name classification__DT_WFClassifier)
+      (visibility public)
+      (source
+       (path DT_WFClassifier)
+       (impl (path PCSat/classification/DT_WFClassifier.ml))))
+     (module
+      (obj_name classification__FNClassifier)
+      (visibility public)
+      (source
+       (path FNClassifier)
+       (impl (path PCSat/classification/FNClassifier.ml))))
+     (module
+      (obj_name classification__RGB_FNClassifier)
+      (visibility public)
+      (source
+       (path RGB_FNClassifier)
+       (impl (path PCSat/classification/RGB_FNClassifier.ml))))
+     (module
+      (obj_name classification__TB_Classifier)
+      (visibility public)
+      (source
+       (path TB_Classifier)
+       (impl (path PCSat/classification/TB_Classifier.ml))))
+     (module
+      (obj_name classification__WFClassifier)
+      (visibility public)
+      (source
+       (path WFClassifier)
+       (impl (path PCSat/classification/WFClassifier.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.PCSat.common)
+ (kind normal)
+ (archives
+  (byte PCSat/common/PCSatCommon.cma)
+  (native PCSat/common/PCSatCommon.cmxa))
+ (plugins
+  (byte PCSat/common/PCSatCommon.cma)
+  (native PCSat/common/PCSatCommon.cmxs))
+ (native_archives PCSat/common/PCSatCommon.a)
+ (requires
+  core
+  yojson
+  CoAR.ast
+  CoAR.common
+  CoAR.Z3Smt
+  CoAR.pCSP
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name PCSatCommon)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name pCSatCommon)
+     (visibility public)
+     (kind alias)
+     (source (path PCSatCommon) (impl (path PCSat/common/pCSatCommon.ml-gen))))
+    (name PCSatCommon)
+    (modules
+     (module
+      (obj_name pCSatCommon__ClauseGraph)
+      (visibility public)
+      (source (path ClauseGraph) (impl (path PCSat/common/clauseGraph.ml))))
+     (module
+      (obj_name pCSatCommon__Context)
+      (visibility public)
+      (source (path Context) (impl (path PCSat/common/context.ml))))
+     (module
+      (obj_name pCSatCommon__ExAtom)
+      (visibility public)
+      (source (path ExAtom) (impl (path PCSat/common/exAtom.ml))))
+     (module
+      (obj_name pCSatCommon__ExAtomSet)
+      (visibility public)
+      (source (path ExAtomSet) (impl (path PCSat/common/exAtomSet.ml))))
+     (module
+      (obj_name pCSatCommon__ExClause)
+      (visibility public)
+      (source (path ExClause) (impl (path PCSat/common/exClause.ml))))
+     (module
+      (obj_name pCSatCommon__ExClauseSet)
+      (visibility public)
+      (source (path ExClauseSet) (impl (path PCSat/common/exClauseSet.ml))))
+     (module
+      (obj_name pCSatCommon__HypSpace)
+      (visibility public)
+      (source (path HypSpace) (impl (path PCSat/common/hypSpace.ml))))
+     (module
+      (obj_name pCSatCommon__QDep)
+      (visibility public)
+      (source (path QDep) (impl (path PCSat/common/QDep.ml))))
+     (module
+      (obj_name pCSatCommon__RLConfig)
+      (visibility public)
+      (source (path RLConfig) (impl (path PCSat/common/RLConfig.ml))))
+     (module
+      (obj_name pCSatCommon__State)
+      (visibility public)
+      (source (path State) (impl (path PCSat/common/state.ml))))
+     (module
+      (obj_name pCSatCommon__TruthTable)
+      (visibility public)
+      (source (path TruthTable) (impl (path PCSat/common/truthTable.ml))))
+     (module
+      (obj_name pCSatCommon__VersionSpace)
+      (visibility public)
+      (source (path VersionSpace) (impl (path PCSat/common/versionSpace.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.PCSat.coordination)
+ (kind normal)
+ (archives
+  (byte PCSat/coordination/coordination.cma)
+  (native PCSat/coordination/coordination.cmxa))
+ (plugins
+  (byte PCSat/coordination/coordination.cma)
+  (native PCSat/coordination/coordination.cmxs))
+ (native_archives PCSat/coordination/coordination.a)
+ (requires
+  core
+  yojson
+  CoAR.PCSat.common
+  CoAR.PCSat.validation
+  CoAR.PCSat.resolution
+  CoAR.PCSat.synthesis
+  CoAR.PCSat.labeling
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name Coordination)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name coordination)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Coordination)
+      (impl (path PCSat/coordination/coordination.ml-gen))))
+    (name Coordination)
+    (modules
+     (module
+      (obj_name coordination__Coordinator)
+      (visibility public)
+      (source
+       (path Coordinator)
+       (impl (path PCSat/coordination/coordinator.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.PCSat.labeling)
+ (kind normal)
+ (archives
+  (byte PCSat/labeling/labeling.cma)
+  (native PCSat/labeling/labeling.cmxa))
+ (plugins
+  (byte PCSat/labeling/labeling.cma)
+  (native PCSat/labeling/labeling.cmxs))
+ (native_archives PCSat/labeling/labeling.a)
+ (requires
+  core
+  yojson
+  ocamlgraph
+  CoAR.pCSP
+  CoAR.SAT
+  CoAR.SATSolver
+  CoAR.PCSat.common
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name Labeling)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name labeling)
+     (visibility public)
+     (kind alias)
+     (source (path Labeling) (impl (path PCSat/labeling/labeling.ml-gen))))
+    (name Labeling)
+    (modules
+     (module
+      (obj_name labeling__Labeler)
+      (visibility public)
+      (source (path Labeler) (impl (path PCSat/labeling/labeler.ml))))
+     (module
+      (obj_name labeling__LoopDetector)
+      (visibility public)
+      (source
+       (path LoopDetector)
+       (impl (path PCSat/labeling/loopDetector.ml))))
+     (module
+      (obj_name labeling__NWFLoopDetector)
+      (visibility public)
+      (source
+       (path NWFLoopDetector)
+       (impl (path PCSat/labeling/NWFLoopDetector.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.PCSat.preprocessing)
+ (kind normal)
+ (archives
+  (byte PCSat/preprocessing/preprocessing.cma)
+  (native PCSat/preprocessing/preprocessing.cmxa))
+ (plugins
+  (byte PCSat/preprocessing/preprocessing.cma)
+  (native PCSat/preprocessing/preprocessing.cmxs))
+ (native_archives PCSat/preprocessing/preprocessing.a)
+ (requires
+  core
+  yojson
+  CoAR.pCSP
+  CoAR.SMT
+  CoAR.PCSat.common
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name Preprocessing)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name preprocessing)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Preprocessing)
+      (impl (path PCSat/preprocessing/preprocessing.ml-gen))))
+    (name Preprocessing)
+    (modules
+     (module
+      (obj_name preprocessing__DimReducer)
+      (visibility public)
+      (source
+       (path DimReducer)
+       (impl (path PCSat/preprocessing/dimReducer.ml))))
+     (module
+      (obj_name preprocessing__Preprocessor)
+      (visibility public)
+      (source
+       (path Preprocessor)
+       (impl (path PCSat/preprocessing/preprocessor.ml))))
+     (module
+      (obj_name preprocessing__PvarEliminator)
+      (visibility public)
+      (source
+       (path PvarEliminator)
+       (impl (path PCSat/preprocessing/pvarEliminator.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.PCSat.qualifier)
+ (kind normal)
+ (archives
+  (byte PCSat/qualifier/qualifier.cma)
+  (native PCSat/qualifier/qualifier.cmxa))
+ (plugins
+  (byte PCSat/qualifier/qualifier.cma)
+  (native PCSat/qualifier/qualifier.cmxs))
+ (native_archives PCSat/qualifier/qualifier.a)
+ (requires
+  core
+  yojson
+  libsvm
+  CoAR.ast
+  CoAR.common
+  CoAR.pCSP
+  CoAR.PCSat.common
+  CoAR.PCSat.bf_synthesis
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name Qualifier)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name qualifier)
+     (visibility public)
+     (kind alias)
+     (source (path Qualifier) (impl (path PCSat/qualifier/qualifier.ml-gen))))
+    (name Qualifier)
+    (modules
+     (module
+      (obj_name qualifier__AllTheory)
+      (visibility public)
+      (source (path AllTheory) (impl (path PCSat/qualifier/allTheory.ml))))
+     (module
+      (obj_name qualifier__ArrayTheory)
+      (visibility public)
+      (source (path ArrayTheory) (impl (path PCSat/qualifier/arrayTheory.ml))))
+     (module
+      (obj_name qualifier__DtTheory)
+      (visibility public)
+      (source (path DtTheory) (impl (path PCSat/qualifier/dtTheory.ml))))
+     (module
+      (obj_name qualifier__Generator)
+      (visibility public)
+      (source (path Generator) (impl (path PCSat/qualifier/generator.ml))))
+     (module
+      (obj_name qualifier__Interval)
+      (visibility public)
+      (source (path Interval) (impl (path PCSat/qualifier/interval.ml))))
+     (module
+      (obj_name qualifier__NN)
+      (visibility public)
+      (source (path NN) (impl (path PCSat/qualifier/NN.ml))))
+     (module
+      (obj_name qualifier__Null)
+      (visibility public)
+      (source (path Null) (impl (path PCSat/qualifier/null.ml))))
+     (module
+      (obj_name qualifier__Octagon)
+      (visibility public)
+      (source (path Octagon) (impl (path PCSat/qualifier/octagon.ml))))
+     (module
+      (obj_name qualifier__Octahedron)
+      (visibility public)
+      (source (path Octahedron) (impl (path PCSat/qualifier/octahedron.ml))))
+     (module
+      (obj_name qualifier__Polyhedron)
+      (visibility public)
+      (source (path Polyhedron) (impl (path PCSat/qualifier/polyhedron.ml))))
+     (module
+      (obj_name qualifier__Polynomial)
+      (visibility public)
+      (source (path Polynomial) (impl (path PCSat/qualifier/polynomial.ml))))
+     (module
+      (obj_name qualifier__SVM)
+      (visibility public)
+      (source (path SVM) (impl (path PCSat/qualifier/SVM.ml))))
+     (module
+      (obj_name qualifier__Union)
+      (visibility public)
+      (source (path Union) (impl (path PCSat/qualifier/union.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.PCSat.regression)
+ (kind normal)
+ (archives
+  (byte PCSat/regression/regression.cma)
+  (native PCSat/regression/regression.cmxa))
+ (plugins
+  (byte PCSat/regression/regression.cma)
+  (native PCSat/regression/regression.cmxs))
+ (native_archives PCSat/regression/regression.a)
+ (requires
+  core
+  yojson
+  CoAR.Z3Smt
+  CoAR.PCSat.common
+  CoAR.PCSat.bf_synthesis
+  CoAR.PCSat.template
+  CoAR.PCSat.qualifier
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name Regression)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name regression)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Regression)
+      (impl (path PCSat/regression/regression.ml-gen))))
+    (name Regression)
+    (modules
+     (module
+      (obj_name regression__DT_Regressor)
+      (visibility public)
+      (source
+       (path DT_Regressor)
+       (impl (path PCSat/regression/DT_Regressor.ml))))
+     (module
+      (obj_name regression__Regressor)
+      (visibility public)
+      (source (path Regressor) (impl (path PCSat/regression/regressor.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.PCSat.resolution)
+ (kind normal)
+ (archives
+  (byte PCSat/resolution/resolution.cma)
+  (native PCSat/resolution/resolution.cmxa))
+ (plugins
+  (byte PCSat/resolution/resolution.cma)
+  (native PCSat/resolution/resolution.cmxs))
+ (native_archives PCSat/resolution/resolution.a)
+ (requires
+  core
+  yojson
+  ocamlgraph
+  CoAR.pCSP
+  CoAR.Z3Smt
+  CoAR.PCSat.synthesis
+  CoAR.PCSat.common
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name Resolution)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name resolution)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Resolution)
+      (impl (path PCSat/resolution/resolution.ml-gen))))
+    (name Resolution)
+    (modules
+     (module
+      (obj_name resolution__GraphResolver)
+      (visibility public)
+      (source
+       (path GraphResolver)
+       (impl (path PCSat/resolution/graphResolver.ml))))
+     (module
+      (obj_name resolution__OldResolver)
+      (visibility public)
+      (source
+       (path OldResolver)
+       (impl (path PCSat/resolution/oldResolver.ml))))
+     (module
+      (obj_name resolution__Resolver)
+      (visibility public)
+      (source (path Resolver) (impl (path PCSat/resolution/resolver.ml))))
+     (module
+      (obj_name resolution__SMTResolver)
+      (visibility public)
+      (source
+       (path SMTResolver)
+       (impl (path PCSat/resolution/SMTResolver.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.PCSat.synthesis)
+ (kind normal)
+ (archives
+  (byte PCSat/synthesis/synthesis.cma)
+  (native PCSat/synthesis/synthesis.cmxa))
+ (plugins
+  (byte PCSat/synthesis/synthesis.cma)
+  (native PCSat/synthesis/synthesis.cmxs))
+ (native_archives PCSat/synthesis/synthesis.a)
+ (requires
+  core
+  yojson
+  CoAR.Z3Smt
+  CoAR.SAT
+  CoAR.SATSolver
+  CoAR.PCSat.common
+  CoAR.PCSat.classification
+  CoAR.PCSat.template
+  CoAR.PCSat.qualifier
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name Synthesis)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name synthesis)
+     (visibility public)
+     (kind alias)
+     (source (path Synthesis) (impl (path PCSat/synthesis/synthesis.ml-gen))))
+    (name Synthesis)
+    (modules
+     (module
+      (obj_name synthesis__CBSynthTemplateUpdateStrategy)
+      (visibility public)
+      (source
+       (path CBSynthTemplateUpdateStrategy)
+       (impl (path PCSat/synthesis/CBSynthTemplateUpdateStrategy.ml))))
+     (module
+      (obj_name synthesis__CBSynthesizer)
+      (visibility public)
+      (source
+       (path CBSynthesizer)
+       (impl (path PCSat/synthesis/CBSynthesizer.ml))))
+     (module
+      (obj_name synthesis__CandidateChecker)
+      (visibility public)
+      (source
+       (path CandidateChecker)
+       (impl (path PCSat/synthesis/CandidateChecker.ml))))
+     (module
+      (obj_name synthesis__PASynthesizer)
+      (visibility public)
+      (source
+       (path PASynthesizer)
+       (impl (path PCSat/synthesis/PASynthesizer.ml))))
+     (module
+      (obj_name synthesis__SolutionTemplate)
+      (visibility public)
+      (source
+       (path SolutionTemplate)
+       (impl (path PCSat/synthesis/solutionTemplate.ml))))
+     (module
+      (obj_name synthesis__Synthesizer)
+      (visibility public)
+      (source (path Synthesizer) (impl (path PCSat/synthesis/synthesizer.ml))))
+     (module
+      (obj_name synthesis__TBSynthesizer)
+      (visibility public)
+      (source
+       (path TBSynthesizer)
+       (impl (path PCSat/synthesis/TBSynthesizer.ml))))
+     (module
+      (obj_name synthesis__TemplateUpdateStrategy)
+      (visibility public)
+      (source
+       (path TemplateUpdateStrategy)
+       (impl (path PCSat/synthesis/templateUpdateStrategy.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.PCSat.template)
+ (kind normal)
+ (archives
+  (byte PCSat/template/template.cma)
+  (native PCSat/template/template.cmxa))
+ (plugins
+  (byte PCSat/template/template.cma)
+  (native PCSat/template/template.cmxs))
+ (native_archives PCSat/template/template.a)
+ (requires
+  core
+  yojson
+  CoAR.ast
+  CoAR.PCSat.qualifier
+  CoAR.PCSat.common
+  CoAR.common
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name Template)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name template)
+     (visibility public)
+     (kind alias)
+     (source (path Template) (impl (path PCSat/template/template.ml-gen))))
+    (name Template)
+    (modules
+     (module
+      (obj_name template__AdmPredicate)
+      (visibility public)
+      (source
+       (path AdmPredicate)
+       (impl (path PCSat/template/admPredicate.ml))))
+     (module
+      (obj_name template__Arith)
+      (visibility public)
+      (source (path Arith) (impl (path PCSat/template/arith.ml))))
+     (module
+      (obj_name template__FNPredicate)
+      (visibility public)
+      (source (path FNPredicate) (impl (path PCSat/template/FNPredicate.ml))))
+     (module
+      (obj_name template__FNPredicateFlex)
+      (visibility public)
+      (source
+       (path FNPredicateFlex)
+       (impl (path PCSat/template/FNPredicateFlex.ml))))
+     (module
+      (obj_name template__Function)
+      (visibility public)
+      (source (path Function) (impl (path PCSat/template/function.ml))))
+     (module
+      (obj_name template__Generator)
+      (visibility public)
+      (source (path Generator) (impl (path PCSat/template/generator.ml))))
+     (module
+      (obj_name template__IntFunction)
+      (visibility public)
+      (source (path IntFunction) (impl (path PCSat/template/intFunction.ml))))
+     (module
+      (obj_name template__IntFunctionFlex)
+      (visibility public)
+      (source
+       (path IntFunctionFlex)
+       (impl (path PCSat/template/intFunctionFlex.ml))))
+     (module
+      (obj_name template__IntegPredicate)
+      (visibility public)
+      (source
+       (path IntegPredicate)
+       (impl (path PCSat/template/integPredicate.ml))))
+     (module
+      (obj_name template__NEPredicate)
+      (visibility public)
+      (source (path NEPredicate) (impl (path PCSat/template/NEPredicate.ml))))
+     (module
+      (obj_name template__NWFPredicate)
+      (visibility public)
+      (source
+       (path NWFPredicate)
+       (impl (path PCSat/template/NWFPredicate.ml))))
+     (module
+      (obj_name template__PredicateArrays)
+      (visibility public)
+      (source
+       (path PredicateArrays)
+       (impl (path PCSat/template/predicateArrays.ml))))
+     (module
+      (obj_name template__PredicateDNF)
+      (visibility public)
+      (source
+       (path PredicateDNF)
+       (impl (path PCSat/template/predicateDNF.ml))))
+     (module
+      (obj_name template__PredicateFlex)
+      (visibility public)
+      (source
+       (path PredicateFlex)
+       (impl (path PCSat/template/predicateFlex.ml))))
+     (module
+      (obj_name template__RegEx)
+      (visibility public)
+      (source (path RegEx) (impl (path PCSat/template/regEx.ml))))
+     (module
+      (obj_name template__WFPredicate)
+      (visibility public)
+      (source (path WFPredicate) (impl (path PCSat/template/WFPredicate.ml))))
+     (module
+      (obj_name template__WFPredicateFlex)
+      (visibility public)
+      (source
+       (path WFPredicateFlex)
+       (impl (path PCSat/template/WFPredicateFlex.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.PCSat.validation)
+ (kind normal)
+ (archives
+  (byte PCSat/validation/validation.cma)
+  (native PCSat/validation/validation.cmxa))
+ (plugins
+  (byte PCSat/validation/validation.cma)
+  (native PCSat/validation/validation.cmxs))
+ (native_archives PCSat/validation/validation.a)
+ (requires
+  core
+  yojson
+  CoAR.ast
+  CoAR.common
+  CoAR.pCSP
+  CoAR.Z3Smt
+  CoAR.QSMT
+  CoAR.PCSat.common
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name Validation)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name validation)
+     (visibility public)
+     (kind alias)
+     (source
+      (path Validation)
+      (impl (path PCSat/validation/validation.ml-gen))))
+    (name Validation)
+    (modules
+     (module
+      (obj_name validation__Validator)
+      (visibility public)
+      (source (path Validator) (impl (path PCSat/validation/validator.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.PLTS)
+ (kind normal)
+ (synopsis "Pushdown Labeled Transition Systems")
+ (archives (byte PLTS/PLTS.cma) (native PLTS/PLTS.cmxa))
+ (plugins (byte PLTS/PLTS.cma) (native PLTS/PLTS.cmxs))
+ (native_archives PLTS/PLTS.a)
+ (requires CoAR.ast CoAR.SMT CoAR.LTS)
+ (main_module_name PLTS)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name pLTS)
+     (visibility public)
+     (kind alias)
+     (source (path PLTS) (impl (path PLTS/pLTS.ml-gen))))
+    (name PLTS)
+    (modules
+     (module
+      (obj_name pLTS__Parser)
+      (visibility public)
+      (source (path Parser) (impl (path PLTS/parser.ml))))
+     (module
+      (obj_name pLTS__Problem)
+      (visibility public)
+      (source (path Problem) (impl (path PLTS/problem.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.Printer)
+ (kind normal)
+ (archives (byte Printer/Printer.cma) (native Printer/Printer.cmxa))
+ (plugins (byte Printer/Printer.cma) (native Printer/Printer.cmxs))
+ (native_archives Printer/Printer.a)
+ (requires
+  core
+  z3
+  CoAR.common
+  CoAR.muCLP
+  CoAR.pCSP
+  CoAR.PCSat
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime
+  yojson)
+ (main_module_name Printer)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name printer)
+     (visibility public)
+     (kind alias)
+     (source (path Printer) (impl (path Printer/printer.ml-gen))))
+    (name Printer)
+    (modules
+     (module
+      (obj_name printer__Config)
+      (visibility public)
+      (source (path Config) (impl (path Printer/config.ml))))
+     (module
+      (obj_name printer__Smtlib2)
+      (visibility public)
+      (source (path Smtlib2) (impl (path Printer/smtlib2.ml))))
+     (module
+      (obj_name printer__Solver)
+      (visibility public)
+      (source (path Solver) (impl (path Printer/solver.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.QSMT)
+ (kind normal)
+ (synopsis "Quantified Satisfiability Modulo Theories")
+ (archives (byte QSMT/QSMT.cma) (native QSMT/QSMT.cmxa))
+ (plugins (byte QSMT/QSMT.cma) (native QSMT/QSMT.cmxs))
+ (native_archives QSMT/QSMT.a)
+ (requires
+  core
+  yojson
+  CoAR.common
+  CoAR.ast
+  CoAR.Z3Smt
+  CoAR.SMT
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name QSMT)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name qSMT)
+     (visibility public)
+     (kind alias)
+     (source (path QSMT) (impl (path QSMT/qSMT.ml-gen))))
+    (name QSMT)
+    (modules
+     (module
+      (obj_name qSMT__StrategySynthesis)
+      (visibility public)
+      (source
+       (path StrategySynthesis)
+       (impl (path QSMT/strategySynthesis.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.RCaml)
+ (kind normal)
+ (archives (byte RCaml/RCaml.cma) (native RCaml/RCaml.cmxa))
+ (plugins (byte RCaml/RCaml.cma) (native RCaml/RCaml.cmxs))
+ (native_archives RCaml/RCaml.a)
+ (requires
+  core
+  yojson
+  compiler-libs.bytecomp
+  compiler-libs.common
+  CoAR.common
+  CoAR.ast
+  CoAR.SMT
+  CoAR.CHCOpt
+  CoAR.CHCOptSolver
+  CoAR.PCSPSolver
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name RCaml)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name rCaml)
+     (visibility public)
+     (kind alias)
+     (source (path RCaml) (impl (path RCaml/rCaml.ml-gen))))
+    (name RCaml)
+    (modules
+     (module
+      (obj_name rCaml__Cgen)
+      (visibility public)
+      (source (path Cgen) (impl (path RCaml/cgen.ml))))
+     (module
+      (obj_name rCaml__Config)
+      (visibility public)
+      (source (path Config) (impl (path RCaml/config.ml))))
+     (module
+      (obj_name rCaml__MBcgen)
+      (visibility public)
+      (source (path MBcgen) (impl (path RCaml/MBcgen.ml))))
+     (module
+      (obj_name rCaml__MBcsol)
+      (visibility public)
+      (source (path MBcsol) (impl (path RCaml/MBcsol.ml))))
+     (module
+      (obj_name rCaml__Problem)
+      (visibility public)
+      (source (path Problem) (impl (path RCaml/problem.ml))))
+     (module
+      (obj_name rCaml__Solver)
+      (visibility public)
+      (source (path Solver) (impl (path RCaml/solver.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.SAT)
+ (kind normal)
+ (archives (byte SAT/SAT.cma) (native SAT/SAT.cmxa))
+ (plugins (byte SAT/SAT.cma) (native SAT/SAT.cmxs))
+ (native_archives SAT/SAT.a)
+ (requires
+  core
+  camlzip
+  yojson
+  CoAR.common
+  CoAR.ast
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name SAT)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name sAT)
+     (visibility public)
+     (kind alias)
+     (source (path SAT) (impl (path SAT/sAT.ml-gen))))
+    (name SAT)
+    (modules
+     (module
+      (obj_name sAT__Parser)
+      (visibility public)
+      (source (path Parser) (impl (path SAT/parser.ml))))
+     (module
+      (obj_name sAT__Problem)
+      (visibility public)
+      (source (path Problem) (impl (path SAT/problem.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.SATSolver)
+ (kind normal)
+ (archives (byte SATSolver/SATSolver.cma) (native SATSolver/SATSolver.cmxa))
+ (plugins (byte SATSolver/SATSolver.cma) (native SATSolver/SATSolver.cmxs))
+ (native_archives SATSolver/SATSolver.a)
+ (requires
+  core
+  yojson
+  minisat
+  CoAR.common
+  CoAR.ast
+  CoAR.SAT
+  CoAR.Z3Sat
+  CoAR.MiniSat
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name SATSolver)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name sATSolver)
+     (visibility public)
+     (kind alias)
+     (source (path SATSolver) (impl (path SATSolver/sATSolver.ml-gen))))
+    (name SATSolver)
+    (modules
+     (module
+      (obj_name sATSolver__Config)
+      (visibility public)
+      (source (path Config) (impl (path SATSolver/config.ml))))
+     (module
+      (obj_name sATSolver__Solver)
+      (visibility public)
+      (source (path Solver) (impl (path SATSolver/solver.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.SMT)
+ (kind normal)
+ (archives (byte SMT/SMT.cma) (native SMT/SMT.cmxa))
+ (plugins (byte SMT/SMT.cma) (native SMT/SMT.cmxs))
+ (native_archives SMT/SMT.a)
+ (requires
+  core
+  yojson
+  z3
+  CoAR.common
+  CoAR.ast
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name SMT)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name sMT)
+     (visibility public)
+     (kind alias)
+     (source (path SMT) (impl (path SMT/sMT.ml-gen))))
+    (name SMT)
+    (modules
+     (module
+      (obj_name sMT__Lexer)
+      (visibility public)
+      (source (path Lexer) (impl (path SMT/lexer.ml))))
+     (module
+      (obj_name sMT__Parser)
+      (visibility public)
+      (source
+       (path Parser)
+       (intf (path SMT/parser.mli))
+       (impl (path SMT/parser.ml))))
+     (module
+      (obj_name sMT__Printer)
+      (visibility public)
+      (source (path Printer) (impl (path SMT/printer.ml))))
+     (module
+      (obj_name sMT__Problem)
+      (visibility public)
+      (source (path Problem) (impl (path SMT/problem.ml))))
+     (module
+      (obj_name sMT__Smtlib2)
+      (visibility public)
+      (source (path Smtlib2) (impl (path SMT/smtlib2.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.SMTSolver)
+ (kind normal)
+ (archives (byte SMTSolver/SMTSolver.cma) (native SMTSolver/SMTSolver.cmxa))
+ (plugins (byte SMTSolver/SMTSolver.cma) (native SMTSolver/SMTSolver.cmxs))
+ (native_archives SMTSolver/SMTSolver.a)
+ (requires
+  core
+  yojson
+  CoAR.common
+  CoAR.ast
+  CoAR.Z3Smt
+  CoAR.SMT
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name SMTSolver)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name sMTSolver)
+     (visibility public)
+     (kind alias)
+     (source (path SMTSolver) (impl (path SMTSolver/sMTSolver.ml-gen))))
+    (name SMTSolver)
+    (modules
+     (module
+      (obj_name sMTSolver__Config)
+      (visibility public)
+      (source (path Config) (impl (path SMTSolver/config.ml))))
+     (module
+      (obj_name sMTSolver__Solver)
+      (visibility public)
+      (source (path Solver) (impl (path SMTSolver/solver.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.SPACER)
+ (kind normal)
+ (archives (byte SPACER/SPACER.cma) (native SPACER/SPACER.cmxa))
+ (plugins (byte SPACER/SPACER.cma) (native SPACER/SPACER.cmxs))
+ (native_archives SPACER/SPACER.a)
+ (requires
+  core
+  yojson
+  z3
+  CoAR.common
+  CoAR.Z3Smt
+  CoAR.pCSP
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name SPACER)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name sPACER)
+     (visibility public)
+     (kind alias)
+     (source (path SPACER) (impl (path SPACER/sPACER.ml-gen))))
+    (name SPACER)
+    (modules
+     (module
+      (obj_name sPACER__Config)
+      (visibility public)
+      (source (path Config) (impl (path SPACER/config.ml))))
+     (module
+      (obj_name sPACER__Solver)
+      (visibility public)
+      (source (path Solver) (impl (path SPACER/solver.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.SyGuS)
+ (kind normal)
+ (synopsis "interface for SyGuS-IF")
+ (archives (byte SyGuS/SyGuS.cma) (native SyGuS/SyGuS.cmxa))
+ (plugins (byte SyGuS/SyGuS.cma) (native SyGuS/SyGuS.cmxs))
+ (native_archives SyGuS/SyGuS.a)
+ (requires num core z3 CoAR.ast CoAR.common CoAR.Z3Smt)
+ (main_module_name SyGuS)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name syGuS)
+     (visibility public)
+     (kind alias)
+     (source (path SyGuS) (impl (path SyGuS/syGuS.ml-gen))))
+    (name SyGuS)
+    (modules
+     (module
+      (obj_name syGuS__Parser)
+      (visibility public)
+      (source (path Parser) (impl (path SyGuS/parser.ml))))
+     (module
+      (obj_name syGuS__Printer)
+      (visibility public)
+      (source (path Printer) (impl (path SyGuS/printer.ml))))
+     (module
+      (obj_name syGuS__Problem)
+      (visibility public)
+      (source (path Problem) (impl (path SyGuS/problem.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.TRecS)
+ (kind normal)
+ (archives (byte TRecS/TRecS.cma) (native TRecS/TRecS.cmxa))
+ (plugins (byte TRecS/TRecS.cma) (native TRecS/TRecS.cmxs))
+ (native_archives TRecS/TRecS.a)
+ (requires
+  core
+  CoAR.HOMC
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime
+  yojson)
+ (main_module_name TRecS)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name tRecS)
+     (visibility public)
+     (kind alias)
+     (source (path TRecS) (impl (path TRecS/tRecS.ml-gen))))
+    (name TRecS)
+    (modules
+     (module
+      (obj_name tRecS__Config)
+      (visibility public)
+      (source (path Config) (impl (path TRecS/config.ml))))
+     (module
+      (obj_name tRecS__Solver)
+      (visibility public)
+      (source (path Solver) (impl (path TRecS/solver.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.Z3Sat)
+ (kind normal)
+ (archives (byte Z3Sat/Z3Sat.cma) (native Z3Sat/Z3Sat.cmxa))
+ (plugins (byte Z3Sat/Z3Sat.cma) (native Z3Sat/Z3Sat.cmxs))
+ (native_archives Z3Sat/Z3Sat.a)
+ (requires
+  core
+  z3
+  CoAR.ast
+  CoAR.SAT
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime
+  yojson)
+ (main_module_name Z3Sat)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name z3Sat)
+     (visibility public)
+     (kind alias)
+     (source (path Z3Sat) (impl (path Z3Sat/z3Sat.ml-gen))))
+    (name Z3Sat)
+    (modules
+     (module
+      (obj_name z3Sat__Config)
+      (visibility public)
+      (source (path Config) (impl (path Z3Sat/config.ml))))
+     (module
+      (obj_name z3Sat__Solver)
+      (visibility public)
+      (source (path Solver) (impl (path Z3Sat/solver.ml))))
+     (module
+      (obj_name z3Sat__Z3interface)
+      (visibility public)
+      (source (path Z3interface) (impl (path Z3Sat/z3interface.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.Z3Smt)
+ (kind normal)
+ (archives (byte Z3Smt/Z3Smt.cma) (native Z3Smt/Z3Smt.cmxa))
+ (plugins (byte Z3Smt/Z3Smt.cma) (native Z3Smt/Z3Smt.cmxs))
+ (native_archives Z3Smt/Z3Smt.a)
+ (requires
+  core
+  z3
+  CoAR.SMT
+  CoAR.ast
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime
+  yojson)
+ (main_module_name Z3Smt)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name z3Smt)
+     (visibility public)
+     (kind alias)
+     (source (path Z3Smt) (impl (path Z3Smt/z3Smt.ml-gen))))
+    (name Z3Smt)
+    (modules
+     (module
+      (obj_name z3Smt__Config)
+      (visibility public)
+      (source (path Config) (impl (path Z3Smt/config.ml))))
+     (module
+      (obj_name z3Smt__Solver)
+      (visibility public)
+      (source (path Solver) (impl (path Z3Smt/solver.ml))))
+     (module
+      (obj_name z3Smt__Z3interface)
+      (visibility public)
+      (source (path Z3interface) (impl (path Z3Smt/z3interface.ml))))
+     (module
+      (obj_name z3Smt__Z3interfaceNew)
+      (visibility public)
+      (source (path Z3interfaceNew) (impl (path Z3Smt/z3interfaceNew.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.ast)
+ (kind normal)
+ (synopsis "AST definitions")
+ (archives (byte ast/ast.cma) (native ast/ast.cmxa))
+ (plugins (byte ast/ast.cma) (native ast/ast.cmxs))
+ (native_archives ast/ast.a)
+ (requires
+  core
+  zarith
+  str
+  CoAR.common
+  CoAR.grammar
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime
+  yojson)
+ (main_module_name Ast)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name ast)
+     (visibility public)
+     (kind alias)
+     (source (path Ast) (impl (path ast/ast.ml-gen))))
+    (name Ast)
+    (modules
+     (module
+      (obj_name ast__Affine)
+      (visibility public)
+      (source
+       (path Affine)
+       (intf (path ast/affine.mli))
+       (impl (path ast/affine.ml))))
+     (module
+      (obj_name ast__AffineTerm)
+      (visibility public)
+      (source (path AffineTerm) (impl (path ast/affineTerm.ml))))
+     (module
+      (obj_name ast__ArithTerm)
+      (visibility public)
+      (source (path ArithTerm) (impl (path ast/arithTerm.ml))))
+     (module
+      (obj_name ast__Assertion)
+      (visibility public)
+      (source (path Assertion) (impl (path ast/assertion.ml))))
+     (module
+      (obj_name ast__CandSol)
+      (visibility public)
+      (source (path CandSol) (impl (path ast/candSol.ml))))
+     (module
+      (obj_name ast__CandSolOld)
+      (visibility public)
+      (source (path CandSolOld) (impl (path ast/candSolOld.ml))))
+     (module
+      (obj_name ast__Clause)
+      (visibility public)
+      (source (path Clause) (impl (path ast/clause.ml))))
+     (module
+      (obj_name ast__ClauseOld)
+      (visibility public)
+      (source (path ClauseOld) (impl (path ast/clauseOld.ml))))
+     (module
+      (obj_name ast__ClauseSet)
+      (visibility public)
+      (source (path ClauseSet) (impl (path ast/clauseSet.ml))))
+     (module
+      (obj_name ast__ClauseSetOld)
+      (visibility public)
+      (source (path ClauseSetOld) (impl (path ast/clauseSetOld.ml))))
+     (module
+      (obj_name ast__Evaluator)
+      (visibility public)
+      (source (path Evaluator) (impl (path ast/evaluator.ml))))
+     (module
+      (obj_name ast__Ident)
+      (visibility public)
+      (source (path Ident) (impl (path ast/ident.ml))))
+     (module
+      (obj_name ast__Kind)
+      (visibility public)
+      (source (path Kind) (impl (path ast/kind.ml))))
+     (module
+      (obj_name ast__Logic)
+      (visibility public)
+      (source (path Logic) (impl (path ast/logic.ml))))
+     (module
+      (obj_name ast__LogicOld)
+      (visibility public)
+      (source (path LogicOld) (impl (path ast/logicOld.ml))))
+     (module
+      (obj_name ast__Mbp)
+      (visibility public)
+      (source (path Mbp) (impl (path ast/mbp.ml))))
+     (module
+      (obj_name ast__Normalizer)
+      (visibility public)
+      (source (path Normalizer) (impl (path ast/normalizer.ml))))
+     (module
+      (obj_name ast__Pattern)
+      (visibility public)
+      (source (path Pattern) (impl (path ast/pattern.ml))))
+     (module
+      (obj_name ast__PropLogic)
+      (visibility public)
+      (source (path PropLogic) (impl (path ast/propLogic.ml))))
+     (module
+      (obj_name ast__Qelim)
+      (visibility public)
+      (source (path Qelim) (impl (path ast/qelim.ml))))
+     (module
+      (obj_name ast__Rank)
+      (visibility public)
+      (source (path Rank) (impl (path ast/rank.ml))))
+     (module
+      (obj_name ast__Rtype)
+      (visibility public)
+      (source (path Rtype) (impl (path ast/rtype.ml))))
+     (module
+      (obj_name ast__RtypeLexer)
+      (visibility public)
+      (source (path RtypeLexer) (impl (path ast/rtypeLexer.ml))))
+     (module
+      (obj_name ast__RtypeParser)
+      (visibility public)
+      (source
+       (path RtypeParser)
+       (intf (path ast/rtypeParser.mli))
+       (impl (path ast/rtypeParser.ml))))
+     (module
+      (obj_name ast__SimpleFormula)
+      (visibility public)
+      (source
+       (path SimpleFormula)
+       (intf (path ast/simpleFormula.mli))
+       (impl (path ast/simpleFormula.ml))))
+     (module
+      (obj_name ast__SolSpace)
+      (visibility public)
+      (source (path SolSpace) (impl (path ast/solSpace.ml))))
+     (module
+      (obj_name ast__Typeinf)
+      (visibility public)
+      (source (path Typeinf) (impl (path ast/typeinf.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.automata)
+ (kind normal)
+ (archives (byte automata/automata.cma) (native automata/automata.cmxa))
+ (plugins (byte automata/automata.cma) (native automata/automata.cmxs))
+ (native_archives automata/automata.a)
+ (requires
+  core
+  yojson
+  CoAR.common
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name Automata)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name automata)
+     (visibility public)
+     (kind alias)
+     (source (path Automata) (impl (path automata/automata.ml-gen))))
+    (name Automata)
+    (modules
+     (module
+      (obj_name automata__ATA)
+      (visibility public)
+      (source (path ATA) (impl (path automata/ATA.ml))))
+     (module
+      (obj_name automata__RTA)
+      (visibility public)
+      (source (path RTA) (impl (path automata/RTA.ml))))
+     (module
+      (obj_name automata__TTA)
+      (visibility public)
+      (source (path TTA) (impl (path automata/TTA.ml))))
+     (module
+      (obj_name automata__TreeAutomaton)
+      (visibility public)
+      (source (path TreeAutomaton) (impl (path automata/treeAutomaton.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.c)
+ (kind normal)
+ (synopsis "loader for ctl written in C language")
+ (archives (byte c/c.cma) (native c/c.cmxa))
+ (plugins (byte c/c.cma) (native c/c.cmxs))
+ (native_archives c/c.a)
+ (requires core CoAR.ast CoAR.muCLP)
+ (main_module_name C)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name c)
+     (visibility public)
+     (kind alias)
+     (source (path C) (impl (path c/c.ml-gen))))
+    (name C)
+    (modules
+     (module
+      (obj_name c__BaLexer)
+      (visibility public)
+      (source (path BaLexer) (impl (path c/baLexer.ml))))
+     (module
+      (obj_name c__BaParser)
+      (visibility public)
+      (source
+       (path BaParser)
+       (intf (path c/baParser.mli))
+       (impl (path c/baParser.ml))))
+     (module
+      (obj_name c__BaParsing)
+      (visibility public)
+      (source
+       (path BaParsing)
+       (intf (path c/baParsing.mli))
+       (impl (path c/baParsing.ml))))
+     (module
+      (obj_name c__CCtlLexer)
+      (visibility public)
+      (source (path CCtlLexer) (impl (path c/cCtlLexer.ml))))
+     (module
+      (obj_name c__CCtlParser)
+      (visibility public)
+      (source
+       (path CCtlParser)
+       (intf (path c/cCtlParser.mli))
+       (impl (path c/cCtlParser.ml))))
+     (module
+      (obj_name c__CLtlLexer)
+      (visibility public)
+      (source (path CLtlLexer) (impl (path c/cLtlLexer.ml))))
+     (module
+      (obj_name c__CLtlParser)
+      (visibility public)
+      (source
+       (path CLtlParser)
+       (intf (path c/cLtlParser.mli))
+       (impl (path c/cLtlParser.ml))))
+     (module
+      (obj_name c__CSyntax)
+      (visibility public)
+      (source (path CSyntax) (impl (path c/cSyntax.ml))))
+     (module
+      (obj_name c__HesOf)
+      (visibility public)
+      (source (path HesOf) (intf (path c/hesOf.mli)) (impl (path c/hesOf.ml))))
+     (module
+      (obj_name c__Linked)
+      (visibility public)
+      (source (path Linked) (impl (path c/linked.ml))))
+     (module
+      (obj_name c__LogicConverter)
+      (visibility public)
+      (source
+       (path LogicConverter)
+       (intf (path c/logicConverter.mli))
+       (impl (path c/logicConverter.ml))))
+     (module
+      (obj_name c__Optimizer)
+      (visibility public)
+      (source (path Optimizer) (impl (path c/optimizer.ml))))
+     (module
+      (obj_name c__Parser)
+      (visibility public)
+      (source
+       (path Parser)
+       (intf (path c/parser.mli))
+       (impl (path c/parser.ml))))
+     (module
+      (obj_name c__Variables)
+      (visibility public)
+      (source (path Variables) (impl (path c/variables.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.common)
+ (kind normal)
+ (archives (byte common/common.cma) (native common/common.cmxa))
+ (plugins (byte common/common.cma) (native common/common.cmxs))
+ (native_archives common/common.a)
+ (requires
+  core
+  core_unix
+  core_unix.sys_unix
+  zarith
+  domainslib
+  yojson
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name Common)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name common)
+     (visibility public)
+     (kind alias)
+     (source (path Common) (impl (path common/common.ml-gen))))
+    (name Common)
+    (modules
+     (module
+      (obj_name common__Combinator)
+      (visibility public)
+      (source (path Combinator) (impl (path common/combinator.ml))))
+     (module
+      (obj_name common__ContFrac)
+      (visibility public)
+      (source (path ContFrac) (impl (path common/contFrac.ml))))
+     (module
+      (obj_name common__Debug)
+      (visibility public)
+      (source (path Debug) (impl (path common/debug.ml))))
+     (module
+      (obj_name common__Ext)
+      (visibility public)
+      (source (path Ext) (impl (path common/ext.ml))))
+     (module
+      (obj_name common__LazyList)
+      (visibility public)
+      (source (path LazyList) (impl (path common/lazyList.ml))))
+     (module
+      (obj_name common__Messenger)
+      (visibility public)
+      (source (path Messenger) (impl (path common/messenger.ml))))
+     (module
+      (obj_name common__Timer)
+      (visibility public)
+      (source (path Timer) (impl (path common/timer.ml))))
+     (module
+      (obj_name common__UnionFind)
+      (visibility public)
+      (source
+       (path UnionFind)
+       (intf (path common/unionFind.mli))
+       (impl (path common/unionFind.ml))))
+     (module
+      (obj_name common__UnionFindInt)
+      (visibility public)
+      (source (path UnionFindInt) (impl (path common/unionFindInt.ml))))
+     (module
+      (obj_name common__Util)
+      (visibility public)
+      (source (path Util) (impl (path common/util.ml))))
+     (module
+      (obj_name common__Zipper)
+      (visibility public)
+      (source (path Zipper) (impl (path common/zipper.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.grammar)
+ (kind normal)
+ (archives (byte grammar/grammar.cma) (native grammar/grammar.cmxa))
+ (plugins (byte grammar/grammar.cma) (native grammar/grammar.cmxs))
+ (native_archives grammar/grammar.a)
+ (requires
+  core
+  yojson
+  CoAR.common
+  CoAR.automata
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime)
+ (main_module_name Grammar)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name grammar)
+     (visibility public)
+     (kind alias)
+     (source (path Grammar) (impl (path grammar/grammar.ml-gen))))
+    (name Grammar)
+    (modules
+     (module
+      (obj_name grammar__RegTreeExp)
+      (visibility public)
+      (source (path RegTreeExp) (impl (path grammar/regTreeExp.ml))))
+     (module
+      (obj_name grammar__RegTreeExpLexer)
+      (visibility public)
+      (source (path RegTreeExpLexer) (impl (path grammar/regTreeExpLexer.ml))))
+     (module
+      (obj_name grammar__RegTreeExpParser)
+      (visibility public)
+      (source
+       (path RegTreeExpParser)
+       (intf (path grammar/regTreeExpParser.mli))
+       (impl (path grammar/regTreeExpParser.ml))))
+     (module
+      (obj_name grammar__RegWordExp)
+      (visibility public)
+      (source (path RegWordExp) (impl (path grammar/regWordExp.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.muCLP)
+ (kind normal)
+ (synopsis "The definition of muCLP")
+ (archives (byte muCLP/muCLP.cma) (native muCLP/muCLP.cmxa))
+ (plugins (byte muCLP/muCLP.cma) (native muCLP/muCLP.cmxs))
+ (native_archives muCLP/muCLP.a)
+ (requires
+  core
+  CoAR.pCSP
+  CoAR.ast
+  CoAR.common
+  CoAR.LTS
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime
+  yojson)
+ (main_module_name MuCLP)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name muCLP)
+     (visibility public)
+     (kind alias)
+     (source (path MuCLP) (impl (path muCLP/muCLP.ml-gen))))
+    (name MuCLP)
+    (modules
+     (module
+      (obj_name muCLP__HESLexer)
+      (visibility public)
+      (source (path HESLexer) (impl (path muCLP/HESLexer.ml))))
+     (module
+      (obj_name muCLP__HESParser)
+      (visibility public)
+      (source
+       (path HESParser)
+       (intf (path muCLP/HESParser.mli))
+       (impl (path muCLP/HESParser.ml))))
+     (module
+      (obj_name muCLP__Optimizer)
+      (visibility public)
+      (source (path Optimizer) (impl (path muCLP/optimizer.ml))))
+     (module
+      (obj_name muCLP__Parser)
+      (visibility public)
+      (source
+       (path Parser)
+       (intf (path muCLP/parser.mli))
+       (impl (path muCLP/parser.ml))))
+     (module
+      (obj_name muCLP__Pred)
+      (visibility public)
+      (source
+       (path Pred)
+       (intf (path muCLP/pred.mli))
+       (impl (path muCLP/pred.ml))))
+     (module
+      (obj_name muCLP__Problem)
+      (visibility public)
+      (source
+       (path Problem)
+       (intf (path muCLP/problem.mli))
+       (impl (path muCLP/problem.ml))))
+     (module
+      (obj_name muCLP__Qelim)
+      (visibility public)
+      (source (path Qelim) (impl (path muCLP/qelim.ml))))
+     (module
+      (obj_name muCLP__Reducer)
+      (visibility public)
+      (source (path Reducer) (impl (path muCLP/reducer.ml))))))
+   (wrapped true))))
+(library
+ (name CoAR.pCSP)
+ (kind normal)
+ (synopsis "The definition of pfwnCSP")
+ (archives (byte pCSP/pCSP.cma) (native pCSP/pCSP.cmxa))
+ (plugins (byte pCSP/pCSP.cma) (native pCSP/pCSP.cmxs))
+ (native_archives pCSP/pCSP.a)
+ (requires
+  core
+  camlzip
+  CoAR.ast
+  CoAR.common
+  CoAR.SyGuS
+  CoAR.SMT
+  CoAR.LTS
+  CoAR.PLTS
+  ppx_deriving.runtime
+  ppx_deriving_yojson.runtime
+  yojson)
+ (main_module_name PCSP)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name pCSP)
+     (visibility public)
+     (kind alias)
+     (source (path PCSP) (impl (path pCSP/pCSP.ml-gen))))
+    (name PCSP)
+    (modules
+     (module
+      (obj_name pCSP__ForwardPropagate)
+      (visibility public)
+      (source (path ForwardPropagate) (impl (path pCSP/forwardPropagate.ml))))
+     (module
+      (obj_name pCSP__LPLexer)
+      (visibility public)
+      (source (path LPLexer) (impl (path pCSP/LPLexer.ml))))
+     (module
+      (obj_name pCSP__LPParser)
+      (visibility public)
+      (source
+       (path LPParser)
+       (intf (path pCSP/LPParser.mli))
+       (impl (path pCSP/LPParser.ml))))
+     (module
+      (obj_name pCSP__Params)
+      (visibility public)
+      (source (path Params) (impl (path pCSP/params.ml))))
+     (module
+      (obj_name pCSP__Parser)
+      (visibility public)
+      (source (path Parser) (impl (path pCSP/parser.ml))))
+     (module
+      (obj_name pCSP__Problem)
+      (visibility public)
+      (source
+       (path Problem)
+       (intf (path pCSP/problem.mli))
+       (impl (path pCSP/problem.ml))))))
+   (wrapped true))))

@@ -1,0 +1,34 @@
+type token =
+    TRUE
+  | SKIP
+  | SEMI
+  | RPAREN
+  | RBLOCK
+  | OR
+  | NOT
+  | NEVER
+  | LPAREN
+  | LBLOCK
+  | IF
+  | ID of string
+  | GOTO
+  | FI
+  | FALSE
+  | EOF
+  | CORONCORON
+  | CORON
+  | ARROW
+  | AND
+val menhir_begin_marker : int
+val xv_transition : (string * Ast.LogicOld.Formula.t) list
+val xv_toplevel : (string * string * Ast.LogicOld.Formula.t) list
+val xv_states : (string * string * Ast.LogicOld.Formula.t) list
+val xv_state : (string * string * Ast.LogicOld.Formula.t) list
+val xv_formula_unary : Ast.LogicOld.Formula.t
+val xv_formula_or : Ast.LogicOld.Formula.t
+val xv_formula_atom : Ast.LogicOld.Formula.t
+val xv_formula_and : Ast.LogicOld.Formula.t
+val xv_formula : Ast.LogicOld.Formula.t
+val xv_conds : (string * Ast.LogicOld.Formula.t) list
+val xv_cond : string * Ast.LogicOld.Formula.t
+val menhir_end_marker : int

@@ -1,0 +1,120 @@
+type token =
+    X
+  | WU
+  | WHILE_TRUE
+  | WHILE
+  | VOLATILE
+  | VOID
+  | UNSIGNED
+  | U
+  | STRINGL of string
+  | STATIC
+  | SIZEOF
+  | SEMI
+  | RPAREN
+  | RETURN
+  | RBLOCK
+  | R
+  | PREDSYM of Ast.LogicOld.pred_sym
+  | PLUSPLUS
+  | OR
+  | NOT
+  | NORETURN
+  | NONDET
+  | MOD
+  | MINUSMINUS
+  | MINUS
+  | MAIN
+  | LTLDECLARE
+  | LPAREN
+  | LBLOCK
+  | INTL of int
+  | INT
+  | IMPLY
+  | IF
+  | ID of string
+  | GOTO
+  | FOR
+  | EXTERN
+  | ERROR
+  | EQUAL
+  | EOF
+  | ELSE
+  | DO
+  | DIV
+  | DIAMOND
+  | CORON
+  | CONST
+  | COMMA
+  | BREAK
+  | BOX
+  | ATTRIBUTE
+  | ASTERISK
+  | ASSUME
+  | AP
+  | AND
+  | ADDR
+  | ADD
+val funname_nondet : string
+val stmt_of_statements : CSyntax.Statement.t list -> CSyntax.Statement.t
+val formula_of_term : Ast.LogicOld.Term.t -> Ast.LogicOld.Formula.t
+val term_of_string : string -> Ast.LogicOld.Term.t
+val is_nondet : Ast.LogicOld.Term.t -> bool
+val menhir_begin_marker : int
+val xv_toplevel :
+  CSyntax.cltl * CSyntax.Define.t list * CSyntax.FunDecl.t list
+val xv_While : CSyntax.Statement.t -> CSyntax.Statement.t
+val xv_VarDeclIntType : unit
+val xv_VarDecl : CSyntax.Declare.t list * CSyntax.Init.t list
+val xv_Type : Ast.LogicOld.Sort.t
+val xv_Term : Ast.LogicOld.Term.t
+val xv_T_intUnary : Ast.LogicOld.Term.t
+val xv_T_intParen : Ast.LogicOld.Term.t
+val xv_T_intMultDivMod : Ast.LogicOld.Term.t
+val xv_T_intAtom : Ast.LogicOld.Term.t
+val xv_T_intAddSub : Ast.LogicOld.Term.t
+val xv_T_int : Ast.LogicOld.Term.t
+val xv_T_bool : Ast.LogicOld.Atom.t
+val xv_Statements : CSyntax.Statement.t list
+val xv_StatementIfT : CSyntax.Statement.t
+val xv_StatementGeneral : CSyntax.Statement.t
+val xv_Statement : CSyntax.Statement.t
+val xv_PhiUntil : CSyntax.Ltl.t
+val xv_PhiUnary : CSyntax.Ltl.t
+val xv_PhiOr : CSyntax.Ltl.t
+val xv_PhiImp : CSyntax.Ltl.t
+val xv_PhiAtom : CSyntax.Ltl.t
+val xv_PhiAnd : CSyntax.Ltl.t
+val xv_Phi : CSyntax.Ltl.t
+val xv_ParametersOneOrMore : (string * Ast.LogicOld.Sort.t) list
+val xv_Parameters : (string * Ast.LogicOld.Sort.t) list
+val xv_Parameter : string * Ast.LogicOld.Sort.t
+val xv_MultipleAssignInit : string list * Ast.LogicOld.Term.t
+val xv_IntVarDecls : string list * CSyntax.Statement.t list
+val xv_IntVarDeclOne : string * CSyntax.Statement.t option
+val xv_InitOne : CSyntax.Init.t list
+val xv_Init : CSyntax.Init.t list
+val xv_IfElse : CSyntax.Statement.t -> CSyntax.Statement.t
+val xv_FormulaOr : Ast.LogicOld.Formula.t
+val xv_FormulaNeg : Ast.LogicOld.Formula.t
+val xv_FormulaAtom : Ast.LogicOld.Formula.t
+val xv_FormulaAssignOne : CSyntax.Statement.t
+val xv_FormulaAnd : Ast.LogicOld.Formula.t
+val xv_Formula : Ast.LogicOld.Formula.t
+val xv_ForInits : CSyntax.Statement.t list
+val xv_ForInitOne : CSyntax.Statement.t
+val xv_ForInit : CSyntax.Statement.t
+val xv_ForCond : Ast.LogicOld.Formula.t
+val xv_For : CSyntax.Statement.t -> CSyntax.Statement.t
+val xv_DoWhile : CSyntax.Statement.t
+val xv_Decls :
+  CSyntax.Ltl.t option * CSyntax.Declare.t list * CSyntax.Init.t list *
+  CSyntax.Statement.t option * CSyntax.Define.t list * CSyntax.FunDecl.t list
+val xv_Decl :
+  CSyntax.Ltl.t option * CSyntax.Declare.t list * CSyntax.Init.t list *
+  CSyntax.Statement.t option * CSyntax.Define.t list * CSyntax.FunDecl.t list
+val xv_Cast : unit
+val xv_Atom : Ast.LogicOld.Atom.t
+val xv_ArguementsOneOrMore : Ast.LogicOld.Term.t list
+val xv_Arguements : Ast.LogicOld.Term.t list
+val menhir_end_marker : int

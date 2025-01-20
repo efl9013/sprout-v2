@@ -1,0 +1,57 @@
+type token =
+    UIDENT of string
+  | TRUE
+  | RPAREN
+  | PERIOD
+  | OR
+  | OF
+  | MINUS_RANGLE
+  | LPAREN
+  | LIDENT of string
+  | INT of int
+  | GEN
+  | FALSE
+  | EQUAL_RANGLE
+  | EQUAL
+  | EOF
+  | ENDT
+  | ENDR
+  | ENDG
+  | ENDATA
+  | ENDA
+  | COPY
+  | COMMA
+  | COLON
+  | COERCE
+  | CASE
+  | BEGINT
+  | BEGINR
+  | BEGING
+  | BEGINATA
+  | BEGINA
+  | BAR
+  | AND
+val print_error_information : unit -> unit
+val coerce_idx : int ref
+val menhir_begin_marker : int
+val xv_typedefs : (Ast.Ident.tvar * Ast.Ident.tvar RefType.t) list
+val xv_typedef : Ast.Ident.tvar * Ast.Ident.tvar RefType.t
+val xv_typ : Ast.Ident.tvar RefType.t
+val xv_tta_transitions : Automata.TTA.pre_trs
+val xv_tree_automata : Automata.TreeAutomaton.t
+val xv_term : EHMTT.term
+val xv_simple_term : EHMTT.term
+val xv_rules : EHMTT.t
+val xv_rule : EHMTT.rule
+val xv_pats : (Ast.Ident.tvar * (Ast.Ident.tvar list * EHMTT.term)) list
+val xv_pat : Ast.Ident.tvar * (Ast.Ident.tvar list * EHMTT.term)
+val xv_lidents : Ast.Ident.tvar list
+val xv_hors : EHMTT.t * Automata.TreeAutomaton.t
+val xv_hmtt :
+  EHMTT.t * Automata.TTA.pre_trs *
+  (Ast.Ident.tvar * Ast.Ident.tvar RefType.t)
+val xv_dnf : Automata.ATA.dest
+val xv_cube : (int * string) list
+val xv_ata_transitions : Automata.ATA.pre_trs
+val xv_ata_arities : Automata.ATA.arity
+val menhir_end_marker : int

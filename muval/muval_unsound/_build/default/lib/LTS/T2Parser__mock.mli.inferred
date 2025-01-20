@@ -1,0 +1,68 @@
+type token =
+    VAR of string
+  | TO
+  | TIMES
+  | SUBST
+  | STRING
+  | STORE_ARRAY
+  | START
+  | SKIP
+  | SHL
+  | SHADOW
+  | SEMICOLON
+  | SELECT_TUPLE
+  | SELECT_ARRAY
+  | RPAREN
+  | REAL_TO_INT
+  | PLUS
+  | OR
+  | NOT
+  | NONDET
+  | NEQ
+  | MOD
+  | MINUS
+  | LT
+  | LSHR
+  | LPAREN
+  | LEQ
+  | INT_TO_REAL
+  | INT of int
+  | GT
+  | GEQ
+  | FROM
+  | FLOAT of Q.t
+  | ERROR
+  | EQ
+  | EOF
+  | DIV
+  | CUTPOINT
+  | CONST_ARRAY
+  | CONSTR_TUPLE
+  | COMMA
+  | COLON
+  | CHAR of char
+  | BITOR
+  | BITAND
+  | AT
+  | ASSUME
+  | ASHR
+  | AND
+val menhir_begin_marker : int
+val xv_transition : Problem.transition option
+val xv_to_ : string
+val xv_state : string
+val xv_start_opt : string option
+val xv_main : Problem.lts
+val xv_list_transition_ : Problem.transition option list
+val xv_list_command_ : Problem.command list
+val xv_from : string
+val xv_exprs : Ast.LogicOld.Term.t list
+val xv_expr : Ast.LogicOld.Term.t
+val xv_error_opt : string option
+val xv_cutpoint_opt : string option
+val xv_cond : Ast.LogicOld.Formula.t
+val xv_command_body : Problem.command
+val xv_command : Problem.command
+val xv_atom : Ast.LogicOld.Atom.t
+val xv_at : unit
+val menhir_end_marker : int

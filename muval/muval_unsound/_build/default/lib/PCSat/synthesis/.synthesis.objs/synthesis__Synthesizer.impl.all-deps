@@ -1,0 +1,7 @@
+synthesis__CBSynthTemplateUpdateStrategy
+synthesis__CBSynthesizer
+synthesis__CandidateChecker
+synthesis__PASynthesizer
+synthesis__SolutionTemplate
+synthesis__TBSynthesizer
+synthesis__TemplateUpdateStrategy
