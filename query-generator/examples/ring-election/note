@@ -1,0 +1,7 @@
+Explanation of different versions
+
+ring-election-yes-1: no enforcement that the IDs are distinct, therefore all transitions can be taken
+ring-election-yes-2: enforcing that IDs are distinct
+
+ring-election-no-1: no enforcement that the IDs are distinct,  (5) -> (8) can be taken, therefore sa=ra cannot necessarily be satisfied in transition (8) -> (9), protocol deadlocks 
+ring-election-no-2: 
