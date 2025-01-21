@@ -131,6 +131,11 @@ let generate_all_avail (prot: symbolic_protocol) : string =
 	let all_distinct_pairs = all_distinct_participant_pairs prot in 
 	List.fold_left (fun acc (p,q) -> acc ^ "\n" ^ generate_avail_for_participant_pair prot p q) "" all_distinct_pairs
 
+let generate_all_avail_for_participant (prot: symbolic_protocol) (q: participant) : string = 
+let all_distinct_pairs = all_distinct_participant_pairs prot in 
+let q_receiver_pairs = List.filter (fun (p1,p2) -> p2 = q) all_distinct_pairs in
+	List.fold_left (fun acc (p,q) -> acc ^ "\n" ^ generate_avail_for_participant_pair prot p q) "" q_receiver_pairs
+
 let generate_rcc_first_line_for_participant (prot: symbolic_protocol) (p: participant) = 
 	"exists " ^ 
 	(* "(s1: int) (s'1: int) " ^  *)
@@ -183,14 +188,14 @@ let generate_rcc_for_participant (prot: symbolic_protocol) (p: participant) (ls 
 	"\n" ^ 
 	generate_prodreach_for_participant prot p ^ 
 	"\n" ^ 
-	generate_all_avail prot
+	generate_all_avail_for_participant prot p
 
 let generate_rcc_for_participant_vb (prot: symbolic_protocol) (p: participant) (ls : (symbolic_transition * symbolic_transition) list) = 
 	generate_rcc_preamble_for_participant_vb prot p ls ^ 
 	"\n" ^ 
 	generate_prodreach_vb prot p ^ 
 	"\n" ^ 
-	generate_all_avail prot
+	generate_all_avail_for_participant prot p
 
 (* let generate_rcc_filename_from_pair_for_participant (pair: symbolic_transition * symbolic_transition) (p: participant) = 
 	let tr1 = fst pair in 
