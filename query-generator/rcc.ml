@@ -224,20 +224,23 @@ let generate_rcc_queries_vb (prot: symbolic_protocol) (dir: string) =
 
 
 let generate_rcc_for_pair_v2b (prot: symbolic_protocol) (p: participant) (pair : symbolic_transition * symbolic_transition) = 
+	let tr1 = fst pair in 
+	let tr2 = snd pair in 
 	generate_rcc_first_line_for_participant prot p ^ 
 	generate_rcc_body_from_pair_for_participant_vb prot pair p ^ 
 	"\ns.t.\n" ^
 	"\n" ^ 
 	generate_prodreach_vb prot p ^ 
 	"\n" ^ 
-	generate_all_avail prot
+	(* Since the query is for a particular pair of transitions, we only need to include avail predicates for the sender and receiver in the first transition *)
+	generate_avail_for_participant_pair prot tr1.sender tr1.receiver 
 
 let generate_rcc_queries_v2b (prot: symbolic_protocol) (dir: string) = 
   let participants = get_receivers prot in 
   List.iter (fun p -> let transition_pairs = filter_simreach_transitions_rcc_participant prot (all_transition_pairs prot.transitions) p in 
 							if transition_pairs <> [] 
 							then (List.iter (fun (tr1, tr2) -> write_to_file 
-																						(Filename.concat dir (p ^ "_" ^ string_of_int tr1.pre ^ string_of_int tr1.post ^ "_" ^ string_of_int tr2.pre ^ string_of_int tr2.post ^ "_rcc.hes"))
+																						(Filename.concat dir (p ^ "_rcc_" ^ string_of_int tr1.pre ^ string_of_int tr1.post ^ "_" ^ string_of_int tr2.pre ^ string_of_int tr2.post ^ ".hes"))
 																						(generate_rcc_for_pair_v2b prot p (tr1,tr2)))
 										transition_pairs)
 							else ()) 

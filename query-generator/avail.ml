@@ -21,6 +21,9 @@ let rec powerset = function
 let all_participant_subsets (prot: symbolic_protocol) : (participant list) list = 
 	powerset (get_participants prot)
 
+let all_participant_subsets_containing_participant (prot: symbolic_protocol) (q: participant) : (participant list) list = 
+	List.filter (fun ls -> List.mem q ls) (all_participant_subsets prot)
+
 (* The first conjunct constrains the values of s to the state space of the protocol *) 
 let first_conjunct (prot: symbolic_protocol) : string = 
 	"(" ^ 
@@ -118,7 +121,7 @@ let generate_avail_for_participant_pair_and_blocked_set (prot: symbolic_protocol
   fourth_disjunct prot bs p q ^
   ";"
 
+(* Optimizations here: for a participant pair p q, we only need avail predicates that include {q} in the blocked set *)
 let generate_avail_for_participant_pair (prot: symbolic_protocol) (p: participant) (q: participant) : string = 
-	let bs_list = all_participant_subsets prot in 
+	let bs_list = all_participant_subsets_containing_participant prot q in 
 	List.fold_left (fun acc bs -> acc ^ "\n" ^ generate_avail_for_participant_pair_and_blocked_set prot bs p q) "" bs_list
-
