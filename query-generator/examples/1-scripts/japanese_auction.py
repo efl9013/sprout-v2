@@ -56,7 +56,7 @@ class JapaneseAuction(Protocol):
         return Register("price")
 
     def present(self, buyer: int) -> Register:
-        return Register("present", buyer)
+        return Register("p", buyer)
 
     def registers(self) -> list[Register]:
         return [self.price()] + [self.bid(b) for b in range(self.buyers)] + [self.present(b) for b in range(self.buyers)]
@@ -71,6 +71,7 @@ class JapaneseAuction(Protocol):
         return Or(list(self.present(j).eq(TRUE) for j in chain(range(0, i), range(i+1, self.buyers))))
 
     def transitions(self) -> list[Transition]:
+        init = "init"
         seller = "s"
         buyer = [f"b{i}" for i in range(self.buyers)]
         null = "null"
@@ -81,35 +82,35 @@ class JapaneseAuction(Protocol):
         if need_bid_init:
             for i in range(self.buyers):
                 t = Transition(
-                    i, i+1, seller, buyer[i], x, self.bid(i).prime() > 0)
+                    i, i+1, init, buyer[i], x, (x > 0) & self.bid(i).prime().eq(x))
                 transitions.append(t)
         # main loop
         update = self.price().prime().eq(self.price() + 1)
         for i in range(self.buyers):
             s = self.turn(i)
-            tell_price = Transition(
-                s, s+1, seller, buyer[i], self.price(), self.present(i).eq(TRUE) & self.not_alone(i))
-            won = Transition(s, self.end(), seller,
-                             buyer[i], x, x.eq(WIN) & self.alone(i))
+            tell_price = Transition(s, s+1, seller, buyer[i],
+                                    x, x.eq(self.price()) & self.present(i).eq(TRUE) & self.not_alone(i))
+            won = Transition(s, self.end(), seller, buyer[i],
+                             x, x.eq(WIN) & self.present(i).eq(TRUE) & self.alone(i))
             # skip buyers that have left, since we don't have silent transition a dummy message is sent
             if i < self.buyers-1:
                 skip = Transition(s, s+2, seller, null,
-                                  self.price(), self.present(i).eq(FALSE))
+                                  x, x.eq(self.price()) & self.present(i).eq(FALSE))
             else:
                 skip = Transition(s, self.turn(0), seller, null,
-                                  self.price(), self.present(i).eq(FALSE) & update)
+                                  x, x.eq(self.price()) & self.present(i).eq(FALSE) & update)
             # buyer stays or leaves
             s += 1
             if i < self.buyers-1:
-                stay = Transition(
-                    s, s+1, buyer[i], seller, x, x.eq(STAY) & (self.price() <= self.bid(i)))
-                leave = Transition(
-                    s, s+1, buyer[i], seller, x, x.eq(LEAVE) & (self.price() > self.bid(i)))
+                stay = Transition(s, s+1, buyer[i], seller,
+                                  x, x.eq(STAY) & (self.price() <= self.bid(i)))
+                leave = Transition(s, s+1, buyer[i], seller,
+                                   x, x.eq(LEAVE) & (self.price() > self.bid(i)) & (self.present(i).prime().eq(FALSE)))
             else:
-                stay = Transition(s, self.turn(0), buyer[i], seller, x, x.eq(
-                    STAY) & (self.price() <= self.bid(i)) & update)
-                leave = Transition(s, self.turn(0), buyer[i], seller, x, x.eq(
-                    LEAVE) & (self.price() > self.bid(i)) & update)
+                stay = Transition(s, self.turn(0), buyer[i], seller,
+                                  x, x.eq(STAY) & (self.price() <= self.bid(i)) & update)
+                leave = Transition(s, self.turn(0), buyer[i], seller,
+                                   x, x.eq(LEAVE) & (self.price() > self.bid(i)) & (self.present(i).prime().eq(FALSE)) & update)
             transitions.extend([tell_price, won, skip, stay, leave])
         # inform dummy process that it is over
         done = Transition(self.end(), self.end() + 1,
@@ -119,7 +120,8 @@ class JapaneseAuction(Protocol):
 
 
 def japanese(n: Annotated[int, typer.Option(help="the number of buyers")] = 3,
-             bids: Annotated[Optional[list[int]], typer.Option(help="initial bids")] = None,
+             bids: Annotated[Optional[list[int]],
+                             typer.Option(help="initial bids")] = None,
              file: Annotated[Path, typer.Option(help="destination file")] = Path("/dev/stdout")):
     protocol = JapaneseAuction(n, bids)
     protocol.print(file, True)

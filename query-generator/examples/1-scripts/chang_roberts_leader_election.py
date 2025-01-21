@@ -1,8 +1,7 @@
 import typer
 from typing_extensions import Annotated
 from pathlib import Path
-from itertools import chain
-from protocol.expr import Expr, Register, Or, And
+from protocol.expr import Expr, Register, And
 from protocol.transition import Transition
 from protocol.protocol import Protocol
 
@@ -17,9 +16,9 @@ class ChangRobertsLeaderElection(Protocol):
 
 
     The algorithm keeps the following state:
-    - id_i: ...
-    - leader_i: ...
-    - highest_i: ...
+    - i[i]: the process id
+    - h[i]: the highest seen id
+    - l[i]: the leader
     """
 
     def __init__(self, n: int) -> None:
@@ -33,13 +32,13 @@ class ChangRobertsLeaderElection(Protocol):
         return [self.done(self.n)]
 
     def id(self, i) -> Register:
-        return Register("id", i)
+        return Register("i", i)
 
     def leader(self, i) -> Register:
-        return Register("leader", i)
+        return Register("l", i)
 
     def highest(self, i) -> Register:
-        return Register("highest", i)
+        return Register("h", i)
 
     def registers(self) -> list[Register]:
         i = [self.id(i) for i in range(self.n)]
@@ -50,56 +49,69 @@ class ChangRobertsLeaderElection(Protocol):
     def initial_values(self) -> list[int]:
         return [NO_LEADER for _ in self.registers()]
 
-    def all_different(self, i: int) -> Expr:
-        return And(list(self.id(i).prime().neq(self.id(j)) for j in chain(range(i), range(i+1, self.n))))
+    def different(self, x, i: int) -> Expr:
+        return And(list(x.neq(self.id(j)) for j in range(i)))
 
-    def loop(self, i: int) -> int:
+    def trigger(self, i: int) -> int:
         return self.n + i + 1
 
+    def loop(self, i: int) -> int:
+        return self.trigger(self.n) + i
+
     def done(self, i: int) -> int:
-        return 2*self.n + i + 1
+        return self.loop(self.n) + i
 
     def update(self, msg: Register, j: int) -> Expr:
         ij = self.id(j)
         hj = self.highest(j)
         hjp = hj.prime()
-        less1 = hj.eq(NO_LEADER) & (ij < msg) & hjp.eq(msg)
-        greater1 = hj.eq(NO_LEADER) & (ij > msg) & hjp.eq(ij)
-        less2 = hj.neq(NO_LEADER) & (hj < msg) & hjp.eq(msg)
-        greater2 = hj.neq(NO_LEADER) & (hj > msg) & hjp.eq(ij)
-        return less1 | greater1 | less2 | greater2
+        # hj <= ij <= msg
+        # ij <= hj <= msg
+        msg_max = (hj <= msg) & (ij <= msg) & hjp.eq(msg)
+        # hj <= msg <= ij
+        # msg <= hj <= ij
+        ij_max = (hj <= ij) & (ij >= msg) & hjp.eq(ij)
+        # ij <= msg <= hj
+        # msg <= ij <= hj
+        hj_max = (hj >= msg) & (ij <= hj) & hjp.eq(hj)
+        return msg_max | ij_max | hj_max
 
     def transitions(self) -> list[Transition]:
+        init = "init"
+        null = "null"
         p = [f"p{i}" for i in range(self.n)]
         x = Register("x")
         transition = []
         # initialize ids
         for i in range(self.n):
+            it = Transition(i, i+1, init, p[i], x, (x > 0) & self.id(i).prime().eq(x) & self.different(x, i))
+            transition.append(it)
+        # trigger: the init process non-deterministically pick the process starting the election
+        for i in range(self.n):
+            t1 = Transition(self.n, self.trigger(i), init, p[i], x, x.eq(0))
             j = (i+1) % self.n
-            init = Transition(i, i+1, p[i], p[j], x, (self.id(j).prime() >= 0) & self.all_different(j))
-            transition.append(init)
-        # trigger
-        trigger = Transition(self.n, self.loop(0), p[0], p[1], self.id(
-            0), self.highest(0).prime().eq(self.id(0)) & self.update(self.id(0), 1))
-        transition.append(trigger)
+            id = self.id(i)
+            t2 = Transition(self.trigger(i), self.loop(j), p[i], p[j],
+                            x, x.eq(id) & self.highest(i).prime().eq(id) & self.update(id, j))
+            transition.extend([t1,t2])
         # main loop
         for i in range(self.n):
             j = (i+1) % self.n
             hi = self.highest(i)
-            hj = self.highest(j)
             li = self.loop(i)
-            loop = Transition(li, self.loop(j), p[i], p[j], hi, self.update(hi, j))
-            done = Transition(li, self.done(j), p[i], p[j], hi, hj.eq(hi) & self.leader(j).prime().eq(hj))
+            loop = Transition(li, self.loop(j), p[i], p[j], x, x.eq(hi) & self.id(i).neq(hi) & self.update(hi, j))
+            done = Transition(li, self.done(j), p[i], p[j], x, x.eq(0 - hi) & self.id(i).eq(hi) & self.leader(i).prime().eq(hi))
             transition.extend([loop, done])
         # done
         exit = self.final_states()[0]
         for i in range(self.n):
             j = (i+1) % self.n
-            lj = self.leader(j)
-            update1 = x.eq(NO_LEADER) & lj.eq(NO_LEADER) & lj.prime().eq(self.highest(j))
-            done1 = Transition(self.done(i), self.done(j), p[i], p[j], x, update1)
-            update2 = x.eq(NO_LEADER) & lj.neq(NO_LEADER)
-            done2 = Transition(self.done(i), exit, p[i], p[j], x, update2)
+            hi = self.highest(i)
+            li = self.leader(i)
+            done1 = Transition(self.done(i), self.done(j), p[i], p[j],
+                               x, x.eq(0 - hi) & li.neq(hi) & li.prime().eq(hi))
+            done2 = Transition(self.done(i), exit, p[i], null,
+                               x, x.eq(0 - hi) & li.eq(hi))
             transition.extend([done1, done2])
         return transition
 

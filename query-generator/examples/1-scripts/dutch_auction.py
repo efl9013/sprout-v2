@@ -2,7 +2,7 @@ import typer
 from typing import Optional
 from typing_extensions import Annotated
 from pathlib import Path
-from protocol.expr import Register, Literal
+from protocol.expr import Register
 from protocol.transition import Transition
 from protocol.protocol import Protocol
 
@@ -56,6 +56,7 @@ class DutchAuction(Protocol):
             return [self.start_price] + self.get_init_bids()
 
     def transitions(self) -> list[Transition]:
+        init = "i"
         seller = "s"
         buyer = [f"b{i}" for i in range(self.buyers)]
         need_bid_init = self.bids is None
@@ -72,20 +73,24 @@ class DutchAuction(Protocol):
         if need_bid_init:
             for i in range(self.buyers):
                 t = Transition(
-                    i, i+1, seller, buyer[i], x, self.bid(i).prime() > 0)
+                    i, i+1, init, buyer[i], x, (x > 0) & self.bid(i).prime().eq(x))
                 transitions.append(t)
         if need_price_init:
             t = Transition(turn(0)-1, turn(0),
-                           buyer[0], seller, x, self.price().prime() > 0)
+                           init, seller, x, (x > 0) & self.price().prime().eq(x))
             transitions.append(t)
         # main loop
         for i in range(self.buyers):
             s = turn(i)
             price = self.price()
             bid_i = self.bid(i)
-            send_price = Transition(
-                s, s+1, seller, buyer[i], price, Literal(True))
-            transitions.append(send_price)
+            if i == 0:
+                send_price = Transition(s, s+1, seller, buyer[i], x, x.eq(price) & (price > 0))
+                done = Transition(s, end+1, seller, buyer[i], x, x.eq(EXIT) & (price <= 0))
+                transitions.extend([send_price, done])
+            else:
+                send_price = Transition(s, s+1, seller, buyer[i], x, x.eq(price))
+                transitions.append(send_price)
             buy = Transition(
                 s+1, end, buyer[i], seller, x, x.eq(BUY) & (price <= bid_i))
             transitions.append(buy)
@@ -95,10 +100,8 @@ class DutchAuction(Protocol):
                 transitions.append(nope)
             else:
                 next_round = Transition(
-                    s+1, turn(0), buyer[i], seller, x, x.eq(PASS) & (price > 1) & (price.prime().eq(price - 1)))
-                done = Transition(
-                    s+1, end, buyer[i], seller, x, x.eq(PASS) & (price <= 1) & (price.prime().eq(0)))
-                transitions.extend([next_round, done])
+                    s+1, turn(0), buyer[i], seller, x, x.eq(PASS) & (price.prime().eq(price - 1)))
+                transitions.append(next_round)
         # tell everbody the auction is over
         for i in range(self.buyers):
             over = Transition(end+i, end+i+1, seller, buyer[i], x, x.eq(EXIT))
@@ -108,7 +111,8 @@ class DutchAuction(Protocol):
 
 def dutch(start_price: Annotated[Optional[int], typer.Option(help="The auction's starting price")] = None,
           n: Annotated[int, typer.Option(help="the number of buyers")] = 3,
-          bids: Annotated[Optional[list[int]], typer.Option(help="initial bids")] = None,
+          bids: Annotated[Optional[list[int]],
+                          typer.Option(help="initial bids")] = None,
           file: Annotated[Path, typer.Option(help="destination file")] = Path("/dev/stdout")):
     protocol = DutchAuction(start_price, n, bids)
     protocol.print(file, True)

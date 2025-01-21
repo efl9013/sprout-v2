@@ -168,21 +168,21 @@ class Register(Expr):
         else:
             match self.index:
                 case 0:
-                    return self.name + "zero"
+                    return self.name + "a"
                 case 1:
-                    return self.name + "one"
+                    return self.name + "b"
                 case 2:
-                    return self.name + "two"
+                    return self.name + "c"
                 case 3:
-                    return self.name + "three"
+                    return self.name + "d"
                 case 4:
-                    return self.name + "four"
+                    return self.name + "e"
                 case 5:
-                    return self.name + "five"
+                    return self.name + "f"
                 case 6:
-                    return self.name + "six"
+                    return self.name + "g"
                 case 7:
-                    return self.name + "seven"
+                    return self.name + "h"
                 case _:
                     raise NotImplementedError()
 

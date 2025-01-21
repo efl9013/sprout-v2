@@ -1,9 +1,7 @@
 import typer
 from typing_extensions import Annotated
 from pathlib import Path
-from itertools import chain
-from protocol import transition
-from protocol.expr import Expr, Register, Or, And
+from protocol.expr import Register
 from protocol.transition import Transition
 from protocol.protocol import Protocol
 
@@ -35,14 +33,13 @@ class DijkstraSelfStabilizing(Protocol):
         return [0 for _ in range(self.n)]
 
     def transitions(self) -> list[Transition]:
+        s = "s"
         p = [f"p{i}" for i in range(self.n)]
         x = Register("x")
         transition = []
         # Intialize the registers
         for i in range(self.n):
-            j = (i + 1) % self.n
-            sp = self.s(j).prime()
-            init = Transition(i, i+1, p[i], p[j], x, (sp >= 0) & (sp < self.k))
+            init = Transition(i, i+1, s, p[i], x, (x >= 0) & (x < self.k) & self.s(i).prime().eq(x))
             transition.append(init)
         # main loop
         for i in range(self.n - 1):
@@ -50,17 +47,17 @@ class DijkstraSelfStabilizing(Protocol):
             si = self.s(i)
             sjp = self.s(j).prime()
             loop = Transition(self.n + i, self.n + j,
-                              p[i], p[j], si, sjp.eq(si))
+                              p[i], p[j], x, x.eq(si) & sjp.eq(x))
             transition.append(loop)
         i = self.n - 1
         j = 0
         si = self.s(i)
         sj = self.s(j)
         sjp = sj.prime()
-        update1 = si.eq(sj) & sjp.eq((sjp + 1) % self.k)
-        update2 = si.neq(sj) & sjp.eq(sj)
+        update1 = x.eq(sj) & sjp.eq((sj + 1) % self.k)
+        update2 = x.neq(sj) & sjp.eq(sj)
         loop_back = Transition(self.n + i, self.n + j,
-                               p[i], p[j], si, update1 | update2)
+                               p[i], p[j], x, x.eq(si) & (update1 | update2))
         transition.append(loop_back)
         return transition
 
