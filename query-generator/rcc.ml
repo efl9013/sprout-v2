@@ -251,3 +251,21 @@ let generate_rcc_queries_v2b (prot: symbolic_protocol) (dir: string) =
 							else ()) 
   				participants 
 
+let generate_rcc_queries_for_participant_v2b (prot: symbolic_protocol) (p: participant) (dir: string) = 
+  let transition_pairs = filter_simreach_transitions_rcc_participant prot (all_transition_pairs prot.transitions) p in 
+	if transition_pairs <> [] 
+	then (List.iter (fun (tr1, tr2) -> write_to_file 
+																(Filename.concat dir (p ^ "_rcc_" ^ string_of_int tr1.pre ^ string_of_int tr1.post ^ "_" ^ string_of_int tr2.pre ^ string_of_int tr2.post ^ ".hes"))
+																(generate_rcc_for_pair_v2b prot p (tr1,tr2)))
+				transition_pairs)
+	else ()
+
+let generate_rcc_queries_for_four_states_v2b (prot: symbolic_protocol) (p: participant) (s1: state) (s2: state) (s1': state) (s2': state) (dir: string) = 
+  let find_pairs = List.filter (fun (tr1,tr2) -> tr1.pre = s1 && tr1.post = s2 && tr2.pre = s1' && tr2.post = s2') (all_transition_pairs prot.transitions) in 
+  let transition_pairs = filter_simreach_transitions_rcc_participant prot find_pairs p in 
+	if transition_pairs <> [] 
+	then (List.iter (fun (tr1, tr2) -> write_to_file 
+																(Filename.concat dir (p ^ "_rcc_" ^ string_of_int tr1.pre ^ string_of_int tr1.post ^ "_" ^ string_of_int tr2.pre ^ string_of_int tr2.post ^ ".hes"))
+																(generate_rcc_for_pair_v2b prot p (tr1,tr2)))
+				transition_pairs)
+	else ()

@@ -125,6 +125,12 @@ let generate_nmc_for_participant_vb (prot: symbolic_protocol) (p: participant) (
 	"\n" ^ 
 	generate_prodreach_vb prot p
 
+let generate_nmc_for_pair_v2b (prot: symbolic_protocol) (p: participant) (pair : symbolic_transition * symbolic_transition) = 
+	generate_nmc_first_line_for_participant prot p ^ 
+	generate_nmc_body_from_pair_for_participant_vb prot pair p ^ 
+	"\ns.t.\n" ^ 
+	"\n" ^ 
+	generate_prodreach_vb prot p 
 
 let generate_nmc_queries_for_participant (prot: symbolic_protocol) (p: participant) (dir: string) = 
 	let transition_pairs = filter_transitions_nmc_participant (all_transition_pairs prot.transitions) p in 
@@ -150,3 +156,15 @@ let generate_nmc_queries_vb (prot: symbolic_protocol) (dir: string) =
 	let participants = intersection (get_senders prot) (get_receivers prot) in  
 	List.iter (fun p -> generate_nmc_queries_for_participant_vb prot p dir) participants 
 
+let generate_nmc_queries_for_participant_v2b (prot: symbolic_protocol) (p: participant) (dir: string) = 
+	(* let transition_pairs = filter_transitions_nmc_participant (all_transition_pairs prot.transitions) p in  *)
+	let transition_pairs = filter_simreach_transitions_nmc_participant prot (all_transition_pairs prot.transitions) p in 
+	if transition_pairs <> [] 
+	then (List.iter (fun (tr1,tr2) -> write_to_file (Filename.concat dir (p ^ "_nmc_" ^ string_of_int tr1.pre ^ string_of_int tr2.pre ^ ".hes"))
+																	(generate_nmc_for_pair_v2b prot p (tr1,tr2)))
+			transition_pairs)
+	else ()
+
+let generate_nmc_queries_v2b (prot: symbolic_protocol) (dir: string) = 
+	let participants = intersection (get_senders prot) (get_receivers prot) in  
+	List.iter (fun p -> generate_nmc_queries_for_participant_v2b prot p dir) participants 

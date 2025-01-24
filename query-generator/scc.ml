@@ -443,6 +443,19 @@ let generate_scc_queries_v3bb (prot: symbolic_protocol) (dir: string) =
 											(List.filter (fun tr -> tr.sender = p) prot.transitions))
             participants 
 
+let generate_scc_queries_for_participant_v3bb (prot: symbolic_protocol) (p: participant) (dir: string) = 
+	(* For each participant that is a sender in the protocol *)
+	List.iter (fun tr -> 
+						(* For each transition that it is sender in *)
+						List.iter (fun s2 -> 
+											(* For every state simultaneously reachable with the pre-state *)
+											(* Generate a muCLP file for the transition and state *)
+											write_to_file 
+	             (Filename.concat dir (p ^ "_scc_" ^ string_of_int tr.pre ^ string_of_int tr.post ^ "_" ^ string_of_int s2 ^ ".hes"))
+	             (generate_scc_v3bb prot tr s2 p))
+						(simultaneously_reachable_as_for prot tr.pre p))
+						(List.filter (fun tr -> tr.sender = p) prot.transitions)
+
 (* These versions of the above functions are for generating queries with SCC factored into one query per (transition, state) *)
 (* let first_conjunct_from_transition_and_state (prot: symbolic_protocol) (tr: symbolic_transition) (p: participant) = 
 	"(s1 = " ^ string_of_int tr.pre ^ " /\\ s'1 = " ^ string_of_int tr.post ^ ")\n" 

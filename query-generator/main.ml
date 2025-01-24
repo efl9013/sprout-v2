@@ -372,13 +372,18 @@ let generate_gclts_queries (prot: symbolic_protocol) (dirname: string) =
   generate_determinism_queries prot dirname; 
   generate_deadlock_free_queries prot dirname 
 
+let generate_implementability_queries_for_participant (prot: symbolic_protocol) (p: participant) (dirname: string) = 
+  (* generate_scc_queries_for_participant_v3bb prot p dirname;  *)
+  generate_rcc_queries_for_participant_v2b prot p dirname
+  (* generate_nmc_queries_for_participant_v2b prot p dirname *)
+
 let generate_implementability_queries (prot: symbolic_protocol) (dirname: string) (version: string) = 
   (* Currently the most optimized version *)
   match version with 
   | "v3bb" -> 
   generate_scc_queries_v3bb prot dirname;
   generate_rcc_queries_v2b prot dirname; 
-  generate_nmc_queries_vb prot dirname;
+  generate_nmc_queries_v2b prot dirname;
   | "v3b" -> 
   generate_scc_queries_v3b prot dirname;
   generate_rcc_queries_vb prot dirname; 
@@ -456,8 +461,11 @@ let () =
       (* to see visualization, run 
         dot -Tsvg visualization.dot > visualization.svg 
         in the respective folder and open svg-file *)
-      generate_gclts_queries protocol dirname; 
+      (* generate_gclts_queries protocol dirname;  *)
+      (* generate_rcc_queries_for_four_states_v2b protocol "q" 24 25 18 19 dirname;  *)
+      (* generate_implementability_queries_for_participant protocol "X1" dirname;  *)
       generate_implementability_queries protocol dirname version; 
+
       (* let _ = check_gclts protocol dirname timeout mode in  *)
       (* Not sure why this is currently throwing a No such file or directory error *)
       (* So generating everything together for now *)
