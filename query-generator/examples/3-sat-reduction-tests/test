@@ -1,0 +1,43 @@
+Initial state: (0)
+Initial register assignments:
+
+(0) C->Q:top{top=1} (1)
+(1) P->Q:m{m=2} (2)
+
+(2) C->X1:clause{clause=3} (3)
+(3) C->P:x1{x1=4} (4)
+(4) X1->P:block{block=5} (2)
+
+(2) C->X1:next2{next2=6} (5)
+(5) C->P:next2{next2=6} (6)
+
+(6) C->NX1:clause{clause=3} (7)
+(7) C->P:nx1{nx1=7} (8)
+(8) NX1->P:block{block=5} (2)
+
+(6) C->NX1:next1{next1=8} (9)
+(9) C->P:next1{next1=8} (10)
+(10) C->Q:last{last=9} (11)
+(11) C->P:last{last=9} (12)
+(12) C->X1:last{last=9} (13)
+(13) C->NX1:last{last=9} (14)
+(14) Q->P:block{block=5} (15)
+(15) Q->X1:block{block=5} (16)
+(16) Q->NX1:block{block=5} (17)
+
+(17) C->P:l{l=10} (18)
+(18) C->Q:m{m=2} (19)
+(19) C->X1:send{send=11} (20)
+(20) C->NX1:nosend{nosend=12} (21)
+(21) C->Q:x1{x1=4} (22)
+(22) Q->X1:block{block=5} (6)
+
+(19) C->X1:nosend{nosend=12} (23)
+(23) C->NX1:send{send=11} (24)
+(24) C->Q:nx1{nx1=7} (25)
+(25) Q->NX1:block{block=5} (6)
+
+(17) C->P:r{r=13} (26)
+(26) P->Q:m{m=2} (27)
+
+Final states: (27)
