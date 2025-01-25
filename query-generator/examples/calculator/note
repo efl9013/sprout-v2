@@ -1,0 +1,3 @@
+- calculator-yes: original 
+- calculator-merged: takes bit that indicates sum or product and has merged subsequent states
+- calculator-no: let the server decide to stop so mixed choice

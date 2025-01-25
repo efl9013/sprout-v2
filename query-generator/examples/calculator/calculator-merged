@@ -1,8 +1,8 @@
 Initial state: (0)
 Initial register assignments: ra=0, rx=0, ry=0 
 (0) c->s:a{(a=1\/a=2)/\ra'=ra/\rx'=rx/\ry'=ry} (1)
-(1) s->c:x{rx'=x/\ra'=ra/\ry'=ry} (2)
-(2) s->c:y{rx'=rx/\ra'=ra/\ry'=y} (3)
+(1) c->s:x{rx'=x/\ra'=ra/\ry'=ry} (2)
+(2) c->s:y{rx'=rx/\ra'=ra/\ry'=y} (3)
 (3) s->c:r{((ra=1/\r=rx+ry)\/(ra=2/\r=rx*ry))/\ry'=0/\rx'=0} (0)
 (0) c->s:a{a=3/\rx'=rx/\ry'=ry} (4)
 (4) s->c:a{a=3/\rx'=rx/\ry'=ry} (5)
