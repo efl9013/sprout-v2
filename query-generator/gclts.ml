@@ -45,7 +45,7 @@ let generate_determinism_queries (prot: symbolic_protocol) (dir: string) =
 						List.iter (fun (tr1,tr2) -> 
 													(* For every pair of transitions with different post-states originating from it *)
 													write_to_file
-			                         (Filename.concat dir (string_of_int s ^ "_det_" ^ string_of_int tr1.post ^ "_" ^ string_of_int tr2.post ^ "_gclts.hes"))
+			                         (Filename.concat dir (string_of_int s ^ "_det_" ^ string_of_int tr1.post ^ "_" ^ string_of_int tr2.post ^ ".hes"))
 			                         (generate_determinism_for_transition_pair prot (tr1,tr2)))
 								(filter_transition_pairs_for_state_determinism (all_transition_pairs prot.transitions) s))
 			prot.states 
@@ -83,7 +83,7 @@ let generate_deadlock_free_for_state (prot: symbolic_protocol) (s: state) : stri
 
 let generate_deadlock_free_queries (prot: symbolic_protocol) (dirname: string) = 
 	List.iter (fun s -> write_to_file
-			     		(Filename.concat dirname ("df_" ^ string_of_int s ^ "_gclts.hes"))
+			     		(Filename.concat dirname ("df_" ^ string_of_int s ^ ".hes"))
 			     		(generate_deadlock_free_for_state prot s))
 			  (filter_states_for_deadlock_freedom prot) 
 

@@ -3,8 +3,10 @@ _build/
 .vscode
 .DS_Store
 *-generated/
+*-generated-gclts/
 *.opam
 venv/
 *.ocamlformat
 __pycache__/
 _opam/
+*.png

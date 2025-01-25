@@ -104,9 +104,7 @@ let process_directory dirname timeout mode : (string * string * float) list =
 
 let process_directory_gclts dirname timeout mode : (string * string * float) list =
   let original_dir = Sys.getcwd () in
-  Printf.printf "Current working directory: %s\n" original_dir;
   Unix.chdir Config.coar_location; 
-  Printf.printf "Changing working directory: %s\n" (Sys.getcwd ());
   let files = Sys.readdir dirname in
   let results = Array.fold_left (fun acc file -> if check_suffix file "gclts.hes" 
                                                  then let (outcome, execution_time) = process_hes_file file dirname timeout mode in
@@ -115,7 +113,6 @@ let process_directory_gclts dirname timeout mode : (string * string * float) lis
                                 [] 
                                 files in 
   Unix.chdir Config.coar_location; 
-  Printf.printf "Current working directory: %s\n" (Sys.getcwd ());
   results
 
 let print_execution_time results =
@@ -182,11 +179,11 @@ let check_gclts (prot: symbolic_protocol) (dirname: string) (timeout: int) (mode
   else if (not (sink_final prot))
        then (Printf.printf "Protocol is not sink-final\n"; false) 
        else (let results = process_directory_gclts dirname timeout mode in 
-            List.iter (fun (file, outcome, time) -> Printf.printf "%s: %s\n" file outcome) results;
+            List.iter (fun (file, outcome, time) -> if outcome = "valid" then Printf.printf "%s violates GCLTS conditions\n" file) results;
             if List.for_all (fun (_, result, _) -> result = "invalid") results 
             then (Printf.printf "GCLTS eligible\n"; true)
             else if List.exists (fun (_, result, _) -> result = "valid") results 
-                 then (Printf.printf "GCLTS ineligible\n"; false)
+                 then (Printf.printf "Protocol is GCLTS ineligible\n"; false)
                  else (Printf.printf "Inconclusive\n"; false))
 
 let check_implementability (prot: symbolic_protocol) (dirname: string) (timeout: int) (mode: string) : unit = 
