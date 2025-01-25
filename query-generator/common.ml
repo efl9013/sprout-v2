@@ -34,8 +34,17 @@ let write_to_file filename contents =
     raise e
 
 let create_newdir path perm =
-  if not (Sys.file_exists path) then Sys.mkdir path perm
-  
+  try
+    if not (Sys.file_exists path) then
+      Sys.mkdir path perm
+    else
+      Printf.printf "Directory %s already exists.\n" path;
+    true  
+  with
+  | Sys_error msg ->
+      Printf.eprintf "Error creating directory %s: %s\n" path msg;
+      false 
+
 (* Protocol functions *)
 module StringSet = Set.Make(String)
 

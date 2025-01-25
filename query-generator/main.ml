@@ -16,251 +16,6 @@ open Unix
 open Config
 open Filename 
 
-let send_validity_yes : symbolic_protocol = {
-  states = [0;1;2;3;4];
-  registers = [];
-  transitions = [
-    {
-      pre = 0;
-      sender = "p";
-      receiver = "q";
-      comm_var = "v";
-      predicate = Eq (Var "v", Const 1); 
-      post = 1
-    };
-    {
-      pre = 0;
-      sender = "p";
-      receiver = "q";
-      comm_var = "v";
-      predicate = Eq (Var "v", Const 2); 
-      post = 3
-    };
-    {
-      pre = 1;
-      sender = "r";
-      receiver = "s";
-      comm_var = "v";
-      predicate = Eq (Var "v", Const 1); 
-      post = 2
-    };
-    {
-      pre = 3;
-      sender = "r";
-      receiver = "s";
-      comm_var = "v";
-      predicate = Eq (Var "v", Const 1); 
-      post = 4
-    }
-  ];
-  initial_state = 0;
-  initial_register_assignment = [];
-  final_states = []
-}
-
-let send_validity_no : symbolic_protocol = {
-  states = [0;1;2;3;4];
-  registers = [];
-  transitions = [
-    {
-      pre = 0;
-      sender = "p";
-      receiver = "q";
-      comm_var = "v";
-      predicate = Eq (Var "v", Const 1); 
-      post = 1
-    };
-    {
-      pre = 0;
-      sender = "p";
-      receiver = "q";
-      comm_var = "v";
-      predicate = Eq (Var "v", Const 2); 
-      post = 3
-    };
-    {
-      pre = 1;
-      sender = "r";
-      receiver = "s";
-      comm_var = "v";
-      predicate = Eq (Var "v", Const 1); 
-      post = 2
-    };
-    {
-      pre = 3;
-      sender = "r";
-      receiver = "s";
-      comm_var = "v";
-      predicate = Eq (Var "v", Const 2); 
-      post = 4
-    }
-  ];
-  initial_state = 0;
-  initial_register_assignment = [];
-  final_states = []
-}
-
-(* Realized that this hardcoded example actually does not handle primed variables in the right way! *)
-(* let figure11 : symbolic_protocol = {
-  states = [0; 1; 2; 3];
-  registers = ["rx"; "ry"];
-  transitions = [
-    { 
-      pre = 0;
-      sender = "p";
-      receiver = "q";
-      comm_var = "v";
-      predicate = And(Eq(Var "rx'", Var "v"), Eq(Var "ry'", Var "ry"));
-      post = 1;
-    };
-    {
-      pre = 1;
-      sender = "q";
-      receiver = "r";
-      comm_var = "v";
-      predicate = And(And(Eq(Var "ry'", Var "v"), Gt(Var "v", Var "rx")), Eq(Var "rx'", Var "rx"));
-      post = 2;
-    };
-    {
-      pre = 2;
-      sender = "r";
-      receiver = "p";
-      comm_var = "v";
-      predicate = And(And(Gt(Var "v", Var "rx"), Eq(Var "rx'", Var "rx")), Eq(Var "ry'", Var "ry"));
-      post = 3;
-    };
-  ];
-  initial_state = 0;
-  initial_register_assignment = [("rx", 0); ("ry", 0)];
-  final_states = [3];
-} *)
-
-let figure11 : symbolic_protocol = {
-  states = [0; 1; 2; 3];
-  registers = ["rx"; "ry"];
-  transitions = [
-    { 
-      pre = 0;
-      sender = "p";
-      receiver = "q";
-      comm_var = "v";
-      predicate = And(Eq(VarPrime "rx", Var "v"), Eq(VarPrime "ry", Var "ry"));
-      post = 1;
-    };
-    {
-      pre = 1;
-      sender = "q";
-      receiver = "r";
-      comm_var = "v";
-      predicate = And(And(Eq(VarPrime "ry", Var "v"), Gt(Var "v", Var "rx")), Eq(VarPrime "rx", Var "rx"));
-      post = 2;
-    };
-    {
-      pre = 2;
-      sender = "r";
-      receiver = "p";
-      comm_var = "v";
-      predicate = And(And(Gt(Var "v", Var "rx"), Eq(VarPrime "rx", Var "rx")), Eq(VarPrime "ry", Var "ry"));
-      post = 3;
-    };
-  ];
-  initial_state = 0;
-  initial_register_assignment = [("rx", 0); ("ry", 0)];
-  final_states = [];
-}
-
-let figure11_repaired : symbolic_protocol = {
-  states = [0; 1; 2; 3];
-  registers = ["rx"; "ry"];
-  transitions = [
-    { 
-      pre = 0;
-      sender = "p";
-      receiver = "q";
-      comm_var = "v";
-      predicate = And(Eq(Var "rx'", Var "v"), Eq(Var "ry'", Var "ry"));
-      post = 1;
-    };
-    {
-      pre = 1;
-      sender = "q";
-      receiver = "r";
-      comm_var = "v";
-      predicate = And(And(Eq(Var "ry'", Var "v"), Gt(Var "v", Var "rx")), Eq(Var "rx'", Var "rx"));
-      post = 2;
-    };
-    {
-      pre = 2;
-      sender = "r";
-      receiver = "p";
-      comm_var = "v";
-      predicate = And(And(Gt(Var "v", Var "ry"), Eq(Var "rx'", Var "rx")), Eq(Var "ry'", Var "ry"));
-      post = 3;
-    };
-  ];
-  initial_state = 0;
-  initial_register_assignment = [("rx", 0); ("ry", 0)];
-  final_states = [3];
-}
-
-let receive_validity_no : symbolic_protocol = {
-  states = [0; 1; 2; 3; 4; 5; 6];
-  registers = [];
-  transitions = [
-    {
-      pre = 0;
-      sender = "p";
-      receiver = "q";
-      comm_var = "v";
-      predicate = Eq(Var "v", Const 1);
-      post = 1;
-    };
-    {
-      pre = 1;
-      sender = "q";
-      receiver = "r";
-      comm_var = "v";
-      predicate = True;
-      post = 2;
-    };
-    {
-      pre = 2;
-      sender = "p";
-      receiver = "r";
-      comm_var = "v";
-      predicate = True;
-      post = 3;
-    };
-    {
-      pre = 0;
-      sender = "p";
-      receiver = "q";
-      comm_var = "v";
-      predicate = Eq(Var "v", Const 2);
-      post = 4;
-    };
-    {
-      pre = 4;
-      sender = "p";
-      receiver = "r";
-      comm_var = "v";
-      predicate = True;
-      post = 5;
-    };
-    {
-      pre = 5;
-      sender = "q";
-      receiver = "r";
-      comm_var = "v";
-      predicate = True;
-      post = 6;
-    };
-  ];
-  initial_state = 0;
-  initial_register_assignment = [];
-  final_states = [];
-}
-
 let parse_file filename =
   let channel = open_in filename in
   let lexbuf = Lexing.from_channel channel in
@@ -303,14 +58,13 @@ let is_substring sub str =
   in
   check 0
 
-let process_hes_file filename dirname timeout mode =
-  Unix.chdir Config.coar_location; 
+let process_hes_file filename dirname timeout mode : string * float =
   (* Adding "> /dev/null 2>&1" to the end of this command breaks everything! *)
   (* Currently there is a bug in MuVal for the parallel_exc version of the tool, 
     which is sensitive to equation ordering for least fixpoints *)
   (* So we should use the parallel version until it is fixed *) 
   (* Update: found a bug in the parallel version as well *)
-  let command = Printf.sprintf "timeout %i ./_build/default/main.exe -c ./config/solver/muval_%s_tbq_ar.json -p muclp %s/%s/%s" timeout mode Config.dir_location dirname filename in
+  let command = Printf.sprintf "timeout %i ./_build/default/main.exe -c ./config/solver/muval_%s_tbq_ar.json -p muclp %s/%s" timeout mode dirname filename in
   let start_time = Unix.gettimeofday () in
   Printf.printf "Checking %s \n" filename;
   flush Stdlib.stdout;
@@ -333,31 +87,39 @@ let process_hes_file filename dirname timeout mode =
       else if is_substring "valid" last_line 
            then ("valid", execution_time)
          else ("unexpected", execution_time)
-  | _ -> ("unexpected", execution_time) (* Handle unexpected exit statuses gracefully *)
+  | _ -> ("unexpected", execution_time) 
   
 let process_directory dirname timeout mode : (string * string * float) list =
+  let original_dir = Sys.getcwd () in
+  Unix.chdir Config.coar_location; 
   let files = Sys.readdir dirname in
-  Array.fold_left (fun acc file ->
-    if check_suffix file ".hes" then
-      let (outcome, execution_time) = process_hes_file file dirname timeout mode in
-      (file, outcome, execution_time) :: acc
-    else acc
-  ) [] files
+  let results = Array.fold_left (fun acc file -> if check_suffix file ".hes" 
+                                                 then let (outcome, execution_time) = process_hes_file file dirname timeout mode in
+                                                      (file, outcome, execution_time) :: acc
+                                                 else acc) 
+                                [] 
+                                files in 
+  Unix.chdir original_dir; 
+  results
 
 let process_directory_gclts dirname timeout mode : (string * string * float) list =
+  let original_dir = Sys.getcwd () in
+  Printf.printf "Current working directory: %s\n" original_dir;
+  Unix.chdir Config.coar_location; 
+  Printf.printf "Changing working directory: %s\n" (Sys.getcwd ());
   let files = Sys.readdir dirname in
-  Array.fold_left (fun acc file ->
-    if check_suffix file "gclts.hes" then
-      let (outcome, execution_time) = process_hes_file file dirname timeout mode in
-      (file, outcome, execution_time) :: acc
-    else acc
-  ) [] files
+  let results = Array.fold_left (fun acc file -> if check_suffix file "gclts.hes" 
+                                                 then let (outcome, execution_time) = process_hes_file file dirname timeout mode in
+                                                      (file, outcome, execution_time) :: acc
+                                                 else acc) 
+                                [] 
+                                files in 
+  Unix.chdir Config.coar_location; 
+  Printf.printf "Current working directory: %s\n" (Sys.getcwd ());
+  results
 
-let print_total_execution_time results = 
+let print_execution_time results =
   let sum = List.fold_left (fun acc (file, outcome, execution_time) -> acc +. execution_time) 0.0 results in 
-  Printf.printf "\nTotal time:%f\n" sum
-
-let print_execution_time_table results =
   Printf.printf "\nResults:\n";
   Printf.printf "| %-30s | %-20s | %-10s |\n" "Filename" "Execution Time (s)" "Result";
   Printf.printf "|--------------------------------|----------------------|------------|\n";
@@ -366,7 +128,8 @@ let print_execution_time_table results =
       file 
       execution_time 
       outcome
-  ) (List.rev results)
+  ) (List.rev results);
+  Printf.printf "\nTotal time:%f\n" sum
 
 let generate_gclts_queries (prot: symbolic_protocol) (dirname: string) = 
   generate_determinism_queries prot dirname; 
@@ -436,8 +199,7 @@ let check_implementability (prot: symbolic_protocol) (dirname: string) (timeout:
   else if List.exists (fun (_, result, _) -> result = "valid") results 
        then Printf.printf "Non-implementable\n" 
        else Printf.printf "Inconclusive\n";
-  print_execution_time_table results;
-  print_total_execution_time results 
+  print_execution_time results 
   (* Note to self: no semi-colon after final statement! *)
 
 let () =
@@ -454,22 +216,21 @@ let () =
   else 
     try
       let protocol = parse_file filename in
-      let dirname = filename ^ "-generated" in 
+      let current_dir = Sys.getcwd () in 
+      let dirname = Filename.concat current_dir (filename ^ "-generated") in 
+      let gclts_dirname = Filename.concat current_dir (filename ^ "-generated-gclts") in 
       let perm = 0o777 in 
-      create_newdir dirname perm;  
-      store_visualization protocol dirname;
-      (* to see visualization, run 
-        dot -Tsvg visualization.dot > visualization.svg 
-        in the respective folder and open svg-file *)
-      (* generate_gclts_queries protocol dirname;  *)
-      (* generate_rcc_queries_for_four_states_v2b protocol "q" 24 25 18 19 dirname;  *)
-      (* generate_implementability_queries_for_participant protocol "X1" dirname;  *)
-      generate_implementability_queries protocol dirname version; 
-
-      (* let _ = check_gclts protocol dirname timeout mode in  *)
-      (* Not sure why this is currently throwing a No such file or directory error *)
-      (* So generating everything together for now *)
-      check_implementability protocol dirname timeout mode
+      if create_newdir dirname perm && create_newdir gclts_dirname perm 
+      then (store_visualization protocol dirname;
+            (* to see visualization, run 
+              dot -Tsvg visualization.dot > visualization.svg 
+              in the respective folder and open svg-file *)
+            generate_gclts_queries protocol gclts_dirname;
+            if check_gclts protocol gclts_dirname timeout mode
+            then (generate_implementability_queries protocol dirname version; 
+                  check_implementability protocol dirname timeout mode;)
+          else ();)
+      else ();
     with
     | Sys_error s | Failure s | Invalid_argument s ->
       print_errors [Internal, Loc.dummy, s]
