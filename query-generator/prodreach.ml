@@ -16,6 +16,8 @@ open Common
 (* This version of prodreach reuses the exact definition in the paper, 
   where the arguments are all primed *)
 
+(* Also because prodreach is a series of disjuncts, we can fold the case analysis on state for va into the relevant disjuncts *)
+
 (* Important naming conventions: first prime, then 1/2 *)
 let first_disjunct_states (prot: symbolic_protocol) : string = 
   let s0 = prot.initial_state in 

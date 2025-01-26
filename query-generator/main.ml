@@ -3,6 +3,7 @@ open Ast
 open Common 
 open Prodreach
 open Unreach
+open Reach
 open Avail 
 open Gclts
 open Scc
@@ -102,19 +103,6 @@ let process_directory dirname timeout mode : (string * string * float) list =
   Unix.chdir original_dir; 
   results
 
-let process_directory_gclts dirname timeout mode : (string * string * float) list =
-  let original_dir = Sys.getcwd () in
-  Unix.chdir Config.coar_location; 
-  let files = Sys.readdir dirname in
-  let results = Array.fold_left (fun acc file -> if check_suffix file "gclts.hes" 
-                                                 then let (outcome, execution_time) = process_hes_file file dirname timeout mode in
-                                                      (file, outcome, execution_time) :: acc
-                                                 else acc) 
-                                [] 
-                                files in 
-  Unix.chdir Config.coar_location; 
-  results
-
 let print_execution_time results =
   let sum = List.fold_left (fun acc (file, outcome, execution_time) -> acc +. execution_time) 0.0 results in 
   Printf.printf "\nResults:\n";
@@ -129,13 +117,13 @@ let print_execution_time results =
   Printf.printf "\nTotal time:%f\n" sum
 
 let generate_gclts_queries (prot: symbolic_protocol) (dirname: string) = 
-  generate_determinism_queries prot dirname; 
+  generate_determinism_queries_vb prot dirname; 
   generate_deadlock_free_queries prot dirname 
 
 let generate_implementability_queries_for_participant (prot: symbolic_protocol) (p: participant) (dirname: string) = 
-  (* generate_scc_queries_for_participant_v3bb prot p dirname;  *)
-  generate_rcc_queries_for_participant_v2b prot p dirname
-  (* generate_nmc_queries_for_participant_v2b prot p dirname *)
+  generate_scc_queries_for_participant_v3bb prot p dirname; 
+  generate_rcc_queries_for_participant_v2b prot p dirname;
+  generate_nmc_queries_for_participant_v2b prot p dirname
 
 let generate_implementability_queries (prot: symbolic_protocol) (dirname: string) (version: string) = 
   (* Currently the most optimized version *)
@@ -178,7 +166,7 @@ let check_gclts (prot: symbolic_protocol) (dirname: string) (timeout: int) (mode
   then (Printf.printf "Protocol is not sender-driven\n"; false) 
   else if (not (sink_final prot))
        then (Printf.printf "Protocol is not sink-final\n"; false) 
-       else (let results = process_directory_gclts dirname timeout mode in 
+       else (let results = process_directory dirname timeout mode in 
             List.iter (fun (file, outcome, time) -> if outcome = "valid" then Printf.printf "%s violates GCLTS conditions\n" file) results;
             if List.for_all (fun (_, result, _) -> result = "invalid") results 
             then (Printf.printf "GCLTS eligible\n"; true)
