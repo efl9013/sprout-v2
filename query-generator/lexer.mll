@@ -24,9 +24,11 @@ let identifier = alpha (alpha | digit | '_')*
 let initial_state = "Initial state:"
 let final_states = "Final states:"
 let register_assignments = "Initial register assignments:"
+let comment = "//" [^ '\n']* '\n'
 
 rule token = parse
   | [' ' '\t' '\r']+        { token lexbuf }
+  | comment                 { token lexbuf }
   | initial_state           { INIT_HEADER }
   | final_states            { FINAL_HEADER }
   | register_assignments    { REGISTER_HEADER }
