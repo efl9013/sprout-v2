@@ -86,6 +86,9 @@ let print_participants protocol =
     Printf.printf "%s%s" p (if i < List.length participants - 1 then ", " else "")
   ) participants;
   Printf.printf "}\n"
+
+let is_binary protocol = 
+  List.length (get_participants protocol) = 2 
   
 let intersection l1 l2 = List.filter (fun e -> List.mem e l2) l1
 

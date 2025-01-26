@@ -186,18 +186,21 @@ let check_gclts (prot: symbolic_protocol) (dirname: string) (timeout: int) (mode
                  then (Printf.printf "Protocol is GCLTS ineligible\n"; false)
                  else (Printf.printf "Inconclusive\n"; false))
 
-let check_implementability (prot: symbolic_protocol) (dirname: string) (timeout: int) (mode: string) : unit = 
+let check_implementability (prot: symbolic_protocol) (dirname: string) (timeout: int) (version: string) (mode: string) : unit = 
   Printf.printf "Checking implementability...\n";
   (* print_symbolic_protocol prot;  *)
-  let results = process_directory dirname timeout mode in 
-  List.iter (fun (file, outcome, time) -> Printf.printf "%s: %s\n" file outcome) results;
-  if List.for_all (fun (_, result, _) -> result = "invalid") results 
-  then Printf.printf "Implementable\n" 
-  else if List.exists (fun (_, result, _) -> result = "valid") results 
-       then Printf.printf "Non-implementable\n" 
-       else Printf.printf "Inconclusive\n";
-  print_execution_time results 
-  (* Note to self: no semi-colon after final statement! *)
+  if is_binary prot 
+  then Printf.printf "Binary protocol, implementable\n"
+  else (generate_implementability_queries prot dirname version;
+        let results = process_directory dirname timeout mode in 
+        List.iter (fun (file, outcome, time) -> Printf.printf "%s: %s\n" file outcome) results;
+        if List.for_all (fun (_, result, _) -> result = "invalid") results 
+        then Printf.printf "Implementable\n" 
+        else if List.exists (fun (_, result, _) -> result = "valid") results 
+             then Printf.printf "Non-implementable\n" 
+             else Printf.printf "Inconclusive\n";
+        print_execution_time results)
+        (* Note to self: no semi-colon after final statement! *)
 
 let () =
   Logs.set_reporter (Logs.format_reporter ());
@@ -224,8 +227,7 @@ let () =
               in the respective folder and open svg-file *)
             generate_gclts_queries protocol gclts_dirname;
             if check_gclts protocol gclts_dirname timeout mode
-            then (generate_implementability_queries protocol dirname version; 
-                  check_implementability protocol dirname timeout mode;)
+            then (check_implementability protocol dirname timeout version mode;)
           else ();)
       else ();
     with
