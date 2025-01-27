@@ -1,0 +1,57 @@
+// Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+B->C{ higher([])((n > x) && (t > 1)).B->A:higher([])True.__HigherLower_Aux__A_B_C__<n, t>, win([])(n = x).B->A:lose([])True.end, lower([])((n < x) && (t > 1)).B->A:lower([])True.__HigherLower_Aux__A_B_C__<n, t>, lose([])(((n < x) || (n > x)) && (t = 1)).B->A:win([])True.end }
+ onto D: cannot merge mixed termination.
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:177)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGRec.projectInlined(AssrtGRec.java:141)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+
+real	0m0.732s
+user	0m0.842s
+sys	0m0.180s
+
+module HigherLower;
+
+type <fstar> "int" from "" as int;
+//type <fstar> "string" from "" as string;
+
+global protocol HigherLower(role A, role B, role C, role D) {
+  start(s0:int) from A to D;
+  encrypt(n0:int) from D to B; @'s0=n0*12345'
+  limit(t0:int) from A to B;  @'0<t0'
+  do Aux(A, B, C);     @'B[n0, t0]'
+}
+
+aux global protocol Aux(role A, role B, role C)
+            @'B[n: int = 0, t: int = 1] (0<=n && n<100) && 0<t' {
+  guess(x:int) from C to B;  @'0<=x && x<100'
+  choice at B {
+    higher() from B to C;    @'n>x && t>1'
+    higher() from B to A;
+    do Aux(A, B, C);   @'B[n, t]'
+  } or {
+    win() from B to C;       @'n=x'
+    lose() from B to A;
+  } or {
+    lower() from B to C;     @'n<x && t>1'
+    lower() from B to A;
+    do Aux(A, B, C);   @'B[n, t]'
+  } or {
+    lose() from B to C;      //@'(!(n1=x)) && t1=1'  // FIXME: !-precedence, and !-dot-output
+                             @'((n<x || n>x) && t=1)'
+    win() from B to A;
+  }
+}
+
