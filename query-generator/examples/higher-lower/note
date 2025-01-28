@@ -1,13 +1,12 @@
 higher-lower-yes: The "most correct" version of the game, with the number of guesses tracked properly
-HigherLowerYes: Cannot project onto A: cannot merge unguarded rec vars)
+HigherLowerYes.scr: Cannot project onto A: cannot merge unguarded rec vars (OOPSLA'20)
 
-higher-lower-no: Incorrect because B does not remember the value of A's initial guess, and thus SCC is violated for state (3) for all outgoing transitions 
+higher-lower-no: Non-implementable because B does not remember the value of A's initial guess, and thus SCC is violated for state (3) for all outgoing transitions 
 
-higher-lower-infinite: Incorrect because C can guess more times than the initially set number t by A, because looping does not decrement any value 
-HigherLowerInfinite 
+higher-lower-infinite: Implementable but has insufficient refinements, is the version of the protocol from ECOOP'24
+HigherLowerInfinite.scr 
 
-higher-lower-original: Incorrect because in addition to the above, A is informed about whether C needs to guess lower or higher in the loop, which defies the intent of the protocol
+higher-lower-original: Implementable but A is informed about whether C needs to guess lower or higher in the loop, which defies the intent of the protocol
 
 higher-lower-original-variation: The only change is to constrain t to be greater than n, so that C has a guaranteed winning strategy by just counting upwards from 0 
-
-(3m50s for sessionstar)
+HigherLowerVariation.scr: 3m50s (OOPSLA'20)

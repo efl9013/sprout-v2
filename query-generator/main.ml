@@ -167,8 +167,8 @@ let generate_implementability_queries (prot: symbolic_protocol) (dirname: string
   generate_nmc_queries_vb prot dirname;
   | "v1a" -> 
   generate_scc_queries_v1a prot dirname;
-  generate_rcc_queries_vb prot dirname; 
-  generate_nmc_queries_vb prot dirname;
+  generate_rcc_queries prot dirname; 
+  generate_nmc_queries prot dirname;
   | _ -> Printf.eprintf "Version invalid\n" 
 
 let check_gclts (prot: symbolic_protocol) (dirname: string) (timeout: int) (mode: string) : bool = 
@@ -182,10 +182,10 @@ let check_gclts (prot: symbolic_protocol) (dirname: string) (timeout: int) (mode
        else (let results = process_directory_gclts dirname timeout mode in 
             List.iter (fun (file, outcome, time) -> if outcome = "valid" then Printf.printf "%s violates GCLTS conditions\n" file) results;
             if List.for_all (fun (_, result, _) -> result = "invalid") results 
-            then (Printf.printf "GCLTS eligible\n"; true)
+            then (Printf.printf "GCLTS eligible\n"; print_execution_time results; true)
             else if List.exists (fun (_, result, _) -> result = "valid") results 
-                 then (Printf.printf "Protocol is GCLTS ineligible\n"; false)
-                 else (Printf.printf "Inconclusive\n"; false))
+                 then (Printf.printf "Protocol is GCLTS ineligible\n"; print_execution_time results; false)
+                 else (Printf.printf "Inconclusive\n"; print_execution_time results; false))
 
 let check_implementability (prot: symbolic_protocol) (dirname: string) (timeout: int) (version: string) (mode: string) : unit = 
   Printf.printf "Checking implementability...\n";
