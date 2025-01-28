@@ -1,5 +1,4 @@
-higher-lower-yes: The "most correct" version of the game, with the number of guesses tracked properly
-HigherLowerYes.scr: Cannot project onto A: cannot merge unguarded rec vars (OOPSLA'20)
+higher-lower-ultimate: The "most correct" version of the game, with the number of guesses tracked properly, and with C responding rationally to hints
 
 higher-lower-no: Non-implementable because B does not remember the value of A's initial guess, and thus SCC is violated for state (3) for all outgoing transitions 
 

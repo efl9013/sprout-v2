@@ -1,0 +1,34 @@
+// time (sessionstar HigherLowerNo.scr HigherLowerNo A; sessionstar HigherLowerNo.scr HigherLowerNo B; sessionstar HigherLowerNo.scr HigherLowerNo C)
+
+// Non-implementable, bug that role B does not remember the secret number 
+// Unknown variable: n
+// Scribble reported a problem, aborting
+// 2.0s 
+
+module HigherLowerNo;
+
+type <fstar> "int" from "" as int;
+
+global protocol HigherLowerNo(role A, role B, role C) {
+  start(n0:int) from A to B;  
+  limit(t0:int) from A to B;  @'0<t0'
+  do Aux(A, B, C);     @'B[t0]'
+}
+
+aux global protocol Aux(role A, role B, role C)
+            @'B[t: int = 0]' {
+  guess(x:int) from C to B;  
+  choice at B {
+    higher() from B to C;    @'n>x && t>1'
+    do Aux(A, B, C);   @'B[t-1]'
+  } or {
+    win() from B to C;       @'n=x'
+    lose() from B to A;
+  } or {
+    lower() from B to C;     @'n<x && t>1'
+    do Aux(A, B, C);   @'B[t-1]'
+  } or {
+    lose() from B to C;      @'((n<x || n>x) && t=1)'
+    win() from B to A;
+  }
+}
