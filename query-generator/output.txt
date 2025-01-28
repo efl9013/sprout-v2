@@ -1,0 +1,1508 @@
+Processing examples/calculator/calculator-yes
+----------------------------------------
+
+Checking GCLTS eligibility...
+Checking 0_det_4_1.hes 
+Checking 0_det_4_7.hes 
+Checking 0_det_1_4.hes 
+Checking 0_det_7_1.hes 
+Checking 0_det_1_7.hes 
+Checking 0_det_7_4.hes 
+Checking df_6.hes 
+Checking df_7.hes 
+Checking df_5.hes 
+Checking df_4.hes 
+Checking df_0.hes 
+Checking df_1.hes 
+Checking df_3.hes 
+Checking df_2.hes 
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| 0_det_4_1.hes                  | 0.3380               | invalid    |
+| 0_det_4_7.hes                  | 0.2816               | invalid    |
+| 0_det_1_4.hes                  | 0.2846               | invalid    |
+| 0_det_7_1.hes                  | 0.3106               | invalid    |
+| 0_det_1_7.hes                  | 0.2837               | invalid    |
+| 0_det_7_4.hes                  | 0.3076               | invalid    |
+| df_6.hes                       | 0.2739               | invalid    |
+| df_7.hes                       | 0.2790               | invalid    |
+| df_5.hes                       | 0.2585               | invalid    |
+| df_4.hes                       | 0.2673               | invalid    |
+| df_0.hes                       | 0.3555               | invalid    |
+| df_1.hes                       | 0.2336               | invalid    |
+| df_3.hes                       | 0.2723               | invalid    |
+| df_2.hes                       | 0.2547               | invalid    |
+
+Total time:4.000941
+Checking implementability...
+Binary protocol, implementable
+-e 
+
+
+Processing examples/fwd-auth/fwd-auth-yes
+----------------------------------------
+
+Checking GCLTS eligibility...
+Checking 10_det_13_11.hes 
+Checking df_9.hes 
+Checking df_11.hes 
+Checking df_10.hes 
+Checking df_8.hes 
+Checking 10_det_11_13.hes 
+Checking df_13.hes 
+Checking df_6.hes 
+Checking df_7.hes 
+Checking df_4.hes 
+Checking df_0.hes 
+Checking df_1.hes 
+Checking 4_det_6_5.hes 
+Checking df_3.hes 
+Checking df_2.hes 
+Checking 4_det_5_6.hes 
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| 10_det_13_11.hes               | 0.5045               | invalid    |
+| df_9.hes                       | 0.2698               | invalid    |
+| df_11.hes                      | 0.2772               | invalid    |
+| df_10.hes                      | 0.3340               | invalid    |
+| df_8.hes                       | 0.2874               | invalid    |
+| 10_det_11_13.hes               | 0.4091               | invalid    |
+| df_13.hes                      | 0.2862               | invalid    |
+| df_6.hes                       | 0.2841               | invalid    |
+| df_7.hes                       | 0.3271               | invalid    |
+| df_4.hes                       | 0.3760               | invalid    |
+| df_0.hes                       | 0.2554               | invalid    |
+| df_1.hes                       | 0.2645               | invalid    |
+| 4_det_6_5.hes                  | 0.3866               | invalid    |
+| df_3.hes                       | 0.2511               | invalid    |
+| df_2.hes                       | 0.2524               | invalid    |
+| 4_det_5_6.hes                  | 0.3962               | invalid    |
+
+Total time:5.161734
+Checking implementability...
+Checking p_scc_12_1.hes 
+Checking s_scc_134_13.hes 
+Checking s_scc_134_11.hes 
+Checking p_scc_46_12.hes 
+Checking s_scc_1112_11.hes 
+Checking s_scc_1112_13.hes 
+Checking s_scc_89_8.hes 
+Checking p_scc_67_6.hes 
+Checking p_scc_67_5.hes 
+Checking p_scc_45_12.hes 
+Checking p_scc_78_7.hes 
+Checking a_scc_34_3.hes 
+Checking p_scc_45_4.hes 
+Checking s_scc_910_9.hes 
+Checking a_scc_1011_10.hes 
+Checking p_scc_01_0.hes 
+Checking a_scc_1013_10.hes 
+Checking p_scc_23_2.hes 
+Checking p_scc_46_4.hes 
+p_scc_46_4.hes: invalid
+p_scc_23_2.hes: invalid
+a_scc_1013_10.hes: invalid
+p_scc_01_0.hes: invalid
+a_scc_1011_10.hes: invalid
+s_scc_910_9.hes: invalid
+p_scc_45_4.hes: invalid
+a_scc_34_3.hes: invalid
+p_scc_78_7.hes: invalid
+p_scc_45_12.hes: invalid
+p_scc_67_5.hes: invalid
+p_scc_67_6.hes: invalid
+s_scc_89_8.hes: invalid
+s_scc_1112_13.hes: invalid
+s_scc_1112_11.hes: invalid
+p_scc_46_12.hes: invalid
+s_scc_134_11.hes: invalid
+s_scc_134_13.hes: invalid
+p_scc_12_1.hes: invalid
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| p_scc_12_1.hes                 | 0.2580               | invalid    |
+| s_scc_134_13.hes               | 0.6437               | invalid    |
+| s_scc_134_11.hes               | 0.6090               | invalid    |
+| p_scc_46_12.hes                | 1.1763               | invalid    |
+| s_scc_1112_11.hes              | 0.6549               | invalid    |
+| s_scc_1112_13.hes              | 0.6314               | invalid    |
+| s_scc_89_8.hes                 | 0.5921               | invalid    |
+| p_scc_67_6.hes                 | 0.6549               | invalid    |
+| p_scc_67_5.hes                 | 0.7807               | invalid    |
+| p_scc_45_12.hes                | 0.8190               | invalid    |
+| p_scc_78_7.hes                 | 0.8207               | invalid    |
+| a_scc_34_3.hes                 | 0.2907               | invalid    |
+| p_scc_45_4.hes                 | 0.7613               | invalid    |
+| s_scc_910_9.hes                | 0.6879               | invalid    |
+| a_scc_1011_10.hes              | 1.7250               | invalid    |
+| p_scc_01_0.hes                 | 0.2514               | invalid    |
+| a_scc_1013_10.hes              | 1.3629               | invalid    |
+| p_scc_23_2.hes                 | 0.2737               | invalid    |
+| p_scc_46_4.hes                 | 0.6474               | invalid    |
+
+Total time:13.640946
+-e 
+
+
+Processing examples/load-balancer
+----------------------------------------
+
+Checking GCLTS eligibility...
+Checking 0_det_1_5.hes 
+Checking 0_det_5_1.hes 
+Checking 1_det_2_3.hes 
+Checking df_4.hes 
+Checking df_0.hes 
+Checking df_1.hes 
+Checking 1_det_4_2.hes 
+Checking 1_det_2_4.hes 
+Checking df_3.hes 
+Checking df_2.hes 
+Checking 1_det_4_3.hes 
+Checking 1_det_3_2.hes 
+Checking 1_det_3_4.hes 
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| 0_det_1_5.hes                  | 0.3402               | invalid    |
+| 0_det_5_1.hes                  | 0.2794               | invalid    |
+| 1_det_2_3.hes                  | 0.3253               | invalid    |
+| df_4.hes                       | 0.2284               | invalid    |
+| df_0.hes                       | 0.2843               | invalid    |
+| df_1.hes                       | 0.3175               | invalid    |
+| 1_det_4_2.hes                  | 0.3380               | invalid    |
+| 1_det_2_4.hes                  | 0.3295               | invalid    |
+| df_3.hes                       | 0.2354               | invalid    |
+| df_2.hes                       | 0.2557               | invalid    |
+| 1_det_4_3.hes                  | 0.3531               | invalid    |
+| 1_det_3_2.hes                  | 0.3078               | invalid    |
+| 1_det_3_4.hes                  | 0.3060               | invalid    |
+
+Total time:3.900685
+Checking implementability...
+Checking s_rcc_40_20.hes 
+Checking w1_scc_20_2.hes 
+Checking s_rcc_40_30.hes 
+Checking w2_scc_30_3.hes 
+Checking c_scc_01_2.hes 
+Checking c_scc_01_3.hes 
+Checking c_scc_01_1.hes 
+Checking c_scc_05_5.hes 
+Checking s_rcc_20_30.hes 
+Checking c_scc_05_4.hes 
+Checking s_rcc_30_20.hes 
+Checking s_scc_13_1.hes 
+Checking c_scc_01_0.hes 
+Checking c_scc_01_4.hes 
+Checking s_scc_13_5.hes 
+Checking c_scc_05_0.hes 
+Checking c_scc_05_1.hes 
+Checking w3_scc_40_4.hes 
+Checking c_scc_01_5.hes 
+Checking c_scc_05_3.hes 
+Checking c_scc_05_2.hes 
+Checking s_scc_12_1.hes 
+Checking s_rcc_30_40.hes 
+Checking s_scc_14_5.hes 
+Checking s_scc_14_1.hes 
+Checking s_scc_12_5.hes 
+Checking s_rcc_20_40.hes 
+s_rcc_20_40.hes: invalid
+s_scc_12_5.hes: invalid
+s_scc_14_1.hes: invalid
+s_scc_14_5.hes: invalid
+s_rcc_30_40.hes: invalid
+s_scc_12_1.hes: invalid
+c_scc_05_2.hes: invalid
+c_scc_05_3.hes: invalid
+c_scc_01_5.hes: invalid
+w3_scc_40_4.hes: invalid
+c_scc_05_1.hes: timeout
+c_scc_05_0.hes: invalid
+s_scc_13_5.hes: invalid
+c_scc_01_4.hes: invalid
+c_scc_01_0.hes: invalid
+s_scc_13_1.hes: invalid
+s_rcc_30_20.hes: invalid
+c_scc_05_4.hes: invalid
+s_rcc_20_30.hes: invalid
+c_scc_05_5.hes: invalid
+c_scc_01_1.hes: timeout
+c_scc_01_3.hes: invalid
+c_scc_01_2.hes: invalid
+w2_scc_30_3.hes: invalid
+s_rcc_40_30.hes: invalid
+w1_scc_20_2.hes: invalid
+s_rcc_40_20.hes: invalid
+Inconclusive
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| s_rcc_40_20.hes                | 0.4825               | invalid    |
+| w1_scc_20_2.hes                | 2.1510               | invalid    |
+| s_rcc_40_30.hes                | 0.4879               | invalid    |
+| w2_scc_30_3.hes                | 1.8129               | invalid    |
+| c_scc_01_2.hes                 | 1.2038               | invalid    |
+| c_scc_01_3.hes                 | 1.8014               | invalid    |
+| c_scc_01_1.hes                 | 5.1188               | timeout    |
+| c_scc_05_5.hes                 | 0.8467               | invalid    |
+| s_rcc_20_30.hes                | 0.4668               | invalid    |
+| c_scc_05_4.hes                 | 0.9522               | invalid    |
+| s_rcc_30_20.hes                | 0.4989               | invalid    |
+| s_scc_13_1.hes                 | 0.3448               | invalid    |
+| c_scc_01_0.hes                 | 0.8519               | invalid    |
+| c_scc_01_4.hes                 | 0.9847               | invalid    |
+| s_scc_13_5.hes                 | 0.2434               | invalid    |
+| c_scc_05_0.hes                 | 0.8957               | invalid    |
+| c_scc_05_1.hes                 | 5.1279               | timeout    |
+| w3_scc_40_4.hes                | 1.6428               | invalid    |
+| c_scc_01_5.hes                 | 0.9711               | invalid    |
+| c_scc_05_3.hes                 | 0.9002               | invalid    |
+| c_scc_05_2.hes                 | 0.9676               | invalid    |
+| s_scc_12_1.hes                 | 0.3638               | invalid    |
+| s_rcc_30_40.hes                | 0.4733               | invalid    |
+| s_scc_14_5.hes                 | 0.2179               | invalid    |
+| s_scc_14_1.hes                 | 0.3215               | invalid    |
+| s_scc_12_5.hes                 | 0.2419               | invalid    |
+| s_rcc_20_40.hes                | 0.4541               | invalid    |
+
+Total time:30.825665
+-e 
+
+
+Processing examples/onlinewallet
+----------------------------------------
+
+Checking GCLTS eligibility...
+Checking 3_det_14_4.hes 
+Checking df_9.hes 
+Checking df_11.hes 
+Checking df_10.hes 
+Checking df_8.hes 
+Checking df_12.hes 
+Checking df_6.hes 
+Checking df_7.hes 
+Checking df_5.hes 
+Checking df_4.hes 
+Checking df_0.hes 
+Checking df_1.hes 
+Checking 3_det_4_14.hes 
+Checking df_3.hes 
+Checking 6_det_12_7.hes 
+Checking 6_det_7_12.hes 
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| 3_det_14_4.hes                 | 0.3340               | invalid    |
+| df_9.hes                       | 0.2454               | invalid    |
+| df_11.hes                      | 0.2570               | invalid    |
+| df_10.hes                      | 0.2648               | invalid    |
+| df_8.hes                       | 0.2729               | invalid    |
+| df_12.hes                      | 0.2914               | invalid    |
+| df_6.hes                       | 0.3520               | invalid    |
+| df_7.hes                       | 0.2465               | invalid    |
+| df_5.hes                       | 1.2879               | invalid    |
+| df_4.hes                       | 0.2530               | invalid    |
+| df_0.hes                       | 0.2548               | invalid    |
+| df_1.hes                       | 0.2454               | invalid    |
+| 3_det_4_14.hes                 | 0.3365               | invalid    |
+| df_3.hes                       | 0.2920               | invalid    |
+| 6_det_12_7.hes                 | 0.3348               | invalid    |
+| 6_det_7_12.hes                 | 0.3400               | invalid    |
+
+Total time:5.608221
+Checking implementability...
+Checking c_scc_612_6.hes 
+Checking c_scc_13_1.hes 
+Checking a_scc_314_3.hes 
+Checking c_scc_910_9.hes 
+Checking c_scc_1213_7.hes 
+Checking s_scc_116_11.hes 
+Checking s_scc_45_4.hes 
+Checking s_scc_1011_9.hes 
+Checking c_scc_1213_12.hes 
+Checking c_scc_78_12.hes 
+Checking c_scc_01_0.hes 
+Checking s_scc_56_5.hes 
+Checking a_scc_34_3.hes 
+Checking c_scc_89_13.hes 
+Checking c_scc_67_6.hes 
+Checking c_rcc_45_314.hes 
+Checking s_scc_1011_10.hes 
+Checking c_scc_78_7.hes 
+Checking c_rcc_314_45.hes 
+Checking c_scc_89_8.hes 
+c_scc_89_8.hes: invalid
+c_rcc_314_45.hes: invalid
+c_scc_78_7.hes: invalid
+s_scc_1011_10.hes: invalid
+c_rcc_45_314.hes: invalid
+c_scc_67_6.hes: invalid
+c_scc_89_13.hes: invalid
+a_scc_34_3.hes: invalid
+s_scc_56_5.hes: invalid
+c_scc_01_0.hes: invalid
+c_scc_78_12.hes: invalid
+c_scc_1213_12.hes: invalid
+s_scc_1011_9.hes: timeout
+s_scc_45_4.hes: invalid
+s_scc_116_11.hes: invalid
+c_scc_1213_7.hes: invalid
+c_scc_910_9.hes: invalid
+a_scc_314_3.hes: invalid
+c_scc_13_1.hes: invalid
+c_scc_612_6.hes: invalid
+Inconclusive
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| c_scc_612_6.hes                | 0.3760               | invalid    |
+| c_scc_13_1.hes                 | 0.2348               | invalid    |
+| a_scc_314_3.hes                | 0.2782               | invalid    |
+| c_scc_910_9.hes                | 0.3485               | invalid    |
+| c_scc_1213_7.hes               | 0.3026               | invalid    |
+| s_scc_116_11.hes               | 0.4201               | invalid    |
+| s_scc_45_4.hes                 | 0.2857               | invalid    |
+| s_scc_1011_9.hes               | 5.0635               | timeout    |
+| c_scc_1213_12.hes              | 0.3769               | invalid    |
+| c_scc_78_12.hes                | 0.2919               | invalid    |
+| c_scc_01_0.hes                 | 0.2511               | invalid    |
+| s_scc_56_5.hes                 | 0.2933               | invalid    |
+| a_scc_34_3.hes                 | 0.2799               | invalid    |
+| c_scc_89_13.hes                | 0.2068               | invalid    |
+| c_scc_67_6.hes                 | 0.4032               | invalid    |
+| c_rcc_45_314.hes               | 0.7103               | invalid    |
+| s_scc_1011_10.hes              | 0.3742               | invalid    |
+| c_scc_78_7.hes                 | 0.3903               | invalid    |
+| c_rcc_314_45.hes               | 0.6008               | invalid    |
+| c_scc_89_8.hes                 | 0.3282               | invalid    |
+
+Total time:11.816422
+-e 
+
+
+Processing examples/pingpong
+----------------------------------------
+
+Checking GCLTS eligibility...
+Checking 1_det_2_1.hes 
+Checking 1_det_2_3.hes 
+Checking df_0.hes 
+Checking df_1.hes 
+Checking df_3.hes 
+Checking df_2.hes 
+Checking 1_det_3_2.hes 
+Checking 1_det_3_1.hes 
+Checking 1_det_1_3.hes 
+Checking 1_det_1_2.hes 
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| 1_det_2_1.hes                  | 0.3808               | invalid    |
+| 1_det_2_3.hes                  | 0.2968               | invalid    |
+| df_0.hes                       | 0.2027               | invalid    |
+| df_1.hes                       | 1.3350               | invalid    |
+| df_3.hes                       | 0.2766               | invalid    |
+| df_2.hes                       | 1.3723               | invalid    |
+| 1_det_3_2.hes                  | 0.3758               | invalid    |
+| 1_det_3_1.hes                  | 0.3003               | invalid    |
+| 1_det_1_3.hes                  | 0.2898               | invalid    |
+| 1_det_1_2.hes                  | 0.3443               | invalid    |
+
+Total time:5.174405
+Checking implementability...
+Checking a_nmc_32.hes 
+Checking a_scc_34_4.hes 
+Checking a_scc_12_4.hes 
+Checking c_scc_01_0.hes 
+Checking b_scc_21_2.hes 
+Checking a_scc_34_2.hes 
+Checking a_scc_12_1.hes 
+Checking a_nmc_12.hes 
+Checking a_scc_34_3.hes 
+Checking a_scc_12_2.hes 
+Checking a_scc_34_1.hes 
+Checking a_scc_12_3.hes 
+Checking b_scc_21_4.hes 
+Checking a_scc_13_4.hes 
+Checking a_scc_11_4.hes 
+Checking a_scc_13_2.hes 
+Checking a_scc_13_3.hes 
+Checking a_scc_11_1.hes 
+Checking a_scc_11_3.hes 
+Checking a_scc_13_1.hes 
+Checking a_scc_11_2.hes 
+a_scc_11_2.hes: invalid
+a_scc_13_1.hes: invalid
+a_scc_11_3.hes: invalid
+a_scc_11_1.hes: invalid
+a_scc_13_3.hes: invalid
+a_scc_13_2.hes: invalid
+a_scc_11_4.hes: invalid
+a_scc_13_4.hes: invalid
+b_scc_21_4.hes: invalid
+a_scc_12_3.hes: invalid
+a_scc_34_1.hes: invalid
+a_scc_12_2.hes: invalid
+a_scc_34_3.hes: invalid
+a_nmc_12.hes: invalid
+a_scc_12_1.hes: invalid
+a_scc_34_2.hes: invalid
+b_scc_21_2.hes: invalid
+c_scc_01_0.hes: invalid
+a_scc_12_4.hes: invalid
+a_scc_34_4.hes: invalid
+a_nmc_32.hes: invalid
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| a_nmc_32.hes                   | 0.1998               | invalid    |
+| a_scc_34_4.hes                 | 0.1881               | invalid    |
+| a_scc_12_4.hes                 | 0.2074               | invalid    |
+| c_scc_01_0.hes                 | 0.2347               | invalid    |
+| b_scc_21_2.hes                 | 0.4523               | invalid    |
+| a_scc_34_2.hes                 | 0.1938               | invalid    |
+| a_scc_12_1.hes                 | 0.2913               | invalid    |
+| a_nmc_12.hes                   | 0.2039               | invalid    |
+| a_scc_34_3.hes                 | 0.2709               | invalid    |
+| a_scc_12_2.hes                 | 0.1991               | invalid    |
+| a_scc_34_1.hes                 | 0.2687               | invalid    |
+| a_scc_12_3.hes                 | 0.2709               | invalid    |
+| b_scc_21_4.hes                 | 0.5553               | invalid    |
+| a_scc_13_4.hes                 | 0.1983               | invalid    |
+| a_scc_11_4.hes                 | 0.2018               | invalid    |
+| a_scc_13_2.hes                 | 0.2103               | invalid    |
+| a_scc_13_3.hes                 | 0.2211               | invalid    |
+| a_scc_11_1.hes                 | 0.3024               | invalid    |
+| a_scc_11_3.hes                 | 0.2013               | invalid    |
+| a_scc_13_1.hes                 | 0.3011               | invalid    |
+| a_scc_11_2.hes                 | 0.1802               | invalid    |
+
+Total time:5.352586
+-e 
+
+
+Processing examples/receive-validity/receive-validity-yes
+----------------------------------------
+
+Checking GCLTS eligibility...
+Checking 0_det_1_5.hes 
+Checking 0_det_5_1.hes 
+Checking df_8.hes 
+Checking df_6.hes 
+Checking df_7.hes 
+Checking df_5.hes 
+Checking df_4.hes 
+Checking df_0.hes 
+Checking df_1.hes 
+Checking df_3.hes 
+Checking df_2.hes 
+df_4.hes violates GCLTS conditions
+df_8.hes violates GCLTS conditions
+Protocol is GCLTS ineligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| 0_det_1_5.hes                  | 0.2739               | invalid    |
+| 0_det_5_1.hes                  | 0.2145               | invalid    |
+| df_8.hes                       | 0.1916               | valid      |
+| df_6.hes                       | 0.1977               | invalid    |
+| df_7.hes                       | 0.2396               | invalid    |
+| df_5.hes                       | 0.2062               | invalid    |
+| df_4.hes                       | 0.1993               | valid      |
+| df_0.hes                       | 0.2202               | invalid    |
+| df_1.hes                       | 0.2049               | invalid    |
+| df_3.hes                       | 0.2014               | invalid    |
+| df_2.hes                       | 0.2124               | invalid    |
+
+Total time:2.361773
+-e 
+
+
+Processing examples/receive-validity/receive-validity-no
+----------------------------------------
+
+Checking GCLTS eligibility...
+Checking 0_det_4_1.hes 
+Checking 0_det_1_4.hes 
+Checking df_6.hes 
+Checking df_5.hes 
+Checking df_4.hes 
+Checking df_0.hes 
+Checking df_1.hes 
+Checking df_3.hes 
+Checking df_2.hes 
+df_3.hes violates GCLTS conditions
+df_6.hes violates GCLTS conditions
+Protocol is GCLTS ineligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| 0_det_4_1.hes                  | 0.2585               | invalid    |
+| 0_det_1_4.hes                  | 0.1878               | invalid    |
+| df_6.hes                       | 0.1744               | valid      |
+| df_5.hes                       | 0.1768               | invalid    |
+| df_4.hes                       | 0.1813               | invalid    |
+| df_0.hes                       | 0.2000               | invalid    |
+| df_1.hes                       | 0.1963               | invalid    |
+| df_3.hes                       | 0.2134               | valid      |
+| df_2.hes                       | 0.2128               | invalid    |
+
+Total time:1.801307
+-e 
+
+
+Processing examples/send-validity/send-validity-yes
+----------------------------------------
+
+Checking GCLTS eligibility...
+Checking 0_det_1_3.hes 
+Checking 0_det_3_1.hes 
+Checking df_0.hes 
+Checking df_1.hes 
+Checking df_3.hes 
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| 0_det_1_3.hes                  | 0.2356               | invalid    |
+| 0_det_3_1.hes                  | 0.2217               | invalid    |
+| df_0.hes                       | 0.1980               | invalid    |
+| df_1.hes                       | 0.2002               | invalid    |
+| df_3.hes                       | 0.2091               | invalid    |
+
+Total time:1.064476
+Checking implementability...
+Checking p_scc_03_0.hes 
+Checking p_scc_01_0.hes 
+Checking r_scc_12_1.hes 
+Checking r_scc_12_0.hes 
+Checking r_scc_34_3.hes 
+Checking r_scc_34_1.hes 
+Checking r_scc_34_0.hes 
+Checking r_scc_12_3.hes 
+r_scc_12_3.hes: invalid
+r_scc_34_0.hes: invalid
+r_scc_34_1.hes: invalid
+r_scc_34_3.hes: invalid
+r_scc_12_0.hes: invalid
+r_scc_12_1.hes: invalid
+p_scc_01_0.hes: invalid
+p_scc_03_0.hes: invalid
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| p_scc_03_0.hes                 | 0.1971               | invalid    |
+| p_scc_01_0.hes                 | 0.2019               | invalid    |
+| r_scc_12_1.hes                 | 0.2024               | invalid    |
+| r_scc_12_0.hes                 | 0.2553               | invalid    |
+| r_scc_34_3.hes                 | 0.2021               | invalid    |
+| r_scc_34_1.hes                 | 0.2368               | invalid    |
+| r_scc_34_0.hes                 | 0.2491               | invalid    |
+| r_scc_12_3.hes                 | 0.2303               | invalid    |
+
+Total time:1.774915
+-e 
+
+
+Processing examples/send-validity/send-validity-no
+----------------------------------------
+
+Checking GCLTS eligibility...
+Checking 0_det_1_3.hes 
+Checking 0_det_3_1.hes 
+Checking df_4.hes 
+Checking df_0.hes 
+Checking df_1.hes 
+Checking df_3.hes 
+df_4.hes violates GCLTS conditions
+Protocol is GCLTS ineligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| 0_det_1_3.hes                  | 0.2129               | invalid    |
+| 0_det_3_1.hes                  | 0.1907               | invalid    |
+| df_4.hes                       | 0.1822               | valid      |
+| df_0.hes                       | 0.2097               | invalid    |
+| df_1.hes                       | 0.2012               | invalid    |
+| df_3.hes                       | 0.2033               | invalid    |
+
+Total time:1.199998
+-e 
+
+
+Processing examples/symbolic-two-bidder/symbolic-two-bidder-yes
+----------------------------------------
+
+Checking GCLTS eligibility...
+Checking 7_det_8_3.hes 
+Checking 7_det_3_8.hes 
+Checking df_8.hes 
+Checking df_7.hes 
+Checking df_5.hes 
+Checking df_4.hes 
+Checking df_0.hes 
+Checking df_1.hes 
+Checking df_3.hes 
+Checking df_2.hes 
+Checking 4_det_5_7.hes 
+Checking 4_det_7_5.hes 
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| 7_det_8_3.hes                  | 0.4284               | invalid    |
+| 7_det_3_8.hes                  | 0.2947               | invalid    |
+| df_8.hes                       | 0.2375               | invalid    |
+| df_7.hes                       | 0.2742               | invalid    |
+| df_5.hes                       | 0.2547               | invalid    |
+| df_4.hes                       | 1.2872               | invalid    |
+| df_0.hes                       | 0.2265               | invalid    |
+| df_1.hes                       | 0.2236               | invalid    |
+| df_3.hes                       | 1.4752               | invalid    |
+| df_2.hes                       | 0.2362               | invalid    |
+| 4_det_5_7.hes                  | 0.3527               | invalid    |
+| 4_det_7_5.hes                  | 0.3130               | invalid    |
+
+Total time:5.603977
+Checking implementability...
+Checking b2_rcc_73_86.hes 
+Checking s_scc_23_2.hes 
+Checking b1_scc_78_6.hes 
+Checking b1_scc_78_7.hes 
+Checking s_scc_23_1.hes 
+Checking b1_rcc_47_56.hes 
+Checking s_scc_86_5.hes 
+Checking b1_scc_01_0.hes 
+Checking b1_scc_34_8.hes 
+Checking s_rcc_78_45.hes 
+Checking s_scc_56_8.hes 
+Checking b2_rcc_86_73.hes 
+Checking b1_scc_34_3.hes 
+Checking b1_scc_12_1.hes 
+Checking s_rcc_45_78.hes 
+Checking b1_rcc_56_47.hes 
+Checking s_scc_56_5.hes 
+Checking b1_scc_73_7.hes 
+Checking b1_scc_73_6.hes 
+Checking b1_scc_34_6.hes 
+Checking s_scc_86_8.hes 
+Checking b2_scc_47_4.hes 
+Checking b2_scc_45_4.hes 
+b2_scc_45_4.hes: invalid
+b2_scc_47_4.hes: invalid
+s_scc_86_8.hes: invalid
+b1_scc_34_6.hes: invalid
+b1_scc_73_6.hes: invalid
+b1_scc_73_7.hes: invalid
+s_scc_56_5.hes: invalid
+b1_rcc_56_47.hes: invalid
+s_rcc_45_78.hes: invalid
+b1_scc_12_1.hes: invalid
+b1_scc_34_3.hes: invalid
+b2_rcc_86_73.hes: invalid
+s_scc_56_8.hes: invalid
+s_rcc_78_45.hes: timeout
+b1_scc_34_8.hes: invalid
+b1_scc_01_0.hes: invalid
+s_scc_86_5.hes: invalid
+b1_rcc_47_56.hes: invalid
+s_scc_23_1.hes: invalid
+b1_scc_78_7.hes: invalid
+b1_scc_78_6.hes: invalid
+s_scc_23_2.hes: invalid
+b2_rcc_73_86.hes: invalid
+Inconclusive
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| b2_rcc_73_86.hes               | 0.8347               | invalid    |
+| s_scc_23_2.hes                 | 0.2442               | invalid    |
+| b1_scc_78_6.hes                | 0.1810               | invalid    |
+| b1_scc_78_7.hes                | 0.4671               | invalid    |
+| s_scc_23_1.hes                 | 0.3386               | invalid    |
+| b1_rcc_47_56.hes               | 0.6139               | invalid    |
+| s_scc_86_5.hes                 | 0.1890               | invalid    |
+| b1_scc_01_0.hes                | 0.2293               | invalid    |
+| b1_scc_34_8.hes                | 0.2137               | invalid    |
+| s_rcc_78_45.hes                | 5.0850               | timeout    |
+| s_scc_56_8.hes                 | 0.2303               | invalid    |
+| b2_rcc_86_73.hes               | 0.7579               | invalid    |
+| b1_scc_34_3.hes                | 0.2297               | invalid    |
+| b1_scc_12_1.hes                | 0.2247               | invalid    |
+| s_rcc_45_78.hes                | 3.0114               | invalid    |
+| b1_rcc_56_47.hes               | 0.6114               | invalid    |
+| s_scc_56_5.hes                 | 1.4817               | invalid    |
+| b1_scc_73_7.hes                | 0.5962               | invalid    |
+| b1_scc_73_6.hes                | 0.2049               | invalid    |
+| b1_scc_34_6.hes                | 0.2252               | invalid    |
+| s_scc_86_8.hes                 | 1.7472               | invalid    |
+| b2_scc_47_4.hes                | 0.4890               | invalid    |
+| b2_scc_45_4.hes                | 0.3271               | invalid    |
+
+Total time:18.533230
+-e 
+
+
+Processing examples/symbolic-two-bidder/symbolic-two-bidder-no
+----------------------------------------
+
+Checking GCLTS eligibility...
+Checking 7_det_8_3.hes 
+Checking 7_det_3_8.hes 
+Checking df_9.hes 
+Checking df_8.hes 
+Checking df_7.hes 
+Checking df_5.hes 
+Checking df_4.hes 
+Checking df_0.hes 
+Checking df_1.hes 
+Checking df_3.hes 
+Checking df_2.hes 
+Checking 4_det_5_7.hes 
+Checking 4_det_7_5.hes 
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| 7_det_8_3.hes                  | 0.3593               | invalid    |
+| 7_det_3_8.hes                  | 0.3034               | invalid    |
+| df_9.hes                       | 0.2307               | invalid    |
+| df_8.hes                       | 0.2325               | invalid    |
+| df_7.hes                       | 0.2796               | invalid    |
+| df_5.hes                       | 0.2541               | invalid    |
+| df_4.hes                       | 1.2754               | invalid    |
+| df_0.hes                       | 0.2479               | invalid    |
+| df_1.hes                       | 0.2639               | invalid    |
+| df_3.hes                       | 1.5878               | invalid    |
+| df_2.hes                       | 0.2482               | invalid    |
+| 4_det_5_7.hes                  | 0.3731               | invalid    |
+| 4_det_7_5.hes                  | 0.2959               | invalid    |
+
+Total time:5.951858
+Checking implementability...
+Checking b2_scc_89_5.hes 
+Checking b2_nmc_87.hes 
+Checking b2_scc_89_6.hes 
+Checking b2_scc_89_7.hes 
+Checking s_scc_23_2.hes 
+Checking b1_scc_78_6.hes 
+Checking b1_scc_78_7.hes 
+Checking s_scc_23_1.hes 
+Checking b1_rcc_47_56.hes 
+Checking s_scc_96_9.hes 
+Checking b1_scc_34_9.hes 
+Checking b1_scc_01_0.hes 
+Checking s_nmc_58.hes 
+Checking b1_scc_34_8.hes 
+Checking s_rcc_78_45.hes 
+Checking s_scc_56_8.hes 
+Checking b1_nmc_39.hes 
+Checking b1_scc_34_3.hes 
+Checking b1_scc_12_1.hes 
+Checking s_rcc_45_78.hes 
+Checking b1_rcc_56_47.hes 
+Checking s_scc_56_5.hes 
+Checking b1_scc_73_7.hes 
+Checking b1_scc_73_6.hes 
+Checking s_scc_96_6.hes 
+Checking b2_scc_47_4.hes 
+Checking b2_scc_45_4.hes 
+Checking b2_scc_89_8.hes 
+b2_scc_89_8.hes: invalid
+b2_scc_45_4.hes: invalid
+b2_scc_47_4.hes: invalid
+s_scc_96_6.hes: invalid
+b1_scc_73_6.hes: invalid
+b1_scc_73_7.hes: invalid
+s_scc_56_5.hes: invalid
+b1_rcc_56_47.hes: invalid
+s_rcc_45_78.hes: timeout
+b1_scc_12_1.hes: invalid
+b1_scc_34_3.hes: invalid
+b1_nmc_39.hes: invalid
+s_scc_56_8.hes: invalid
+s_rcc_78_45.hes: invalid
+b1_scc_34_8.hes: invalid
+s_nmc_58.hes: invalid
+b1_scc_01_0.hes: invalid
+b1_scc_34_9.hes: invalid
+s_scc_96_9.hes: invalid
+b1_rcc_47_56.hes: invalid
+s_scc_23_1.hes: invalid
+b1_scc_78_7.hes: invalid
+b1_scc_78_6.hes: invalid
+s_scc_23_2.hes: invalid
+b2_scc_89_7.hes: valid
+b2_scc_89_6.hes: invalid
+b2_nmc_87.hes: valid
+b2_scc_89_5.hes: invalid
+Non-implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| b2_scc_89_5.hes                | 0.1970               | invalid    |
+| b2_nmc_87.hes                  | 0.3844               | valid      |
+| b2_scc_89_6.hes                | 0.2370               | invalid    |
+| b2_scc_89_7.hes                | 0.5006               | valid      |
+| s_scc_23_2.hes                 | 0.2506               | invalid    |
+| b1_scc_78_6.hes                | 0.1780               | invalid    |
+| b1_scc_78_7.hes                | 0.4480               | invalid    |
+| s_scc_23_1.hes                 | 0.3108               | invalid    |
+| b1_rcc_47_56.hes               | 0.6381               | invalid    |
+| s_scc_96_9.hes                 | 2.4485               | invalid    |
+| b1_scc_34_9.hes                | 0.2138               | invalid    |
+| b1_scc_01_0.hes                | 0.2192               | invalid    |
+| s_nmc_58.hes                   | 0.1897               | invalid    |
+| b1_scc_34_8.hes                | 0.1805               | invalid    |
+| s_rcc_78_45.hes                | 2.7302               | invalid    |
+| s_scc_56_8.hes                 | 0.2310               | invalid    |
+| b1_nmc_39.hes                  | 0.1884               | invalid    |
+| b1_scc_34_3.hes                | 0.2784               | invalid    |
+| b1_scc_12_1.hes                | 0.2439               | invalid    |
+| s_rcc_45_78.hes                | 5.0678               | timeout    |
+| b1_rcc_56_47.hes               | 0.7159               | invalid    |
+| s_scc_56_5.hes                 | 2.6272               | invalid    |
+| b1_scc_73_7.hes                | 0.3484               | invalid    |
+| b1_scc_73_6.hes                | 0.1826               | invalid    |
+| s_scc_96_6.hes                 | 0.1802               | invalid    |
+| b2_scc_47_4.hes                | 0.3960               | invalid    |
+| b2_scc_45_4.hes                | 0.3053               | invalid    |
+| b2_scc_89_8.hes                | 0.4304               | invalid    |
+
+Total time:20.322019
+-e 
+
+
+Processing examples/three-buyer
+----------------------------------------
+
+Checking GCLTS eligibility...
+Checking 4_det_9_5.hes 
+Checking 4_det_5_9.hes 
+Checking df_9.hes 
+Checking df_11.hes 
+Checking df_10.hes 
+Checking df_12.hes 
+Checking 9_det_10_11.hes 
+Checking df_6.hes 
+Checking df_7.hes 
+Checking df_5.hes 
+Checking df_4.hes 
+Checking df_0.hes 
+Checking df_1.hes 
+Checking df_3.hes 
+Checking df_2.hes 
+Checking 9_det_11_10.hes 
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| 4_det_9_5.hes                  | 0.3157               | invalid    |
+| 4_det_5_9.hes                  | 0.3011               | invalid    |
+| df_9.hes                       | 0.2488               | invalid    |
+| df_11.hes                      | 0.2162               | invalid    |
+| df_10.hes                      | 0.2128               | invalid    |
+| df_12.hes                      | 0.2196               | invalid    |
+| 9_det_10_11.hes                | 0.2808               | invalid    |
+| df_6.hes                       | 0.2351               | invalid    |
+| df_7.hes                       | 0.2077               | invalid    |
+| df_5.hes                       | 0.2158               | invalid    |
+| df_4.hes                       | 0.2243               | invalid    |
+| df_0.hes                       | 0.1951               | invalid    |
+| df_1.hes                       | 0.1900               | invalid    |
+| df_3.hes                       | 0.2025               | invalid    |
+| df_2.hes                       | 0.2094               | invalid    |
+| 9_det_11_10.hes                | 0.2590               | invalid    |
+
+Total time:3.733825
+Checking implementability...
+Checking b_scc_56_5.hes 
+Checking b_scc_67_8.hes 
+Checking b_nmc_59.hes 
+Checking c_scc_911_9.hes 
+Checking b_scc_56_7.hes 
+Checking s_scc_23_2.hes 
+Checking b_scc_49_4.hes 
+Checking b_scc_56_12.hes 
+Checking c_scc_910_9.hes 
+Checking b_scc_105_10.hes 
+Checking b_scc_1213_5.hes 
+Checking s_scc_78_7.hes 
+Checking b_scc_105_11.hes 
+Checking b_scc_1112_6.hes 
+Checking a_scc_01_0.hes 
+Checking b_scc_1213_7.hes 
+Checking b_scc_105_6.hes 
+Checking b_nmc_127.hes 
+Checking a_scc_34_2.hes 
+Checking a_scc_34_3.hes 
+Checking s_scc_12_1.hes 
+Checking b_scc_1112_10.hes 
+Checking b_scc_1112_11.hes 
+Checking b_scc_45_4.hes 
+Checking b_nmc_57.hes 
+Checking b_scc_1213_12.hes 
+Checking b_scc_67_6.hes 
+Checking b_scc_67_13.hes 
+Checking b_scc_56_9.hes 
+Checking b_scc_67_11.hes 
+Checking b_scc_67_10.hes 
+b_scc_67_10.hes: invalid
+b_scc_67_11.hes: invalid
+b_scc_56_9.hes: invalid
+b_scc_67_13.hes: invalid
+b_scc_67_6.hes: invalid
+b_scc_1213_12.hes: invalid
+b_nmc_57.hes: invalid
+b_scc_45_4.hes: invalid
+b_scc_1112_11.hes: invalid
+b_scc_1112_10.hes: invalid
+s_scc_12_1.hes: invalid
+a_scc_34_3.hes: invalid
+a_scc_34_2.hes: invalid
+b_nmc_127.hes: invalid
+b_scc_105_6.hes: invalid
+b_scc_1213_7.hes: invalid
+a_scc_01_0.hes: invalid
+b_scc_1112_6.hes: invalid
+b_scc_105_11.hes: invalid
+s_scc_78_7.hes: invalid
+b_scc_1213_5.hes: invalid
+b_scc_105_10.hes: invalid
+c_scc_910_9.hes: invalid
+b_scc_56_12.hes: invalid
+b_scc_49_4.hes: invalid
+s_scc_23_2.hes: invalid
+b_scc_56_7.hes: invalid
+c_scc_911_9.hes: invalid
+b_nmc_59.hes: invalid
+b_scc_67_8.hes: invalid
+b_scc_56_5.hes: invalid
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| b_scc_56_5.hes                 | 0.2431               | invalid    |
+| b_scc_67_8.hes                 | 0.1728               | invalid    |
+| b_nmc_59.hes                   | 0.1865               | invalid    |
+| c_scc_911_9.hes                | 0.3576               | invalid    |
+| b_scc_56_7.hes                 | 0.1763               | invalid    |
+| s_scc_23_2.hes                 | 0.2288               | invalid    |
+| b_scc_49_4.hes                 | 0.2253               | invalid    |
+| b_scc_56_12.hes                | 0.2477               | invalid    |
+| c_scc_910_9.hes                | 0.3631               | invalid    |
+| b_scc_105_10.hes               | 0.2349               | invalid    |
+| b_scc_1213_5.hes               | 0.2516               | invalid    |
+| s_scc_78_7.hes                 | 0.3318               | invalid    |
+| b_scc_105_11.hes               | 0.2379               | invalid    |
+| b_scc_1112_6.hes               | 0.1751               | invalid    |
+| a_scc_01_0.hes                 | 0.2162               | invalid    |
+| b_scc_1213_7.hes               | 0.1801               | invalid    |
+| b_scc_105_6.hes                | 0.1750               | invalid    |
+| b_nmc_127.hes                  | 0.1812               | invalid    |
+| a_scc_34_2.hes                 | 0.2480               | invalid    |
+| a_scc_34_3.hes                 | 0.2296               | invalid    |
+| s_scc_12_1.hes                 | 0.2202               | invalid    |
+| b_scc_1112_10.hes              | 0.2382               | invalid    |
+| b_scc_1112_11.hes              | 0.2317               | invalid    |
+| b_scc_45_4.hes                 | 0.2256               | invalid    |
+| b_nmc_57.hes                   | 0.1832               | invalid    |
+| b_scc_1213_12.hes              | 0.2320               | invalid    |
+| b_scc_67_6.hes                 | 0.2451               | invalid    |
+| b_scc_67_13.hes                | 0.2343               | invalid    |
+| b_scc_56_9.hes                 | 0.1728               | invalid    |
+| b_scc_67_11.hes                | 0.1734               | invalid    |
+| b_scc_67_10.hes                | 0.1728               | invalid    |
+
+Total time:6.991864
+-e 
+
+
+Processing examples/travel-agency
+----------------------------------------
+
+Checking GCLTS eligibility...
+Checking 0_det_1_3.hes 
+Checking df_8.hes 
+Checking 0_det_3_1.hes 
+Checking df_6.hes 
+Checking df_5.hes 
+Checking df_4.hes 
+Checking df_0.hes 
+Checking df_1.hes 
+Checking 0_det_3_8.hes 
+Checking 0_det_1_8.hes 
+Checking df_3.hes 
+Checking df_2.hes 
+Checking 0_det_8_1.hes 
+Checking 0_det_8_3.hes 
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| 0_det_1_3.hes                  | 0.2669               | invalid    |
+| df_8.hes                       | 0.2129               | invalid    |
+| 0_det_3_1.hes                  | 0.2451               | invalid    |
+| df_6.hes                       | 0.2237               | invalid    |
+| df_5.hes                       | 0.2160               | invalid    |
+| df_4.hes                       | 0.2190               | invalid    |
+| df_0.hes                       | 0.2515               | invalid    |
+| df_1.hes                       | 0.1993               | invalid    |
+| 0_det_3_8.hes                  | 0.2576               | invalid    |
+| 0_det_1_8.hes                  | 0.2396               | invalid    |
+| df_3.hes                       | 0.2109               | invalid    |
+| df_2.hes                       | 0.1975               | invalid    |
+| 0_det_8_1.hes                  | 0.2389               | invalid    |
+| 0_det_8_3.hes                  | 0.2458               | invalid    |
+
+Total time:3.224637
+Checking implementability...
+Checking c_scc_45_8.hes 
+Checking a_scc_20_2.hes 
+Checking a_nmc_81.hes 
+Checking c_scc_08_0.hes 
+Checking c_rcc_20_56.hes 
+Checking a_scc_20_4.hes 
+Checking a_scc_20_5.hes 
+Checking c_scc_08_6.hes 
+Checking c_scc_67_8.hes 
+Checking a_scc_20_6.hes 
+Checking c_scc_12_1.hes 
+Checking c_scc_12_3.hes 
+Checking c_scc_12_7.hes 
+Checking a_nmc_26.hes 
+Checking c_scc_12_6.hes 
+Checking a_scc_86_1.hes 
+Checking a_scc_86_3.hes 
+Checking c_scc_12_4.hes 
+Checking a_scc_34_8.hes 
+Checking a_nmc_31.hes 
+Checking c_scc_03_0.hes 
+Checking c_scc_12_8.hes 
+Checking c_rcc_56_20.hes 
+Checking c_scc_01_0.hes 
+Checking c_scc_03_6.hes 
+Checking s_scc_56_5.hes 
+Checking a_scc_34_3.hes 
+Checking a_scc_86_8.hes 
+Checking a_scc_34_1.hes 
+Checking c_scc_01_6.hes 
+Checking c_scc_67_6.hes 
+Checking c_scc_45_1.hes 
+Checking c_scc_67_7.hes 
+Checking c_scc_45_3.hes 
+Checking c_scc_67_4.hes 
+Checking c_scc_67_0.hes 
+Checking c_scc_45_7.hes 
+Checking c_scc_45_6.hes 
+Checking c_scc_67_1.hes 
+Checking c_scc_67_3.hes 
+Checking c_scc_45_4.hes 
+c_scc_45_4.hes: invalid
+c_scc_67_3.hes: invalid
+c_scc_67_1.hes: invalid
+c_scc_45_6.hes: invalid
+c_scc_45_7.hes: invalid
+c_scc_67_0.hes: invalid
+c_scc_67_4.hes: invalid
+c_scc_45_3.hes: invalid
+c_scc_67_7.hes: invalid
+c_scc_45_1.hes: invalid
+c_scc_67_6.hes: invalid
+c_scc_01_6.hes: invalid
+a_scc_34_1.hes: invalid
+a_scc_86_8.hes: invalid
+a_scc_34_3.hes: invalid
+s_scc_56_5.hes: invalid
+c_scc_03_6.hes: invalid
+c_scc_01_0.hes: invalid
+c_rcc_56_20.hes: invalid
+c_scc_12_8.hes: invalid
+c_scc_03_0.hes: invalid
+a_nmc_31.hes: invalid
+a_scc_34_8.hes: invalid
+c_scc_12_4.hes: invalid
+a_scc_86_3.hes: invalid
+a_scc_86_1.hes: invalid
+c_scc_12_6.hes: invalid
+a_nmc_26.hes: invalid
+c_scc_12_7.hes: invalid
+c_scc_12_3.hes: invalid
+c_scc_12_1.hes: invalid
+a_scc_20_6.hes: invalid
+c_scc_67_8.hes: invalid
+c_scc_08_6.hes: invalid
+a_scc_20_5.hes: invalid
+a_scc_20_4.hes: invalid
+c_rcc_20_56.hes: invalid
+c_scc_08_0.hes: invalid
+a_nmc_81.hes: invalid
+a_scc_20_2.hes: invalid
+c_scc_45_8.hes: invalid
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| c_scc_45_8.hes                 | 0.2208               | invalid    |
+| a_scc_20_2.hes                 | 0.2144               | invalid    |
+| a_nmc_81.hes                   | 0.2105               | invalid    |
+| c_scc_08_0.hes                 | 0.2217               | invalid    |
+| c_rcc_20_56.hes                | 0.3566               | invalid    |
+| a_scc_20_4.hes                 | 0.1737               | invalid    |
+| a_scc_20_5.hes                 | 0.1764               | invalid    |
+| c_scc_08_6.hes                 | 0.1857               | invalid    |
+| c_scc_67_8.hes                 | 0.2199               | invalid    |
+| a_scc_20_6.hes                 | 0.1830               | invalid    |
+| c_scc_12_1.hes                 | 0.2039               | invalid    |
+| c_scc_12_3.hes                 | 0.2015               | invalid    |
+| c_scc_12_7.hes                 | 0.1872               | invalid    |
+| a_nmc_26.hes                   | 0.1867               | invalid    |
+| c_scc_12_6.hes                 | 0.2175               | invalid    |
+| a_scc_86_1.hes                 | 0.2028               | invalid    |
+| a_scc_86_3.hes                 | 0.2120               | invalid    |
+| c_scc_12_4.hes                 | 0.2085               | invalid    |
+| a_scc_34_8.hes                 | 0.2087               | invalid    |
+| a_nmc_31.hes                   | 0.2018               | invalid    |
+| c_scc_03_0.hes                 | 0.2165               | invalid    |
+| c_scc_12_8.hes                 | 0.2181               | invalid    |
+| c_rcc_56_20.hes                | 0.3241               | invalid    |
+| c_scc_01_0.hes                 | 0.2169               | invalid    |
+| c_scc_03_6.hes                 | 0.1821               | invalid    |
+| s_scc_56_5.hes                 | 0.5785               | invalid    |
+| a_scc_34_3.hes                 | 0.2158               | invalid    |
+| a_scc_86_8.hes                 | 0.2153               | invalid    |
+| a_scc_34_1.hes                 | 0.2044               | invalid    |
+| c_scc_01_6.hes                 | 0.1853               | invalid    |
+| c_scc_67_6.hes                 | 0.2470               | invalid    |
+| c_scc_45_1.hes                 | 0.2062               | invalid    |
+| c_scc_67_7.hes                 | 0.1886               | invalid    |
+| c_scc_45_3.hes                 | 0.2286               | invalid    |
+| c_scc_67_4.hes                 | 0.2214               | invalid    |
+| c_scc_67_0.hes                 | 0.1978               | invalid    |
+| c_scc_45_7.hes                 | 0.1896               | invalid    |
+| c_scc_45_6.hes                 | 0.2231               | invalid    |
+| c_scc_67_1.hes                 | 0.2136               | invalid    |
+| c_scc_67_3.hes                 | 0.2060               | invalid    |
+| c_scc_45_4.hes                 | 0.2253               | invalid    |
+
+Total time:9.097315
+-e 
+
+
+Processing examples/two-buyer
+----------------------------------------
+
+Checking GCLTS eligibility...
+Checking 4_det_5_8.hes 
+Checking 4_det_8_5.hes 
+Checking df_8.hes 
+Checking df_6.hes 
+Checking df_5.hes 
+Checking df_4.hes 
+Checking df_0.hes 
+Checking df_1.hes 
+Checking df_3.hes 
+Checking df_2.hes 
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| 4_det_5_8.hes                  | 0.2782               | invalid    |
+| 4_det_8_5.hes                  | 0.2497               | invalid    |
+| df_8.hes                       | 0.2110               | invalid    |
+| df_6.hes                       | 0.2069               | invalid    |
+| df_5.hes                       | 0.2133               | invalid    |
+| df_4.hes                       | 0.2362               | invalid    |
+| df_0.hes                       | 0.1909               | invalid    |
+| df_1.hes                       | 0.1878               | invalid    |
+| df_3.hes                       | 0.2177               | invalid    |
+| df_2.hes                       | 0.2111               | invalid    |
+
+Total time:2.202857
+Checking implementability...
+Checking b_scc_56_5.hes 
+Checking a_scc_89_8.hes 
+Checking s_scc_23_2.hes 
+Checking a_scc_67_6.hes 
+Checking a_nmc_85.hes 
+Checking b_scc_48_4.hes 
+Checking a_scc_01_0.hes 
+Checking a_scc_34_2.hes 
+Checking a_scc_34_3.hes 
+Checking a_scc_67_9.hes 
+Checking s_scc_12_1.hes 
+Checking b_scc_45_4.hes 
+Checking a_scc_89_5.hes 
+Checking b_scc_56_9.hes 
+Checking b_scc_56_8.hes 
+b_scc_56_8.hes: invalid
+b_scc_56_9.hes: invalid
+a_scc_89_5.hes: invalid
+b_scc_45_4.hes: invalid
+s_scc_12_1.hes: invalid
+a_scc_67_9.hes: invalid
+a_scc_34_3.hes: invalid
+a_scc_34_2.hes: invalid
+a_scc_01_0.hes: invalid
+b_scc_48_4.hes: invalid
+a_nmc_85.hes: invalid
+a_scc_67_6.hes: invalid
+s_scc_23_2.hes: invalid
+a_scc_89_8.hes: invalid
+b_scc_56_5.hes: invalid
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| b_scc_56_5.hes                 | 0.2697               | invalid    |
+| a_scc_89_8.hes                 | 0.2157               | invalid    |
+| s_scc_23_2.hes                 | 0.2179               | invalid    |
+| a_scc_67_6.hes                 | 0.2130               | invalid    |
+| a_nmc_85.hes                   | 0.2024               | invalid    |
+| b_scc_48_4.hes                 | 0.2806               | invalid    |
+| a_scc_01_0.hes                 | 0.1898               | invalid    |
+| a_scc_34_2.hes                 | 0.2247               | invalid    |
+| a_scc_34_3.hes                 | 0.2070               | invalid    |
+| a_scc_67_9.hes                 | 0.1700               | invalid    |
+| s_scc_12_1.hes                 | 0.2008               | invalid    |
+| b_scc_45_4.hes                 | 0.2755               | invalid    |
+| a_scc_89_5.hes                 | 0.2082               | invalid    |
+| b_scc_56_9.hes                 | 0.2512               | invalid    |
+| b_scc_56_8.hes                 | 0.2491               | invalid    |
+
+Total time:3.375739
+-e 
+
+
+Processing examples/binary-examples/fibonacci
+----------------------------------------
+
+Checking GCLTS eligibility...
+Checking 0_det_4_1.hes 
+Checking 0_det_1_4.hes 
+Checking df_0.hes 
+Checking df_1.hes 
+Checking df_3.hes 
+Checking df_2.hes 
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| 0_det_4_1.hes                  | 0.2533               | invalid    |
+| 0_det_1_4.hes                  | 0.2368               | invalid    |
+| df_0.hes                       | 0.2372               | invalid    |
+| df_1.hes                       | 0.1967               | invalid    |
+| df_3.hes                       | 0.1982               | invalid    |
+| df_2.hes                       | 0.2035               | invalid    |
+
+Total time:1.325550
+Checking implementability...
+Binary protocol, implementable
+-e 
+
+
+Processing examples/binary-examples/http
+----------------------------------------
+
+Checking GCLTS eligibility...
+Checking 3_det_4_6.hes 
+Checking 3_det_6_4.hes 
+Checking 10_det_13_11.hes 
+Checking df_9.hes 
+Checking df_11.hes 
+Checking df_10.hes 
+Checking df_8.hes 
+Checking 10_det_11_13.hes 
+Checking df_12.hes 
+Checking df_13.hes 
+Checking df_6.hes 
+Checking df_7.hes 
+Checking df_5.hes 
+Checking df_4.hes 
+Checking df_0.hes 
+Checking df_1.hes 
+Checking df_3.hes 
+Checking df_2.hes 
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| 3_det_4_6.hes                  | 0.2014               | invalid    |
+| 3_det_6_4.hes                  | 0.1907               | invalid    |
+| 10_det_13_11.hes               | 0.2011               | invalid    |
+| df_9.hes                       | 0.1827               | invalid    |
+| df_11.hes                      | 0.1872               | invalid    |
+| df_10.hes                      | 0.2056               | invalid    |
+| df_8.hes                       | 0.1867               | invalid    |
+| 10_det_11_13.hes               | 0.2088               | invalid    |
+| df_12.hes                      | 0.1846               | invalid    |
+| df_13.hes                      | 0.1914               | invalid    |
+| df_6.hes                       | 0.1736               | invalid    |
+| df_7.hes                       | 0.1791               | invalid    |
+| df_5.hes                       | 0.1773               | invalid    |
+| df_4.hes                       | 0.1775               | invalid    |
+| df_0.hes                       | 0.1654               | invalid    |
+| df_1.hes                       | 0.1651               | invalid    |
+| df_3.hes                       | 0.1916               | invalid    |
+| df_2.hes                       | 0.1659               | invalid    |
+
+Total time:3.335673
+Checking implementability...
+Binary protocol, implementable
+-e 
+
+
+Processing examples/binary-examples/negotiation
+----------------------------------------
+
+Checking GCLTS eligibility...
+Checking 7_det_12_8.hes 
+Checking 7_det_12_11.hes 
+Checking 7_det_11_8.hes 
+Checking 7_det_8_12.hes 
+Checking 2_det_13_6.hes 
+Checking 7_det_8_11.hes 
+Checking 2_det_13_3.hes 
+Checking df_9.hes 
+Checking df_11.hes 
+Checking df_8.hes 
+Checking 2_det_3_13.hes 
+Checking 7_det_11_12.hes 
+Checking 2_det_3_6.hes 
+Checking df_6.hes 
+Checking df_7.hes 
+Checking df_4.hes 
+Checking 2_det_6_13.hes 
+Checking df_0.hes 
+Checking df_1.hes 
+Checking df_3.hes 
+Checking df_2.hes 
+Checking 2_det_6_3.hes 
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| 7_det_12_8.hes                 | 0.3072               | invalid    |
+| 7_det_12_11.hes                | 0.2784               | invalid    |
+| 7_det_11_8.hes                 | 0.2709               | invalid    |
+| 7_det_8_12.hes                 | 0.2588               | invalid    |
+| 2_det_13_6.hes                 | 0.2776               | invalid    |
+| 7_det_8_11.hes                 | 0.2582               | invalid    |
+| 2_det_13_3.hes                 | 0.2758               | invalid    |
+| df_9.hes                       | 0.2267               | invalid    |
+| df_11.hes                      | 0.2144               | invalid    |
+| df_8.hes                       | 0.2285               | invalid    |
+| 2_det_3_13.hes                 | 0.2883               | invalid    |
+| 7_det_11_12.hes                | 0.2610               | invalid    |
+| 2_det_3_6.hes                  | 0.2867               | invalid    |
+| df_6.hes                       | 0.2219               | invalid    |
+| df_7.hes                       | 0.2983               | invalid    |
+| df_4.hes                       | 0.2272               | invalid    |
+| 2_det_6_13.hes                 | 0.2732               | invalid    |
+| df_0.hes                       | 0.2044               | invalid    |
+| df_1.hes                       | 0.1909               | invalid    |
+| df_3.hes                       | 0.2307               | invalid    |
+| df_2.hes                       | 0.3070               | invalid    |
+| 2_det_6_3.hes                  | 0.2700               | invalid    |
+
+Total time:5.656076
+Checking implementability...
+Binary protocol, implementable
+-e 
+
+
+Processing examples/binary-examples/simpl-auth
+----------------------------------------
+
+Checking GCLTS eligibility...
+Checking 3_det_2_4.hes 
+Checking 3_det_4_2.hes 
+Checking df_0.hes 
+Checking df_1.hes 
+Checking df_3.hes 
+Checking df_2.hes 
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| 3_det_2_4.hes                  | 0.2780               | invalid    |
+| 3_det_4_2.hes                  | 0.2676               | invalid    |
+| df_0.hes                       | 0.1928               | invalid    |
+| df_1.hes                       | 0.1869               | invalid    |
+| df_3.hes                       | 0.2323               | invalid    |
+| df_2.hes                       | 0.2011               | invalid    |
+
+Total time:1.358749
+Checking implementability...
+Binary protocol, implementable
+-e 
+
+
+Processing examples/binary-examples/ticket
+----------------------------------------
+
+Checking GCLTS eligibility...
+Checking df_0.hes 
+Checking df_1.hes 
+Checking 1_det_4_2.hes 
+Checking 1_det_2_4.hes 
+Checking df_3.hes 
+Checking df_2.hes 
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df_0.hes                       | 0.2446               | invalid    |
+| df_1.hes                       | 0.2583               | invalid    |
+| 1_det_4_2.hes                  | 0.2745               | invalid    |
+| 1_det_2_4.hes                  | 0.2780               | invalid    |
+| df_3.hes                       | 0.2241               | invalid    |
+| df_2.hes                       | 0.2164               | invalid    |
+
+Total time:1.495852
+Checking implementability...
+Binary protocol, implementable
+-e 
+
+

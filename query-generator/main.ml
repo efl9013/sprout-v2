@@ -116,7 +116,7 @@ let process_directory_gclts dirname timeout mode : (string * string * float) lis
   Unix.chdir Config.coar_location; 
   results
 
-let print_execution_time results =
+let print_execution_time results : float =
   let sum = List.fold_left (fun acc (file, outcome, execution_time) -> acc +. execution_time) 0.0 results in 
   Printf.printf "\nResults:\n";
   Printf.printf "| %-30s | %-20s | %-10s |\n" "Filename" "Execution Time (s)" "Result";
@@ -127,7 +127,8 @@ let print_execution_time results =
       execution_time 
       outcome
   ) (List.rev results);
-  Printf.printf "\nTotal time:%f\n" sum
+  Printf.printf "\nTotal time:%f\n" sum;
+  sum 
 
 let generate_gclts_queries (prot: symbolic_protocol) (dirname: string) = 
   generate_determinism_queries_vb prot dirname; 
@@ -171,27 +172,33 @@ let generate_implementability_queries (prot: symbolic_protocol) (dirname: string
   generate_nmc_queries prot dirname;
   | _ -> Printf.eprintf "Version invalid\n" 
 
-let check_gclts (prot: symbolic_protocol) (dirname: string) (timeout: int) (mode: string) : bool = 
+let check_gclts (prot: symbolic_protocol) (dirname: string) (timeout: int) (mode: string) : (bool * float) = 
   Printf.printf "Checking GCLTS eligibility...\n";
   (* print_symbolic_protocol prot;  *)
   (* First do syntactic checks *)
   if (not (sender_driven prot))
-  then (Printf.printf "Protocol is not sender-driven\n"; false) 
+  then (Printf.printf "Protocol is not sender-driven\n"; (false,0.0)) 
   else if (not (sink_final prot))
-       then (Printf.printf "Protocol is not sink-final\n"; false) 
+       then (Printf.printf "Protocol is not sink-final\n"; (false,0.0)) 
        else (let results = process_directory_gclts dirname timeout mode in 
             List.iter (fun (file, outcome, time) -> if outcome = "valid" then Printf.printf "%s violates GCLTS conditions\n" file) results;
             if List.for_all (fun (_, result, _) -> result = "invalid") results 
-            then (Printf.printf "GCLTS eligible\n"; print_execution_time results; true)
+            then (Printf.printf "GCLTS eligible\n"; 
+                  let sum = print_execution_time results in 
+                  (true,sum))
             else if List.exists (fun (_, result, _) -> result = "valid") results 
-                 then (Printf.printf "Protocol is GCLTS ineligible\n"; print_execution_time results; false)
-                 else (Printf.printf "Inconclusive\n"; print_execution_time results; false))
+                 then (Printf.printf "Protocol is GCLTS ineligible\n"; 
+                       let sum = print_execution_time results in 
+                        (false, sum))
+                 else (Printf.printf "Inconclusive\n"; 
+                       let sum = print_execution_time results in 
+                       (false,sum)))
 
-let check_implementability (prot: symbolic_protocol) (dirname: string) (timeout: int) (version: string) (mode: string) : unit = 
+let check_implementability (prot: symbolic_protocol) (dirname: string) (timeout: int) (version: string) (mode: string) : float = 
   Printf.printf "Checking implementability...\n";
   (* print_symbolic_protocol prot;  *)
   if is_binary prot 
-  then Printf.printf "Binary protocol, implementable\n"
+  then (Printf.printf "Binary protocol, implementable\n"; 0.0)
   else (generate_implementability_queries prot dirname version;
         let results = process_directory dirname timeout mode in 
         List.iter (fun (file, outcome, time) -> Printf.printf "%s: %s\n" file outcome) results;
@@ -227,10 +234,12 @@ let () =
               dot -Tsvg visualization.dot > visualization.svg 
               in the respective folder and open svg-file *)
             generate_gclts_queries protocol gclts_dirname;
-            if check_gclts protocol gclts_dirname timeout mode
-            then (check_implementability protocol dirname timeout version mode;
+            let (is_gclts, gclts_time) = check_gclts protocol gclts_dirname timeout mode in 
+            if is_gclts 
+            then (let impl_time = check_implementability protocol dirname timeout version mode in 
                   (* Optionally generate property queries *)
-                  generate_property_query protocol higher_lower_termination "termination_property" dirname)
+                  generate_property_query protocol higher_lower_termination "termination_property" dirname;
+                  Printf.eprintf "\nTotal verification time: %f\n" (Float.add gclts_time impl_time))
           else ();)
       else ();
     with
