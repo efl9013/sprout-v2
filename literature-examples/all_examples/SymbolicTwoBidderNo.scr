@@ -1,8 +1,8 @@
-module SymbolicTwoBidder; 
+module SymbolicTwoBidderNo; 
 
 type <fstar> "int" from "" as int;
 
-global protocol SymbolicTwoBidder(role S, role B1, role B2)
+global protocol SymbolicTwoBidderNo(role S, role B1, role B2)
 {
 	Request(y1: int) from B1 to S; @"y1>0"
 	Request(y2: int) from B1 to B2; @"y2=y1"
@@ -13,7 +13,7 @@ global protocol SymbolicTwoBidder(role S, role B1, role B2)
 aux global protocol BiddingLoop(role B1, role B2, role S) @'[z1 : int = 0, z2 : int = 0, z : int = 0]' {
 		Offer(b1: int) from B1 to B2; @"b1>z1"
 		choice at B2 {
-			Offer(b2: int) from B2 to B1; @"b2>z2"
+			Offer(b2: int) from B2 to B1; @"b2>z2&&b2<z"
 			choice at B1 { 
 				Continue() from B1 to B2; @"b1+b2<z"
 				do BiddingLoop(B1,B2,S); @"B[b1,z], B2[b2]"

@@ -1,26 +1,3 @@
-// Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
-B->C{ higher([])((n > x) && (t > 1)).B->A:higher([])True.__HigherLower_Aux__A_B_C__<n, t>, win([])(n = x).B->A:lose([])True.end, lower([])((n < x) && (t > 1)).B->A:lower([])True.__HigherLower_Aux__A_B_C__<n, t>, lose([])(((n < x) || (n > x)) && (t = 1)).B->A:win([])True.end }
- onto D: cannot merge mixed termination.
-	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:177)
-	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
-	at org.scribble.ext.assrt.core.type.session.global.AssrtGRec.projectInlined(AssrtGRec.java:141)
-	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
-	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
-	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
-	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
-	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
-	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
-	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
-	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
-	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
-	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
-	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
-	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
-Scribble reported a problem, aborting
-
-real	0m0.732s
-user	0m0.842s
-sys	0m0.180s
 
 module HigherLowerEncryptYes;
 

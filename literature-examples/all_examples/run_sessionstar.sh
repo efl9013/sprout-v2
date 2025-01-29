@@ -26,12 +26,13 @@ commands=(
   "sessionstar RingMax.scr RingMax A; sessionstar RingMax.scr RingMax B; sessionstar RingMax.scr RingMax C; sessionstar RingMax.scr RingMax D; sessionstar RingMax.scr RingMax E"
   "sessionstar SimpleAuth.scr SimpleAuth C; sessionstar SimpleAuth.scr SimpleAuth S"
   "sessionstar TravelAgency2.scr TravelAgency2 A; sessionstar TravelAgency2.scr TravelAgency2 C"
-  "sessionstar HigherLowerUltimate.scr HigherLowerUltimate A; sessionstar HigherLowerUltimate.scr HigherLowerUltimate B; sessionstar HigherLowerUltimate.scr HigherLowerUltimate C"
+ "sessionstar HigherLowerUltimate.scr HigherLowerUltimate A; sessionstar HigherLowerUltimate.scr HigherLowerUltimate B; sessionstar HigherLowerUltimate.scr HigherLowerUltimate C"
   "sessionstar HigherLowerWinning.scr HigherLowerWinning A; sessionstar HigherLowerWinning.scr HigherLowerWinning B; sessionstar HigherLowerWinning.scr HigherLowerWinning C"
   "sessionstar HigherLowerNo.scr HigherLowerNo A; sessionstar HigherLowerNo.scr HigherLowerNo B; sessionstar HigherLowerNo.scr HigherLowerNo C"
   "sessionstar HigherLowerEncryptYes.scr HigherLowerEncryptYes A; sessionstar HigherLowerEncryptYes.scr HigherLowerEncryptYes B; sessionstar HigherLowerEncryptYes.scr HigherLowerEncryptYes C"
   "sessionstar HigherLowerEncryptNo.scr HigherLowerEncryptNo A; sessionstar HigherLowerEncryptNo.scr HigherLowerEncryptNo B; sessionstar HigherLowerEncryptNo.scr HigherLowerEncryptNo C"
-
+  "sessionstar SymbolicTwoBidder.scr SymbolicTwoBidder S; sessionstar SymbolicTwoBidder.scr SymbolicTwoBidder B1; sessionstar SymbolicTwoBidder.scr SymbolicTwoBidder B2"
+  "sessionstar SymbolicTwoBidderNo.scr SymbolicTwoBidderNo S; sessionstar SymbolicTwoBidderNo.scr SymbolicTwoBidderNo B1; sessionstar SymbolicTwoBidderNo.scr SymbolicTwoBidderNo B2"
 )
 
 # Iterate over the commands
