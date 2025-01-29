@@ -1,0 +1,10 @@
+Initial state: (0)
+Initial register assignments: rp=0, rt=0
+(0) c->s:setpw{setpw=2/\rp'=rp/\rt'=rt} (1)
+(1) c->s:password{rp'=password/\rt'=rt} (2)
+(2) c->s:pwattempt{rp'=rp/\rt'=pwattempt} (3)
+(3) s->c:succ{succ=1/\rp=rt/\rp'=rp/\rt'=rt} (4)
+(3) s->c:fail{fail=0/\rp!=rt/\rp'=rp/\rt'=rt} (5)
+(5) s->c:y{rp'=rp/\rt'=rt} (6)
+(6) c->s:s{rp'=rp/\rt'=rt} (2)
+Final states: (4)
