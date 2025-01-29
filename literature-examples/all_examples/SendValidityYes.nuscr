@@ -1,5 +1,3 @@
-module SendValidityYes;
-
 global protocol SendValidityYes(role P, role Q, role R, role S)
 {
   choice at P

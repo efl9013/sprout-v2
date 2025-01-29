@@ -36,4 +36,3 @@ aux global protocol Authenticated(role S, role C, role A)
     quit() from C to A;
   }
 }
-//*/

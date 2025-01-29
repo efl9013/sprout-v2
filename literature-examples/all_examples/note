@@ -1,1 +1,5 @@
 Calculator: added back the functionality of multiplication, otherwise the calculator can only add!!
+SymbolicSendValidityNo: figure 6 from paper, figure6-yes 
+SymbolicSendValidityYes: needed to invent a fix based on figure 6 from the paper, figure6-no 
+SymbolicReceiveValidityNo: figure 5 from paper, figure5-no 
+SymbolicReceiveValidityYes: figure 5 from paper, figure5-yes

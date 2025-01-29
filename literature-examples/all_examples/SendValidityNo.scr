@@ -10,6 +10,6 @@ global protocol SendValidityNo(role P, role Q, role R, role S)
 or
         {
         Message2() from P to Q;
-        Message() from R to S;
+        Message2() from R to S;
         }
 }

@@ -1,0 +1,20 @@
+module SymbolicReceiveValidityYes;
+
+type <fstar> "int" from "" as int;
+
+global protocol SymbolicReceiveValidityYes(role P, role Q, role R, role S)
+{
+  m(x: int) from S to P; 
+  m(y: int) from P to R; @"y=x+2"
+  choice at P {
+    b() from P to Q; @"x>0" // Modified from even(x)
+    m(z1: int) from P to R; 
+    m(z2: int) from Q to R; 
+    m(ztop: int) from R to P; @"ztop=z1-z2"
+  } or {
+    m() from P to Q; @"x<0" // Modified from even(x)
+    m(z3: int) from P to R; 
+    m(z4: int) from Q to R; 
+    m(zbot: int) from R to P; @"zbot=z4-z3"
+  }
+}
