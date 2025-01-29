@@ -67,7 +67,7 @@ let process_hes_file filename dirname timeout mode : string * float =
   (* Update: found a bug in the parallel version as well *)
   let command = Printf.sprintf "timeout %i ./_build/default/main.exe -c ./config/solver/muval_%s_tbq_ar.json -p muclp %s/%s" timeout mode dirname filename in
   let start_time = Unix.gettimeofday () in
-  Printf.printf "Checking %s \n" filename;
+  (* Printf.printf "Checking %s \n" filename; *)
   flush Stdlib.stdout;
   let ic = Unix.open_process_in command in
   let rec read_last_line last_line =
@@ -201,7 +201,7 @@ let check_implementability (prot: symbolic_protocol) (dirname: string) (timeout:
   then (Printf.printf "Binary protocol, implementable\n"; 0.0)
   else (generate_implementability_queries prot dirname version;
         let results = process_directory dirname timeout mode in 
-        List.iter (fun (file, outcome, time) -> Printf.printf "%s: %s\n" file outcome) results;
+        (* List.iter (fun (file, outcome, time) -> Printf.printf "%s: %s\n" file outcome) results; *)
         if List.for_all (fun (_, result, _) -> result = "invalid") results 
         then Printf.printf "Implementable\n" 
         else if List.exists (fun (_, result, _) -> result = "valid") results 
@@ -238,7 +238,7 @@ let () =
             if is_gclts 
             then (let impl_time = check_implementability protocol dirname timeout version mode in 
                   (* Optionally generate property queries *)
-                  generate_property_query protocol higher_lower_termination "termination_property" dirname;
+                  (* generate_property_query protocol higher_lower_termination "termination_property" dirname; *)
                   Printf.eprintf "\nTotal verification time: %f\n" (Float.add gclts_time impl_time))
           else ();)
       else ();
