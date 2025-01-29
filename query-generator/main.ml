@@ -195,7 +195,7 @@ let check_gclts (prot: symbolic_protocol) (dirname: string) (timeout: int) (mode
                        (false,sum)))
 
 let check_implementability (prot: symbolic_protocol) (dirname: string) (timeout: int) (version: string) (mode: string) : float = 
-  Printf.printf "Checking implementability...\n";
+  Printf.printf "\nChecking implementability...\n";
   (* print_symbolic_protocol prot;  *)
   if is_binary prot 
   then (Printf.printf "Binary protocol, implementable\n"; 0.0)
