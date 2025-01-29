@@ -1,0 +1,22 @@
+module PlusMinus; 
+
+type <fstar> "int" from "" as int;
+
+global protocol PlusMinus(role A, role B, role C)
+{
+	Secret(n0: int) from A to B;
+	do Loop(B,C); @'[n0]'
+}
+
+aux global protocol Loop(role B, role C) @'[n : int = 0]' {
+		Guess(x: int) from C to B;
+		choice at B {
+			More(y: int) from B to C; @"x<n"
+			do Loop(B,C); @'[n]'
+		} or {
+			Less(z: int) from B to C; @"x>n"
+			do Loop(B,C); @'[n]'
+		} or {
+			Correct(k: int) from B to C; @"x=n"
+		}
+	}

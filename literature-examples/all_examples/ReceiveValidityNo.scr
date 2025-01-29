@@ -1,0 +1,17 @@
+module ReceiveValidityNo;
+
+global protocol ReceiveValidityNo(role P, role Q, role R, role S)
+{
+  choice at P
+        {
+        Message1() from P to Q;
+        Message() from Q to R;
+        Message() from P to R;
+        }
+or
+        {
+        Message2() from P to Q;
+        Message()  from P to R;
+        Message() from Q to R;
+        }
+}

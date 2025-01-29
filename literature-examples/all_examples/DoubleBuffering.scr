@@ -1,0 +1,9 @@
+module DoubleBuffering;
+
+global protocol DoubleBuffering (role S, role K, role T) {
+	ready() from K to S;
+	copy() from S to K;
+	ready() from T to K;
+	copy() from K to T;
+	do DoubleBuffering(S,K,T);
+}

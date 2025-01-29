@@ -1,0 +1,27 @@
+module OAuth; 
+
+type <fstar> "int" from "" as int;
+
+global protocol OAuth(role A, role C, role S)
+{
+    choice at S
+    {
+        login(x:int) from S to C;
+        password(y:int) from C to A;
+        choice at A
+        {
+             Auth(z:int) from A to S;
+             Auth(a:int) from S to C;
+        }
+        or
+        {
+             again(b:int) from A to S;
+             again(c:int) from S to C;
+        }
+    }
+    or
+    {
+        cancel(d:int) from S to C;
+        quit(e:int) from C to A;
+    }
+}

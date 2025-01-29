@@ -1,0 +1,19 @@
+module TravelAgency2; 
+
+type <fstar> "int" from "" as int;
+
+global protocol TravelAgency2(role C, role A)
+{
+    Order(o: int) from C to A;
+    Quote(q: int) from A to C;
+    choice at C
+    {
+        Accept(y: int) from C to A; @"q<100"
+        Address(a: int) from C to A;
+        Date(d: int) from A to C;
+    }
+    or
+    {
+        Reject(n: int) from C to A;
+    }
+}

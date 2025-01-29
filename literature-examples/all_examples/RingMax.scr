@@ -1,0 +1,14 @@
+module RingMax; 
+
+type <fstar> "int" from "" as int;
+
+global protocol RingMax(role A, role B, role C, role D, role E, role F, role G)
+{
+	ProposalA(a: int) from A to B;
+	ProposalB(b: int) from B to C; @"(b > a) || (b = a)"
+	ProposalC(c: int) from C to D; @"(c > b) || (c = b)"
+	ProposalD(d: int) from D to E; @"(d > c) || (d = c)"
+	ProposalE(e: int) from E to F; @"(e > d) || (e = d)"
+	ProposalF(f: int) from F to G; @"(f > e) || (f = e)"
+	ProposalG(g: int) from G to A; @"(g > f) || (g = f)"
+}

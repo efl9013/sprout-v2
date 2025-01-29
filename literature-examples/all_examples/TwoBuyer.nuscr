@@ -1,0 +1,15 @@
+(*# RefinementTypes #*)
+
+global protocol TwoBuyer(role A, role B, role S) {
+    bookId(id: int) from A to S;
+    quoteA(x: int{x>=0}) from S to A; 
+    quoteB(y: int{x=y}) from S to B; 
+    proposeA(a: int{a >= 0 && a <= x}) from A to B; 
+    choice at B {
+        ok(b: int{b = y - a && b <= a}) from B to A; 
+        buy() from A to S;
+    } or {
+        no() from B to A;
+        cancel() from A to S;
+    }
+}

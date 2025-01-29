@@ -1,0 +1,21 @@
+module SimpleAuth;
+
+type <fstar> "int" from "" as int;
+
+global protocol SimpleAuth(role C, role S)
+{
+	SetPw(p0: int) from C to S;
+	do Login(C, S); @'S[p0]'
+}
+
+aux global protocol Login(role C, role S) @'S[p : int = 0]' {
+	Password(x: int) from C to S;
+	choice at S {
+		Success(r: int) from S to C; @"x = p"
+	} or {
+		Failure(f: int) from S to C; @"(x > p || x < p)"
+		RetX(y: int) from S to C;
+		RetRes(s: int) from C to S;
+		do Login(C, S); @'S[p]'
+	}
+}
