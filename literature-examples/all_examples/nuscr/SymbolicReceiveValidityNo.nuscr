@@ -1,0 +1,18 @@
+(*# RefinementTypes #*)
+
+global protocol SymbolicReceiveValidityNo(role P, role Q, role R, role S)
+{
+  m(x: int) from S to P; 
+  m(y: int{y>x}) from P to R; 
+  choice at P {
+    b(something: int{x>0}) from P to Q; // Modified from even(x)
+    m(z1: int) from P to R; 
+    m(z2: int) from Q to R; 
+    m(ztop: int{ztop=z1-z2}) from R to P; 
+  } or {
+    m(something: int{x<0}) from P to Q; // Modified from even(x)
+    m(z3: int) from P to R; 
+    m(z4: int) from Q to R; 
+    m(zbot: int{zbot=z4-z3}) from R to P; 
+  }
+}

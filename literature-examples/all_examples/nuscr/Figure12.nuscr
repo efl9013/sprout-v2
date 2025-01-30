@@ -1,0 +1,5 @@
+global protocol Figure12(role P , role Q, role R) {
+  message(x: int) from P to Q; 
+  message(y: int{y=x}) from Q to R; 
+  message(z: int{z>x}) from R to P; 
+}

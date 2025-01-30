@@ -1,0 +1,52 @@
+(*# RefinementTypes #*)
+
+global protocol SH(role P, role R, role C)
+{
+  Plane(x1:int) from P to R;
+  Plane2(x2:int) from P to R;
+  Plane3(x3:int) from P to R;
+  Plane4(x4:int) from P to R;
+  rec Loop {
+    choice at P
+    {
+      IsAbove(v1:int) from P to R;
+      Res(b1:int{b1=0 || b1=1}) from R to P; 
+      IsAbove(v2:int) from P to R;
+      Res(b2:int{b2=0 || b2=1}) from R to P; 
+      choice at P
+      {
+        BothIn(something: int{b1=1 && b2=1}) from P to R; 
+        BothIn(r1:int) from P to C;
+        continue Loop; 
+      }
+      or
+      {
+        BothOut(something: int{b1=0 && b2=0}) from P to R; 
+        BothOut() from P to C;
+        continue Loop; 
+      }
+      or
+      {
+        Intersct(y1:int{((b1=1 && b2=0) || (b1=0 && b2=1)) && (y1=v1)}) from P to R;
+        Intersct2(y2:int{y2=v2}) from P to R;
+        Res(i:int) from R to P;
+        choice at P
+        {
+          SecOut(r2:int{b2=0 && r2=i}) from P to C;
+          continue Loop; 
+        }
+        or
+        {
+          SecIn(r3:int{b2=1 && (r3=i)}) from P to C; 
+          SecIn2(r4:int{r4=v2}) from P to C; 
+          continue Loop; 
+        }
+      }
+    }
+    or
+    {
+      Close() from P to R;
+      Close() from P to C;
+    }
+  }
+}

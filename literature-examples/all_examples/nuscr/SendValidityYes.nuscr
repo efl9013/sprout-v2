@@ -1,0 +1,13 @@
+global protocol SendValidityYes(role P, role Q, role R, role S)
+{
+  choice at P
+        {
+         Message() from P to Q;
+        Message() from R to S;
+        }
+or
+        {
+        Message2() from P to Q;
+        Message() from R to S;
+        }
+}
