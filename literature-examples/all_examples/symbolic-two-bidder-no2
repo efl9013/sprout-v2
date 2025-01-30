@@ -8,6 +8,7 @@ Initial register assignments: ry=0, rc=0, rza=0, rzb=0
 (5) s->b1:quit{quit=0/\ry'=ry/\rc'=rc/\rza'=rza/\rzb'=rzb} (6)
 (4) b2->b1:b{b>rzb/\rzb'=b/\ry'=ry/\rc'=rc/\rza'=rza} (7)
 (7) b1->s:succ{succ=1/\rza+rzb>=rc/\ry'=ry/\rc'=rc/\rza'=rza/\rzb'=rzb} (8)
-(8) s->b2:succ{succ=1/\ry'=ry/\rc'=rc/\rza'=rza/\rzb'=rzb} (6)
+(8) b2->s:succ{succ=1/\rza+rzb>=rc/\ry'=ry/\rc'=rc/\rza'=rza/\rzb'=rzb} (9)
+(9) s->b1:succ{succ=1/\ry'=ry/\rc'=rc/\rza'=rza/\rzb'=rzb} (6)
 (7) b1->b2:cont{cont=2/\rza+rzb<rc/\ry'=ry/\rc'=rc/\rza'=rza/\rzb'=rzb} (3)
 Final states: (6)
