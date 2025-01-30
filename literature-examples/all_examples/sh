@@ -27,7 +27,7 @@ Initial register assignments: rba=0, rbb=0, ri=0, rva=0, rvb=0
 (22) p->c:r2{r2=ri/\rba'=rba/\rbb'=rbb/\ri'=ri/\rva'=rva/\rvb'=rvb} (4)
 (21) p->c:SecIn{SecIn=6/\rbb=1/\rba'=rba/\rbb'=rbb/\ri'=ri/\rva'=rva/\rvb'=rvb} (23)
 (23) p->c:r3{r3=ri/\rba'=rba/\rbb'=rbb/\ri'=ri/\rva'=rva/\rvb'=rvb} (24)
-(24) p->c:SecIn{SecIn=6/\rbb=1/\rba'=rba/\rbb'=rbb/\ri'=ri/\rva'=rva/\rvb'=rvb} (25)
+(24) p->c:SecIn{SecIn=6/\rba'=rba/\rbb'=rbb/\ri'=ri/\rva'=rva/\rvb'=rvb} (25)
 (25) p->c:r4{r4=rvb/\rba'=rba/\rbb'=rbb/\ri'=ri/\rva'=rva/\rvb'=rvb} (4)
 (4) p->r:Close{Close=7/\rba'=rba/\rbb'=rbb/\ri'=ri/\rva'=rva/\rvb'=rvb} (26)
 (26) p->c:Close{Close=7/\rba'=rba/\rbb'=rbb/\ri'=ri/\rva'=rva/\rvb'=rvb} (27)
