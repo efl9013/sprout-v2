@@ -3,7 +3,7 @@
 set -u
 
 # Define the output file
-output_file="output.txt"
+output_file="sprout_output.txt"
 
 # Clear the output file if it exists, or create a new one
 > "$output_file"
@@ -38,6 +38,7 @@ files=(
   "higher-lower-encrypt-no"
   "higher-lower-mixed"
   "symbolic-two-bidder-yes"
+  "symbolic-two-bidder-no1"
   "symbolic-two-bidder-no2"
   "figure12"
   "figure12-no"

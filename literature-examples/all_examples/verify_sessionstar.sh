@@ -3,7 +3,7 @@
 set -u
 
 # Define the output file
-output_file="output.txt"
+output_file="sessionstar_output.txt"
 
 # Clear the output file if it exists, or create a new one
 > "$output_file"
@@ -33,15 +33,20 @@ commands=(
   "sessionstar HigherLowerEncryptNo.scr HigherLowerEncryptNo A; sessionstar HigherLowerEncryptNo.scr HigherLowerEncryptNo B; sessionstar HigherLowerEncryptNo.scr HigherLowerEncryptNo C"
   "sessionstar HigherLowerMixed.scr HigherLowerMixed A; sessionstar HigherLowerMixed.scr HigherLowerMixed B; sessionstar HigherLowerMixed.scr HigherLowerMixed C"
   "sessionstar SymbolicTwoBidder.scr SymbolicTwoBidder S; sessionstar SymbolicTwoBidder.scr SymbolicTwoBidder B1; sessionstar SymbolicTwoBidder.scr SymbolicTwoBidder B2"
-  "sessionstar SymbolicTwoBidderNo.scr SymbolicTwoBidderNo S; sessionstar SymbolicTwoBidderNo.scr SymbolicTwoBidderNo B1; sessionstar SymbolicTwoBidderNo.scr SymbolicTwoBidderNo B2"
+  "sessionstar SymbolicTwoBidderNo1.scr SymbolicTwoBidderNo1 S; sessionstar SymbolicTwoBidderNo1.scr SymbolicTwoBidderNo1 B1; sessionstar SymbolicTwoBidderNo1.scr SymbolicTwoBidderNo1 B2"
+  "sessionstar SymbolicTwoBidderNo2.scr SymbolicTwoBidderNo2 S; sessionstar SymbolicTwoBidderNo2.scr SymbolicTwoBidderNo2 B1; sessionstar SymbolicTwoBidderNo2.scr SymbolicTwoBidderNo2 B2"
   "sessionstar Figure12.scr Figure12 P; sessionstar Figure12.scr Figure12 Q; sessionstar Figure12.scr Figure12 R"
   "sessionstar Figure12No.scr Figure12No P; sessionstar Figure12No.scr Figure12No Q; sessionstar Figure12No.scr Figure12No R"
   "sessionstar SendValidityYes.scr SendValidityYes P; sessionstar SendValidityYes.scr SendValidityYes Q; sessionstar SendValidityYes.scr SendValidityYes R"
   "sessionstar SendValidityNo.scr SendValidityNo P; sessionstar SendValidityNo.scr SendValidityNo Q; sessionstar SendValidityNo.scr SendValidityNo R"
+  "sessionstar SymbolicSendValidityYes.scr SymbolicSendValidityYes P; sessionstar SymbolicSendValidityYes.scr SymbolicSendValidityYes Q; sessionstar SymbolicSendValidityYes.scr SymbolicSendValidityYes R"
+  "sessionstar SymbolicSendValidityNo.scr SymbolicSendValidityNo P; sessionstar SymbolicSendValidityNo.scr SymbolicSendValidityNo Q; sessionstar SymbolicSendValidityNo.scr SymbolicSendValidityNo R"
   "sessionstar ReceiveValidityYes.scr ReceiveValidityYes P; sessionstar ReceiveValidityYes.scr ReceiveValidityYes Q; sessionstar ReceiveValidityYes.scr ReceiveValidityYes R" 
   "sessionstar ReceiveValidityNo.scr ReceiveValidityNo P; sessionstar ReceiveValidityNo.scr ReceiveValidityNo Q; sessionstar ReceiveValidityNo.scr ReceiveValidityNo R" 
   "sessionstar SymbolicReceiveValidityYes.scr SymbolicReceiveValidityYes P; sessionstar SymbolicReceiveValidityYes.scr SymbolicReceiveValidityYes Q; sessionstar SymbolicReceiveValidityYes.scr SymbolicReceiveValidityYes R; sessionstar SymbolicReceiveValidityYes.scr SymbolicReceiveValidityYes S" 
   "sessionstar SymbolicReceiveValidityNo.scr SymbolicReceiveValidityNo P; sessionstar SymbolicReceiveValidityNo.scr SymbolicReceiveValidityNo Q; sessionstar SymbolicReceiveValidityNo.scr SymbolicReceiveValidityNo R; sessionstar SymbolicReceiveValidityNo.scr SymbolicReceiveValidityNo S" 
+  "sessionstar ForwardAuth.scr ForwardAuth S; sessionstar ForwardAuth.scr ForwardAuth A; sessionstar ForwardAuth.scr ForwardAuth C"
+  "sessionstar ForwardAuthNo.scr ForwardAuthNo S; sessionstar ForwardAuthNo.scr ForwardAuthNo A; sessionstar ForwardAuthNo.scr ForwardAuthNo C"
 )
 
 # Iterate over the commands
@@ -51,7 +56,7 @@ for cmd in "${commands[@]}"; do
   echo "----------------------------------------" >> "$output_file"
   
   # Run the command and append output to the file
-  eval "time $cmd" >> "$output_file" 2>&1
+  eval "time ($cmd)" >> "$output_file" 2>&1
   
   # Add a separator after each command's output
   echo -e "\n\n" >> "$output_file"

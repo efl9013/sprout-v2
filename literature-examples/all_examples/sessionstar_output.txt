@@ -1,0 +1,1390 @@
+1.Executing: sessionstar Calc.scr Calc S; sessionstar Calc.scr Calc C
+----------------------------------------
+
+real	0m1.804s
+user	0m2.223s
+sys	0m0.410s
+
+
+
+Executing: sessionstar Fib.scr Fib A; sessionstar Fib.scr Fib B
+----------------------------------------
+
+real	0m1.805s
+user	0m2.215s
+sys	0m0.366s
+
+
+
+Executing: sessionstar HigherLower.scr HigherLower A; sessionstar HigherLower.scr HigherLower B; sessionstar HigherLower.scr HigherLower C
+----------------------------------------
+
+real	0m3.925s
+user	0m5.462s
+sys	0m0.846s
+
+
+
+Executing: sessionstar Http.scr Http S; sessionstar Http.scr Http C
+----------------------------------------
+
+real	0m1.922s
+user	0m2.418s
+sys	0m0.406s
+
+
+
+Executing: sessionstar Nego.scr Negotiate C; sessionstar Nego.scr Negotiate P
+----------------------------------------
+
+real	0m1.937s
+user	0m2.361s
+sys	0m0.392s
+
+
+
+Executing: sessionstar OnlineWallet.scr OnlineWallet A; sessionstar OnlineWallet.scr OnlineWallet C; sessionstar OnlineWallet.scr OnlineWallet S
+----------------------------------------
+
+real	0m3.318s
+user	0m4.449s
+sys	0m0.687s
+
+
+
+Executing: 1.9s
+----------------------------------------
+/home/sessionstar/bin/sessionstar: line 28: 20514 Illegal instruction     ScribbleCodeGen.exe --protocol "$PROTOCOL" --role "$ROLE" -o "$FSTAR" "$FSM"
+
+real	0m5.460s
+user	0m10.546s
+sys	0m1.029s
+
+
+
+Executing: sessionstar Ticket.scr Ticket C; sessionstar Ticket.scr Ticket S
+----------------------------------------
+
+real	0m1.868s
+user	0m2.250s
+sys	0m0.385s
+
+
+
+Executing: sessionstar TravelAgency.scr Booking A; sessionstar TravelAgency.scr Booking C; sessionstar TravelAgency.scr Booking S
+----------------------------------------
+
+real	0m3.093s
+user	0m3.985s
+sys	0m0.659s
+
+
+
+Executing: sessionstar TwoBuyer.scr TwoBuyer A; sessionstar TwoBuyer.scr TwoBuyer B; sessionstar TwoBuyer.scr TwoBuyer S
+----------------------------------------
+
+real	0m2.841s
+user	0m3.370s
+sys	0m0.573s
+
+
+
+Executing: sessionstar DoubleBuffering.scr DoubleBuffering S; sessionstar DoubleBuffering.scr DoubleBuffering K; sessionstar DoubleBuffering.scr DoubleBuffering T
+----------------------------------------
+
+real	0m2.308s
+user	0m2.812s
+sys	0m0.488s
+
+
+
+Executing: sessionstar OAuth.scr OAuth A; sessionstar OAuth.scr OAuth C; sessionstar OAuth.scr OAuth S
+----------------------------------------
+
+real	0m2.286s
+user	0m2.719s
+sys	0m0.539s
+
+
+
+Executing: sessionstar PlusMinus.scr PlusMinus A; sessionstar PlusMinus.scr PlusMinus B; sessionstar PlusMinus.scr PlusMinus C
+----------------------------------------
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+B->C{ More(y: int)(x < n).__PlusMinus_Loop__B_C__<n>, Less(z: int)(x > n).__PlusMinus_Loop__B_C__<n>, Correct(k: int)(x = n).end }
+ onto A: cannot merge mixed termination.
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:177)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGRec.projectInlined(AssrtGRec.java:141)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+B->C{ More(y: int)(x < n).__PlusMinus_Loop__B_C__<n>, Less(z: int)(x > n).__PlusMinus_Loop__B_C__<n>, Correct(k: int)(x = n).end }
+ onto A: cannot merge mixed termination.
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:177)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGRec.projectInlined(AssrtGRec.java:141)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+B->C{ More(y: int)(x < n).__PlusMinus_Loop__B_C__<n>, Less(z: int)(x > n).__PlusMinus_Loop__B_C__<n>, Correct(k: int)(x = n).end }
+ onto A: cannot merge mixed termination.
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:177)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGRec.projectInlined(AssrtGRec.java:141)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+
+real	0m2.125s
+user	0m2.476s
+sys	0m0.500s
+
+
+
+Executing: sessionstar RingMax.scr RingMax A; sessionstar RingMax.scr RingMax B; sessionstar RingMax.scr RingMax C; sessionstar RingMax.scr RingMax D; sessionstar RingMax.scr RingMax E
+----------------------------------------
+
+real	0m4.707s
+user	0m5.667s
+sys	0m0.994s
+
+
+
+Executing: sessionstar SimpleAuth.scr SimpleAuth C; sessionstar SimpleAuth.scr SimpleAuth S
+----------------------------------------
+
+real	0m1.968s
+user	0m2.384s
+sys	0m0.397s
+
+
+
+Executing: sessionstar TravelAgency2.scr TravelAgency2 A; sessionstar TravelAgency2.scr TravelAgency2 C
+----------------------------------------
+
+real	0m1.838s
+user	0m2.181s
+sys	0m0.432s
+
+
+
+Executing: sessionstar HigherLowerUltimate.scr HigherLowerUltimate A; sessionstar HigherLowerUltimate.scr HigherLowerUltimate B; sessionstar HigherLowerUltimate.scr HigherLowerUltimate C
+----------------------------------------
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+C->B{ guess1(x: int)(((0 <= x) && (x < 100)) && (h = 0)).B->C{ higher([])((n > x) && (t > 1)).B->A:higher([])True.__HigherLowerUltimate_Aux__A_B_C__<n, (t - 1), 1, x>, win([])(n = x).B->A:lose([])True.end, lower([])((n < x) && (t > 1)).B->A:lower([])True.__HigherLowerUltimate_Aux__A_B_C__<n, (t - 1), -1, x>, lose([])(((n < x) || (n > x)) && (t = 1)).B->A:win([])True.end }, guess2(x: int)((((0 <= x) && (x < 100)) && (h = 1)) && (x > o)).B->C{ higher([])((n > x) && (t > 1)).B->A:higher([])True.__HigherLowerUltimate_Aux__A_B_C__<n, (t - 1), 1, x>, win([])(n = x).B->A:lose([])True.end, lower([])((n < x) && (t > 1)).B->A:lower([])True.__HigherLowerUltimate_Aux__A_B_C__<n, (t - 1), -1, x>, lose([])(((n < x) || (n > x)) && (t = 1)).B->A:win([])True.end }, guess3(x: int)((((0 <= x) && (x < 100)) && (h = -1)) && (x < o)).B->C{ higher([])((n > x) && (t > 1)).B->A:higher([])True.__HigherLowerUltimate_Aux__A_B_C__<n, (t - 1), 1, x>, win([])(n = x).B->A:lose([])True.end, lower([])((n < x) && (t > 1)).B->A:lower([])True.__HigherLowerUltimate_Aux__A_B_C__<n, (t - 1), -1, x>, lose([])(((n < x) || (n > x)) && (t = 1)).B->A:win([])True.end } }
+ onto A: cannot merge labels of: higher([])True[x: int:int](((((0 <= x) && (x < 100)) && (h = 1)) && (x > o)) && ((n > x) && (t > 1))) and [higher([])True[x: int:int]((((0 <= x) && (x < 100)) && (h = 0)) && ((n > x) && (t > 1))), lose([])True[x: int:int]((((0 <= x) && (x < 100)) && (h = 0)) && (n = x)), lower([])True[x: int:int]((((0 <= x) && (x < 100)) && (h = 0)) && ((n < x) && (t > 1))), win([])True[x: int:int]((((0 <= x) && (x < 100)) && (h = 0)) && (((n < x) || (n > x)) && (t = 1)))]
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$16(AssrtGChoice.java:264)
+	at java.base/java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.lambda$entryConsumer$0(Collections.java:1576)
+	at java.base/java.util.LinkedHashMap$LinkedEntrySet.forEach(LinkedHashMap.java:671)
+	at java.base/java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.forEach(Collections.java:1581)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$17(AssrtGChoice.java:248)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:242)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGRec.projectInlined(AssrtGRec.java:141)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.core.job.CoreContext.getEGraph(CoreContext.java:241)
+	at org.scribble.cli.CommandLine.getEGraph(CommandLine.java:444)
+	at org.scribble.cli.CommandLine.outputEGraph(CommandLine.java:355)
+	at org.scribble.cli.CommandLine.tryNonBarrierTask(CommandLine.java:181)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:301)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Duplicate annot var name(s): [n, t, h, o, x, x, x]
+Scribble reported a problem, aborting
+Duplicate annot var name(s): [n, t, h, o, x, x, x]
+Scribble reported a problem, aborting
+
+real	0m2.451s
+user	0m2.958s
+sys	0m0.531s
+
+
+
+Executing: sessionstar HigherLowerNo.scr HigherLowerNo A; sessionstar HigherLowerNo.scr HigherLowerNo B; sessionstar HigherLowerNo.scr HigherLowerNo C
+----------------------------------------
+Unknown variable: n0
+Scribble reported a problem, aborting
+Unknown variable: n0
+Scribble reported a problem, aborting
+Unknown variable: n0
+Scribble reported a problem, aborting
+
+real	0m2.191s
+user	0m2.543s
+sys	0m0.483s
+
+
+
+Executing: sessionstar HigherLowerEncryptYes.scr HigherLowerEncryptYes A; sessionstar HigherLowerEncryptYes.scr HigherLowerEncryptYes B; sessionstar HigherLowerEncryptYes.scr HigherLowerEncryptYes C
+----------------------------------------
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+B->C{ higher([])((n > x) && (t > 1)).B->A:higher([])True.__HigherLowerEncryptYes_Aux__A_B_C__<n, t>, win([])(n = x).B->A:lose([])True.end, lower([])((n < x) && (t > 1)).B->A:lower([])True.__HigherLowerEncryptYes_Aux__A_B_C__<n, t>, lose([])(((n < x) || (n > x)) && (t = 1)).B->A:win([])True.end }
+ onto D: cannot merge mixed termination.
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:177)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGRec.projectInlined(AssrtGRec.java:141)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+B->C{ higher([])((n > x) && (t > 1)).B->A:higher([])True.__HigherLowerEncryptYes_Aux__A_B_C__<n, t>, win([])(n = x).B->A:lose([])True.end, lower([])((n < x) && (t > 1)).B->A:lower([])True.__HigherLowerEncryptYes_Aux__A_B_C__<n, t>, lose([])(((n < x) || (n > x)) && (t = 1)).B->A:win([])True.end }
+ onto D: cannot merge mixed termination.
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:177)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGRec.projectInlined(AssrtGRec.java:141)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+B->C{ higher([])((n > x) && (t > 1)).B->A:higher([])True.__HigherLowerEncryptYes_Aux__A_B_C__<n, t>, win([])(n = x).B->A:lose([])True.end, lower([])((n < x) && (t > 1)).B->A:lower([])True.__HigherLowerEncryptYes_Aux__A_B_C__<n, t>, lose([])(((n < x) || (n > x)) && (t = 1)).B->A:win([])True.end }
+ onto D: cannot merge mixed termination.
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:177)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGRec.projectInlined(AssrtGRec.java:141)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+
+real	0m2.306s
+user	0m2.780s
+sys	0m0.558s
+
+
+
+Executing: sessionstar HigherLowerEncryptNo.scr HigherLowerEncryptNo A; sessionstar HigherLowerEncryptNo.scr HigherLowerEncryptNo B; sessionstar HigherLowerEncryptNo.scr HigherLowerEncryptNo C
+----------------------------------------
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+B->C{ higher([])((n > x) && (t > 1)).B->A:higher([])True.__HigherLowerEncryptNo_Aux__A_B_C__<n, t>, win([])(n = x).B->A:lose([])True.end, lower([])((n < x) && (t > 1)).B->A:lower([])True.__HigherLowerEncryptNo_Aux__A_B_C__<n, t>, lose([])(((n < x) || (n > x)) && (t = 1)).B->A:win([])True.end }
+ onto D: cannot merge mixed termination.
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:177)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGRec.projectInlined(AssrtGRec.java:141)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+B->C{ higher([])((n > x) && (t > 1)).B->A:higher([])True.__HigherLowerEncryptNo_Aux__A_B_C__<n, t>, win([])(n = x).B->A:lose([])True.end, lower([])((n < x) && (t > 1)).B->A:lower([])True.__HigherLowerEncryptNo_Aux__A_B_C__<n, t>, lose([])(((n < x) || (n > x)) && (t = 1)).B->A:win([])True.end }
+ onto D: cannot merge mixed termination.
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:177)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGRec.projectInlined(AssrtGRec.java:141)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+B->C{ higher([])((n > x) && (t > 1)).B->A:higher([])True.__HigherLowerEncryptNo_Aux__A_B_C__<n, t>, win([])(n = x).B->A:lose([])True.end, lower([])((n < x) && (t > 1)).B->A:lower([])True.__HigherLowerEncryptNo_Aux__A_B_C__<n, t>, lose([])(((n < x) || (n > x)) && (t = 1)).B->A:win([])True.end }
+ onto D: cannot merge mixed termination.
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:177)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGRec.projectInlined(AssrtGRec.java:141)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+
+real	0m2.357s
+user	0m2.754s
+sys	0m0.573s
+
+
+
+Executing: sessionstar HigherLowerMixed.scr HigherLowerMixed A; sessionstar HigherLowerMixed.scr HigherLowerMixed B; sessionstar HigherLowerMixed.scr HigherLowerMixed C
+----------------------------------------
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+B->C{ higher([])((n > x) && (t > 1)).__HigherLowerMixed_Aux__A_B_C__<n, (t - 1)>, win([])(n = x).A->B:lose([])True.end, lower([])((n < x) && (t > 1)).__HigherLowerMixed_Aux__A_B_C__<n, (t - 1)>, lose([])(((n < x) || (n > x)) && (t = 1)).B->A:win([])True.end }
+ onto A: cannot merge unguarded rec vars.
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:187)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGRec.projectInlined(AssrtGRec.java:141)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+B->C{ higher([])((n > x) && (t > 1)).__HigherLowerMixed_Aux__A_B_C__<n, (t - 1)>, win([])(n = x).A->B:lose([])True.end, lower([])((n < x) && (t > 1)).__HigherLowerMixed_Aux__A_B_C__<n, (t - 1)>, lose([])(((n < x) || (n > x)) && (t = 1)).B->A:win([])True.end }
+ onto A: cannot merge unguarded rec vars.
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:187)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGRec.projectInlined(AssrtGRec.java:141)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+B->C{ higher([])((n > x) && (t > 1)).__HigherLowerMixed_Aux__A_B_C__<n, (t - 1)>, win([])(n = x).A->B:lose([])True.end, lower([])((n < x) && (t > 1)).__HigherLowerMixed_Aux__A_B_C__<n, (t - 1)>, lose([])(((n < x) || (n > x)) && (t = 1)).B->A:win([])True.end }
+ onto A: cannot merge unguarded rec vars.
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:187)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGRec.projectInlined(AssrtGRec.java:141)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+
+real	0m2.250s
+user	0m2.604s
+sys	0m0.524s
+
+
+
+Executing: sessionstar SymbolicTwoBidder.scr SymbolicTwoBidder S; sessionstar SymbolicTwoBidder.scr SymbolicTwoBidder B1; sessionstar SymbolicTwoBidder.scr SymbolicTwoBidder B2
+----------------------------------------
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: SymbolicTwoBidder(line 17:13): [assrt-core] Non-directed choice not supported:
+choice at B1 {
+Continue() from B1 to B2; @'((b1 + b2) < z)'
+do SymbolicTwoBidder.BiddingLoop(B1, B2, S); @'[b1, z]'
+} or {
+Success() from B1 to S; @'((b1 + b2) >= z)'
+Success() from S to B2;
+}
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGChoice(AssrtGTypeTranslator.java:272)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:208)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGSimpleInteractionNode(AssrtGTypeTranslator.java:340)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseAssrtGMsgTransfer(AssrtGTypeTranslator.java:326)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:170)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGChoice(AssrtGTypeTranslator.java:232)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:208)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGSimpleInteractionNode(AssrtGTypeTranslator.java:340)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseAssrtGMsgTransfer(AssrtGTypeTranslator.java:326)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:170)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.translate(AssrtGTypeTranslator.java:127)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.visit(AssrtGTypeTranslator.java:101)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.visit(AssrtGTypeTranslator.java:79)
+	at org.scribble.ast.ScribNode.visitWithNoThrows(ScribNode.java:58)
+	at org.scribble.job.Job.getCore(Job.java:166)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: SymbolicTwoBidder(line 17:13): [assrt-core] Non-directed choice not supported:
+choice at B1 {
+Continue() from B1 to B2; @'((b1 + b2) < z)'
+do SymbolicTwoBidder.BiddingLoop(B1, B2, S); @'[b1, z]'
+} or {
+Success() from B1 to S; @'((b1 + b2) >= z)'
+Success() from S to B2;
+}
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGChoice(AssrtGTypeTranslator.java:272)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:208)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGSimpleInteractionNode(AssrtGTypeTranslator.java:340)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseAssrtGMsgTransfer(AssrtGTypeTranslator.java:326)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:170)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGChoice(AssrtGTypeTranslator.java:232)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:208)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGSimpleInteractionNode(AssrtGTypeTranslator.java:340)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseAssrtGMsgTransfer(AssrtGTypeTranslator.java:326)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:170)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.translate(AssrtGTypeTranslator.java:127)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.visit(AssrtGTypeTranslator.java:101)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.visit(AssrtGTypeTranslator.java:79)
+	at org.scribble.ast.ScribNode.visitWithNoThrows(ScribNode.java:58)
+	at org.scribble.job.Job.getCore(Job.java:166)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: SymbolicTwoBidder(line 17:13): [assrt-core] Non-directed choice not supported:
+choice at B1 {
+Continue() from B1 to B2; @'((b1 + b2) < z)'
+do SymbolicTwoBidder.BiddingLoop(B1, B2, S); @'[b1, z]'
+} or {
+Success() from B1 to S; @'((b1 + b2) >= z)'
+Success() from S to B2;
+}
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGChoice(AssrtGTypeTranslator.java:272)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:208)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGSimpleInteractionNode(AssrtGTypeTranslator.java:340)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseAssrtGMsgTransfer(AssrtGTypeTranslator.java:326)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:170)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGChoice(AssrtGTypeTranslator.java:232)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:208)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGSimpleInteractionNode(AssrtGTypeTranslator.java:340)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseAssrtGMsgTransfer(AssrtGTypeTranslator.java:326)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:170)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.translate(AssrtGTypeTranslator.java:127)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.visit(AssrtGTypeTranslator.java:101)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.visit(AssrtGTypeTranslator.java:79)
+	at org.scribble.ast.ScribNode.visitWithNoThrows(ScribNode.java:58)
+	at org.scribble.job.Job.getCore(Job.java:166)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+
+real	0m2.037s
+user	0m2.325s
+sys	0m0.488s
+
+
+
+Executing: sessionstar SymbolicTwoBidderNo1.scr SymbolicTwoBidderNo1 S; sessionstar SymbolicTwoBidderNo1.scr SymbolicTwoBidderNo1 B1; sessionstar SymbolicTwoBidderNo1.scr SymbolicTwoBidderNo1 B2
+----------------------------------------
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: SymbolicTwoBidderNo1(line 17:13): [assrt-core] Non-directed choice not supported:
+choice at B1 {
+Continue() from B1 to B2; @'((b1 + b2) < z)'
+do SymbolicTwoBidderNo1.BiddingLoop(B1, B2, S); @'[b1, z]'
+} or {
+Success() from B1 to S; @'((b1 + b2) >= z)'
+Success() from S to B2;
+}
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGChoice(AssrtGTypeTranslator.java:272)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:208)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGSimpleInteractionNode(AssrtGTypeTranslator.java:340)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseAssrtGMsgTransfer(AssrtGTypeTranslator.java:326)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:170)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGChoice(AssrtGTypeTranslator.java:232)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:208)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGSimpleInteractionNode(AssrtGTypeTranslator.java:340)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseAssrtGMsgTransfer(AssrtGTypeTranslator.java:326)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:170)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.translate(AssrtGTypeTranslator.java:127)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.visit(AssrtGTypeTranslator.java:101)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.visit(AssrtGTypeTranslator.java:79)
+	at org.scribble.ast.ScribNode.visitWithNoThrows(ScribNode.java:58)
+	at org.scribble.job.Job.getCore(Job.java:166)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: SymbolicTwoBidderNo1(line 17:13): [assrt-core] Non-directed choice not supported:
+choice at B1 {
+Continue() from B1 to B2; @'((b1 + b2) < z)'
+do SymbolicTwoBidderNo1.BiddingLoop(B1, B2, S); @'[b1, z]'
+} or {
+Success() from B1 to S; @'((b1 + b2) >= z)'
+Success() from S to B2;
+}
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGChoice(AssrtGTypeTranslator.java:272)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:208)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGSimpleInteractionNode(AssrtGTypeTranslator.java:340)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseAssrtGMsgTransfer(AssrtGTypeTranslator.java:326)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:170)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGChoice(AssrtGTypeTranslator.java:232)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:208)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGSimpleInteractionNode(AssrtGTypeTranslator.java:340)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseAssrtGMsgTransfer(AssrtGTypeTranslator.java:326)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:170)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.translate(AssrtGTypeTranslator.java:127)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.visit(AssrtGTypeTranslator.java:101)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.visit(AssrtGTypeTranslator.java:79)
+	at org.scribble.ast.ScribNode.visitWithNoThrows(ScribNode.java:58)
+	at org.scribble.job.Job.getCore(Job.java:166)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: SymbolicTwoBidderNo1(line 17:13): [assrt-core] Non-directed choice not supported:
+choice at B1 {
+Continue() from B1 to B2; @'((b1 + b2) < z)'
+do SymbolicTwoBidderNo1.BiddingLoop(B1, B2, S); @'[b1, z]'
+} or {
+Success() from B1 to S; @'((b1 + b2) >= z)'
+Success() from S to B2;
+}
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGChoice(AssrtGTypeTranslator.java:272)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:208)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGSimpleInteractionNode(AssrtGTypeTranslator.java:340)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseAssrtGMsgTransfer(AssrtGTypeTranslator.java:326)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:170)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGChoice(AssrtGTypeTranslator.java:232)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:208)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGSimpleInteractionNode(AssrtGTypeTranslator.java:340)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseAssrtGMsgTransfer(AssrtGTypeTranslator.java:326)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:170)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.translate(AssrtGTypeTranslator.java:127)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.visit(AssrtGTypeTranslator.java:101)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.visit(AssrtGTypeTranslator.java:79)
+	at org.scribble.ast.ScribNode.visitWithNoThrows(ScribNode.java:58)
+	at org.scribble.job.Job.getCore(Job.java:166)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+
+real	0m2.085s
+user	0m2.358s
+sys	0m0.477s
+
+
+
+Executing: sessionstar SymbolicTwoBidderNo2.scr SymbolicTwoBidderNo2 S; sessionstar SymbolicTwoBidderNo2.scr SymbolicTwoBidderNo2 B1; sessionstar SymbolicTwoBidderNo2.scr SymbolicTwoBidderNo2 B2
+----------------------------------------
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: SymbolicTwoBidderNo2(line 17:13): [assrt-core] Non-directed choice not supported:
+choice at B1 {
+Continue() from B1 to B2; @'((b1 + b2) < z)'
+do SymbolicTwoBidderNo2.BiddingLoop(B1, B2, S); @'[b1, z]'
+} or {
+Success() from B1 to S; @'((b1 + b2) >= z)'
+Success() from B2 to S;
+Sucess() from S to B1;
+}
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGChoice(AssrtGTypeTranslator.java:272)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:208)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGSimpleInteractionNode(AssrtGTypeTranslator.java:340)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseAssrtGMsgTransfer(AssrtGTypeTranslator.java:326)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:170)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGChoice(AssrtGTypeTranslator.java:232)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:208)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGSimpleInteractionNode(AssrtGTypeTranslator.java:340)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseAssrtGMsgTransfer(AssrtGTypeTranslator.java:326)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:170)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.translate(AssrtGTypeTranslator.java:127)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.visit(AssrtGTypeTranslator.java:101)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.visit(AssrtGTypeTranslator.java:79)
+	at org.scribble.ast.ScribNode.visitWithNoThrows(ScribNode.java:58)
+	at org.scribble.job.Job.getCore(Job.java:166)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: SymbolicTwoBidderNo2(line 17:13): [assrt-core] Non-directed choice not supported:
+choice at B1 {
+Continue() from B1 to B2; @'((b1 + b2) < z)'
+do SymbolicTwoBidderNo2.BiddingLoop(B1, B2, S); @'[b1, z]'
+} or {
+Success() from B1 to S; @'((b1 + b2) >= z)'
+Success() from B2 to S;
+Sucess() from S to B1;
+}
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGChoice(AssrtGTypeTranslator.java:272)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:208)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGSimpleInteractionNode(AssrtGTypeTranslator.java:340)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseAssrtGMsgTransfer(AssrtGTypeTranslator.java:326)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:170)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGChoice(AssrtGTypeTranslator.java:232)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:208)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGSimpleInteractionNode(AssrtGTypeTranslator.java:340)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseAssrtGMsgTransfer(AssrtGTypeTranslator.java:326)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:170)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.translate(AssrtGTypeTranslator.java:127)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.visit(AssrtGTypeTranslator.java:101)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.visit(AssrtGTypeTranslator.java:79)
+	at org.scribble.ast.ScribNode.visitWithNoThrows(ScribNode.java:58)
+	at org.scribble.job.Job.getCore(Job.java:166)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: SymbolicTwoBidderNo2(line 17:13): [assrt-core] Non-directed choice not supported:
+choice at B1 {
+Continue() from B1 to B2; @'((b1 + b2) < z)'
+do SymbolicTwoBidderNo2.BiddingLoop(B1, B2, S); @'[b1, z]'
+} or {
+Success() from B1 to S; @'((b1 + b2) >= z)'
+Success() from B2 to S;
+Sucess() from S to B1;
+}
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGChoice(AssrtGTypeTranslator.java:272)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:208)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGSimpleInteractionNode(AssrtGTypeTranslator.java:340)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseAssrtGMsgTransfer(AssrtGTypeTranslator.java:326)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:170)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGChoice(AssrtGTypeTranslator.java:232)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:208)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseGSimpleInteractionNode(AssrtGTypeTranslator.java:340)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseAssrtGMsgTransfer(AssrtGTypeTranslator.java:326)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.parseSeq(AssrtGTypeTranslator.java:170)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.translate(AssrtGTypeTranslator.java:127)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.visit(AssrtGTypeTranslator.java:101)
+	at org.scribble.ext.assrt.visit.AssrtGTypeTranslator.visit(AssrtGTypeTranslator.java:79)
+	at org.scribble.ast.ScribNode.visitWithNoThrows(ScribNode.java:58)
+	at org.scribble.job.Job.getCore(Job.java:166)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+
+real	0m2.849s
+user	0m3.369s
+sys	0m0.667s
+
+
+
+Executing: sessionstar Figure12.scr Figure12 P; sessionstar Figure12.scr Figure12 Q; sessionstar Figure12.scr Figure12 R
+----------------------------------------
+
+real	0m2.713s
+user	0m3.211s
+sys	0m0.546s
+
+
+
+Executing: sessionstar Figure12No.scr Figure12No P; sessionstar Figure12No.scr Figure12No Q; sessionstar Figure12No.scr Figure12No R
+----------------------------------------
+
+real	0m2.742s
+user	0m3.251s
+sys	0m0.554s
+
+
+
+Executing: sessionstar SendValidityYes.scr SendValidityYes P; sessionstar SendValidityYes.scr SendValidityYes Q; sessionstar SendValidityYes.scr SendValidityYes R
+----------------------------------------
+Exception in thread "main" java.lang.RuntimeException: [assrt-core] Shouldn't get here: S!:Message([])True[]True.end
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$17(AssrtGChoice.java:246)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:242)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" java.lang.RuntimeException: [assrt-core] Shouldn't get here: S!:Message([])True[]True.end
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$17(AssrtGChoice.java:246)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:242)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" java.lang.RuntimeException: [assrt-core] Shouldn't get here: S!:Message([])True[]True.end
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$17(AssrtGChoice.java:246)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:242)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+
+real	0m2.086s
+user	0m2.442s
+sys	0m0.495s
+
+
+
+Executing: sessionstar SendValidityNo.scr SendValidityNo P; sessionstar SendValidityNo.scr SendValidityNo Q; sessionstar SendValidityNo.scr SendValidityNo R
+----------------------------------------
+Exception in thread "main" java.lang.RuntimeException: [assrt-core] Shouldn't get here: S!:Message([])True[]True.end
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$17(AssrtGChoice.java:246)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:242)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" java.lang.RuntimeException: [assrt-core] Shouldn't get here: S!:Message([])True[]True.end
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$17(AssrtGChoice.java:246)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:242)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" java.lang.RuntimeException: [assrt-core] Shouldn't get here: S!:Message([])True[]True.end
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$17(AssrtGChoice.java:246)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:242)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+
+real	0m2.149s
+user	0m2.539s
+sys	0m0.515s
+
+
+
+Executing: sessionstar SymbolicSendValidityYes.scr SymbolicSendValidityYes P; sessionstar SymbolicSendValidityYes.scr SymbolicSendValidityYes Q; sessionstar SymbolicSendValidityYes.scr SymbolicSendValidityYes R
+----------------------------------------
+Exception in thread "main" java.lang.RuntimeException: [assrt-core] Shouldn't get here: Q!:o([])True[]((x2 > 5) || (x2 < 5)).end
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$17(AssrtGChoice.java:246)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:242)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" java.lang.RuntimeException: [assrt-core] Shouldn't get here: Q!:o([])True[]((x2 > 5) || (x2 < 5)).end
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$17(AssrtGChoice.java:246)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:242)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" java.lang.RuntimeException: [assrt-core] Shouldn't get here: Q!:o([])True[]((x2 > 5) || (x2 < 5)).end
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$17(AssrtGChoice.java:246)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:242)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+
+real	0m2.489s
+user	0m2.976s
+sys	0m0.593s
+
+
+
+Executing: sessionstar SymbolicSendValidityNo.scr SymbolicSendValidityNo P; sessionstar SymbolicSendValidityNo.scr SymbolicSendValidityNo Q; sessionstar SymbolicSendValidityNo.scr SymbolicSendValidityNo R
+----------------------------------------
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+Q->R{ b([])((x2 > 5) || (x2 < 5)).end, m([])(x2 = 5).P->Q:o([])True.end }
+ onto P: cannot merge mixed termination.
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:177)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+Q->R{ b([])((x2 > 5) || (x2 < 5)).end, m([])(x2 = 5).P->Q:o([])True.end }
+ onto P: cannot merge mixed termination.
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:177)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+Q->R{ b([])((x2 > 5) || (x2 < 5)).end, m([])(x2 = 5).P->Q:o([])True.end }
+ onto P: cannot merge mixed termination.
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:177)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+
+real	0m2.563s
+user	0m3.051s
+sys	0m0.659s
+
+
+
+Executing: sessionstar ReceiveValidityYes.scr ReceiveValidityYes P; sessionstar ReceiveValidityYes.scr ReceiveValidityYes Q; sessionstar ReceiveValidityYes.scr ReceiveValidityYes R
+----------------------------------------
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+P->Q{ Message1([])True.Q->R:Message([])True.R->P:Message([])True.P->R:Message([])True.end, Message2([])True.P->R:Message([])True.R->Q:Message([])True.Q->R:Message([])True.end }
+ onto R: mixed peer roles: [Q, P]
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:229)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+P->Q{ Message1([])True.Q->R:Message([])True.R->P:Message([])True.P->R:Message([])True.end, Message2([])True.P->R:Message([])True.R->Q:Message([])True.Q->R:Message([])True.end }
+ onto R: mixed peer roles: [Q, P]
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:229)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+P->Q{ Message1([])True.Q->R:Message([])True.R->P:Message([])True.P->R:Message([])True.end, Message2([])True.P->R:Message([])True.R->Q:Message([])True.Q->R:Message([])True.end }
+ onto R: mixed peer roles: [Q, P]
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:229)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+
+real	0m2.306s
+user	0m2.706s
+sys	0m0.569s
+
+
+
+Executing: sessionstar ReceiveValidityNo.scr ReceiveValidityNo P; sessionstar ReceiveValidityNo.scr ReceiveValidityNo Q; sessionstar ReceiveValidityNo.scr ReceiveValidityNo R
+----------------------------------------
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+P->Q{ Message1([])True.Q->R:Message([])True.P->R:Message([])True.end, Message2([])True.P->R:Message([])True.Q->R:Message([])True.end }
+ onto R: mixed peer roles: [Q, P]
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:229)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+P->Q{ Message1([])True.Q->R:Message([])True.P->R:Message([])True.end, Message2([])True.P->R:Message([])True.Q->R:Message([])True.end }
+ onto R: mixed peer roles: [Q, P]
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:229)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+P->Q{ Message1([])True.Q->R:Message([])True.P->R:Message([])True.end, Message2([])True.P->R:Message([])True.Q->R:Message([])True.end }
+ onto R: mixed peer roles: [Q, P]
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:229)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+
+real	0m2.028s
+user	0m2.311s
+sys	0m0.502s
+
+
+
+Executing: sessionstar SymbolicReceiveValidityYes.scr SymbolicReceiveValidityYes P; sessionstar SymbolicReceiveValidityYes.scr SymbolicReceiveValidityYes Q; sessionstar SymbolicReceiveValidityYes.scr SymbolicReceiveValidityYes R; sessionstar SymbolicReceiveValidityYes.scr SymbolicReceiveValidityYes S
+----------------------------------------
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+P->Q{ b([])(x > 0).P->R:m(z1: int)True.Q->R:m(z2: int)True.R->P:m(ztop: int)(ztop = (z1 - z2)).end, m([])(x < 0).P->R:m(z3: int)True.Q->R:m(z4: int)True.R->P:m(zbot: int)(zbot = (z4 - z3)).end }
+ onto R: cannot merge labels of: m(z3: int)True[](x < 0) and [m(z1: int)True[](x > 0)]
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$16(AssrtGChoice.java:264)
+	at java.base/java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.lambda$entryConsumer$0(Collections.java:1576)
+	at java.base/java.util.LinkedHashMap$LinkedEntrySet.forEach(LinkedHashMap.java:671)
+	at java.base/java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.forEach(Collections.java:1581)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$17(AssrtGChoice.java:248)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:242)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+P->Q{ b([])(x > 0).P->R:m(z1: int)True.Q->R:m(z2: int)True.R->P:m(ztop: int)(ztop = (z1 - z2)).end, m([])(x < 0).P->R:m(z3: int)True.Q->R:m(z4: int)True.R->P:m(zbot: int)(zbot = (z4 - z3)).end }
+ onto R: cannot merge labels of: m(z3: int)True[](x < 0) and [m(z1: int)True[](x > 0)]
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$16(AssrtGChoice.java:264)
+	at java.base/java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.lambda$entryConsumer$0(Collections.java:1576)
+	at java.base/java.util.LinkedHashMap$LinkedEntrySet.forEach(LinkedHashMap.java:671)
+	at java.base/java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.forEach(Collections.java:1581)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$17(AssrtGChoice.java:248)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:242)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+P->Q{ b([])(x > 0).P->R:m(z1: int)True.Q->R:m(z2: int)True.R->P:m(ztop: int)(ztop = (z1 - z2)).end, m([])(x < 0).P->R:m(z3: int)True.Q->R:m(z4: int)True.R->P:m(zbot: int)(zbot = (z4 - z3)).end }
+ onto R: cannot merge labels of: m(z3: int)True[](x < 0) and [m(z1: int)True[](x > 0)]
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$16(AssrtGChoice.java:264)
+	at java.base/java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.lambda$entryConsumer$0(Collections.java:1576)
+	at java.base/java.util.LinkedHashMap$LinkedEntrySet.forEach(LinkedHashMap.java:671)
+	at java.base/java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.forEach(Collections.java:1581)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$17(AssrtGChoice.java:248)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:242)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+P->Q{ b([])(x > 0).P->R:m(z1: int)True.Q->R:m(z2: int)True.R->P:m(ztop: int)(ztop = (z1 - z2)).end, m([])(x < 0).P->R:m(z3: int)True.Q->R:m(z4: int)True.R->P:m(zbot: int)(zbot = (z4 - z3)).end }
+ onto R: cannot merge labels of: m(z3: int)True[](x < 0) and [m(z1: int)True[](x > 0)]
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$16(AssrtGChoice.java:264)
+	at java.base/java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.lambda$entryConsumer$0(Collections.java:1576)
+	at java.base/java.util.LinkedHashMap$LinkedEntrySet.forEach(LinkedHashMap.java:671)
+	at java.base/java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.forEach(Collections.java:1581)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$17(AssrtGChoice.java:248)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:242)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+
+real	0m2.835s
+user	0m3.201s
+sys	0m0.706s
+
+
+
+Executing: sessionstar SymbolicReceiveValidityNo.scr SymbolicReceiveValidityNo P; sessionstar SymbolicReceiveValidityNo.scr SymbolicReceiveValidityNo Q; sessionstar SymbolicReceiveValidityNo.scr SymbolicReceiveValidityNo R; sessionstar SymbolicReceiveValidityNo.scr SymbolicReceiveValidityNo S
+----------------------------------------
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+P->Q{ b([])(x > 0).P->R:m(z1: int)True.Q->R:m(z2: int)True.R->P:m(ztop: int)(ztop = (z1 - z2)).end, m([])(x < 0).P->R:m(z3: int)True.Q->R:m(z4: int)True.R->P:m(zbot: int)(zbot = (z4 - z3)).end }
+ onto R: cannot merge labels of: m(z3: int)True[](x < 0) and [m(z1: int)True[](x > 0)]
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$16(AssrtGChoice.java:264)
+	at java.base/java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.lambda$entryConsumer$0(Collections.java:1576)
+	at java.base/java.util.LinkedHashMap$LinkedEntrySet.forEach(LinkedHashMap.java:671)
+	at java.base/java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.forEach(Collections.java:1581)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$17(AssrtGChoice.java:248)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:242)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+P->Q{ b([])(x > 0).P->R:m(z1: int)True.Q->R:m(z2: int)True.R->P:m(ztop: int)(ztop = (z1 - z2)).end, m([])(x < 0).P->R:m(z3: int)True.Q->R:m(z4: int)True.R->P:m(zbot: int)(zbot = (z4 - z3)).end }
+ onto R: cannot merge labels of: m(z3: int)True[](x < 0) and [m(z1: int)True[](x > 0)]
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$16(AssrtGChoice.java:264)
+	at java.base/java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.lambda$entryConsumer$0(Collections.java:1576)
+	at java.base/java.util.LinkedHashMap$LinkedEntrySet.forEach(LinkedHashMap.java:671)
+	at java.base/java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.forEach(Collections.java:1581)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$17(AssrtGChoice.java:248)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:242)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+P->Q{ b([])(x > 0).P->R:m(z1: int)True.Q->R:m(z2: int)True.R->P:m(ztop: int)(ztop = (z1 - z2)).end, m([])(x < 0).P->R:m(z3: int)True.Q->R:m(z4: int)True.R->P:m(zbot: int)(zbot = (z4 - z3)).end }
+ onto R: cannot merge labels of: m(z3: int)True[](x < 0) and [m(z1: int)True[](x > 0)]
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$16(AssrtGChoice.java:264)
+	at java.base/java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.lambda$entryConsumer$0(Collections.java:1576)
+	at java.base/java.util.LinkedHashMap$LinkedEntrySet.forEach(LinkedHashMap.java:671)
+	at java.base/java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.forEach(Collections.java:1581)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$17(AssrtGChoice.java:248)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:242)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+P->Q{ b([])(x > 0).P->R:m(z1: int)True.Q->R:m(z2: int)True.R->P:m(ztop: int)(ztop = (z1 - z2)).end, m([])(x < 0).P->R:m(z3: int)True.Q->R:m(z4: int)True.R->P:m(zbot: int)(zbot = (z4 - z3)).end }
+ onto R: cannot merge labels of: m(z3: int)True[](x < 0) and [m(z1: int)True[](x > 0)]
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$16(AssrtGChoice.java:264)
+	at java.base/java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.lambda$entryConsumer$0(Collections.java:1576)
+	at java.base/java.util.LinkedHashMap$LinkedEntrySet.forEach(LinkedHashMap.java:671)
+	at java.base/java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet.forEach(Collections.java:1581)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.lambda$projectInlined$17(AssrtGChoice.java:248)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:242)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+
+real	0m2.796s
+user	0m3.217s
+sys	0m0.694s
+
+
+
+Executing: sessionstar ForwardAuth.scr ForwardAuth S; sessionstar ForwardAuth.scr ForwardAuth A; sessionstar ForwardAuth.scr ForwardAuth C
+----------------------------------------
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+P->S{ done([])True.end, login([])True.P->A:m(username0: int)True.P->S:m(password0: int)True.S->A:m(x: int)(x = username0).S->A:m(y: int)(x = password0).A->S{ fail([])(((y > username0) || (y > username0)) || ((x > password0) || (x < password0))).S->P:fail([])True.__ForwardAuth_Aux__P_A_S__<p>, succ([])((y = username0) && (x = password0)).S->P:succ([])True.end } }
+ onto A: cannot merge mixed termination.
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:177)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGRec.projectInlined(AssrtGRec.java:141)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+P->S{ done([])True.end, login([])True.P->A:m(username0: int)True.P->S:m(password0: int)True.S->A:m(x: int)(x = username0).S->A:m(y: int)(x = password0).A->S{ fail([])(((y > username0) || (y > username0)) || ((x > password0) || (x < password0))).S->P:fail([])True.__ForwardAuth_Aux__P_A_S__<p>, succ([])((y = username0) && (x = password0)).S->P:succ([])True.end } }
+ onto A: cannot merge mixed termination.
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:177)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGRec.projectInlined(AssrtGRec.java:141)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+P->S{ done([])True.end, login([])True.P->A:m(username0: int)True.P->S:m(password0: int)True.S->A:m(x: int)(x = username0).S->A:m(y: int)(x = password0).A->S{ fail([])(((y > username0) || (y > username0)) || ((x > password0) || (x < password0))).S->P:fail([])True.__ForwardAuth_Aux__P_A_S__<p>, succ([])((y = username0) && (x = password0)).S->P:succ([])True.end } }
+ onto A: cannot merge mixed termination.
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:177)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGRec.projectInlined(AssrtGRec.java:141)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+
+real	0m2.336s
+user	0m2.739s
+sys	0m0.525s
+
+
+
+Executing: sessionstar ForwardAuthNo.scr ForwardAuthNo S; sessionstar ForwardAuthNo.scr ForwardAuthNo A; sessionstar ForwardAuthNo.scr ForwardAuthNo C
+----------------------------------------
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+A->S{ fail([])(((y > username0) || (y > username0)) || ((x > password0) || (x < password0))).A->S:fail([])True.__ForwardAuthNo_Aux__P_A_S__<p>, succ([])((y = username0) && (x = password0)).S->P:succ([])True.end }
+ onto P: cannot merge unguarded rec vars.
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:187)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGRec.projectInlined(AssrtGRec.java:141)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+A->S{ fail([])(((y > username0) || (y > username0)) || ((x > password0) || (x < password0))).A->S:fail([])True.__ForwardAuthNo_Aux__P_A_S__<p>, succ([])((y = username0) && (x = password0)).S->P:succ([])True.end }
+ onto P: cannot merge unguarded rec vars.
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:187)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGRec.projectInlined(AssrtGRec.java:141)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+Exception in thread "main" org.scribble.ext.assrt.core.type.session.AssrtSyntaxException: [assrt-core] Cannot project 
+A->S{ fail([])(((y > username0) || (y > username0)) || ((x > password0) || (x < password0))).A->S:fail([])True.__ForwardAuthNo_Aux__P_A_S__<p>, succ([])((y = username0) && (x = password0)).S->P:succ([])True.end }
+ onto P: cannot merge unguarded rec vars.
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:187)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:157)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGRec.projectInlined(AssrtGRec.java:141)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.type.session.global.AssrtGChoice.projectInlined(AssrtGChoice.java:143)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:190)
+	at org.scribble.ext.assrt.core.lang.global.AssrtGProtocol.projectInlined(AssrtGProtocol.java:59)
+	at org.scribble.core.job.CoreContext.getProjectedInlined(CoreContext.java:166)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runProjectionPasses(AssrtCore.java:177)
+	at org.scribble.ext.assrt.core.job.AssrtCore.runPasses(AssrtCore.java:104)
+	at org.scribble.cli.CommandLine.runValidationTasks(CommandLine.java:167)
+	at org.scribble.cli.CommandLine.runTasks(CommandLine.java:291)
+	at org.scribble.cli.CommandLine.run(CommandLine.java:252)
+	at org.scribble.ext.assrt.cli.AssrtCommandLine.main(AssrtCommandLine.java:32)
+Scribble reported a problem, aborting
+
+real	0m2.158s
+user	0m2.518s
+sys	0m0.507s
+
+
+

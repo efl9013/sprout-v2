@@ -14,7 +14,7 @@ global protocol Calc(role S , role C) {
   } or {
     multiply1(x2:int) from C to S;
     multiply2(y2:int) from C to S;
-    result(r2:int) from S to C; @"r2=x2+y2"  
+    result(r2:int) from S to C; @"r2=x2*y2"  
     do Calc(S, C);
   } or {
     quit() from C to S;

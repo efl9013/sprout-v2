@@ -3,7 +3,7 @@
 set -u
 
 # Define the output file
-output_file="output.txt"
+output_file="rumpsteak_output.txt"
 
 # Clear the output file if it exists, or create a new one
 > "$output_file"

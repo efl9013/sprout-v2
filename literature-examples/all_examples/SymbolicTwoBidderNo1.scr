@@ -1,8 +1,8 @@
-module SymbolicTwoBidderNo; 
+module SymbolicTwoBidderNo1; 
 
 type <fstar> "int" from "" as int;
 
-global protocol SymbolicTwoBidderNo(role S, role B1, role B2)
+global protocol SymbolicTwoBidderNo1(role S, role B1, role B2)
 {
 	Request(y1: int) from B1 to S; @"y1>0"
 	Request(y2: int) from B1 to B2; @"y2=y1"

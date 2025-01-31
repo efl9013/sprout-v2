@@ -238,7 +238,7 @@ let () =
             if is_gclts 
             then (let impl_time = check_implementability protocol dirname timeout version mode in 
                   (* Optionally generate property queries *)
-                  (* generate_property_query protocol higher_lower_termination "termination_property" dirname; *)
+                  generate_property_query protocol two_bidder_bids_increasing "bids_increasing_property" dirname;
                   Printf.eprintf "\nTotal verification time: %f\n" (Float.add gclts_time impl_time))
           else ();)
       else ();

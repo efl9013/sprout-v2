@@ -1,6 +1,6 @@
 Initial state: (0)
 Initial register assignments: ry=0, rc=0, rza=0, rzb=0
-(0) b1->s:y{y>0/\ry'=y/\rc'=rc/\rza'=rza/\rzb'=rzb} (1)
+(0) b1->s:y{(y>987*1000000000/\y<988*10000000000)/\ry'=y/\rc'=rc/\rza'=rza/\rzb'=rzb} (1)
 (1) b1->b2:y{y=ry/\ry'=ry/\rc'=rc/\rza'=rza/\rzb'=rzb} (2)
 (2) s->b1:z{z>0/\rc'=z/\rza'=0/\rzb'=0/\ry'=ry} (3)
 (3) b1->b2:b{b>rza/\rza'=b/\ry'=ry/\rc'=rc/\rzb'=rzb} (4)
