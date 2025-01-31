@@ -15,14 +15,16 @@ let filter_transition_pairs_for_state_determinism (ls: (symbolic_transition * sy
                              	 tr1.post <> tr2.post)
                 ls
 
+(* Note to self for README: primed variables have special meaning and should not be used as communication variables! *)
 let generate_determinism_for_transition_pair_vb (prot: symbolic_protocol) (pair: symbolic_transition * symbolic_transition) : string = 
 	let tr1 = fst pair in 
   	let tr2 = snd pair in 
-  	let phi1 = substitute tr1.predicate (tr1.comm_var) "x" in 
-  	let phi2 = substitute tr2.predicate (tr2.comm_var) "x" in 
-  	"forall (x:int) " ^ 
+  	let phi1 = substitute (append1_primeonly tr1.predicate) (tr1.comm_var) "x" in 
+  	let phi2 = substitute (append2_primeonly tr2.predicate) (tr2.comm_var) "x" in 
+  	"exists (x:int) " ^ 
   	List.fold_left (fun acc x -> acc ^ " " ^ parenthesize (x ^ ": int")) "" prot.registers ^ 
-  	List.fold_left (fun acc x -> acc ^ " " ^ parenthesize (x ^ "': int")) "" prot.registers ^ 
+  	List.fold_left (fun acc x -> acc ^ " " ^ parenthesize (x ^ "'1: int")) "" prot.registers ^ 
+  	List.fold_left (fun acc x -> acc ^ " " ^ parenthesize (x ^ "'2: int")) "" prot.registers ^ 
   	".\n" ^
   	"(" ^
   	"reach_" ^ string_of_int tr1.pre ^ " " ^
@@ -42,11 +44,12 @@ let generate_determinism_for_transition_pair_vb (prot: symbolic_protocol) (pair:
 let generate_determinism_for_transition_pair_va (prot: symbolic_protocol) (pair: symbolic_transition * symbolic_transition) : string = 
 	let tr1 = fst pair in 
   	let tr2 = snd pair in 
-  	let phi1 = substitute tr1.predicate (tr1.comm_var) "x" in 
-  	let phi2 = substitute tr2.predicate (tr2.comm_var) "x" in 
-  	"forall (x:int) " ^ 
+  	let phi1 = substitute (append1_primeonly tr1.predicate) (tr1.comm_var) "x" in 
+  	let phi2 = substitute (append2_primeonly tr2.predicate) (tr2.comm_var) "x" in 
+  	"exists (x:int) " ^ 
   	List.fold_left (fun acc x -> acc ^ " " ^ parenthesize (x ^ ": int")) "" prot.registers ^ 
-  	List.fold_left (fun acc x -> acc ^ " " ^ parenthesize (x ^ "': int")) "" prot.registers ^ 
+  	List.fold_left (fun acc x -> acc ^ " " ^ parenthesize (x ^ "'1: int")) "" prot.registers ^ 
+  	List.fold_left (fun acc x -> acc ^ " " ^ parenthesize (x ^ "'2: int")) "" prot.registers ^ 
   	".\n" ^
   	"(" ^
   	"reach " ^ string_of_int tr1.pre ^ " " ^
@@ -60,6 +63,11 @@ let generate_determinism_for_transition_pair_va (prot: symbolic_protocol) (pair:
 	"(" ^ 
 	string_of_formula phi2 ^ 
 	")" ^
+	" /\\ \n" ^
+	"(" ^ 
+	string_of_int tr1.post ^ "!=" ^ string_of_int tr2.post ^ 
+	" \\/ " ^ 
+	List.fold_left (fun acc x -> acc ^ " \\/ " ^ parenthesize (x ^ "'1 != " ^ x ^ "'2")) "false" prot.registers ^ 
 	"\ns.t.\n" ^
 	generate_reach_va prot 
 

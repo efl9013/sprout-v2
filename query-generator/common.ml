@@ -172,6 +172,57 @@ let rec append2 (phi: formula) : formula =
   | Or (phi1, phi2) -> Or (append2 phi1, append2 phi2)
   | Not phi1 -> Not (append2 phi1)
 
+(* Needed for determinism, only appends 1/2 to primed variables *)
+let rec append1_primeonly_expr (e: expr) : expr = 
+  match e with 
+  | Const i -> Const i 
+  | Var v -> Var v
+  | VarPrime v -> VarPrime (v ^ "2")
+  | Plus (e1, e2) -> Plus (append1_primeonly_expr e1, append1_primeonly_expr e2)
+  | Minus (e1, e2) -> Minus (append1_primeonly_expr e1, append1_primeonly_expr e2)
+  | Times (e1, e2) -> Times (append1_primeonly_expr e1, append1_primeonly_expr e2)
+  | Div (e1, e2) -> Div (append1_primeonly_expr e1, append1_primeonly_expr e2)
+  | Mod (e1, e2) -> Mod (append1_primeonly_expr e1, append1_primeonly_expr e2)
+
+let rec append1_primeonly (phi: formula) : formula = 
+  match phi with 
+  | True -> True 
+  | False -> False 
+  | Eq (e1, e2) -> Eq (append1_primeonly_expr e1, append1_primeonly_expr e2) 
+  | Neq (e1, e2) -> Neq (append1_primeonly_expr e1, append1_primeonly_expr e2)
+  | Leq (e1, e2) -> Leq (append1_primeonly_expr e1, append1_primeonly_expr e2)
+  | Geq (e1, e2) -> Geq (append1_primeonly_expr e1, append1_primeonly_expr e2)
+  | Lt (e1, e2) -> Lt (append1_primeonly_expr e1, append1_primeonly_expr e2) 
+  | Gt (e1, e2) -> Gt (append1_primeonly_expr e1, append1_primeonly_expr e2)
+  | And (phi1, phi2) -> And (append1_primeonly phi1, append1_primeonly phi2)
+  | Or (phi1, phi2) -> Or (append1_primeonly phi1, append1_primeonly phi2)
+  | Not phi1 -> Not (append1_primeonly phi1)
+  
+let rec append2primeonly_expr (e: expr) : expr = 
+  match e with 
+  | Const i -> Const i 
+  | Var v -> Var v
+  | VarPrime v -> VarPrime (v ^ "2")
+  | Plus (e1, e2) -> Plus (append2primeonly_expr e1, append2primeonly_expr e2)
+  | Minus (e1, e2) -> Minus (append2primeonly_expr e1, append2primeonly_expr e2)
+  | Times (e1, e2) -> Times (append2primeonly_expr e1, append2primeonly_expr e2)
+  | Div (e1, e2) -> Div (append2primeonly_expr e1, append2primeonly_expr e2)
+  | Mod (e1, e2) -> Mod (append2primeonly_expr e1, append2primeonly_expr e2)
+
+let rec append2_primeonly (phi: formula) : formula = 
+  match phi with 
+  | True -> True 
+  | False -> False 
+  | Eq (e1, e2) -> Eq (append2primeonly_expr e1, append2primeonly_expr e2) 
+  | Neq (e1, e2) -> Neq (append2primeonly_expr e1, append2primeonly_expr e2)
+  | Leq (e1, e2) -> Leq (append2primeonly_expr e1, append2primeonly_expr e2)
+  | Geq (e1, e2) -> Geq (append2primeonly_expr e1, append2primeonly_expr e2)
+  | Lt (e1, e2) -> Lt (append2primeonly_expr e1, append2primeonly_expr e2) 
+  | Gt (e1, e2) -> Gt (append2primeonly_expr e1, append2primeonly_expr e2)
+  | And (phi1, phi2) -> And (append2_primeonly phi1, append2_primeonly phi2)
+  | Or (phi1, phi2) -> Or (append2_primeonly phi1, append2_primeonly phi2)
+  | Not phi1 -> Not (append2_primeonly phi1)
+
 (* For now we are assuming that everything is an int *)
 let filter_by_sender (ls: symbolic_transition list) (p: participant) = 
   List.filter (fun (tr: symbolic_transition) -> tr.sender = p) ls 
