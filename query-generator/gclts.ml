@@ -12,7 +12,6 @@ open Reach
 let filter_transition_pairs_for_state_determinism (ls: (symbolic_transition * symbolic_transition) list) (s: state) =
    List.filter (fun (tr1,tr2) -> tr1.pre = s && 
                                  tr2.pre = s)
-                             	 (* tr1.post <> tr2.post) *)
                 ls
 
 (* Note to self for README: primed variables have special meaning and should not be used as communication variables! *)

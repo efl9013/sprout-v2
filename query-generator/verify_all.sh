@@ -45,10 +45,10 @@ files=(
   "symbolic-receive-validity-yes"
   "symbolic-receive-validity-no"
   "fwd-auth-yes"
-  "fwd-auth-no"
+  # "fwd-auth-no"
   "symbolic-two-bidder-no2"
   "higher-lower-ultimate"
-  "higher-lower-winning"
+  # "higher-lower-winning"
   "higher-lower-no"
   "higher-lower-encrypt-yes"
   "higher-lower-encrypt-no"
@@ -70,7 +70,7 @@ for file in "${files[@]}"; do
   echo "Processing $file" >> "$output_file"
   echo "----------------------------------------" >> "$output_file"
   # Run the command and append output to the file
-  dune exec query-generator "$full_path" 30 v3bb parallel >> "$output_file"
+  dune exec query-generator "$full_path" 30 opt parallel >> "$output_file"
 
   # Add a separator after each file's output
   echo -e "\n\n" >> "$output_file"

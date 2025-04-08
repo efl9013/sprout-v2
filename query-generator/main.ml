@@ -59,13 +59,10 @@ let is_substring sub str =
   in
   check 0
 
-let process_hes_file filename dirname timeout mode : string * float =
-  (* Adding "> /dev/null 2>&1" to the end of this command breaks everything! *)
-  (* Currently there is a bug in MuVal for the parallel_exc version of the tool, 
-    which is sensitive to equation ordering for least fixpoints *)
-  (* So we should use the parallel version until it is fixed *) 
-  (* Update: found a bug in the parallel version as well *)
-  let command = Printf.sprintf "timeout %i ./_build/default/main.exe -c ./config/solver/muval_%s_tbq_ar.json -p muclp %s/%s" timeout mode dirname filename in
+(* An optimized strategy for calling MuVal on individual instances *)
+(* In general the parallel mode is faster on most queries *)
+let process_hes_file_parallel_exc filename dirname timeout mode : string * float =
+  let command = Printf.sprintf "timeout %i ./_build/default/main.exe -c ./config/solver/muval_parallel_exc_tbq_ar.json -p muclp %s/%s" timeout dirname filename in
   let start_time = Unix.gettimeofday () in
   (* Printf.printf "Checking %s \n" filename; *)
   flush Stdlib.stdout;
@@ -89,7 +86,37 @@ let process_hes_file filename dirname timeout mode : string * float =
            then ("valid", execution_time)
          else ("unexpected", execution_time)
   | _ -> ("unexpected", execution_time) 
-  
+
+let process_hes_file_parallel filename dirname timeout mode : string * float =
+  let parallel_timeout = timeout / 2 in 
+  let command = Printf.sprintf "timeout %i ./_build/default/main.exe -c ./config/solver/muval_parallel_tbq_ar.json -p muclp %s/%s" parallel_timeout dirname filename in
+  let start_time = Unix.gettimeofday () in
+  (* Printf.printf "Checking %s \n" filename; *)
+  flush Stdlib.stdout;
+  let ic = Unix.open_process_in command in
+  let rec read_last_line last_line =
+    try
+      let line = input_line ic in
+      read_last_line line
+    with End_of_file -> last_line
+  in
+  let last_line = read_last_line "" in
+  let exit_status = Unix.close_process_in ic in
+  let end_time = Unix.gettimeofday () in
+  let execution_time = end_time -. start_time in
+  match exit_status with
+  | Unix.WEXITED n when n = 124 -> process_hes_file_parallel_exc filename dirname parallel_timeout mode 
+  | Unix.WEXITED _ -> 
+      if is_substring "invalid" last_line 
+      then ("invalid", execution_time)
+      else if is_substring "valid" last_line 
+           then ("valid", execution_time)
+         else ("unexpected", execution_time)
+  | _ -> ("unexpected", execution_time) 
+
+let process_hes_file filename dirname timeout mode : string * float =
+  process_hes_file_parallel filename dirname timeout mode 
+
 let process_directory dirname timeout mode : (string * string * float) list =
   let original_dir = Sys.getcwd () in
   Unix.chdir Config.coar_location; 
@@ -134,42 +161,45 @@ let generate_gclts_queries (prot: symbolic_protocol) (dirname: string) =
   generate_determinism_queries_v1b prot dirname; 
   generate_deadlock_free_queries_v1 prot dirname 
 
-let generate_implementability_queries_for_participant (prot: symbolic_protocol) (p: participant) (dirname: string) = 
-  (* generate_scc_queries_for_participant_v3bb prot p dirname;  *)
-  generate_rcc_queries_for_participant_v2b prot p dirname
-  (* generate_nmc_queries_for_participant_v2b prot p dirname *)
-
 let generate_implementability_queries (prot: symbolic_protocol) (dirname: string) (version: string) = 
-  (* Currently the most optimized version *)
   match version with 
+  | "opt" -> 
+  generate_scc_queries_opt prot dirname;
+  generate_rcc_queries_opt prot dirname; 
+  generate_nmc_queries_opt prot dirname;
+  | "naive" -> 
+  generate_scc_queries_naive prot dirname;
+  generate_rcc_queries_naive prot dirname; 
+  generate_nmc_queries_naive prot dirname;
+  (* Further versions with more fine-grained differences *)
   | "v3bb" -> 
   generate_scc_queries_v3bb prot dirname;
   generate_rcc_queries_v2b prot dirname; 
   generate_nmc_queries_v2b prot dirname;
   | "v3b" -> 
   generate_scc_queries_v3b prot dirname;
-  generate_rcc_queries_vb prot dirname; 
-  generate_nmc_queries_vb prot dirname;
+  generate_rcc_queries_v2b prot dirname; 
+  generate_nmc_queries_v2b prot dirname;
   | "v3a" -> 
   generate_scc_queries_v3a prot dirname;
-  generate_rcc_queries_vb prot dirname; 
-  generate_nmc_queries_vb prot dirname;
+  generate_rcc_queries_v2b prot dirname; 
+  generate_nmc_queries_v2b prot dirname;
   | "v2b" -> 
   generate_scc_queries_v2b prot dirname;
-  generate_rcc_queries_vb prot dirname; 
-  generate_nmc_queries_vb prot dirname;
+  generate_rcc_queries_v2b prot dirname; 
+  generate_nmc_queries_v2b prot dirname;
   | "v2a" -> 
   generate_scc_queries_v2a prot dirname;
-  generate_rcc_queries_vb prot dirname; 
-  generate_nmc_queries_vb prot dirname;
+  generate_rcc_queries_v2b prot dirname; 
+  generate_nmc_queries_v2b prot dirname;
   | "v1b" -> 
   generate_scc_queries_v1b prot dirname;
-  generate_rcc_queries_vb prot dirname; 
-  generate_nmc_queries_vb prot dirname;
+  generate_rcc_queries_v1b prot dirname; 
+  generate_nmc_queries_v1b prot dirname;
   | "v1a" -> 
   generate_scc_queries_v1a prot dirname;
-  generate_rcc_queries prot dirname; 
-  generate_nmc_queries prot dirname;
+  generate_rcc_queries_v1a prot dirname; 
+  generate_nmc_queries_v1a prot dirname;
   | _ -> Printf.eprintf "Version invalid\n" 
 
 let check_gclts (prot: symbolic_protocol) (dirname: string) (timeout: int) (mode: string) : (bool * float) = 

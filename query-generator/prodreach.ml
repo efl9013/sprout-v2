@@ -1,22 +1,16 @@
 open Ast 
 open Common 
 
-(* This file defines two versions of prodreach: 
-  a. prodreach_p, where states s'1 and s'2 (and registers) are an argument to the predicate,     
-  b. prodreach_p_s1s2, where the states are curried into the function *)
-
 (** prodreach.ml **)
-(* Note the distinction between input variable names and input states, 
-   which are used to filter the set of transitions to include etc. *)
-(* Actually this distinction might be meaningless now *)
 
-(* Also note that the arguments to prodreach are actually post-states and primed register variables *)
-(* Something to be mindful of when defining substitutions *)
+(* This file defines two versions of prodreach: 
+  a. prodreach_p, where states s'1 and s'2 (and registers) are arguments to the predicate,     
+  b. prodreach_p_s1_s2, where the states are curried into the function *)
 
-(* This version of prodreach reuses the exact definition in the paper, 
-  where the arguments are all primed *)
+(* The implementation of prodreach reuses the exact definition in the paper, 
+  where arguments are post-states post-register variables, thus all arguments are primed *)
 
-(* Also because prodreach is a series of disjuncts, we can fold the case analysis on state for va into the relevant disjuncts *)
+(* Because prodreach is a series of disjuncts, we can fold the case analysis on state for va into the relevant disjuncts *)
 
 (* Important naming conventions: first prime, then 1/2 *)
 let first_disjunct_states (prot: symbolic_protocol) : string = 
@@ -38,12 +32,6 @@ let first_disjunct_vb (prot: symbolic_protocol) (s1: state) (s2: state) : string
   if s1 = prot.initial_state && s2 = prot.initial_state 
   then parenthesize (first_disjunct_registers prot) ^ "\n"
   else "false"
-(*   let s0 = prot.initial_state in 
-  "(" ^ 
-  string_of_int s1 ^ " = " ^ string_of_int s0 ^ " /\\ " ^ string_of_int s2 ^ " = " ^ string_of_int s0 ^
-  " /\\ " ^
-  first_disjunct_registers prot ^ 
-  ")" *)
 
 let second_disjunct_for_transition_pair_va (prot: symbolic_protocol) (pair: symbolic_transition * symbolic_transition) (p: participant) : string = 
   let tr1 = fst pair in 
@@ -225,10 +213,11 @@ let generate_prodreach_for_participant (prot: symbolic_protocol) (p: participant
   fourth_disjunct_va prot p ^
   ";"
 
+(* Version a. of prodreach which defines a monolithic predicate for each participant (naive) *)
 let generate_prodreach_va (prot: symbolic_protocol) (p: participant) : string =
   generate_prodreach_for_participant prot p 
 
-(* Defining a version of prodreach with s'1 and s'2 curried into the predicate name *)
+(* Version b. of prodreach which defines a separate predicate for each pair of s'1 and s'2 *)
 let generate_prodreach_for_s1_s2 (prot: symbolic_protocol) (s1: state) (s2: state) (p: participant) : string = 
   "prodreach_" ^ p ^ "_" ^ 
   string_of_int s1 ^ "_" ^
@@ -245,7 +234,5 @@ let generate_prodreach_for_s1_s2 (prot: symbolic_protocol) (s1: state) (s2: stat
 
 let generate_prodreach_vb (prot: symbolic_protocol) (p: participant) : string =
   List.fold_left (fun acc (s1,s2) -> acc ^ "\n" ^ generate_prodreach_for_s1_s2 prot s1 s2 p) "" (all_state_pairs prot.states)
-  
-(* This function has been successfully tested and matched against p_scc.hes *)
 
 (** prodreach.ml **)

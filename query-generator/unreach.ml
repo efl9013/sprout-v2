@@ -2,6 +2,7 @@ open Ast
 open Common 
 
 (** unreach.ml **)
+
 (* Unreach's outermost structure is a series of conjunctions *) 
 (* Thus, all conjuncts need to be defined for each pair of participants and for each state *)
 (* Unlike prodreach, one cannot do the case analysis on the states inside each conjunct *)
@@ -9,6 +10,8 @@ open Common
 (* This file defines two versions of unreach: 
   a. unreach_pq, where the state is an argument to the predicate,     
   b. unreach_pq_s, where the state is curried into the function *)
+
+(* Unreach cannot be optimized using simultaneous reachability *)
 
 (* First conjunction enumerates transitions where: 
   - s is the pre-state 
@@ -22,8 +25,7 @@ let first_conjunct_for_transition (prot: symbolic_protocol) (tr: symbolic_transi
   string_of_formula phi ^ 
   " => false) \n"
 
-(* There is no simreach-based optimization that can be applied to this definition *)
-(* Defining the first conjunct altogether, for unreach for a pair of participants and a state *)
+(* Version a of the first conjunct: altogether, for unreach for a pair of participants and a state *)
 let first_conjunct_va (prot: symbolic_protocol) (p: participant) (q: participant) (s: state) : string =
   let transitions = List.filter (fun tr -> tr.pre = s && tr.sender = p && tr.receiver = q) prot.transitions in 
   List.fold_left (fun acc x -> acc ^ "/\\ " ^ first_conjunct_for_transition prot x) "" transitions 
@@ -38,8 +40,8 @@ let first_conjunct_vb (prot: symbolic_protocol) (p: participant) (q: participant
 let filter_transitions_unreach_conjunct_two (ls: symbolic_transition list) (p: participant) (s: state) =
   List.filter (fun tr -> tr.pre = s && participant_uninvolved tr p) ls  
 
-(* Defining second conjuncts for a given transition, for unreach for a pair of participants and a state *)
-(* Note to self: muCLP checker allows for empty quantification *)
+(* Version a of the second conjunct *)
+(* Note to self: MuVal allows for empty quantification *)
 let second_conjunct_for_transition_va (prot: symbolic_protocol) (p: participant) (q: participant) (tr: symbolic_transition) : string = 
   "(" ^ 
   "forall (" ^ tr.comm_var ^ ":int). " ^ 
@@ -54,8 +56,7 @@ let second_conjunct_for_transition_va (prot: symbolic_protocol) (p: participant)
   List.fold_left (fun acc x -> acc ^ x ^ "' ") "" prot.registers ^ 
   "x)) \n" 
 
-(* This version of the function is used for version (2) *)
-(* The only change is space -> underscore *)
+(* Version b of the second conjunct: the only change is space -> underscore to curry the state into the unreach predicate *)
 let second_conjunct_for_transition_vb (prot: symbolic_protocol) (p: participant) (q: participant) (tr: symbolic_transition) : string = 
   "(" ^ 
   "forall (" ^ tr.comm_var ^ ":int). " ^ 
@@ -79,8 +80,8 @@ let second_conjunct_vb (prot: symbolic_protocol) (p: participant) (q: participan
   let transitions = List.filter (fun tr -> tr.pre = s && participant_uninvolved tr p) prot.transitions in
   List.fold_left (fun acc x -> acc ^ "/\\ " ^ second_conjunct_for_transition_vb prot p q x) "" transitions 
 
-(* Defining the entire conjunct for a state, for unreach for a pair of participants *)
-(* This version is the body of the version a. that includes all disjuncts together *)
+(* Defining the conjunct body of version a for a given state, for unreach for a pair of participants *)
+(* Version a consists of disjuncts of one conjunct per state *) 
 let unreach_body_va (prot: symbolic_protocol) (p: participant) (q: participant) (s: state) : string = 
   "(\n" ^ 
   "s = " ^ string_of_int s ^ " " ^
@@ -88,13 +89,13 @@ let unreach_body_va (prot: symbolic_protocol) (p: participant) (q: participant) 
   second_conjunct_va prot p q s ^
   ")"
 
-(** Version (1) of unreach_pq (s: int) for a list of states, with one disjunct per state **)
+(** Version a of unreach_pq (s: int) for a list of states, containing one disjunct per state **)
 let generate_unreach_va (prot: symbolic_protocol) (p: participant) (q: participant) (ls: state list) : string = 
   "unreach_" ^ p ^ q ^ " (s:int) " ^ all_registers prot ^ "(x:int): bool =nu\n" ^
   List.fold_left (fun acc x -> acc ^ " \\/ " ^ unreach_body_va prot p q x) "false" ls ^ 
   ";"
 
-(** Version (2) of unreach_pq_s, with one query per state **)
+(** Version b of unreach_pq_s, with one separate unreach_pq_s predicate per state **)
 let unreach_body_vb (prot: symbolic_protocol) (p: participant) (q: participant) (s: state) : string = 
   "unreach_" ^ p ^ q ^ "_" ^ string_of_int s ^ all_registers prot ^ "(x:int): bool =nu\n" ^
   "(" ^ 
@@ -104,14 +105,3 @@ let unreach_body_vb (prot: symbolic_protocol) (p: participant) (q: participant) 
 
 let generate_unreach_vb (prot: symbolic_protocol) (p: participant) (q: participant) (ls: state list) : string = 
   List.fold_left (fun acc s -> acc ^ unreach_body_vb prot p q s) "" ls
-  (* List.fold_left (fun acc s -> acc ^ unreach_body_vb prot p q s) "" (List.rev ls) *)
-
-
-
-
-
-
-
-
-
-

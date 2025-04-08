@@ -1,10 +1,10 @@
 open Ast 
 open Common 
 
-(* The only extra thing to be mindful of here is the way sets are canonically represented as strings *)
-(* For the _pqr that goes on avail *)
+(** avail.ml **)
 
-(* Convention is that we are defining avail_pq_set *)
+(* This file defines the avail predicate avail_pq_set, 
+	 where p -> q is the participant signature of the message, and set encodes the blocked set argument as a canonically ordered list of strings *) 
 
 let sort_participants (ls: participant list) : participant list = 
 	List.sort String.compare ls 
@@ -30,7 +30,7 @@ let first_conjunct (prot: symbolic_protocol) : string =
 	List.fold_left (fun acc s -> acc ^ " \\/ s = " ^ string_of_int s) "false" prot.states ^ 
 	")\n"
 
-(* The second disjunct corresponds to the case where a new participant is blocked *)
+(* The second disjunct corresponds with the case where a new participant is blocked *)
 (* The second disjunct enumerates transitions where the sender is blocked, and the signature is not p->q *)
 let filter_transitions_disjunct_two (ls: symbolic_transition list) (bs: participant list) (p: participant) (q: participant) : symbolic_transition list =
    List.filter (fun tr -> List.mem tr.sender bs && (tr.sender <> p || tr.receiver <> q)) ls 
@@ -55,9 +55,8 @@ let second_disjunct (prot: symbolic_protocol) (bs: participant list) (p: partici
   let transitions = filter_transitions_disjunct_two prot.transitions bs p q in 
   List.fold_left (fun acc tr -> acc ^ " \\/ \n" ^ second_disjunct_from_transition prot tr bs p q) "false" transitions
 
-(* The third disjunct corresponds to the case where no new participant is blocked *)
+(* The third disjunct corresponds with the case where no new participant is blocked *)
 (* The third disjunct enumerates transitions where the sender is not blocked, and the signature is not p->q *)
-
 let sender_not_blocked (prot: symbolic_protocol) (bs: participant list) (tr: symbolic_transition) : bool = 
 	let participants = get_participants prot in 
 	List.mem tr.sender participants && not (List.mem tr.sender bs)
@@ -121,7 +120,7 @@ let generate_avail_for_participant_pair_and_blocked_set (prot: symbolic_protocol
   fourth_disjunct prot bs p q ^
   ";"
 
-(* Optimizations here: for a participant pair p q, we only need avail predicates that include {q} in the blocked set *)
+(* Optimization here: for a participant pair p q, we only generate avail predicates that include {q} in the blocked set *)
 let generate_avail_for_participant_pair (prot: symbolic_protocol) (p: participant) (q: participant) : string = 
 	let bs_list = all_participant_subsets_containing_participant prot q in 
 	List.fold_left (fun acc bs -> acc ^ "\n" ^ generate_avail_for_participant_pair_and_blocked_set prot bs p q) "" bs_list

@@ -3,14 +3,15 @@ open Common
 open Prodreach 
 
 (* This file defines 2 versions of NMC: 
-	 Each version can choose between 2 versions of prodreach generation: 
-	 a. One prodreach predicate altogether, containing a disjunction for each pair of states,
-	 b. One prodreach predicate for each pair of states, i.e. curried prodreach *) 
+	(1) One muCLP query per participant, containing a disjunction enumerating all transition pairs, 
+	(2) One muCLP query per participant per transition pair
+	Each version can choose between 2 versions of prodreach generation: 
+	a. One prodreach predicate altogether, containing a disjunction for each pair of states,
+	b. One prodreach predicate for each pair of states, i.e. curried prodreach *) 
 
 (* Optimizations present in all versions: 
 	- Pre-filter for simultaneously reachable states according to participant projection of transition labels, 
-	- Eliminate state equality predicates and directly instantiate values in inductive predicates,
-*) 
+	- Eliminate state equality predicates and directly instantiate values in inductive predicates *) 
 
 (* NMC is first split into a set of queries for each participant p, 
    then it enumerates pairs of transitions in which p is the sender in one and the receiver in the other *)
@@ -20,9 +21,9 @@ let filter_transitions_nmc_participant (ls: (symbolic_transition * symbolic_tran
 let filter_simreach_transitions_nmc_participant (prot: symbolic_protocol) (ls: (symbolic_transition * symbolic_transition) list) (p: participant) =
    List.filter (fun (tr1,tr2) -> tr1.sender = p && tr2.receiver = p && simultaneously_reachable_for prot tr1.pre tr2.pre p) ls
 
-(* For each pair of transitions, generate four conjuncts *)
-(* First conjunct specifies the prestates of the transitions under consideration *)
-(* i.e. the values of s1 and s2 in the existential quantification of NMC *) 
+(* For each pair of transitions, we generate four conjuncts *)
+
+(* First conjunct specifies the prestates of the transitions under consideration, i.e. the values of s1 and s2 in the existential quantification of NMC *) 
 (* First conjunct becomes obsolete once we instantiate with concrete values *)
 (* let first_conjunct_from_pair (prot: symbolic_protocol) (pair: symbolic_transition * symbolic_transition) (p: participant) = 
 	let tr1 = fst pair in 
@@ -32,7 +33,7 @@ let filter_simreach_transitions_nmc_participant (prot: symbolic_protocol) (ls: (
  *)
 
 (* Second conjunct calls prodreach_p on the prestates and prestate registers of each copy *)
-let second_conjunct_from_pair (prot: symbolic_protocol) (pair: symbolic_transition * symbolic_transition) (p: participant) : string = 
+let second_conjunct_from_pair_va (prot: symbolic_protocol) (pair: symbolic_transition * symbolic_transition) (p: participant) : string = 
 	let tr1 = fst pair in 
 	let tr2 = snd pair in 
 	"(prodreach_" ^ p ^ " " ^
@@ -79,11 +80,11 @@ let generate_nmc_first_line_for_participant (prot: symbolic_protocol) (p: partic
 	"(x1: int) (x2: int)" ^ 
 	". \n" 
 
-let generate_nmc_body_from_pair_for_participant (prot: symbolic_protocol) (pair: symbolic_transition * symbolic_transition) (p: participant) = 
+let generate_nmc_body_from_pair_for_participant_va (prot: symbolic_protocol) (pair: symbolic_transition * symbolic_transition) (p: participant) = 
 	"(" ^
 	(* first_conjunct_from_pair prot pair p ^  *)
 	(* " /\\ \n" ^ *)
-	second_conjunct_from_pair prot pair p ^ 
+	second_conjunct_from_pair_va prot pair p ^ 
 	" /\\ \n" ^
 	third_conjunct_from_pair prot pair p ^ 
 	" /\\ \n" ^
@@ -99,12 +100,12 @@ let generate_nmc_body_from_pair_for_participant_vb (prot: symbolic_protocol) (pa
 	fourth_conjunct_from_pair prot pair p ^ 
 	")"
 
-let generate_nmc_preamble_for_participant (prot: symbolic_protocol) (p: participant) (ls : (symbolic_transition * symbolic_transition) list) = 
+let generate_nmc_preamble_for_participant_va (prot: symbolic_protocol) (p: participant) (ls : (symbolic_transition * symbolic_transition) list) = 
 	(* Toggle the following line to only generate simultaneously reachable transition pairs, or generate all pairs without optimization *)
 	(* let transition_pairs = filter_simreach_transitions_nmc_participant prot (all_transition_pairs prot.transitions) p in  *)
 	(* let transition_pairs = filter_transitions_nmc_participant (all_transition_pairs prot.transitions) p in  *)
 	generate_nmc_first_line_for_participant prot p ^
-  	List.fold_left (fun acc pair -> acc ^ "\n\\/\n" ^ generate_nmc_body_from_pair_for_participant prot pair p) "false" ls ^ 
+  	List.fold_left (fun acc pair -> acc ^ "\n\\/\n" ^ generate_nmc_body_from_pair_for_participant_va prot pair p) "false" ls ^ 
 	"\ns.t.\n"
 
 let generate_nmc_preamble_for_participant_vb (prot: symbolic_protocol) (p: participant) (ls : (symbolic_transition * symbolic_transition) list) = 
@@ -115,8 +116,8 @@ let generate_nmc_preamble_for_participant_vb (prot: symbolic_protocol) (p: parti
   	List.fold_left (fun acc pair -> acc ^ "\n\\/\n" ^ generate_nmc_body_from_pair_for_participant_vb prot pair p) "false" ls ^ 
 	"\ns.t.\n"
 
-let generate_nmc_for_participant (prot: symbolic_protocol) (p: participant) (ls : (symbolic_transition * symbolic_transition) list) = 
-	generate_nmc_preamble_for_participant prot p ls ^ 
+let generate_nmc_for_participant_va (prot: symbolic_protocol) (p: participant) (ls : (symbolic_transition * symbolic_transition) list) = 
+	generate_nmc_preamble_for_participant_va prot p ls ^ 
 	"\n" ^ 
 	generate_prodreach_for_participant prot p
 
@@ -132,15 +133,25 @@ let generate_nmc_for_pair_v2b (prot: symbolic_protocol) (p: participant) (pair :
 	"\n" ^ 
 	generate_prodreach_vb prot p 
 
-let generate_nmc_queries_for_participant (prot: symbolic_protocol) (p: participant) (dir: string) = 
+(** Defining versions (1) and (2) of NMC generation **)
+
+(** Version (1) of NMC generation: one muCLP query per participant **)
+
+(* Version 1a of NMC generation: one muCLP query per participant using version a of prodreach *)
+let generate_nmc_queries_for_participant_v1a (prot: symbolic_protocol) (p: participant) (dir: string) = 
 	let transition_pairs = filter_transitions_nmc_participant (all_transition_pairs prot.transitions) p in 
 	(* let transition_pairs = filter_simreach_transitions_nmc_participant prot (all_transition_pairs prot.transitions) p in  *)
 	if transition_pairs <> [] 
 	then (let filename = p ^ "_nmc.hes" in 
-			write_to_file (Filename.concat dir filename) (generate_nmc_for_participant prot p transition_pairs))
+			write_to_file (Filename.concat dir filename) (generate_nmc_for_participant_va prot p transition_pairs))
 	else ()
 
-let generate_nmc_queries_for_participant_vb (prot: symbolic_protocol) (p: participant) (dir: string) = 
+let generate_nmc_queries_v1a (prot: symbolic_protocol) (dir: string) = 
+  let participants = intersection (get_senders prot) (get_receivers prot) in 
+  List.iter (fun p -> generate_nmc_queries_for_participant_v1a prot p dir) participants 
+
+(* Version 1b of NMC generation: one muCLP query per participant using version b of prodreach *)
+let generate_nmc_queries_for_participant_v1b (prot: symbolic_protocol) (p: participant) (dir: string) = 
 	(* let transition_pairs = filter_transitions_nmc_participant (all_transition_pairs prot.transitions) p in  *)
 	let transition_pairs = filter_simreach_transitions_nmc_participant prot (all_transition_pairs prot.transitions) p in 
 	if transition_pairs <> [] 
@@ -148,14 +159,15 @@ let generate_nmc_queries_for_participant_vb (prot: symbolic_protocol) (p: partic
 			write_to_file (Filename.concat dir filename) (generate_nmc_for_participant_vb prot p transition_pairs))
 	else ()
 
-let generate_nmc_queries (prot: symbolic_protocol) (dir: string) = 
-  let participants = intersection (get_senders prot) (get_receivers prot) in 
-  List.iter (fun p -> generate_nmc_queries_for_participant prot p dir) participants 
-
-let generate_nmc_queries_vb (prot: symbolic_protocol) (dir: string) = 
+let generate_nmc_queries_v1b (prot: symbolic_protocol) (dir: string) = 
 	let participants = intersection (get_senders prot) (get_receivers prot) in  
-	List.iter (fun p -> generate_nmc_queries_for_participant_vb prot p dir) participants 
+	List.iter (fun p -> generate_nmc_queries_for_participant_v1b prot p dir) participants 
 
+(** Version (2) of NMC generation: one muCLP query per participant per pair of transitions **)
+
+(* Version 2a is not defined *)
+
+(* Version 2b of NMC generation: one muCLP query per participant per pair of transitions using version b of prodreach *)
 let generate_nmc_queries_for_participant_v2b (prot: symbolic_protocol) (p: participant) (dir: string) = 
 	(* let transition_pairs = filter_transitions_nmc_participant (all_transition_pairs prot.transitions) p in  *)
 	let transition_pairs = filter_simreach_transitions_nmc_participant prot (all_transition_pairs prot.transitions) p in 
@@ -168,3 +180,10 @@ let generate_nmc_queries_for_participant_v2b (prot: symbolic_protocol) (p: parti
 let generate_nmc_queries_v2b (prot: symbolic_protocol) (dir: string) = 
 	let participants = intersection (get_senders prot) (get_receivers prot) in  
 	List.iter (fun p -> generate_nmc_queries_for_participant_v2b prot p dir) participants 
+
+(* Renaming for clarity *)
+let generate_nmc_queries_naive (prot: symbolic_protocol) (dir: string) =
+	generate_nmc_queries_v1a prot dir 
+
+let generate_nmc_queries_opt (prot: symbolic_protocol) (dir: string) =
+	generate_nmc_queries_v2b prot dir 
