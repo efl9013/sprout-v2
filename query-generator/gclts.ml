@@ -11,8 +11,8 @@ open Reach
 (* 1) Determinism picks out pairs of transitions with the same pre-state *) 
 let filter_transition_pairs_for_state_determinism (ls: (symbolic_transition * symbolic_transition) list) (s: state) =
    List.filter (fun (tr1,tr2) -> tr1.pre = s && 
-                                 tr2.pre = s && 
-                             	 tr1.post <> tr2.post)
+                                 tr2.pre = s)
+                             	 (* tr1.post <> tr2.post) *)
                 ls
 
 (* Note to self for README: primed variables have special meaning and should not be used as communication variables! *)
@@ -38,8 +38,38 @@ let generate_determinism_for_transition_pair_vb (prot: symbolic_protocol) (pair:
 	"(" ^ 
 	string_of_formula phi2 ^ 
 	")" ^
+	" /\\ \n" ^
+	"(" ^ 
+	string_of_int tr1.post ^ "!=" ^ string_of_int tr2.post ^ 
+	" \\/ " ^ 
+	List.fold_left (fun acc x -> acc ^ " \\/ " ^ parenthesize (x ^ "'1 != " ^ x ^ "'2")) "false" prot.registers ^ 
+	")" ^
 	"\ns.t.\n" ^
 	generate_reach_vb prot 
+
+let determinism_for_transition_pair_v1b_body (prot: symbolic_protocol) (pair: symbolic_transition * symbolic_transition) : string = 
+	let tr1 = fst pair in 
+  	let tr2 = snd pair in 
+  	let phi1 = substitute (append1_primeonly tr1.predicate) (tr1.comm_var) "x" in 
+  	let phi2 = substitute (append2_primeonly tr2.predicate) (tr2.comm_var) "x" in 
+  	"(" ^
+  	"reach_" ^ string_of_int tr1.pre ^ " " ^
+  	List.fold_left (fun acc x -> acc ^ x ^ " ") "" prot.registers ^ 
+  	")" ^ 
+  	" /\\ \n" ^
+  	"(" ^ 
+	string_of_formula phi1 ^ 
+	")\n" ^
+	" /\\ \n" ^
+	"(" ^ 
+	string_of_formula phi2 ^ 
+	")" ^
+	" /\\ \n" ^
+	"(" ^ 
+	string_of_int tr1.post ^ "!=" ^ string_of_int tr2.post ^ 
+	" \\/ " ^ 
+	List.fold_left (fun acc x -> acc ^ " \\/ " ^ parenthesize (x ^ "'1 != " ^ x ^ "'2")) "false" prot.registers ^ 
+	")" 
 
 let generate_determinism_for_transition_pair_va (prot: symbolic_protocol) (pair: symbolic_transition * symbolic_transition) : string = 
 	let tr1 = fst pair in 
@@ -68,8 +98,27 @@ let generate_determinism_for_transition_pair_va (prot: symbolic_protocol) (pair:
 	string_of_int tr1.post ^ "!=" ^ string_of_int tr2.post ^ 
 	" \\/ " ^ 
 	List.fold_left (fun acc x -> acc ^ " \\/ " ^ parenthesize (x ^ "'1 != " ^ x ^ "'2")) "false" prot.registers ^ 
+	")" ^
 	"\ns.t.\n" ^
 	generate_reach_va prot 
+
+let generate_determinism_v1b (prot: symbolic_protocol) : string = 
+	"exists (x:int) " ^ 
+  	List.fold_left (fun acc x -> acc ^ " " ^ parenthesize (x ^ ": int")) "" prot.registers ^ 
+  	List.fold_left (fun acc x -> acc ^ " " ^ parenthesize (x ^ "'1: int")) "" prot.registers ^ 
+  	List.fold_left (fun acc x -> acc ^ " " ^ parenthesize (x ^ "'2: int")) "" prot.registers ^ 
+  	".\n" ^
+  	List.fold_left (fun acc s -> acc ^ " \\/ " ^ 
+	List.fold_left (fun acc (tr1,tr2) -> acc ^ " \\/ " ^ parenthesize (determinism_for_transition_pair_v1b_body prot (tr1,tr2)))
+						"false"
+						(filter_transition_pairs_for_state_determinism (all_transition_pairs prot.transitions) s))
+				"false"
+				prot.states ^ 
+	"\ns.t.\n" ^
+	generate_reach_vb prot 
+
+let generate_determinism_queries_v1b (prot: symbolic_protocol) (dir: string) = 
+	write_to_file (Filename.concat dir "det.hes") (generate_determinism_v1b prot)
 
 let generate_determinism_queries_vb (prot: symbolic_protocol) (dir: string) = 
 	List.iter (fun s -> 
@@ -123,6 +172,26 @@ let generate_deadlock_free_for_state (prot: symbolic_protocol) (s: state) : stri
 	generate_reach_vb prot ^ 
 	"\n" ^ 
 	List.fold_left (fun acc s -> acc ^ "\n" ^ generate_df_for_state prot s) "" prot.states 
+
+let deadlock_free_body_for_state (prot: symbolic_protocol) (s: state) : string = 
+	"reach_" ^ string_of_int s ^ " " ^ 
+	List.fold_left (fun acc x -> acc ^ x ^ " ") "" prot.registers ^ 
+	" /\\ df_" ^ string_of_int s ^ " " ^ 
+	List.fold_left (fun acc x -> acc ^ x ^ " ") "" prot.registers 
+
+let generate_deadlock_free_v1 (prot: symbolic_protocol) : string = 
+	"exists " ^
+	List.fold_left (fun acc x -> acc ^ " " ^ parenthesize (x ^ ": int")) "" prot.registers ^ 
+	".\n" ^
+	List.fold_left (fun acc s -> acc ^ " \\/ " ^ parenthesize (deadlock_free_body_for_state prot s)) "false" (filter_states_for_deadlock_freedom prot) ^ 
+	"\ns.t.\n" ^ 
+	generate_reach_vb prot ^ 
+	"\n" ^ 
+	List.fold_left (fun acc s -> acc ^ "\n" ^ generate_df_for_state prot s) "" prot.states 
+
+let generate_deadlock_free_queries_v1 (prot: symbolic_protocol) (dirname: string) = 
+	write_to_file (Filename.concat dirname "df.hes")
+				     (generate_deadlock_free_v1 prot )
 
 let generate_deadlock_free_queries (prot: symbolic_protocol) (dirname: string) = 
 	List.iter (fun s -> write_to_file

@@ -177,7 +177,7 @@ let rec append1_primeonly_expr (e: expr) : expr =
   match e with 
   | Const i -> Const i 
   | Var v -> Var v
-  | VarPrime v -> VarPrime (v ^ "2")
+  | VarPrime v -> VarPrime (v ^ "1")
   | Plus (e1, e2) -> Plus (append1_primeonly_expr e1, append1_primeonly_expr e2)
   | Minus (e1, e2) -> Minus (append1_primeonly_expr e1, append1_primeonly_expr e2)
   | Times (e1, e2) -> Times (append1_primeonly_expr e1, append1_primeonly_expr e2)

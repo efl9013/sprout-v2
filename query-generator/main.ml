@@ -131,8 +131,8 @@ let print_execution_time results : float =
   sum 
 
 let generate_gclts_queries (prot: symbolic_protocol) (dirname: string) = 
-  generate_determinism_queries_vb prot dirname; 
-  generate_deadlock_free_queries prot dirname 
+  generate_determinism_queries_v1b prot dirname; 
+  generate_deadlock_free_queries_v1 prot dirname 
 
 let generate_implementability_queries_for_participant (prot: symbolic_protocol) (p: participant) (dirname: string) = 
   (* generate_scc_queries_for_participant_v3bb prot p dirname;  *)

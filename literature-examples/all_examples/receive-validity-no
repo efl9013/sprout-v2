@@ -6,4 +6,4 @@ Initial register assignments:
    (0) p->q:v{v=2}  (4)
    (4) p->r:v{True} (5)
    (5) q->r:v{True} (6)
-Final states:
+Final states: (3), (6)
