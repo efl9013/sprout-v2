@@ -1,0 +1,70 @@
+Processing figure12-yes on naive mode
+----------------------------------------
+-e 
+
+
+Processing figure12-yes on optimized mode
+----------------------------------------
+-e 
+
+
+Processing figure12-no on naive mode
+----------------------------------------
+-e 
+
+
+Processing figure12-no on optimized mode
+----------------------------------------
+-e 
+
+
+Processing two-buyer on naive mode
+----------------------------------------
+-e 
+
+
+Processing two-buyer on optimized mode
+----------------------------------------
+-e 
+
+
+Processing higher-lower-ultimate on naive mode
+----------------------------------------
+-e 
+
+
+Processing higher-lower-ultimate on optimized mode
+----------------------------------------
+-e 
+
+
+Processing higher-lower-no on naive mode
+----------------------------------------
+-e 
+
+
+Processing higher-lower-no on optimized mode
+----------------------------------------
+-e 
+
+
+Processing symbolic-two-bidder-yes on naive mode
+----------------------------------------
+-e 
+
+
+Processing symbolic-two-bidder-yes on optimized mode
+----------------------------------------
+-e 
+
+
+Processing symbolic-two-bidder-no1 on naive mode
+----------------------------------------
+-e 
+
+
+Processing symbolic-two-bidder-no1 on optimized mode
+----------------------------------------
+-e 
+
+

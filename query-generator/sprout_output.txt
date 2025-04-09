@@ -1,0 +1,53 @@
+Processing calculator
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 2.0714               | invalid    |
+| det.hes                        | 0.2669               | invalid    |
+
+Total time:2.338336
+
+Checking implementability...
+Binary protocol, implementable
+-e 
+
+
+Processing fibonacci
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.2800               | invalid    |
+| det.hes                        | 0.1917               | invalid    |
+
+Total time:0.471715
+
+Checking implementability...
+Binary protocol, implementable
+-e 
+
+
+Processing higher-lower-original
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.6256               | invalid    |
+| det.hes                        | 0.3199               | invalid    |
+
+Total time:0.945497
+
+Checking implementability...

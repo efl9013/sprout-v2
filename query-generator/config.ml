@@ -1,1 +1,0 @@
-let coar_location = "/Users/elaineli/Programs/sprout/muval"
