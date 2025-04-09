@@ -1,7 +1,0 @@
-Initial state: (0)
-Initial register assignments: 
-(0) k->s:ready{ready=0} (1)
-(1) s->k:copy{copy=1} (2)
-(2) t->k:ready{ready=0} (3)
-(3) k->t:copy{copy=1} (0)
-Final states: 

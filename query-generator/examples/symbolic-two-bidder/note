@@ -1,3 +1,0 @@
-- symbolic-two-bidder-yes: original
-- symbolic-two-bidder-yes-1: bids do not necessarily increase
-- symbolic-two-bidder-no: b2 sends succ message in addition to b1, as proposed in the paper but tweaked to avoid violating sender-drivenness 

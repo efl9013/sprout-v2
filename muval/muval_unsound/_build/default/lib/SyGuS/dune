@@ -1,6 +1,0 @@
-(library
- (name SyGuS)
- (public_name CoAR.SyGuS)
- (libraries num core z3 CoAR.ast CoAR.common CoAR.Z3Smt)
- (modules printer parser problem)
- (synopsis "interface for SyGuS-IF"))

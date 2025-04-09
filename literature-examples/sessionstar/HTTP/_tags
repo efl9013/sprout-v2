@@ -1,6 +1,0 @@
-<ml>: traverse
-<_output>: traverse
-<_output/c>: -traverse
-
-true: package(fstarlib)
-true: thread

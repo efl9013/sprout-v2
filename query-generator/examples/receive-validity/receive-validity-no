@@ -1,9 +1,0 @@
-Initial state:(0) 
-Initial register assignments: 
-   (0) p->q:v{v=1}  (1)
-   (1) q->r:v{True} (2)
-   (2) p->r:v{True} (3)
-   (0) p->q:v{v=2}  (4)
-   (4) p->r:v{True} (5)
-   (5) q->r:v{True} (6)
-Final states:

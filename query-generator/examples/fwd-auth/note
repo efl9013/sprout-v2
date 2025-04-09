@@ -1,3 +1,0 @@
-- fwd-auth-yes: original 
-- fwd-auth-yes-1: failure is communicated to p by a not s
-- fwd-auth-no: mistake that final communication is from a->s instead of s->p, times out

@@ -1,8 +1,0 @@
-- inspired by https://github.com/sessionstar/oopsla20-artifact/tree/master/examples/PingPong
-- changed to let a new participant c tell a how long each round has to be and C will be notified about new rounds
-- changed use of labels
-- encoding:  
-    quit: 0
-    round: 1
-- needs more than 13GB RAM
-- with merged clauses and unreach optimization, all except 2 scc queries go under 1s, the 2 scc queries timeout in over 1 minute

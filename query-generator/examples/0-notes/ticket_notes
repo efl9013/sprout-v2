@@ -1,6 +1,0 @@
-- from https://github.com/sessionstar/oopsla20-artifact/blob/master/examples/Ticket/Ticket.scr
-- encoding:  
-    ko: 0
-    ok: 1
-- needs more than 13GB RAM
-- with merged clauses, ~13s

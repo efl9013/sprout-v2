@@ -1,6 +1,0 @@
-- on the mode of generating one muCLP query per transition per state, pre-filtering out simultaneously reachable states according to the participant transition labels, and currying the unreach definitions, all p_scc_xy_z.hes queries run in under 2 seconds with the exception of: 
-	b1_scc_78_7.hes 21s
-	b1_scc_34_3.hes 7s 
-	b1_scc_73_7.hes 27s 
-	b2_scc_47_4.hes 45 s
- 

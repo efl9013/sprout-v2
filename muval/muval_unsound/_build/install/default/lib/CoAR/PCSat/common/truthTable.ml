@@ -1,1 +1,0 @@
-../../../../../../default/lib/PCSat/common/truthTable.ml

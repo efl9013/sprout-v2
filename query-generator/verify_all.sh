@@ -9,7 +9,7 @@ output_file="sprout_output.txt"
 > "$output_file"
 
 # Base directory where the files are located
-base_dir="../literature-examples/all_examples"
+base_dir="../examples/sprout"
 
 # List of examples to verify
 files=(
@@ -55,6 +55,9 @@ files=(
   "higher-lower-mixed"
 )
 
+# Removing generated files before the experiment 
+(cd "$base_dir" && sh cleanup.sh)
+
 # Iterate over the files
 for file in "${files[@]}"; do
   # Construct the full path to the file
@@ -77,5 +80,8 @@ for file in "${files[@]}"; do
 
   echo "$file verified."
 done
+
+# Removing generated files after the experiment 
+(cd "$base_dir" && sh cleanup.sh)
 
 echo "All examples verified; results saved in $output_file."

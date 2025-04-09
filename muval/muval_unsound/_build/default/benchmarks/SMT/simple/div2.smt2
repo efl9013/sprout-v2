@@ -1,6 +1,0 @@
-(declare-fun x () Int)
-(assert (<= 1 (/ 3 2)))
-(check-sat)
-(assert (>= 1 (/ 3 2)))
-(check-sat)
-(exit)

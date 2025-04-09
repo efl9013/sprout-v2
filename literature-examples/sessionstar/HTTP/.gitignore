@@ -1,8 +1,0 @@
-*.checked
-res.dot
-out
-_output
-.depend
-_build
-*.native
-*.exe

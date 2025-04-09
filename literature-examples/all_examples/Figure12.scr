@@ -1,9 +1,0 @@
-module Figure12;
-
-type <fstar> "int" from "" as int;
-
-global protocol Figure12(role P , role Q, role R) {
-  message(x: int) from P to Q; 
-  message(y: int) from Q to R; @"y=x"
-  message(z: int) from R to P; @"z>x"
-}

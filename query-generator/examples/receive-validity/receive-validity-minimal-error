@@ -1,5 +1,0 @@
-Initial state:(0) 
-Initial register assignments: 
-   (0) p->s1:v{v=1}  (1) (1) s1->r:v{True} (2) 
-   (0) p->s2:v{v=2}  (3) (3) s2->r:v{True} (4) 
-Final states:

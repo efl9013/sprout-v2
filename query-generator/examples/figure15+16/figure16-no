@@ -1,9 +1,0 @@
-Initial state: (0)
-Initial register assignments: rb=0, rc=0, rx=0
-(0) p->q:b{b=0/\rb'=rb/\rc'=0/\rx'=rx} (1)
-(1) r->p:x{rb'=rb/\rc'=rc/\rx'=rx} (2)
-(0) p->q:b{b>0/\rb'=rb/\rc'=0/\rx'=rx} (3)
-(3) p->q:c{c>=0/\rb'=rb/\rc'=rc+1/\rx'=rx} (3)
-(3) p->q:exit{exit=-1/\rc<0/\rb'=rb/\rc'=rc/\rx'=rx} (4)
-(4) r->p:x{rb'=rb/\rc'=rc/\rx'=rx} (5)
-Final states: (2), (5)

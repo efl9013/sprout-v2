@@ -1,9 +1,0 @@
-Initial state: (0)
-Initial register assignments: sa = 0, sb = 0, sc = 0
-(0) s->p0:x{x >= 0 /\ x < 4 /\ sa' = x /\ sb' = sb /\ sc' = sc} (1)
-(1) s->p1:x{x >= 0 /\ x < 4 /\ sb' = x /\ sa' = sa /\ sc' = sc} (2)
-(2) s->p2:x{x >= 0 /\ x < 4 /\ sc' = x /\ sa' = sa /\ sb' = sb} (3)
-(3) p0->p1:x{x = sa /\ sb' = x /\ sa' = sa /\ sc' = sc} (4)
-(4) p1->p2:x{x = sb /\ sc' = x /\ sa' = sa /\ sb' = sb} (5)
-(5) p2->p0:x{x = sc /\ ((x = sa /\ sa' = (sa + 1) % 4) \/ (x != sa /\ sa' = sa)) /\ sb' = sb /\ sc' = sc} (3)
-Final states: 

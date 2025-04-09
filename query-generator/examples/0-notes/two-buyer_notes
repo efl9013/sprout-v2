@@ -1,8 +1,0 @@
-- from https://github.com/sessionstar/oopsla20-artifact/blob/master/examples/TwoBuyer/TwoBuyer.scr
-- omitting some labels
-- encoding: 
-    no = 0,
-    ok = 1, 
-    bye = 2, 
-    cancel = 3
-- needs more than 13GB RAM

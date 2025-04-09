@@ -1,7 +1,0 @@
-- from https://github.com/sessionstar/oopsla20-artifact/blob/master/examples/Calculator/Calc.scr
-- changing their use of labels as they do pairs of label and value
-- encoding: sum = 1, mult = 2, quit = 3, term = 4
-- resetting registers when looping back
-- took almost 4min to show implementability
-- could probably merge states if formula depends on value of simplify -> done so in `calculator-merged` with continuous state numbers in case it matters, verifies in roughly 40 seconds
-- with merged clauses and optimized unreach generation, ~30s

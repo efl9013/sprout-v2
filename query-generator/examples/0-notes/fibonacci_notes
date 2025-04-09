@@ -1,3 +1,0 @@
-- from https://github.com/sessionstar/oopsla20-artifact/blob/master/examples/Fibonacci/Fib.scr 
-- added continue (1) as choice c, in addition  to bye (0) 
-- verifies in roughly 45s
