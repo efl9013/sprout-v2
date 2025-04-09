@@ -1,0 +1,13 @@
+Initial state: (0)
+Initial register assignments: rn=0, ry=0 
+(0) c->s:add{add=1} (1)
+(1) c->s:x{rn'=x} (2)
+(2) c->s:y{rn'=rn} (3)
+(3) s->c:r{r=rn+ry/\ry'=0/\rn'=0} (0)
+(0) c->s:mult{mult=2} (4)
+(4) c->s:x{rn'=x} (5)
+(5) c->s:y{True} (6)
+(6) s->c:r{r=rn*ry/\ry'=0/\rn'=0} (0)
+(0) c->s:quit{quit=3} (7)
+(7) s->c:term{term=4} (8)
+Final states: (8)

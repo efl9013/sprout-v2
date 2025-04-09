@@ -106,6 +106,7 @@ let handle_varprime (e: expr) : string =
                 else if ends_with_two v then String.sub v 0 (len-1) ^ "'" ^ "2" 
               else v ^ "'"
   | _ -> ""
+
 let rec string_of_expr = function
   | Const n -> string_of_int n
   | Var v -> v
@@ -128,14 +129,6 @@ let rec string_of_formula = function
   | And (f1, f2) -> "(" ^ string_of_formula f1 ^ " /\\ " ^ string_of_formula f2 ^ ")"
   | Or (f1, f2) -> "(" ^ string_of_formula f1 ^ " \\/ " ^ string_of_formula f2 ^ ")"
   | Not f -> "! (" ^ string_of_formula f ^ ")"
-
-(* let symbolic_protocol_eq p1 p2 =
-  p1.states = p2.states &&
-  p1.registers = p2.registers &&
-  List.for_all2 symbolic_transition_eq p1.transitions p2.transitions &&
-  p1.initial_state = p2.initial_state &&
-  p1.initial_register_assignment = p2.initial_register_assignment &&
-  p1.final_states = p2.final_states *)
 
 let symbolic_protocol_eq p1 p2 =
   let print_diff name v1 v2 = 
@@ -206,50 +199,6 @@ let symbolic_protocol_eq p1 p2 =
   else
     true
 
-
-(* let symbolic_protocol_eq p1 p2 =
-  let print_diff name v1 v2 = 
-    printf "Protocols differ in %s:\n  P1: %s\n  P2: %s\n" name v1 v2
-  in
-  let rec compare_transitions t1 t2 index =
-    match (t1, t2) with
-    | [], [] -> true
-    | [], _ -> print_diff (sprintf "transitions (extra in P2 at index %d)" index) "" ""; false
-    | _, [] -> print_diff (sprintf "transitions (extra in P1 at index %d)" index) "" ""; false
-    | h1::r1, h2::r2 ->
-        if not (symbolic_transition_eq h1 h2) then
-          (print_diff (sprintf "transition at index %d" index) 
-             (sprintf "%d->%d" h1.pre h1.post) 
-             (sprintf "%d->%d" h2.pre h2.post);
-           false)
-        else compare_transitions r1 r2 (index + 1)
-  in
-  if p1.states <> p2.states then
-    (print_diff "states" (String.concat "," (List.map string_of_int p1.states))
-                         (String.concat "," (List.map string_of_int p2.states));
-     false)
-  else if p1.registers <> p2.registers then
-    (print_diff "registers" (String.concat "," p1.registers)
-                            (String.concat "," p2.registers);
-     false)
-  else if not (compare_transitions p1.transitions p2.transitions 0) then
-    false
-  else if p1.initial_state <> p2.initial_state then
-    (print_diff "initial_state" (string_of_int p1.initial_state)
-                                (string_of_int p2.initial_state);
-     false)
-  else if p1.initial_register_assignment <> p2.initial_register_assignment then
-    (print_diff "initial_register_assignment" 
-       (String.concat "," (List.map (fun (v,n) -> sprintf "%s=%d" v n) p1.initial_register_assignment))
-       (String.concat "," (List.map (fun (v,n) -> sprintf "%s=%d" v n) p2.initial_register_assignment));
-     false)
-  else if p1.final_states <> p2.final_states then
-    (print_diff "final_states" (String.concat "," (List.map string_of_int p1.final_states))
-                               (String.concat "," (List.map string_of_int p2.final_states));
-     false)
-  else
-    true
- *)
 (* Print functions *)
 
 let rec print_expr = function
@@ -287,21 +236,6 @@ let print_symbolic_transition t =
   printf "  post = %d;\n" t.post;
   printf "}"
 
-(* let get_string_for_symbolic_transition t =
-  let buffer = Buffer.create 256 in
-  Buffer.add_string buffer "{\n";
-  Buffer.add_string buffer (Printf.sprintf "  pre = %d;\n" t.pre);
-  Buffer.add_string buffer (Printf.sprintf "  sender = \"%s\";\n" t.sender);
-  Buffer.add_string buffer (Printf.sprintf "  receiver = \"%s\";\n" t.receiver);
-  Buffer.add_string buffer (Printf.sprintf "  comm_var = \"%s\";\n" t.comm_var);
-  Buffer.add_string buffer "  predicate = ";
-  Buffer.add_string buffer (get_string_for_formula t.predicate); (* Assuming `print_formula` returns a string *)
-  Buffer.add_string buffer ";\n";
-  Buffer.add_string buffer (Printf.sprintf "  post = %d;\n" t.post);
-  Buffer.add_string buffer "}";
-  Buffer.contents buffer *)
-
-
 let print_symbolic_protocol p =
   printf "{\n";
   printf "  states = [%s];\n" (String.concat "; " (List.map string_of_int p.states));
@@ -314,57 +248,9 @@ let print_symbolic_protocol p =
     (String.concat "; " (List.map (fun (v, n) -> sprintf "(\"%s\", %d)" v n) p.initial_register_assignment));
   printf "  final_states = [%s];\n" (String.concat "; " (List.map string_of_int p.final_states));
   printf "}\n"
-  
-(* Printing functions *)
 
 
-(*
-let print_formula formula =
-  print_endline (string_of_formula formula)
- 
-let print_transition fmt t =
-  fprintf fmt "(%i) %s->%s:%s{%s} (%i)"
-    t.pre
-    t.sender
-    t.receiver
-    t.comm_var
-    (string_of_formula t.predicate)
-    t.post
-
-let print_transition_stdout t =
-  printf "%a\n" print_transition t
-
-let string_of_transition t =
-  printf "%a" print_transition t
-
-let print_symbolic_protocol (protocol: symbolic_protocol) =
-  (* Print states *)
-  printf "States: %s\n" (String.concat ", " (List.map string_of_int protocol.states));
-  
-  (* Print registers *)
-  printf "Registers: %s\n" (String.concat ", " protocol.registers);
-  
-  (* Print initial state *)
-  printf "Initial state: %d\n" protocol.initial_state;
-  
-  (* Print initial register assignment *)
-  printf "Initial register assignment:\n";
-  List.iter (fun (var, value) -> 
-    printf "  %s = %d\n" var value
-  ) protocol.initial_register_assignment;
-  
-  (* Print final states *)
-  printf "Final states: %s\n" (String.concat ", " (List.map string_of_int protocol.final_states));
-  
-  (* Print transitions *)
-  printf "Transitions:\n";
-  List.iter (fun t ->
-    printf "  ";
-    print_transition_stdout t
-  ) protocol.transitions *)
-
-(* Print functions for visualization*)
-
+(* Print functions for visualization *)
   let rec get_string_for_expr = function
   | Const n -> Printf.sprintf "%d" n
   | Var v -> Printf.sprintf "%s" v
@@ -390,8 +276,8 @@ let remove_empty_and_parenthesize s1 s2 op parenL parenR =
   | None, Some s2' -> Some s2'
   | Some s1', Some s2' -> Some (Printf.sprintf "%s%s%s%s%s" parenL s1' op s2' parenR)
 
-  (* 2nd parameter gives last operator for omitting parentheses, 
-     3rd if all before were /\ because then rx'=rx can be omitted *)
+(* 2nd parameter gives last operator for omitting parentheses, 
+   3rd if all before were /\ because then rx'=rx can be omitted *)
 let rec get_string_for_formula = function
   | (True, _, _) -> Some("True")
   | (False, _, _) -> Some("False")
@@ -414,3 +300,98 @@ let rec get_string_for_formula = function
 let get_string_for_option_string = function
     None -> "True"
   | Some s -> s
+
+(* Function for adding unmentioned equalities *)
+
+
+module VarSet = Set.Make(String)
+
+let varset_of_list ls =
+  List.fold_left (fun acc elem -> VarSet.add elem acc) VarSet.empty ls
+
+let rec primed_vars_in_expr (expr : expr) = 
+  match expr with 
+  | Const _ -> VarSet.empty
+  | Var v -> VarSet.empty 
+  | VarPrime v -> VarSet.singleton v 
+  | Plus(e1, e2) | Minus(e1, e2) | Times(e1, e2) | Div(e1, e2) | Mod(e1, e2) ->
+      VarSet.union (primed_vars_in_expr e1) (primed_vars_in_expr e2)
+
+let rec primed_vars_in_formula (f : formula) = 
+  match f with 
+  | True | False -> VarSet.empty
+  | Eq(e1, e2) | Neq(e1, e2) | Lt(e1, e2) | Leq(e1, e2) | Gt(e1, e2) | Geq(e1, e2) ->
+      VarSet.union (primed_vars_in_expr e1) (primed_vars_in_expr e2)
+  | And(f1, f2) | Or(f1, f2) -> VarSet.union (primed_vars_in_formula f1) (primed_vars_in_formula f2)
+  | Not(f) -> primed_vars_in_formula f
+
+let add_unmentioned_equalities prot =
+  let update_transition transition =
+    let relevant_vars = varset_of_list prot.registers in
+    let mentioned_vars = primed_vars_in_formula transition.predicate in
+    let unmentioned = VarSet.diff relevant_vars mentioned_vars in
+    
+    if VarSet.is_empty unmentioned then transition else
+      let equalities =
+        VarSet.fold (fun v acc -> Eq(VarPrime v, Var v) :: acc) unmentioned [] in
+      
+      let rec conjoin_equalities equalities = 
+        match equalities with
+        | [] -> transition.predicate
+        | hd :: tl -> And(conjoin_equalities tl, hd)
+      in
+      { transition with predicate = conjoin_equalities equalities }
+  in
+  { prot with transitions = List.map update_transition prot.transitions }
+
+(* Other general typechecking passes *)
+
+(* Checking that no free variables occur in transitions *)
+let rec var_names_in_expr (expr : expr) = 
+  match expr with 
+  | Const _ -> VarSet.empty
+  | Var v -> VarSet.singleton v
+  | VarPrime v -> VarSet.singleton v 
+  | Plus(e1, e2) | Minus(e1, e2) | Times(e1, e2) | Div(e1, e2) | Mod(e1, e2) ->
+      VarSet.union (var_names_in_expr e1) (var_names_in_expr e2)
+
+let rec var_names_in_formula (f : formula) = 
+  match f with 
+  | True | False -> VarSet.empty
+  | Eq(e1, e2) | Neq(e1, e2) | Lt(e1, e2) | Leq(e1, e2) | Gt(e1, e2) | Geq(e1, e2) ->
+      VarSet.union (var_names_in_expr e1) (var_names_in_expr e2)
+  | And(f1, f2) | Or(f1, f2) -> VarSet.union (var_names_in_formula f1) (var_names_in_formula f2)
+  | Not(f) -> var_names_in_formula f
+
+let allowed_var_names_in_transition (prot : symbolic_protocol) (tr : symbolic_transition) = 
+  VarSet.add tr.comm_var (varset_of_list prot.registers)
+
+let var_names_in_transition (tr : symbolic_transition) = 
+  VarSet.add tr.comm_var (var_names_in_formula tr.predicate)
+
+let disallowed_var_names_in_transition (prot : symbolic_protocol) (tr : symbolic_transition) = 
+  VarSet.diff (var_names_in_transition tr) (allowed_var_names_in_transition prot tr) 
+
+let varset_to_string s : string = 
+  VarSet.fold (fun elem acc -> acc ^ " " ^ elem) s "" 
+
+let string_of_transition (tr : symbolic_transition) : string =
+  sprintf "(%d) %s->%s:%s{%s} (%d)"
+    tr.pre
+    tr.sender  
+    tr.receiver
+    tr.comm_var
+    (string_of_formula tr.predicate)
+    tr.post
+
+let check_no_disallowed_var_names_in_protocol (prot : symbolic_protocol) : bool = 
+  List.fold_left (fun acc tr -> let disallowed_vars = disallowed_var_names_in_transition prot tr in 
+                                if VarSet.is_empty disallowed_vars 
+                                then acc 
+                                else (Printf.eprintf "Variables%s not in scope in transition %s\n" 
+                                     (varset_to_string (disallowed_var_names_in_transition prot tr)) 
+                                     (string_of_transition tr); false)) 
+                  true 
+                  prot.transitions 
+
+

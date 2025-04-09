@@ -49,20 +49,14 @@ let print_errors errs =
       m "\n---------\n%s" bs);
   Stdlib.exit 1 (* duplicates error output: `Error (false, "") *)
 
-let is_substring sub str =
-  let sub_len = String.length sub in
-  let str_len = String.length str in
-  let rec check i =
-    if i > str_len - sub_len then false
-    else if String.sub str i sub_len = sub then true
-    else check (i + 1)
-  in
-  check 0
+let process_protocol filename : symbolic_protocol * bool = 
+  let prot = parse_file filename in 
+  if check_no_disallowed_var_names_in_protocol prot 
+  then (add_unmentioned_equalities prot, true)
+  else (prot, false)
 
-(* An optimized strategy for calling MuVal on individual instances *)
-(* In general the parallel mode is faster on most queries *)
-let process_hes_file_parallel_exc filename dirname timeout mode : string * float =
-  let command = Printf.sprintf "timeout %i ./_build/default/main.exe -c ./config/solver/muval_parallel_exc_tbq_ar.json -p muclp %s/%s" timeout dirname filename in
+let process_hes_file_mode filename dirname timeout mode : string * float =
+  let command = Printf.sprintf "timeout %i ./_build/default/main.exe -c ./config/solver/muval_%s_tbq_ar.json -p muclp %s/%s" timeout mode dirname filename in
   let start_time = Unix.gettimeofday () in
   (* Printf.printf "Checking %s \n" filename; *)
   flush Stdlib.stdout;
@@ -87,7 +81,9 @@ let process_hes_file_parallel_exc filename dirname timeout mode : string * float
          else ("unexpected", execution_time)
   | _ -> ("unexpected", execution_time) 
 
-let process_hes_file_parallel filename dirname timeout mode : string * float =
+(* An optimized strategy for calling MuVal on individual instances *)
+(* In general the parallel mode is faster on most queries *)
+let process_hes_file_opt filename dirname timeout mode : string * float =
   let parallel_timeout = timeout / 2 in 
   let command = Printf.sprintf "timeout %i ./_build/default/main.exe -c ./config/solver/muval_parallel_tbq_ar.json -p muclp %s/%s" parallel_timeout dirname filename in
   let start_time = Unix.gettimeofday () in
@@ -105,7 +101,7 @@ let process_hes_file_parallel filename dirname timeout mode : string * float =
   let end_time = Unix.gettimeofday () in
   let execution_time = end_time -. start_time in
   match exit_status with
-  | Unix.WEXITED n when n = 124 -> process_hes_file_parallel_exc filename dirname parallel_timeout mode 
+  | Unix.WEXITED n when n = 124 -> process_hes_file_mode filename dirname parallel_timeout "parallel_exc"
   | Unix.WEXITED _ -> 
       if is_substring "invalid" last_line 
       then ("invalid", execution_time)
@@ -114,29 +110,36 @@ let process_hes_file_parallel filename dirname timeout mode : string * float =
          else ("unexpected", execution_time)
   | _ -> ("unexpected", execution_time) 
 
-let process_hes_file filename dirname timeout mode : string * float =
-  process_hes_file_parallel filename dirname timeout mode 
 
-let process_directory dirname timeout mode : (string * string * float) list =
+let process_hes_file_naive filename dirname timeout mode : string * float =
+  process_hes_file_mode filename dirname timeout mode 
+
+let process_directory dirname timeout version mode : (string * string * float) list =
   let original_dir = Sys.getcwd () in
   Unix.chdir Config.coar_location; 
   let files = Sys.readdir dirname in
   let results = Array.fold_left (fun acc file -> if check_suffix file ".hes" 
-                                                 then let (outcome, execution_time) = process_hes_file file dirname timeout mode in
-                                                      (file, outcome, execution_time) :: acc
+                                                 then (if version = "naive" 
+                                                       then (let (outcome, execution_time) = process_hes_file_naive file dirname timeout mode in
+                                                            (file, outcome, execution_time) :: acc)
+                                                        else (let (outcome, execution_time) = process_hes_file_opt file dirname timeout mode in
+                                                            (file, outcome, execution_time) :: acc))
                                                  else acc) 
                                 [] 
                                 files in 
   Unix.chdir original_dir; 
   results
 
-let process_directory_gclts dirname timeout mode : (string * string * float) list =
+let process_directory_gclts dirname timeout version mode : (string * string * float) list =
   let original_dir = Sys.getcwd () in
   Unix.chdir Config.coar_location; 
   let files = Sys.readdir dirname in
   let results = Array.fold_left (fun acc file -> if check_suffix file ".hes" 
-                                                 then let (outcome, execution_time) = process_hes_file file dirname timeout mode in
-                                                      (file, outcome, execution_time) :: acc
+                                                 then (if version = "naive" 
+                                                      then (let (outcome, execution_time) = process_hes_file_naive file dirname timeout mode in
+                                                           (file, outcome, execution_time) :: acc)
+                                                      else (let (outcome, execution_time) = process_hes_file_opt file dirname timeout mode in
+                                                            (file, outcome, execution_time) :: acc))
                                                  else acc) 
                                 [] 
                                 files in 
@@ -202,7 +205,7 @@ let generate_implementability_queries (prot: symbolic_protocol) (dirname: string
   generate_nmc_queries_v1a prot dirname;
   | _ -> Printf.eprintf "Version invalid\n" 
 
-let check_gclts (prot: symbolic_protocol) (dirname: string) (timeout: int) (mode: string) : (bool * float) = 
+let check_gclts (prot: symbolic_protocol) (dirname: string) (timeout: int) (version: string) (mode: string) : (bool * float) = 
   Printf.printf "Checking GCLTS eligibility...\n";
   (* print_symbolic_protocol prot;  *)
   (* First do syntactic checks *)
@@ -210,7 +213,7 @@ let check_gclts (prot: symbolic_protocol) (dirname: string) (timeout: int) (mode
   then (Printf.printf "Protocol is not sender-driven\n"; (false,0.0)) 
   else if (not (sink_final prot))
        then (Printf.printf "Protocol is not sink-final\n"; (false,0.0)) 
-       else (let results = process_directory_gclts dirname timeout mode in 
+       else (let results = process_directory_gclts dirname timeout version mode in 
             List.iter (fun (file, outcome, time) -> if outcome = "valid" then Printf.printf "%s violates GCLTS conditions\n" file) results;
             if List.for_all (fun (_, result, _) -> result = "invalid") results 
             then (Printf.printf "GCLTS eligible\n"; 
@@ -230,7 +233,7 @@ let check_implementability (prot: symbolic_protocol) (dirname: string) (timeout:
   if is_binary prot 
   then (Printf.printf "Binary protocol, implementable\n"; 0.0)
   else (generate_implementability_queries prot dirname version;
-        let results = process_directory dirname timeout mode in 
+        let results = process_directory dirname timeout version mode in 
         (* List.iter (fun (file, outcome, time) -> Printf.printf "%s: %s\n" file outcome) results; *)
         if List.for_all (fun (_, result, _) -> result = "invalid") results 
         then Printf.printf "Implementable\n" 
@@ -239,6 +242,7 @@ let check_implementability (prot: symbolic_protocol) (dirname: string) (timeout:
              else Printf.printf "Inconclusive\n";
         print_execution_time results)
         (* Note to self: no semi-colon after final statement! *)
+
 
 let () =
   Logs.set_reporter (Logs.format_reporter ());
@@ -253,8 +257,10 @@ let () =
     Printf.eprintf "Mode invalid \n" 
   else 
     try
-      let protocol = parse_file filename in
-      let current_dir = Sys.getcwd () in 
+      (* let protocol = parse_file filename in *)
+      let (protocol,b) = process_protocol filename in 
+      if b then 
+      (let current_dir = Sys.getcwd () in 
       let dirname = Filename.concat current_dir (filename ^ "-generated") in 
       let gclts_dirname = Filename.concat current_dir (filename ^ "-generated-gclts") in 
       let perm = 0o777 in 
@@ -264,16 +270,18 @@ let () =
               dot -Tsvg visualization.dot > visualization.svg 
               in the respective folder and open svg-file *)
             generate_gclts_queries protocol gclts_dirname;
-            let (is_gclts, gclts_time) = check_gclts protocol gclts_dirname timeout mode in 
+            let (is_gclts, gclts_time) = check_gclts protocol gclts_dirname timeout version mode in 
             if is_gclts 
             then (let impl_time = check_implementability protocol dirname timeout version mode in 
                   (* Optionally generate property queries *)
                   (* generate_property_query protocol two_bidder_bids_increasing "bids_increasing_property" dirname; *)
                   Printf.eprintf "\nTotal verification time: %f\n" (Float.add gclts_time impl_time))
           else ();)
-      else ();
+      else ();)
+    else Printf.eprintf "Protocol not well-formed, terminating.\n"
     with
     | Sys_error s | Failure s | Invalid_argument s ->
       print_errors [Internal, Loc.dummy, s]
     | Error.Msg es ->
       print_errors es
+

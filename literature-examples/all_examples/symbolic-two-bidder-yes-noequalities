@@ -1,0 +1,13 @@
+Initial state: (0)
+Initial register assignments: ry=0, rc=0, rza=0, rzb=0
+(0) b1->s:y{(y>987*1000000000/\y<988*10000000000)/\ry'=y} (1)
+(1) b1->b2:y{y=ry} (2)
+(2) s->b1:z{z>0/\rc'=z/\rza'=0/\rzb'=0} (3)
+(3) b1->b2:b{b>rza/\rza'=b} (4)
+(4) b2->s:quit{quit=0} (5)
+(5) s->b1:quit{quit=0} (6)
+(4) b2->b1:b{b>rzb/\rzb'=b} (7)
+(7) b1->s:succ{succ=1/\rza+rzb>=rc} (8)
+(8) s->b2:succ{succ=1} (6)
+(7) b1->b2:cont{cont=2/\rza+rzb<rc} (3)
+Final states: (6)
