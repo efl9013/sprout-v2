@@ -1,6 +1,6 @@
 (executable
  (name main)
- (public_name query-generator)
+ (public_name sprout)
  (libraries unix logs util ast common prodreach reach unreach avail gclts scc rcc nmc lexer parser config visual property_playground)
  (modules Main)
  (preprocess (pps ppx_custom_printf)))

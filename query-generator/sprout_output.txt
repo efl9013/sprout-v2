@@ -1,5 +1,7 @@
 Processing calculator
 ----------------------------------------
+Directory /Users/elaineli/Programs/gclts-checker/query-generator/../literature-examples/all_examples/calculator-generated already exists.
+Directory /Users/elaineli/Programs/gclts-checker/query-generator/../literature-examples/all_examples/calculator-generated-gclts already exists.
 
 Checking GCLTS eligibility...
 GCLTS eligible
@@ -7,10 +9,10 @@ GCLTS eligible
 Results:
 | Filename                       | Execution Time (s)   | Result     |
 |--------------------------------|----------------------|------------|
-| df.hes                         | 0.3765               | invalid    |
-| det.hes                        | 0.2591               | invalid    |
+| df.hes                         | 3.3018               | invalid    |
+| det.hes                        | 0.2578               | invalid    |
 
-Total time:0.635557
+Total time:3.559540
 
 Checking implementability...
 Binary protocol, implementable
@@ -28,10 +30,10 @@ GCLTS eligible
 Results:
 | Filename                       | Execution Time (s)   | Result     |
 |--------------------------------|----------------------|------------|
-| df.hes                         | 0.2725               | invalid    |
-| det.hes                        | 0.1888               | invalid    |
+| df.hes                         | 0.2733               | invalid    |
+| det.hes                        | 0.1905               | invalid    |
 
-Total time:0.461301
+Total time:0.463825
 
 Checking implementability...
 Binary protocol, implementable
@@ -40,6 +42,8 @@ Binary protocol, implementable
 
 Processing higher-lower-original
 ----------------------------------------
+Directory /Users/elaineli/Programs/gclts-checker/query-generator/../literature-examples/all_examples/higher-lower-original-generated already exists.
+Directory /Users/elaineli/Programs/gclts-checker/query-generator/../literature-examples/all_examples/higher-lower-original-generated-gclts already exists.
 
 Checking GCLTS eligibility...
 GCLTS eligible
@@ -47,102 +51,9 @@ GCLTS eligible
 Results:
 | Filename                       | Execution Time (s)   | Result     |
 |--------------------------------|----------------------|------------|
-| df.hes                         | 0.6142               | invalid    |
-| det.hes                        | 0.4213               | invalid    |
+| df.hes                         | 0.5972               | invalid    |
+| det.hes                        | 0.4141               | invalid    |
 
-Total time:1.035461
-
-Checking implementability...
-Implementable
-
-Results:
-| Filename                       | Execution Time (s)   | Result     |
-|--------------------------------|----------------------|------------|
-| b_scc_67_8.hes                 | 0.2662               | invalid    |
-| b_scc_35_3.hes                 | 0.4111               | invalid    |
-| b_scc_57_6.hes                 | 0.2635               | invalid    |
-| b_scc_57_5.hes                 | 0.2646               | invalid    |
-| b_scc_57_4.hes                 | 0.2665               | invalid    |
-| b_scc_82_8.hes                 | 0.2633               | invalid    |
-| b_scc_42_8.hes                 | 0.2606               | invalid    |
-| b_scc_34_3.hes                 | 0.5226               | invalid    |
-| c_scc_23_8.hes                 | 0.5769               | invalid    |
-| a_scc_01_0.hes                 | 0.2008               | invalid    |
-| b_scc_36_3.hes                 | 0.4142               | invalid    |
-| c_scc_23_5.hes                 | 0.4814               | invalid    |
-| c_scc_23_4.hes                 | 0.8805               | invalid    |
-| c_scc_23_6.hes                 | 0.4829               | invalid    |
-| c_scc_23_7.hes                 | 0.5554               | invalid    |
-| b_scc_38_3.hes                 | 0.4178               | invalid    |
-| b_scc_42_5.hes                 | 0.2661               | invalid    |
-| a_scc_12_1.hes                 | 0.2102               | invalid    |
-| b_scc_82_5.hes                 | 0.2655               | invalid    |
-| b_scc_57_8.hes                 | 0.2676               | invalid    |
-| c_scc_23_2.hes                 | 0.4629               | invalid    |
-| b_scc_82_4.hes                 | 0.2615               | invalid    |
-| b_scc_42_4.hes                 | 0.2644               | invalid    |
-| b_scc_42_6.hes                 | 0.2654               | invalid    |
-| b_scc_82_6.hes                 | 0.2665               | invalid    |
-| c_scc_23_0.hes                 | 0.3871               | invalid    |
-| c_scc_23_1.hes                 | 0.3864               | invalid    |
-| b_scc_67_6.hes                 | 0.2829               | invalid    |
-| b_scc_67_4.hes                 | 0.2761               | invalid    |
-| b_scc_67_5.hes                 | 0.2735               | invalid    |
-
-Total time:10.664680
--e 
-
-
-Processing http
-----------------------------------------
-
-Checking GCLTS eligibility...
-GCLTS eligible
-
-Results:
-| Filename                       | Execution Time (s)   | Result     |
-|--------------------------------|----------------------|------------|
-| df.hes                         | 0.2268               | invalid    |
-| det.hes                        | 0.2184               | invalid    |
-
-Total time:0.445157
-
-Checking implementability...
-Binary protocol, implementable
--e 
-
-
-Processing negotiation
-----------------------------------------
-
-Checking GCLTS eligibility...
-GCLTS eligible
-
-Results:
-| Filename                       | Execution Time (s)   | Result     |
-|--------------------------------|----------------------|------------|
-| df.hes                         | 0.6213               | invalid    |
-| det.hes                        | 0.3372               | invalid    |
-
-Total time:0.958480
-
-Checking implementability...
-Binary protocol, implementable
--e 
-
-
-Processing online-wallet
-----------------------------------------
-
-Checking GCLTS eligibility...
-GCLTS eligible
-
-Results:
-| Filename                       | Execution Time (s)   | Result     |
-|--------------------------------|----------------------|------------|
-| df.hes                         | 1.7001               | invalid    |
-| det.hes                        | 0.2335               | invalid    |
-
-Total time:1.933613
+Total time:1.011329
 
 Checking implementability...

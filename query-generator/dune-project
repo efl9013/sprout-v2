@@ -2,12 +2,14 @@
 
 (using menhir 2.1)
 
-(generate_opam_files)
+(generate_opam_files true)
 
 (package
- (name Query-generator)
- (synopsis "Query generator")
- (description "TODO")
+ (name sprout)
+ (synopsis "SPROUT: A Verifier for Symbolic Multiparty Protocols")
+ (description "SPROUT takes as input symbolic multiparty protocols and checks GCLTS eligibility and implementability by generating muCLP instances and discharging them to MuVal.")
+ (authors "Elaine Li efl9013@nyu.edu") 
+ (maintainers "Elaine Li efl9013@nyu.edu")
  (depends
   (ocaml
    (>= 4.12.0))

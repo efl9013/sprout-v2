@@ -14,7 +14,6 @@ let filter_transition_pairs_for_state_determinism (ls: (symbolic_transition * sy
                                  tr2.pre = s)
                 ls
 
-(* Note to self for README: primed variables have special meaning and should not be used as communication variables! *)
 let generate_determinism_for_transition_pair_vb (prot: symbolic_protocol) (pair: symbolic_transition * symbolic_transition) : string = 
 	let tr1 = fst pair in 
   	let tr2 = snd pair in 
