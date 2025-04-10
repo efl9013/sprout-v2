@@ -5,19 +5,19 @@
 Initial state: (0)
 Initial register assignments: rn=0, rt=0, rx=0
 // A communicates the secret number to B 
-(0) a->b:n{rn'=n/\rt'=rt/\rx'=rx} (1)
+(0) a->b:n{rn'=n} (1)
 // A communicates the maximum guess count to B 
-(1) a->b:t{t>0/\rt'=t/\rn'=rn/\rx=rx'} (2)
+(1) a->b:t{t>0/\rt'=t} (2)
 // C sends the initial guess
-(2) c->b:x{rx'=x/\rn'=rn/\rt'=rt} (3)
+(2) c->b:x{rx'=x} (3)
 // B hints accordingly if the guess is not correct 
-(3) b->c:higher{higher=3/\rn>rx/\rt>0/\rt'=rt-1/\rn'=rn/\rx'=rx} (4)
-(4) c->b:x{x>rx/\rx'=x/\rn'=rn/\rt'=rt} (3)
-(3) b->c:lower{lower=2/\rn<rx/\rt>0/\rt'=rt-1/\rn'=rn/\rx'=rx} (5)
-(5) c->b:x{x<rx/\rx'=x/\rn'=rn/\rt'=rt} (3)
+(3) b->c:higher{higher=3/\rn>rx/\rt>0-1} (4)
+(4) c->b:x{x>rx/\rx'=x} (3)
+(3) b->c:lower{lower=2/\rn<rx/\rt>0-1} (5)
+(5) c->b:x{x<rx/\rx'=x} (3)
 // B ends the game if the guess is correct 
-(3) b->c:won{won=1/\rx=rn/\rn'=rn/\rt'=rt/\rx'=rx} (6)
-(6) b->a:lost{lost=0/\rn'=rn/\rt'=rt/\rx'=rx} (8)
-(3) b->c:lost{lost=0/\rn!=rx/\rt=0/\rn'=rn/\rt'=rt/\rx'=rx} (7)
-(7) b->a:won{won=1/\rn'=rn/\rt'=rt/\rx'=rx} (8)
+(3) b->c:won{won=1/\rx=rn} (6)
+(6) b->a:lost{lost=0} (8)
+(3) b->c:lost{lost=0/\rn!=rx/\rt=0} (7)
+(7) b->a:won{won=1} (8)
 Final states: (8)

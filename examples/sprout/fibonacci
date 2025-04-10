@@ -1,8 +1,8 @@
 Initial state: (0)
 Initial register assignments: rx=0, ry=1
-(0) a->b:cont{cont=1/\rx'=rx/\ry'=ry} (1)
-(1) a->b:x{rx=x/\rx'=rx/\ry'=ry} (2)
-(2) a->b:y{ry=y/\rx'=rx/\ry'=ry} (3)
+(0) a->b:cont{cont=1} (1)
+(1) a->b:x{rx=x} (2)
+(2) a->b:y{ry=y} (3)
 (3) b->a:z{z=rx+ry/\rx'=ry/\ry'=z} (0)
-(0) a->b:bye{bye=0/\rx'=rx/\ry'=ry} (4)
+(0) a->b:bye{bye=0} (4)
 Final states: (4)
