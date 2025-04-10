@@ -73,7 +73,7 @@ for file in "${files[@]}"; do
   echo "Processing $file" >> "$output_file"
   echo "----------------------------------------" >> "$output_file"
   # Run the command and append output to the file
-  dune exec sprout "$full_path" 30 opt parallel >> "$output_file"
+  ./_build/default/main.exe "$full_path" 30 opt parallel >> "$output_file"
 
   # Add a separator after each file's output
   echo -e "\n\n" >> "$output_file"

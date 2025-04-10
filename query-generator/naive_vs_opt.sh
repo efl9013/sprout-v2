@@ -40,7 +40,7 @@ for file in "${files[@]}"; do
   echo "Processing $file on naive mode" >> "$output_file"
   echo "----------------------------------------" >> "$output_file"
   # Run one command for naive version and append output to the file
-  dune exec sprout "$full_path" 300 naive parallel >> "$output_file"
+  ./_build/default/main.exe "$full_path" 300 naive parallel >> "$output_file"
 
   # Add a separator after each file's output
   echo -e "\n\n" >> "$output_file"
@@ -52,7 +52,7 @@ for file in "${files[@]}"; do
   echo "Processing $file on optimized mode" >> "$output_file"
   echo "----------------------------------------" >> "$output_file"
   # Run one command for optimized version and append output to the file
-  dune exec sprout "$full_path" 30 opt parallel >> "$output_file"
+  ./_build/default/main.exe "$full_path" 30 opt parallel >> "$output_file"
 
   # Add a separator after each file's output
   echo -e "\n\n" >> "$output_file"
