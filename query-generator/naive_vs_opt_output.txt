@@ -1,70 +1,455 @@
 Processing figure12-yes on naive mode
 ----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 1.2338               | invalid    |
+| det.hes                        | 0.1732               | invalid    |
+
+Total time:1.407071
+
+Checking implementability...
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| q_nmc.hes                      | 0.1744               | invalid    |
+| p_nmc.hes                      | 0.1738               | invalid    |
+| r_nmc.hes                      | 0.2712               | invalid    |
+| r_scc.hes                      | 0.3882               | invalid    |
+| p_scc.hes                      | 0.2888               | invalid    |
+| q_scc.hes                      | 1.3012               | invalid    |
+
+Total time:2.597457
 -e 
 
 
 Processing figure12-yes on optimized mode
 ----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 1.2314               | invalid    |
+| det.hes                        | 0.1690               | invalid    |
+
+Total time:1.400414
+
+Checking implementability...
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| r_scc_23_2.hes                 | 0.1967               | invalid    |
+| q_scc_12_1.hes                 | 0.1936               | invalid    |
+| p_scc_01_0.hes                 | 0.1844               | invalid    |
+
+Total time:0.574688
 -e 
 
 
 Processing figure12-no on naive mode
 ----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 2.2372               | invalid    |
+| det.hes                        | 0.1704               | invalid    |
+
+Total time:2.407644
+
+Checking implementability...
+Non-implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| q_nmc.hes                      | 0.1745               | invalid    |
+| p_nmc.hes                      | 0.1804               | invalid    |
+| r_nmc.hes                      | 0.1713               | invalid    |
+| r_scc.hes                      | 0.2948               | valid      |
+| p_scc.hes                      | 0.1893               | invalid    |
+| q_scc.hes                      | 1.3084               | invalid    |
+
+Total time:2.318747
 -e 
 
 
 Processing figure12-no on optimized mode
 ----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 2.2365               | invalid    |
+| det.hes                        | 0.1732               | invalid    |
+
+Total time:2.409680
+
+Checking implementability...
+Non-implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| r_scc_23_2.hes                 | 0.1987               | valid      |
+| q_scc_12_1.hes                 | 0.1943               | invalid    |
+| p_scc_01_0.hes                 | 0.1853               | invalid    |
+
+Total time:0.578394
 -e 
 
 
 Processing two-buyer on naive mode
 ----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.3834               | invalid    |
+| det.hes                        | 0.2266               | invalid    |
+
+Total time:0.610018
+
+Checking implementability...
+Inconclusive
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| a_scc.hes                      | 301.6553             | timeout    |
+| b_scc.hes                      | 2.6958               | invalid    |
+| s_nmc.hes                      | 0.4667               | invalid    |
+| s_scc.hes                      | 1.7682               | invalid    |
+| b_nmc.hes                      | 0.5479               | invalid    |
+| a_nmc.hes                      | 0.9270               | invalid    |
+
+Total time:308.060911
 -e 
 
 
 Processing two-buyer on optimized mode
 ----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.3679               | invalid    |
+| det.hes                        | 0.2122               | invalid    |
+
+Total time:0.580119
+
+Checking implementability...
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| b_scc_56_5.hes                 | 0.2397               | invalid    |
+| a_scc_89_8.hes                 | 0.2021               | invalid    |
+| s_scc_23_2.hes                 | 0.2057               | invalid    |
+| a_scc_67_6.hes                 | 0.2021               | invalid    |
+| a_nmc_85.hes                   | 0.1995               | invalid    |
+| b_scc_48_4.hes                 | 0.2615               | invalid    |
+| a_scc_01_0.hes                 | 0.1880               | invalid    |
+| a_scc_34_2.hes                 | 0.2219               | invalid    |
+| a_scc_34_3.hes                 | 0.1972               | invalid    |
+| a_scc_67_9.hes                 | 0.1701               | invalid    |
+| s_scc_12_1.hes                 | 0.1920               | invalid    |
+| b_scc_45_4.hes                 | 0.2499               | invalid    |
+| a_scc_89_5.hes                 | 0.1959               | invalid    |
+| b_scc_56_9.hes                 | 0.2402               | invalid    |
+| b_scc_56_8.hes                 | 0.2353               | invalid    |
+
+Total time:3.201140
 -e 
 
 
 Processing higher-lower-ultimate on naive mode
 ----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 2.5836               | invalid    |
+| det.hes                        | 0.2867               | invalid    |
+
+Total time:2.870316
+
+Checking implementability...
+Inconclusive
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| a_scc.hes                      | 64.5598              | invalid    |
+| b_scc.hes                      | 8.1729               | invalid    |
+| c_scc.hes                      | 301.3421             | timeout    |
+| c_nmc.hes                      | 0.6459               | invalid    |
+| b_nmc.hes                      | 1.4681               | invalid    |
+| a_nmc.hes                      | 1.5236               | invalid    |
+
+Total time:377.712299
 -e 
 
 
 Processing higher-lower-ultimate on optimized mode
 ----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 2.5981               | invalid    |
+| det.hes                        | 0.2873               | invalid    |
+
+Total time:2.885396
+
+Checking implementability...
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| b_nmc_64.hes                   | 0.2357               | invalid    |
+| b_nmc_65.hes                   | 0.2364               | invalid    |
+| c_scc_43_8.hes                 | 0.3404               | invalid    |
+| b_scc_37_3.hes                 | 0.4914               | invalid    |
+| b_scc_35_3.hes                 | 0.4869               | invalid    |
+| b_nmc_75.hes                   | 0.2339               | invalid    |
+| b_nmc_74.hes                   | 0.2332               | invalid    |
+| b_scc_68_4.hes                 | 0.2130               | invalid    |
+| c_scc_53_5.hes                 | 0.4430               | invalid    |
+| c_scc_53_4.hes                 | 0.3403               | invalid    |
+| b_scc_68_5.hes                 | 0.2124               | invalid    |
+| b_scc_68_7.hes                 | 0.2262               | invalid    |
+| c_scc_53_6.hes                 | 0.3373               | invalid    |
+| c_scc_53_7.hes                 | 0.3417               | invalid    |
+| b_scc_68_6.hes                 | 0.2206               | invalid    |
+| b_scc_34_3.hes                 | 0.5069               | invalid    |
+| a_scc_01_0.hes                 | 0.2077               | invalid    |
+| b_scc_36_3.hes                 | 0.3937               | invalid    |
+| b_scc_36_8.hes                 | 0.1772               | invalid    |
+| a_scc_12_1.hes                 | 0.2117               | invalid    |
+| c_scc_23_2.hes                 | 0.2753               | invalid    |
+| c_scc_23_0.hes                 | 0.2109               | invalid    |
+| c_scc_23_1.hes                 | 0.2222               | invalid    |
+| c_scc_53_8.hes                 | 0.3438               | invalid    |
+| b_scc_34_8.hes                 | 0.1775               | invalid    |
+| c_scc_43_7.hes                 | 0.3402               | invalid    |
+| b_scc_78_6.hes                 | 0.2264               | invalid    |
+| b_scc_78_7.hes                 | 0.2308               | invalid    |
+| c_scc_43_6.hes                 | 0.3313               | invalid    |
+| c_scc_43_4.hes                 | 0.4486               | invalid    |
+| b_scc_78_5.hes                 | 0.2120               | invalid    |
+| b_scc_78_4.hes                 | 0.2145               | invalid    |
+| c_scc_43_5.hes                 | 0.3406               | invalid    |
+| b_scc_35_8.hes                 | 0.1772               | invalid    |
+| b_scc_37_8.hes                 | 0.1821               | invalid    |
+
+Total time:10.022987
 -e 
 
 
 Processing higher-lower-no on naive mode
 ----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.4334               | invalid    |
+| det.hes                        | 0.3994               | invalid    |
+
+Total time:0.832831
+
+Checking implementability...
+Inconclusive
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| a_scc.hes                      | 25.3964              | invalid    |
+| b_scc.hes                      | 3.8721               | invalid    |
+| c_scc.hes                      | 301.5276             | timeout    |
+| c_nmc.hes                      | 0.4345               | invalid    |
+| b_nmc.hes                      | 0.8653               | invalid    |
+| a_nmc.hes                      | 0.6931               | invalid    |
+
+Total time:332.789037
 -e 
 
 
 Processing higher-lower-no on optimized mode
 ----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.4318               | invalid    |
+| det.hes                        | 0.3935               | invalid    |
+
+Total time:0.825337
+
+Checking implementability...
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| b_scc_35_7.hes                 | 0.1744               | invalid    |
+| b_nmc_62.hes                   | 0.2125               | invalid    |
+| b_scc_35_3.hes                 | 0.2761               | invalid    |
+| b_scc_32_3.hes                 | 0.2753               | invalid    |
+| b_scc_36_7.hes                 | 0.1754               | invalid    |
+| b_scc_57_6.hes                 | 0.2159               | invalid    |
+| b_scc_57_5.hes                 | 0.2093               | invalid    |
+| b_scc_57_2.hes                 | 0.2160               | invalid    |
+| a_scc_01_0.hes                 | 0.1918               | invalid    |
+| b_scc_36_3.hes                 | 0.2771               | invalid    |
+| b_scc_32_7.hes                 | 0.1755               | invalid    |
+| c_scc_23_5.hes                 | 0.2974               | invalid    |
+| c_scc_23_6.hes                 | 0.2950               | invalid    |
+| c_scc_23_7.hes                 | 0.3437               | invalid    |
+| a_scc_12_1.hes                 | 0.1988               | invalid    |
+| c_scc_23_2.hes                 | 0.2836               | invalid    |
+| c_scc_23_0.hes                 | 1.3840               | invalid    |
+| c_scc_23_1.hes                 | 0.4563               | invalid    |
+| b_scc_67_2.hes                 | 0.2059               | invalid    |
+| b_nmc_52.hes                   | 0.2084               | invalid    |
+| b_scc_67_6.hes                 | 0.2094               | invalid    |
+| b_scc_67_5.hes                 | 0.2107               | invalid    |
+
+Total time:6.492246
 -e 
 
 
 Processing symbolic-two-bidder-yes on naive mode
 ----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 6.4510               | invalid    |
+| det.hes                        | 0.2312               | invalid    |
+
+Total time:6.682171
+
+Checking implementability...
+Inconclusive
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| b2_rcc.hes                     | 1.5131               | invalid    |
+| b1_scc.hes                     | 301.5863             | timeout    |
+| b2_scc.hes                     | 301.6180             | timeout    |
+| s_nmc.hes                      | 1.1169               | invalid    |
+| b1_rcc.hes                     | 1.4636               | invalid    |
+| s_scc.hes                      | 498.7384             | timeout    |
+| b2_nmc.hes                     | 3.2728               | invalid    |
+| b1_nmc.hes                     | 2.6663               | invalid    |
+| s_rcc.hes                      | 0.8856               | invalid    |
+
+Total time:1112.860880
 -e 
 
 
 Processing symbolic-two-bidder-yes on optimized mode
 ----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 7.7857               | invalid    |
+| det.hes                        | 0.2300               | invalid    |
+
+Total time:8.015654
+
+Checking implementability...
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| b2_rcc_73_86.hes               | 0.5863               | invalid    |
+| s_scc_23_2.hes                 | 0.2172               | invalid    |
+| b1_scc_78_6.hes                | 0.1761               | invalid    |
+| b1_scc_78_7.hes                | 0.4473               | invalid    |
+| s_scc_23_1.hes                 | 0.2640               | invalid    |
+| b1_rcc_47_56.hes               | 0.5227               | invalid    |
+| s_scc_86_5.hes                 | 0.1694               | invalid    |
+| b1_scc_01_0.hes                | 0.2031               | invalid    |
+| b1_scc_34_8.hes                | 0.1919               | invalid    |
+| s_rcc_78_45.hes                | 4.0340               | invalid    |
+| s_scc_56_8.hes                 | 0.1784               | invalid    |
+| b2_rcc_86_73.hes               | 0.5721               | invalid    |
+| b1_scc_34_3.hes                | 0.2342               | invalid    |
+| b1_scc_12_1.hes                | 0.2093               | invalid    |
+| s_rcc_45_78.hes                | 4.1838               | invalid    |
+| b1_rcc_56_47.hes               | 0.5357               | invalid    |
+| s_scc_56_5.hes                 | 2.6514               | invalid    |
+| b1_scc_73_7.hes                | 0.3429               | invalid    |
+| b1_scc_73_6.hes                | 0.1774               | invalid    |
+| b1_scc_34_6.hes                | 0.1961               | invalid    |
+| s_scc_86_8.hes                 | 694.0916             | invalid    |
+| b2_scc_47_4.hes                | 0.3186               | invalid    |
+| b2_scc_45_4.hes                | 0.2907               | invalid    |
+
+Total time:710.794241
 -e 
 
 
 Processing symbolic-two-bidder-no1 on naive mode
 ----------------------------------------
--e 
 
+Checking GCLTS eligibility...
+GCLTS eligible
 
-Processing symbolic-two-bidder-no1 on optimized mode
-----------------------------------------
--e 
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 5.5960               | invalid    |
+| det.hes                        | 0.2231               | invalid    |
 
+Total time:5.819085
 
+Checking implementability...

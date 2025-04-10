@@ -10,6 +10,8 @@
  (description "SPROUT takes as input symbolic multiparty protocols and checks GCLTS eligibility and implementability by generating muCLP instances and discharging them to MuVal.")
  (authors "Elaine Li efl9013@nyu.edu") 
  (maintainers "Elaine Li efl9013@nyu.edu")
+ (homepage "https://efl9013.github.io")  
+ (bug_reports "https://efl9013.github.io")
  (depends
   (ocaml
    (>= 4.12.0))
@@ -29,5 +31,9 @@
    (>= 0.14.0))
   (ppx_sexp_conv
    (>= 0.14.3))
+  (menhir
+   (>= 20240715))
+  (sexplib
+   (>= 0.17.0))
  )
 )

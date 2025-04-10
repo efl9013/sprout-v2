@@ -16,7 +16,5 @@ cd query-generator
 echo "let coar_location = \"$current_dir/muval\"" >> config.ml
 
 # Install SPROUT
+opam install . --deps-only
 dune build 
-sh verify_all.sh 
-sh naive_vs_opt.sh
-

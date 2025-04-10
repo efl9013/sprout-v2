@@ -56,7 +56,9 @@ let process_protocol filename : symbolic_protocol * bool =
   else (prot, false)
 
 let process_hes_file_mode filename dirname timeout mode : string * float =
-  let command = Printf.sprintf "timeout %i ./_build/default/main.exe -c ./config/solver/muval_%s_tbq_ar.json -p muclp %s/%s" timeout mode dirname filename in
+  (* let command = Printf.sprintf "timeout %i ./_build/default/main.exe -c ./config/solver/muval_%s_tbq_ar.json -p muclp %s/%s" timeout mode dirname filename in *)
+  (* For making Docker image *) 
+  let command = Printf.sprintf "timeout %i ./main.exe -c ./solver/muval_parallel_tbq_ar.json -p muclp %s/%s" timeout dirname filename in
   let start_time = Unix.gettimeofday () in
   (* Printf.printf "Checking %s \n" filename; *)
   flush Stdlib.stdout;
@@ -85,7 +87,9 @@ let process_hes_file_mode filename dirname timeout mode : string * float =
 (* In general the parallel mode is faster on most queries *)
 let process_hes_file_opt filename dirname timeout mode : string * float =
   let parallel_timeout = timeout / 2 in 
-  let command = Printf.sprintf "timeout %i ./_build/default/main.exe -c ./config/solver/muval_parallel_tbq_ar.json -p muclp %s/%s" parallel_timeout dirname filename in
+  (* let command = Printf.sprintf "timeout %i ./_build/default/main.exe -c ./config/solver/muval_parallel_tbq_ar.json -p muclp %s/%s" parallel_timeout dirname filename in *)
+  (* For making Docker image *) 
+  let command = Printf.sprintf "timeout %i ./main.exe -c ./solver/muval_parallel_tbq_ar.json -p muclp %s/%s" parallel_timeout dirname filename in
   let start_time = Unix.gettimeofday () in
   (* Printf.printf "Checking %s \n" filename; *)
   flush Stdlib.stdout;

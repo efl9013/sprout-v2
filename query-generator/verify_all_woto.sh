@@ -3,7 +3,7 @@
 set -u
 
 # Define the output file
-output_file="sprout_output.txt"
+output_file="sprout_output_woto.txt"
 
 # Clear the output file if it exists, or create a new one
 > "$output_file"
@@ -45,10 +45,10 @@ files=(
   "symbolic-receive-validity-yes"
   "symbolic-receive-validity-no"
   "fwd-auth-yes"
-  "fwd-auth-no"
+  # "fwd-auth-no"
   "symbolic-two-bidder-no2"
   "higher-lower-ultimate"
-  "higher-lower-winning"
+  # "higher-lower-winning"
   "higher-lower-no"
   "higher-lower-encrypt-yes"
   "higher-lower-encrypt-no"

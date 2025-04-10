@@ -7,10 +7,10 @@ GCLTS eligible
 Results:
 | Filename                       | Execution Time (s)   | Result     |
 |--------------------------------|----------------------|------------|
-| df.hes                         | 2.0714               | invalid    |
-| det.hes                        | 0.2669               | invalid    |
+| df.hes                         | 0.3971               | invalid    |
+| det.hes                        | 0.2594               | invalid    |
 
-Total time:2.338336
+Total time:0.656466
 
 Checking implementability...
 Binary protocol, implementable
@@ -26,10 +26,10 @@ GCLTS eligible
 Results:
 | Filename                       | Execution Time (s)   | Result     |
 |--------------------------------|----------------------|------------|
-| df.hes                         | 0.2800               | invalid    |
+| df.hes                         | 0.2717               | invalid    |
 | det.hes                        | 0.1917               | invalid    |
 
-Total time:0.471715
+Total time:0.463400
 
 Checking implementability...
 Binary protocol, implementable
@@ -45,9 +45,2234 @@ GCLTS eligible
 Results:
 | Filename                       | Execution Time (s)   | Result     |
 |--------------------------------|----------------------|------------|
-| df.hes                         | 0.6256               | invalid    |
-| det.hes                        | 0.3199               | invalid    |
+| df.hes                         | 0.6661               | invalid    |
+| det.hes                        | 0.4291               | invalid    |
 
-Total time:0.945497
+Total time:1.095163
 
 Checking implementability...
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| b_scc_67_8.hes                 | 0.2725               | invalid    |
+| b_scc_35_3.hes                 | 0.4162               | invalid    |
+| b_scc_57_6.hes                 | 0.2748               | invalid    |
+| b_scc_57_5.hes                 | 0.2648               | invalid    |
+| b_scc_57_4.hes                 | 0.2676               | invalid    |
+| b_scc_82_8.hes                 | 0.2666               | invalid    |
+| b_scc_42_8.hes                 | 0.2603               | invalid    |
+| b_scc_34_3.hes                 | 0.5196               | invalid    |
+| c_scc_23_8.hes                 | 0.5807               | invalid    |
+| a_scc_01_0.hes                 | 0.1967               | invalid    |
+| b_scc_36_3.hes                 | 0.4188               | invalid    |
+| c_scc_23_5.hes                 | 0.4878               | invalid    |
+| c_scc_23_4.hes                 | 0.8995               | invalid    |
+| c_scc_23_6.hes                 | 0.4970               | invalid    |
+| c_scc_23_7.hes                 | 0.5684               | invalid    |
+| b_scc_38_3.hes                 | 0.5254               | invalid    |
+| b_scc_42_5.hes                 | 0.2738               | invalid    |
+| a_scc_12_1.hes                 | 0.2081               | invalid    |
+| b_scc_82_5.hes                 | 0.2727               | invalid    |
+| b_scc_57_8.hes                 | 0.2743               | invalid    |
+| c_scc_23_2.hes                 | 0.4801               | invalid    |
+| b_scc_82_4.hes                 | 0.2651               | invalid    |
+| b_scc_42_4.hes                 | 0.2684               | invalid    |
+| b_scc_42_6.hes                 | 0.2734               | invalid    |
+| b_scc_82_6.hes                 | 0.2728               | invalid    |
+| c_scc_23_0.hes                 | 1.0017               | invalid    |
+| c_scc_23_1.hes                 | 0.3899               | invalid    |
+| b_scc_67_6.hes                 | 0.2771               | invalid    |
+| b_scc_67_4.hes                 | 0.2768               | invalid    |
+| b_scc_67_5.hes                 | 0.2829               | invalid    |
+
+Total time:11.533747
+-e 
+
+
+Processing http
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.2249               | invalid    |
+| det.hes                        | 0.2170               | invalid    |
+
+Total time:0.441976
+
+Checking implementability...
+Binary protocol, implementable
+-e 
+
+
+Processing negotiation
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.6293               | invalid    |
+| det.hes                        | 0.3315               | invalid    |
+
+Total time:0.960888
+
+Checking implementability...
+Binary protocol, implementable
+-e 
+
+
+Processing online-wallet
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 1.6988               | invalid    |
+| det.hes                        | 0.2310               | invalid    |
+
+Total time:1.929850
+
+Checking implementability...
+Inconclusive
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| c_scc_612_6.hes                | 0.2983               | invalid    |
+| c_scc_13_1.hes                 | 0.2156               | invalid    |
+| a_scc_314_3.hes                | 0.2245               | invalid    |
+| c_scc_910_9.hes                | 0.2640               | invalid    |
+| c_scc_1213_7.hes               | 0.2508               | invalid    |
+| s_scc_116_11.hes               | 0.2580               | invalid    |
+| s_scc_45_4.hes                 | 0.2171               | invalid    |
+| s_scc_1011_9.hes               | 15.0395              | timeout    |
+| c_scc_1213_12.hes              | 0.2801               | invalid    |
+| c_scc_78_12.hes                | 0.2457               | invalid    |
+| c_scc_01_0.hes                 | 0.2137               | invalid    |
+| s_scc_56_5.hes                 | 0.2370               | invalid    |
+| a_scc_34_3.hes                 | 0.2249               | invalid    |
+| c_scc_89_13.hes                | 0.1787               | invalid    |
+| c_scc_67_6.hes                 | 0.3016               | invalid    |
+| c_rcc_45_314.hes               | 0.6088               | invalid    |
+| s_scc_1011_10.hes              | 0.2588               | invalid    |
+| c_scc_78_7.hes                 | 0.2662               | invalid    |
+| c_rcc_314_45.hes               | 0.4169               | invalid    |
+| c_scc_89_8.hes                 | 0.2654               | invalid    |
+
+Total time:20.265445
+-e 
+
+
+Processing sh
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 1.7884               | invalid    |
+| det.hes                        | 0.5367               | invalid    |
+
+Total time:2.325026
+
+Checking implementability...
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| p_scc_1216_14.hes              | 0.2431               | invalid    |
+| p_scc_2123_9.hes               | 0.2423               | invalid    |
+| p_scc_1718_27.hes              | 0.2472               | invalid    |
+| p_scc_2627_22.hes              | 0.2875               | invalid    |
+| r_scc_1920_22.hes              | 0.2891               | invalid    |
+| r_scc_2021_12.hes              | 0.2836               | invalid    |
+| p_scc_2123_23.hes              | 0.2810               | invalid    |
+| p_nmc_2511.hes                 | 0.2475               | invalid    |
+| r_nmc_68.hes                   | 0.2926               | invalid    |
+| p_scc_144_22.hes               | 0.2906               | invalid    |
+| r_scc_1112_17.hes              | 0.2776               | invalid    |
+| r_nmc_1017.hes                 | 0.3645               | invalid    |
+| p_scc_224_20.hes               | 0.2366               | invalid    |
+| p_nmc_1811.hes                 | 0.2487               | invalid    |
+| p_nmc_126.hes                  | 0.2515               | invalid    |
+| p_scc_56_13.hes                | 0.2576               | invalid    |
+| p_scc_154_4.hes                | 0.2436               | invalid    |
+| p_scc_154_27.hes               | 0.2359               | invalid    |
+| p_scc_910_27.hes               | 0.2398               | invalid    |
+| p_scc_12_1.hes                 | 0.2811               | invalid    |
+| r_scc_67_10.hes                | 0.3651               | invalid    |
+| p_scc_1213_24.hes              | 0.2374               | invalid    |
+| p_nmc_1420.hes                 | 0.2456               | invalid    |
+| p_scc_1314_8.hes               | 0.2385               | invalid    |
+| p_scc_1213_18.hes              | 0.2784               | invalid    |
+| p_scc_1314_11.hes              | 0.2421               | invalid    |
+| p_scc_1314_10.hes              | 0.2452               | invalid    |
+| p_scc_1314_9.hes               | 0.2751               | invalid    |
+| p_scc_1213_19.hes              | 0.2406               | invalid    |
+| r_scc_67_11.hes                | 0.3150               | invalid    |
+| p_scc_1213_25.hes              | 0.2482               | invalid    |
+| p_scc_910_26.hes               | 0.2503               | invalid    |
+| p_scc_34_3.hes                 | 0.2925               | invalid    |
+| p_scc_154_26.hes               | 0.2848               | invalid    |
+| p_scc_154_5.hes                | 0.2541               | invalid    |
+| p_scc_56_12.hes                | 0.3561               | invalid    |
+| p_nmc_127.hes                  | 0.2545               | invalid    |
+| r_nmc_1016.hes                 | 0.2883               | invalid    |
+| r_scc_1112_16.hes              | 0.2678               | invalid    |
+| p_nmc_1810.hes                 | 0.2480               | invalid    |
+| p_scc_224_21.hes               | 0.3125               | invalid    |
+| p_scc_144_23.hes               | 0.2882               | invalid    |
+| p_nmc_2510.hes                 | 0.2459               | invalid    |
+| r_nmc_69.hes                   | 0.2916               | invalid    |
+| p_scc_2123_22.hes              | 0.2798               | invalid    |
+| p_scc_2627_23.hes              | 0.2828               | invalid    |
+| r_scc_2021_13.hes              | 0.2855               | invalid    |
+| r_scc_1920_23.hes              | 0.2997               | invalid    |
+| p_scc_1718_26.hes              | 0.2376               | invalid    |
+| p_scc_2123_8.hes               | 0.2624               | invalid    |
+| p_scc_1216_15.hes              | 0.2378               | invalid    |
+| p_nmc_1219.hes                 | 0.2492               | invalid    |
+| p_scc_1216_17.hes              | 0.2832               | invalid    |
+| p_nmc_247.hes                  | 0.2561               | invalid    |
+| p_nmc_910.hes                  | 0.2579               | invalid    |
+| p_scc_1718_24.hes              | 0.2379               | invalid    |
+| p_scc_1718_18.hes              | 0.2745               | invalid    |
+| r_scc_1920_21.hes              | 0.3160               | invalid    |
+| r_scc_2021_11.hes              | 0.3311               | invalid    |
+| p_scc_2627_21.hes              | 0.3156               | invalid    |
+| r_nmc_104.hes                  | 0.3194               | invalid    |
+| p_scc_2123_20.hes              | 0.2449               | invalid    |
+| p_scc_144_21.hes               | 0.3140               | invalid    |
+| p_scc_224_23.hes               | 0.4244               | invalid    |
+| r_scc_1112_14.hes              | 0.2728               | invalid    |
+| p_scc_2324_9.hes               | 0.2395               | invalid    |
+| r_nmc_716.hes                  | 0.2851               | invalid    |
+| p_scc_154_7.hes                | 0.2422               | invalid    |
+| p_scc_154_24.hes               | 0.2840               | invalid    |
+| p_scc_56_10.hes                | 0.2563               | invalid    |
+| p_scc_910_18.hes               | 0.2863               | invalid    |
+| p_scc_154_18.hes               | 0.2587               | invalid    |
+| p_scc_910_24.hes               | 0.2430               | invalid    |
+| p_scc_1213_27.hes              | 0.2421               | invalid    |
+| r_scc_67_13.hes                | 0.2959               | invalid    |
+| p_scc_1314_12.hes              | 0.2364               | invalid    |
+| p_scc_1314_13.hes              | 0.4108               | invalid    |
+| p_scc_1213_26.hes              | 0.2369               | invalid    |
+| r_scc_67_12.hes                | 0.2707               | invalid    |
+| p_scc_910_25.hes               | 0.2403               | invalid    |
+| p_scc_154_19.hes               | 0.2380               | invalid    |
+| p_scc_56_11.hes                | 0.2387               | invalid    |
+| p_scc_910_19.hes               | 0.2366               | invalid    |
+| p_scc_154_25.hes               | 0.2796               | invalid    |
+| p_scc_154_6.hes                | 0.2493               | invalid    |
+| r_nmc_717.hes                  | 0.2790               | invalid    |
+| p_nmc_1620.hes                 | 0.2469               | invalid    |
+| p_scc_224_22.hes               | 0.4204               | invalid    |
+| p_scc_2324_8.hes               | 0.2354               | invalid    |
+| r_scc_1112_15.hes              | 0.2862               | invalid    |
+| p_scc_144_20.hes               | 0.2417               | invalid    |
+| r_nmc_105.hes                  | 0.3923               | invalid    |
+| p_scc_2123_21.hes              | 0.4828               | invalid    |
+| r_scc_2021_10.hes              | 0.3105               | invalid    |
+| r_scc_1920_20.hes              | 0.3160               | invalid    |
+| p_scc_2627_20.hes              | 0.2412               | invalid    |
+| p_scc_1718_19.hes              | 0.2402               | invalid    |
+| p_scc_1718_25.hes              | 0.2379               | invalid    |
+| p_nmc_911.hes                  | 0.2592               | invalid    |
+| p_nmc_520.hes                  | 0.2509               | invalid    |
+| p_scc_1216_16.hes              | 0.2822               | invalid    |
+| p_nmc_246.hes                  | 0.2521               | invalid    |
+| p_nmc_256.hes                  | 0.2446               | invalid    |
+| p_scc_1216_12.hes              | 0.6315               | invalid    |
+| p_scc_2425_4.hes               | 0.4137               | invalid    |
+| p_nmc_1220.hes                 | 0.2525               | invalid    |
+| p_scc_426_4.hes                | 0.4772               | invalid    |
+| p_scc_1718_21.hes              | 0.2376               | invalid    |
+| p_scc_2627_18.hes              | 0.2549               | invalid    |
+| r_nmc_115.hes                  | 0.2830               | invalid    |
+| r_scc_1920_18.hes              | 0.2693               | invalid    |
+| p_scc_2123_25.hes              | 0.2794               | invalid    |
+| p_scc_1819_5.hes               | 0.2963               | invalid    |
+| p_scc_2627_24.hes              | 0.2817               | invalid    |
+| r_scc_1920_24.hes              | 0.2952               | invalid    |
+| r_scc_2021_14.hes              | 0.2732               | invalid    |
+| p_scc_2123_19.hes              | 0.2368               | invalid    |
+| r_scc_1112_11.hes              | 1.8138               | invalid    |
+| p_scc_224_26.hes               | 0.2804               | invalid    |
+| p_scc_144_18.hes               | 0.2382               | invalid    |
+| p_scc_144_24.hes               | 0.2765               | invalid    |
+| p_nmc_2311.hes                 | 0.2472               | invalid    |
+| p_scc_910_21.hes               | 0.2430               | invalid    |
+| p_scc_154_21.hes               | 0.3178               | invalid    |
+| p_scc_56_15.hes                | 0.2538               | invalid    |
+| p_scc_1314_17.hes              | 0.2330               | invalid    |
+| p_scc_1216_9.hes               | 0.2784               | invalid    |
+| r_scc_67_16.hes                | 0.2895               | invalid    |
+| p_scc_1213_22.hes              | 0.2353               | invalid    |
+| r_scc_67_17.hes                | 0.3270               | invalid    |
+| p_scc_1213_23.hes              | 0.2362               | invalid    |
+| p_scc_1314_16.hes              | 0.3862               | invalid    |
+| p_scc_1216_8.hes               | 0.2979               | invalid    |
+| p_scc_56_14.hes                | 0.2377               | invalid    |
+| p_scc_154_20.hes               | 0.2392               | invalid    |
+| p_scc_910_20.hes               | 0.2438               | invalid    |
+| r_nmc_712.hes                  | 0.2869               | invalid    |
+| p_nmc_2310.hes                 | 0.2458               | invalid    |
+| p_nmc_1619.hes                 | 0.2395               | invalid    |
+| p_scc_144_25.hes               | 0.2899               | invalid    |
+| p_scc_144_19.hes               | 0.2393               | invalid    |
+| r_scc_1112_10.hes              | 0.3163               | invalid    |
+| p_scc_224_27.hes               | 0.2532               | invalid    |
+| p_scc_2123_18.hes              | 0.2398               | invalid    |
+| p_scc_2627_25.hes              | 0.2812               | invalid    |
+| r_scc_2021_15.hes              | 0.2843               | invalid    |
+| r_scc_1920_25.hes              | 0.2829               | invalid    |
+| p_scc_2123_24.hes              | 0.2784               | invalid    |
+| p_scc_1819_4.hes               | 0.3209               | invalid    |
+| r_nmc_114.hes                  | 0.3061               | invalid    |
+| p_scc_2627_19.hes              | 0.2403               | invalid    |
+| r_scc_1920_19.hes              | 1.7972               | invalid    |
+| p_scc_1718_20.hes              | 0.2354               | invalid    |
+| p_scc_426_5.hes                | 0.2891               | invalid    |
+| p_nmc_519.hes                  | 0.2520               | invalid    |
+| p_scc_2425_5.hes               | 0.2387               | invalid    |
+| p_scc_1216_13.hes              | 0.2410               | invalid    |
+| p_nmc_257.hes                  | 0.2497               | invalid    |
+| p_scc_1718_8.hes               | 0.2875               | invalid    |
+| p_scc_1216_11.hes              | 0.2517               | invalid    |
+| p_scc_2425_7.hes               | 0.2356               | invalid    |
+| p_scc_426_7.hes                | 0.2433               | invalid    |
+| p_scc_1718_22.hes              | 0.2384               | invalid    |
+| p_scc_1819_6.hes               | 0.2535               | invalid    |
+| r_nmc_79.hes                   | 0.2825               | invalid    |
+| p_scc_2123_26.hes              | 0.2811               | invalid    |
+| r_scc_1112_8.hes               | 0.2837               | invalid    |
+| r_scc_1920_27.hes              | 0.3219               | invalid    |
+| r_scc_2021_17.hes              | 0.2702               | invalid    |
+| p_scc_2627_27.hes              | 0.2429               | invalid    |
+| p_scc_224_25.hes               | 0.2948               | invalid    |
+| r_scc_1112_12.hes              | 0.2827               | invalid    |
+| r_nmc_1012.hes                 | 0.2811               | invalid    |
+| p_scc_144_27.hes               | 0.2603               | invalid    |
+| p_scc_224_19.hes               | 0.2424               | invalid    |
+| p_nmc_137.hes                  | 0.2502               | invalid    |
+| p_scc_910_22.hes               | 0.2405               | invalid    |
+| p_scc_56_16.hes                | 0.2902               | invalid    |
+| p_scc_154_22.hes               | 0.2819               | invalid    |
+| p_nmc_2110.hes                 | 0.2494               | invalid    |
+| p_nmc_1419.hes                 | 0.2471               | invalid    |
+| p_scc_1314_14.hes              | 0.2792               | invalid    |
+| p_scc_1213_21.hes              | 0.2599               | invalid    |
+| r_scc_67_15.hes                | 0.2856               | invalid    |
+| p_scc_1213_20.hes              | 0.2471               | invalid    |
+| r_scc_67_14.hes                | 0.2928               | invalid    |
+| p_scc_1314_15.hes              | 0.4481               | invalid    |
+| p_nmc_2111.hes                 | 0.2549               | invalid    |
+| p_scc_154_23.hes               | 0.2798               | invalid    |
+| p_scc_56_17.hes                | 0.2857               | invalid    |
+| p_scc_910_23.hes               | 0.2369               | invalid    |
+| p_nmc_136.hes                  | 0.2560               | invalid    |
+| p_scc_224_18.hes               | 0.2381               | invalid    |
+| p_scc_144_26.hes               | 0.2827               | invalid    |
+| p_scc_224_24.hes               | 0.2754               | invalid    |
+| r_scc_1112_13.hes              | 0.2804               | invalid    |
+| r_scc_2021_16.hes              | 0.2726               | invalid    |
+| r_scc_1920_26.hes              | 0.3142               | invalid    |
+| p_scc_2627_26.hes              | 0.4392               | invalid    |
+| r_scc_1112_9.hes               | 0.2713               | invalid    |
+| p_scc_1819_7.hes               | 0.2420               | invalid    |
+| p_scc_2123_27.hes              | 0.2412               | invalid    |
+| r_nmc_78.hes                   | 0.2897               | invalid    |
+| p_scc_1718_23.hes              | 0.2355               | invalid    |
+| p_scc_426_6.hes                | 0.2515               | invalid    |
+| p_scc_2425_6.hes               | 0.2393               | invalid    |
+| p_scc_1216_10.hes              | 0.2416               | invalid    |
+| p_scc_1718_9.hes               | 0.2803               | invalid    |
+| p_scc_426_23.hes               | 0.2466               | invalid    |
+| p_scc_45_8.hes                 | 0.2797               | invalid    |
+| r_scc_78_7.hes                 | 1.8225               | invalid    |
+| p_scc_254_7.hes                | 0.2385               | invalid    |
+| r_scc_78_27.hes                | 0.2752               | invalid    |
+| p_nmc_227.hes                  | 0.2451               | invalid    |
+| p_scc_1819_19.hes              | 0.2330               | invalid    |
+| p_scc_89_16.hes                | 0.2829               | invalid    |
+| p_scc_2324_26.hes              | 0.2802               | invalid    |
+| p_scc_1819_25.hes              | 0.2410               | invalid    |
+| p_scc_1215_26.hes              | 0.2411               | invalid    |
+| r_nmc_616.hes                  | 0.2856               | invalid    |
+| p_nmc_810.hes                  | 0.2560               | invalid    |
+| p_scc_2425_17.hes              | 0.2412               | invalid    |
+| p_nmc_186.hes                  | 0.2560               | invalid    |
+| r_scc_1011_9.hes               | 0.2773               | invalid    |
+| p_scc_1617_4.hes               | 0.3098               | invalid    |
+| p_scc_89_5.hes                 | 0.2831               | invalid    |
+| p_nmc_96.hes                   | 0.2606               | invalid    |
+| r_scc_1920_7.hes               | 0.3133               | invalid    |
+| p_scc_1213_8.hes               | 0.2999               | invalid    |
+| p_scc_1617_15.hes              | 0.3997               | invalid    |
+| r_scc_1011_25.hes              | 0.2883               | invalid    |
+| p_scc_45_18.hes                | 0.2829               | invalid    |
+| p_scc_2627_6.hes               | 0.2616               | invalid    |
+| r_scc_1011_19.hes              | 0.3177               | invalid    |
+| p_scc_45_24.hes                | 0.4179               | invalid    |
+| p_scc_2122_14.hes              | 0.2795               | invalid    |
+| p_nmc_2610.hes                 | 0.2577               | invalid    |
+| p_scc_254_17.hes               | 0.2370               | invalid    |
+| p_nmc_1319.hes                 | 0.2480               | invalid    |
+| p_nmc_420.hes                  | 0.2498               | invalid    |
+| p_scc_254_16.hes               | 0.2435               | invalid    |
+| p_nmc_2611.hes                 | 0.2505               | invalid    |
+| p_scc_2122_15.hes              | 0.2851               | invalid    |
+| p_scc_45_25.hes                | 0.2416               | invalid    |
+| r_nmc_2018.hes                 | 0.2777               | invalid    |
+| r_scc_1011_18.hes              | 0.2782               | invalid    |
+| p_scc_45_19.hes                | 0.2410               | invalid    |
+| p_scc_2627_7.hes               | 0.2366               | invalid    |
+| p_scc_1617_14.hes              | 0.2408               | invalid    |
+| r_scc_1011_24.hes              | 0.2958               | invalid    |
+| p_scc_1213_9.hes               | 0.2801               | invalid    |
+| p_nmc_97.hes                   | 0.2547               | invalid    |
+| p_scc_89_4.hes                 | 0.3183               | invalid    |
+| r_scc_1920_6.hes               | 0.3442               | invalid    |
+| p_scc_1617_5.hes               | 0.2885               | invalid    |
+| r_scc_1011_8.hes               | 0.2756               | invalid    |
+| p_scc_2425_16.hes              | 0.2382               | invalid    |
+| p_nmc_187.hes                  | 0.2545               | invalid    |
+| p_nmc_811.hes                  | 0.2559               | invalid    |
+| r_nmc_617.hes                  | 0.3255               | invalid    |
+| p_nmc_1720.hes                 | 0.2481               | invalid    |
+| p_scc_1215_27.hes              | 0.2391               | invalid    |
+| p_scc_2324_27.hes              | 0.2492               | invalid    |
+| p_scc_1819_24.hes              | 0.2392               | invalid    |
+| p_scc_89_17.hes                | 0.2825               | invalid    |
+| p_scc_1819_18.hes              | 0.5360               | invalid    |
+| p_nmc_226.hes                  | 0.2431               | invalid    |
+| p_scc_254_6.hes                | 0.2401               | invalid    |
+| r_scc_78_26.hes                | 0.2734               | invalid    |
+| p_scc_45_9.hes                 | 0.2863               | invalid    |
+| r_scc_78_6.hes                 | 0.3145               | invalid    |
+| p_scc_426_22.hes               | 0.2528               | invalid    |
+| p_scc_426_20.hes               | 0.2368               | invalid    |
+| r_scc_78_4.hes                 | 0.2969               | invalid    |
+| p_nmc_1520.hes                 | 0.2498               | invalid    |
+| r_scc_78_24.hes                | 0.3027               | invalid    |
+| p_scc_254_4.hes                | 0.2503               | invalid    |
+| r_scc_78_18.hes                | 0.2717               | invalid    |
+| p_scc_89_15.hes                | 0.2436               | invalid    |
+| r_nmc_198.hes                  | 0.2836               | invalid    |
+| p_scc_2324_19.hes              | 0.2403               | invalid    |
+| p_scc_1819_26.hes              | 0.2553               | invalid    |
+| p_scc_2324_25.hes              | 0.2786               | invalid    |
+| r_nmc_1117.hes                 | 0.2830               | invalid    |
+| p_scc_1215_25.hes              | 0.2380               | invalid    |
+| p_scc_1215_19.hes              | 0.2377               | invalid    |
+| p_nmc_56.hes                   | 0.2694               | invalid    |
+| p_scc_2425_14.hes              | 0.2767               | invalid    |
+| r_scc_1920_4.hes               | 0.2994               | invalid    |
+| p_scc_89_6.hes                 | 0.2391               | invalid    |
+| p_scc_1617_7.hes               | 0.2418               | invalid    |
+| p_nmc_146.hes                  | 0.2494               | invalid    |
+| p_nmc_2411.hes                 | 0.2499               | invalid    |
+| p_scc_2627_5.hes               | 0.3873               | invalid    |
+| r_scc_2021_8.hes               | 0.2808               | invalid    |
+| r_scc_1011_26.hes              | 0.4032               | invalid    |
+| p_scc_1617_16.hes              | 0.5323               | invalid    |
+| p_scc_45_27.hes                | 0.2581               | invalid    |
+| p_scc_2122_17.hes              | 0.2398               | invalid    |
+| r_nmc_205.hes                  | 0.2822               | invalid    |
+| p_scc_254_14.hes               | 0.2913               | invalid    |
+| p_scc_2122_9.hes               | 0.2390               | invalid    |
+| p_scc_254_15.hes               | 0.2809               | invalid    |
+| p_scc_2122_8.hes               | 0.2675               | invalid    |
+| r_nmc_204.hes                  | 0.3005               | invalid    |
+| p_scc_2122_16.hes              | 0.2362               | invalid    |
+| p_scc_45_26.hes                | 0.2541               | invalid    |
+| r_scc_1011_27.hes              | 0.4006               | invalid    |
+| p_scc_1617_17.hes              | 0.2724               | invalid    |
+| r_scc_2021_9.hes               | 0.2703               | invalid    |
+| p_scc_2627_4.hes               | 0.2490               | invalid    |
+| p_nmc_2410.hes                 | 0.2468               | invalid    |
+| p_nmc_147.hes                  | 0.2486               | invalid    |
+| p_scc_1617_6.hes               | 0.2529               | invalid    |
+| r_scc_1920_5.hes               | 0.3130               | invalid    |
+| p_scc_89_7.hes                 | 0.2541               | invalid    |
+| p_scc_2425_15.hes              | 0.2783               | invalid    |
+| p_nmc_57.hes                   | 0.2523               | invalid    |
+| p_scc_1215_18.hes              | 0.2836               | invalid    |
+| p_scc_1215_24.hes              | 0.2421               | invalid    |
+| p_scc_1819_27.hes              | 0.2377               | invalid    |
+| r_nmc_1116.hes                 | 0.2821               | invalid    |
+| p_scc_2324_24.hes              | 0.2752               | invalid    |
+| p_scc_2324_18.hes              | 0.2410               | invalid    |
+| r_nmc_199.hes                  | 0.2787               | invalid    |
+| p_scc_89_14.hes                | 0.2367               | invalid    |
+| r_scc_78_19.hes                | 0.3152               | invalid    |
+| r_scc_78_25.hes                | 0.3001               | invalid    |
+| p_scc_254_5.hes                | 0.2370               | invalid    |
+| r_scc_78_5.hes                 | 0.2751               | invalid    |
+| p_scc_426_21.hes               | 0.2377               | invalid    |
+| p_scc_426_19.hes               | 0.2428               | invalid    |
+| p_scc_56_4.hes                 | 0.3241               | invalid    |
+| p_scc_426_25.hes               | 0.2420               | invalid    |
+| p_nmc_1519.hes                 | 0.2412               | invalid    |
+| p_scc_224_8.hes                | 0.2401               | invalid    |
+| r_scc_78_21.hes                | 0.3336               | invalid    |
+| p_scc_2324_20.hes              | 0.2358               | invalid    |
+| r_nmc_1112.hes                 | 0.2894               | invalid    |
+| p_scc_1819_23.hes              | 0.2376               | invalid    |
+| p_scc_144_9.hes                | 0.2455               | invalid    |
+| p_scc_89_10.hes                | 0.2417               | invalid    |
+| r_scc_67_6.hes                 | 2.4413               | invalid    |
+| p_scc_1215_8.hes               | 0.2977               | invalid    |
+| p_scc_1215_20.hes              | 0.2447               | invalid    |
+| p_scc_2425_11.hes              | 0.2429               | invalid    |
+| p_nmc_47.hes                   | 0.2521               | invalid    |
+| p_nmc_157.hes                  | 0.2503               | invalid    |
+| p_scc_45_22.hes                | 0.2554               | invalid    |
+| p_scc_910_7.hes                | 0.2373               | invalid    |
+| p_scc_1617_13.hes              | 0.4000               | invalid    |
+| r_scc_1011_23.hes              | 0.2970               | invalid    |
+| p_scc_254_11.hes               | 0.2387               | invalid    |
+| p_scc_2122_12.hes              | 0.2559               | invalid    |
+| p_scc_2122_13.hes              | 0.2784               | invalid    |
+| p_scc_254_10.hes               | 0.2402               | invalid    |
+| p_scc_1617_12.hes              | 0.3518               | invalid    |
+| r_scc_1011_22.hes              | 0.2867               | invalid    |
+| p_scc_910_6.hes                | 0.2497               | invalid    |
+| p_scc_45_23.hes                | 0.2528               | invalid    |
+| p_nmc_156.hes                  | 0.2523               | invalid    |
+| p_nmc_46.hes                   | 0.2588               | invalid    |
+| p_scc_2425_10.hes              | 0.2367               | invalid    |
+| p_scc_1215_21.hes              | 0.2569               | invalid    |
+| p_scc_1215_9.hes               | 0.2771               | invalid    |
+| r_scc_67_7.hes                 | 0.3195               | invalid    |
+| p_scc_144_8.hes                | 0.2429               | invalid    |
+| p_scc_89_11.hes                | 0.2513               | invalid    |
+| p_scc_2324_21.hes              | 0.3141               | invalid    |
+| p_scc_1819_22.hes              | 0.2371               | invalid    |
+| r_scc_78_20.hes                | 0.3312               | invalid    |
+| p_scc_224_9.hes                | 0.2381               | invalid    |
+| p_scc_426_24.hes               | 0.4222               | invalid    |
+| p_scc_56_5.hes                 | 0.4384               | invalid    |
+| p_scc_426_18.hes               | 0.2864               | invalid    |
+| p_scc_56_7.hes                 | 0.2374               | invalid    |
+| p_scc_426_26.hes               | 0.2525               | invalid    |
+| p_nmc_236.hes                  | 0.2447               | invalid    |
+| r_scc_78_22.hes                | 0.2970               | invalid    |
+| p_scc_1819_20.hes              | 0.2366               | invalid    |
+| p_scc_2324_23.hes              | 0.4201               | invalid    |
+| p_scc_89_13.hes                | 0.2413               | invalid    |
+| r_scc_67_5.hes                 | 0.3950               | invalid    |
+| p_nmc_2211.hes                 | 0.2444               | invalid    |
+| p_scc_1215_23.hes              | 0.2386               | invalid    |
+| p_scc_2425_12.hes              | 0.2397               | invalid    |
+| r_nmc_1918.hes                 | 0.2725               | invalid    |
+| p_nmc_87.hes                   | 0.2537               | invalid    |
+| p_scc_45_21.hes                | 0.2371               | invalid    |
+| r_scc_1011_20.hes              | 0.3149               | invalid    |
+| p_scc_1617_10.hes              | 0.2525               | invalid    |
+| p_scc_910_4.hes                | 0.3156               | invalid    |
+| p_scc_254_12.hes               | 0.2363               | invalid    |
+| p_nmc_1320.hes                 | 0.2500               | invalid    |
+| p_scc_2122_11.hes              | 0.2461               | invalid    |
+| p_nmc_419.hes                  | 0.2536               | invalid    |
+| p_scc_2122_10.hes              | 0.2377               | invalid    |
+| p_scc_254_13.hes               | 0.2820               | invalid    |
+| p_scc_910_5.hes                | 0.2877               | invalid    |
+| r_scc_1011_21.hes              | 0.3181               | invalid    |
+| p_scc_1617_11.hes              | 0.2378               | invalid    |
+| p_scc_45_20.hes                | 0.2397               | invalid    |
+| p_nmc_86.hes                   | 0.2595               | invalid    |
+| p_scc_2425_13.hes              | 0.2807               | invalid    |
+| p_scc_1215_22.hes              | 0.2411               | invalid    |
+| p_nmc_2210.hes                 | 0.2463               | invalid    |
+| r_nmc_612.hes                  | 0.2813               | invalid    |
+| r_scc_67_4.hes                 | 0.3309               | invalid    |
+| p_nmc_1719.hes                 | 0.2460               | invalid    |
+| p_scc_89_12.hes                | 0.3684               | invalid    |
+| p_scc_1819_21.hes              | 0.2369               | invalid    |
+| p_scc_2324_22.hes              | 0.4410               | invalid    |
+| r_scc_78_23.hes                | 0.3088               | invalid    |
+| p_nmc_237.hes                  | 0.2468               | invalid    |
+| p_scc_426_27.hes               | 0.2586               | invalid    |
+| p_scc_56_6.hes                 | 0.2661               | invalid    |
+| p_scc_426_16.hes               | 0.2776               | invalid    |
+| r_scc_78_12.hes                | 0.2794               | invalid    |
+| p_scc_224_7.hes                | 0.2381               | invalid    |
+| p_scc_89_23.hes                | 0.2399               | invalid    |
+| p_scc_144_6.hes                | 0.2429               | invalid    |
+| p_scc_1819_10.hes              | 0.2565               | invalid    |
+| p_scc_2324_13.hes              | 0.2790               | invalid    |
+| r_scc_67_9.hes                 | 0.2846               | invalid    |
+| p_scc_1215_7.hes               | 0.2486               | invalid    |
+| p_scc_1215_13.hes              | 0.2390               | invalid    |
+| p_scc_2425_22.hes              | 0.2788               | invalid    |
+| p_nmc_819.hes                  | 0.2464               | invalid    |
+| r_scc_1011_10.hes              | 3.3389               | invalid    |
+| p_scc_1617_20.hes              | 0.2382               | invalid    |
+| p_scc_45_11.hes                | 0.2409               | invalid    |
+| p_scc_910_8.hes                | 0.2830               | invalid    |
+| p_nmc_1310.hes                 | 0.2559               | invalid    |
+| p_nmc_2619.hes                 | 0.2490               | invalid    |
+| p_scc_2122_21.hes              | 0.4746               | invalid    |
+| p_scc_254_22.hes               | 0.2872               | invalid    |
+| p_scc_254_23.hes               | 0.2784               | invalid    |
+| p_nmc_1311.hes                 | 0.2473               | invalid    |
+| p_scc_2122_20.hes              | 0.2485               | invalid    |
+| p_scc_910_9.hes                | 0.4346               | invalid    |
+| p_scc_45_10.hes                | 0.2413               | invalid    |
+| r_scc_1011_11.hes              | 0.3122               | invalid    |
+| p_scc_1617_21.hes              | 0.2391               | invalid    |
+| p_scc_2425_23.hes              | 0.2802               | invalid    |
+| p_nmc_2220.hes                 | 0.2437               | invalid    |
+| p_scc_1215_12.hes              | 0.6259               | invalid    |
+| p_scc_1215_6.hes               | 0.2422               | invalid    |
+| r_scc_67_8.hes                 | 0.2748               | invalid    |
+| p_scc_1819_11.hes              | 0.2394               | invalid    |
+| p_scc_2324_12.hes              | 0.2370               | invalid    |
+| p_scc_144_7.hes                | 0.2402               | invalid    |
+| p_scc_89_22.hes                | 0.2388               | invalid    |
+| p_scc_224_6.hes                | 0.2381               | invalid    |
+| r_scc_78_13.hes                | 0.2889               | invalid    |
+| p_scc_426_17.hes               | 0.2822               | invalid    |
+| p_scc_56_8.hes                 | 0.2837               | invalid    |
+| p_scc_426_15.hes               | 0.2449               | invalid    |
+| r_scc_78_11.hes                | 0.3679               | invalid    |
+| p_scc_224_4.hes                | 0.2516               | invalid    |
+| p_scc_89_20.hes                | 0.2461               | invalid    |
+| p_scc_2324_10.hes              | 0.2367               | invalid    |
+| p_scc_1819_13.hes              | 0.2528               | invalid    |
+| p_scc_144_5.hes                | 0.2409               | invalid    |
+| p_scc_1215_4.hes               | 0.3153               | invalid    |
+| p_scc_1215_10.hes              | 0.2377               | invalid    |
+| p_scc_2425_21.hes              | 0.3168               | invalid    |
+| r_nmc_1917.hes                 | 0.2767               | invalid    |
+| p_nmc_167.hes                  | 0.2450               | invalid    |
+| p_scc_1617_23.hes              | 0.2467               | invalid    |
+| r_scc_1011_13.hes              | 0.2872               | invalid    |
+| p_scc_45_12.hes                | 0.3556               | invalid    |
+| p_scc_2122_22.hes              | 0.2807               | invalid    |
+| p_scc_254_21.hes               | 0.3145               | invalid    |
+| p_scc_254_20.hes               | 0.2400               | invalid    |
+| p_scc_2122_23.hes              | 0.2799               | invalid    |
+| p_scc_45_13.hes                | 0.2428               | invalid    |
+| r_nmc_2012.hes                 | 0.2884               | invalid    |
+| p_scc_1617_22.hes              | 0.2360               | invalid    |
+| r_scc_1011_12.hes              | 0.2761               | invalid    |
+| p_nmc_166.hes                  | 0.2563               | invalid    |
+| p_nmc_2419.hes                 | 0.2501               | invalid    |
+| r_nmc_1916.hes                 | 0.2736               | invalid    |
+| p_scc_2425_20.hes              | 0.2362               | invalid    |
+| p_scc_1215_11.hes              | 0.2460               | invalid    |
+| p_scc_1215_5.hes               | 0.2773               | invalid    |
+| p_scc_144_4.hes                | 0.4172               | invalid    |
+| p_scc_2324_11.hes              | 0.2361               | invalid    |
+| p_scc_1819_12.hes              | 0.3523               | invalid    |
+| p_scc_89_21.hes                | 0.2622               | invalid    |
+| p_scc_224_5.hes                | 0.2378               | invalid    |
+| r_scc_78_10.hes                | 0.3157               | invalid    |
+| p_scc_426_14.hes               | 0.4110               | invalid    |
+| p_scc_56_9.hes                 | 0.2837               | invalid    |
+| r_scc_78_8.hes                 | 0.2822               | invalid    |
+| p_scc_426_10.hes               | 0.2423               | invalid    |
+| p_scc_45_7.hes                 | 0.2385               | invalid    |
+| p_scc_254_8.hes                | 0.2381               | invalid    |
+| r_scc_78_14.hes                | 0.2760               | invalid    |
+| p_nmc_1510.hes                 | 0.2528               | invalid    |
+| p_scc_1819_16.hes              | 0.2799               | invalid    |
+| p_scc_2324_15.hes              | 0.2776               | invalid    |
+| r_nmc_194.hes                  | 0.3121               | invalid    |
+| p_scc_89_19.hes                | 0.2363               | invalid    |
+| p_scc_89_25.hes                | 0.2450               | invalid    |
+| p_scc_1215_15.hes              | 0.2394               | invalid    |
+| p_scc_2425_24.hes              | 0.4101               | invalid    |
+| p_scc_2425_18.hes              | 0.2371               | invalid    |
+| r_scc_1011_6.hes               | 0.3719               | invalid    |
+| p_nmc_176.hes                  | 0.2555               | invalid    |
+| r_scc_1920_8.hes               | 0.2710               | invalid    |
+| r_nmc_1912.hes                 | 0.2866               | invalid    |
+| p_scc_1213_7.hes               | 0.2507               | invalid    |
+| r_scc_2021_4.hes               | 0.2935               | invalid    |
+| p_scc_2627_9.hes               | 0.2503               | invalid    |
+| p_scc_45_17.hes                | 0.2850               | invalid    |
+| r_scc_1011_16.hes              | 0.2799               | invalid    |
+| p_scc_1617_26.hes              | 0.2498               | invalid    |
+| r_nmc_2016.hes                 | 0.2838               | invalid    |
+| p_scc_254_24.hes               | 0.2756               | invalid    |
+| p_scc_254_18.hes               | 0.2389               | invalid    |
+| p_scc_2122_27.hes              | 0.2399               | invalid    |
+| p_scc_2122_5.hes               | 0.2380               | invalid    |
+| r_nmc_209.hes                  | 0.2846               | invalid    |
+| r_nmc_208.hes                  | 0.2910               | invalid    |
+| p_scc_254_19.hes               | 0.2363               | invalid    |
+| p_scc_2122_4.hes               | 0.2418               | invalid    |
+| p_scc_2122_26.hes              | 0.2799               | invalid    |
+| p_scc_254_25.hes               | 0.4109               | invalid    |
+| r_nmc_2017.hes                 | 0.2814               | invalid    |
+| r_scc_1011_17.hes              | 0.3630               | invalid    |
+| p_scc_1617_27.hes              | 0.2387               | invalid    |
+| p_scc_2627_8.hes               | 0.2402               | invalid    |
+| r_scc_2021_5.hes               | 0.2713               | invalid    |
+| p_scc_45_16.hes                | 0.2828               | invalid    |
+| p_scc_1213_6.hes               | 0.2375               | invalid    |
+| r_scc_1920_9.hes               | 0.2721               | invalid    |
+| p_nmc_177.hes                  | 0.2510               | invalid    |
+| r_scc_1011_7.hes               | 0.3174               | invalid    |
+| p_nmc_2420.hes                 | 0.2516               | invalid    |
+| p_scc_2425_19.hes              | 0.2395               | invalid    |
+| p_scc_2425_25.hes              | 0.2733               | invalid    |
+| r_nmc_618.hes                  | 2.3705               | invalid    |
+| p_scc_1215_14.hes              | 0.2375               | invalid    |
+| p_scc_89_24.hes                | 0.2399               | invalid    |
+| p_scc_89_18.hes                | 0.2846               | invalid    |
+| p_scc_1819_17.hes              | 0.2777               | invalid    |
+| r_nmc_195.hes                  | 0.3161               | invalid    |
+| p_scc_2324_14.hes              | 0.2861               | invalid    |
+| p_nmc_1511.hes                 | 0.2533               | invalid    |
+| r_scc_78_15.hes                | 0.2900               | invalid    |
+| p_scc_254_9.hes                | 0.2414               | invalid    |
+| r_scc_78_9.hes                 | 0.2771               | invalid    |
+| p_scc_426_11.hes               | 0.2430               | invalid    |
+| p_scc_45_6.hes                 | 0.2664               | invalid    |
+| p_scc_45_4.hes                 | 0.4830               | invalid    |
+| p_scc_426_13.hes               | 0.2399               | invalid    |
+| p_nmc_217.hes                  | 0.2556               | invalid    |
+| r_scc_78_17.hes                | 0.2714               | invalid    |
+| p_scc_2324_16.hes              | 0.2414               | invalid    |
+| p_scc_1819_15.hes              | 0.2510               | invalid    |
+| p_scc_89_26.hes                | 0.2412               | invalid    |
+| r_nmc_1118.hes                 | 0.2811               | invalid    |
+| p_nmc_1711.hes                 | 0.2516               | invalid    |
+| p_scc_1215_16.hes              | 0.2832               | invalid    |
+| p_scc_2425_27.hes              | 0.2315               | invalid    |
+| p_nmc_820.hes                  | 0.2530               | invalid    |
+| p_scc_89_9.hes                 | 0.2816               | invalid    |
+| p_scc_1617_8.hes               | 0.2862               | invalid    |
+| r_scc_1011_5.hes               | 0.4007               | invalid    |
+| p_scc_1213_4.hes               | 0.3144               | invalid    |
+| p_scc_45_14.hes                | 0.4090               | invalid    |
+| r_scc_2021_7.hes               | 0.3335               | invalid    |
+| p_scc_1617_19.hes              | 0.2317               | invalid    |
+| p_scc_1617_25.hes              | 0.2384               | invalid    |
+| r_scc_1011_15.hes              | 0.2870               | invalid    |
+| p_nmc_411.hes                  | 0.2484               | invalid    |
+| p_scc_2122_18.hes              | 0.2398               | invalid    |
+| p_nmc_2620.hes                 | 0.2497               | invalid    |
+| p_scc_254_27.hes               | 0.2505               | invalid    |
+| p_scc_2122_6.hes               | 0.2432               | invalid    |
+| p_scc_2122_24.hes              | 0.2817               | invalid    |
+| p_scc_2122_25.hes              | 0.2810               | invalid    |
+| p_scc_2122_7.hes               | 0.2484               | invalid    |
+| p_scc_2122_19.hes              | 0.2350               | invalid    |
+| p_scc_254_26.hes               | 0.2801               | invalid    |
+| p_nmc_410.hes                  | 0.2504               | invalid    |
+| p_scc_1617_24.hes              | 0.2364               | invalid    |
+| r_scc_1011_14.hes              | 0.2890               | invalid    |
+| p_scc_1617_18.hes              | 0.2758               | invalid    |
+| p_scc_45_15.hes                | 0.2404               | invalid    |
+| r_scc_2021_6.hes               | 0.3127               | invalid    |
+| p_scc_1213_5.hes               | 0.2809               | invalid    |
+| r_scc_1011_4.hes               | 0.3203               | invalid    |
+| p_scc_1617_9.hes               | 0.3144               | invalid    |
+| p_scc_89_8.hes                 | 0.4328               | invalid    |
+| p_scc_2425_26.hes              | 0.2788               | invalid    |
+| p_scc_1215_17.hes              | 0.2857               | invalid    |
+| p_nmc_1710.hes                 | 0.2787               | invalid    |
+| p_nmc_2219.hes                 | 0.2430               | invalid    |
+| p_scc_89_27.hes                | 0.2395               | invalid    |
+| p_scc_2324_17.hes              | 0.2372               | invalid    |
+| p_scc_1819_14.hes              | 0.2399               | invalid    |
+| r_scc_78_16.hes                | 0.2740               | invalid    |
+| p_nmc_216.hes                  | 0.2516               | invalid    |
+| p_scc_45_5.hes                 | 0.2938               | invalid    |
+| p_scc_426_12.hes               | 0.3476               | invalid    |
+| p_scc_1718_4.hes               | 0.3122               | invalid    |
+| p_scc_1216_21.hes              | 0.2594               | invalid    |
+| p_scc_1718_12.hes              | 0.3499               | invalid    |
+| r_scc_1920_17.hes              | 0.2695               | invalid    |
+| r_scc_2021_27.hes              | 0.2771               | invalid    |
+| p_scc_2627_17.hes              | 0.2373               | invalid    |
+| r_nmc_75.hes                   | 0.2807               | invalid    |
+| r_scc_1112_4.hes               | 0.2921               | invalid    |
+| p_scc_2123_16.hes              | 0.2393               | invalid    |
+| p_scc_144_17.hes               | 0.2379               | invalid    |
+| p_scc_224_15.hes               | 0.2820               | invalid    |
+| r_scc_1112_22.hes              | 0.2967               | invalid    |
+| p_scc_154_12.hes               | 0.2372               | invalid    |
+| p_scc_56_26.hes                | 0.4009               | invalid    |
+| p_scc_910_12.hes               | 0.3486               | invalid    |
+| p_scc_1216_6.hes               | 0.2375               | invalid    |
+| p_scc_1314_18.hes              | 0.2507               | invalid    |
+| p_scc_1213_11.hes              | 0.2532               | invalid    |
+| r_scc_67_25.hes                | 0.2850               | invalid    |
+| p_scc_1314_24.hes              | 0.2785               | invalid    |
+| p_nmc_2120.hes                 | 0.2588               | invalid    |
+| r_scc_67_19.hes                | 0.3449               | invalid    |
+| r_scc_67_18.hes                | 1.6163               | invalid    |
+| p_scc_1314_25.hes              | 0.2779               | invalid    |
+| p_scc_1213_10.hes              | 0.2405               | invalid    |
+| r_scc_67_24.hes                | 0.2944               | invalid    |
+| p_scc_1216_7.hes               | 0.2478               | invalid    |
+| p_scc_1314_19.hes              | 0.2302               | invalid    |
+| p_scc_910_13.hes               | 0.2761               | invalid    |
+| p_scc_56_27.hes                | 0.2413               | invalid    |
+| p_scc_154_13.hes               | 0.4663               | invalid    |
+| p_scc_224_14.hes               | 0.2851               | invalid    |
+| r_scc_1112_23.hes              | 0.3101               | invalid    |
+| p_scc_144_16.hes               | 0.2438               | invalid    |
+| p_nmc_1819.hes                 | 0.2400               | invalid    |
+| p_scc_2123_17.hes              | 0.2430               | invalid    |
+| r_scc_1112_5.hes               | 0.2832               | invalid    |
+| r_nmc_74.hes                   | 0.3180               | invalid    |
+| r_scc_2021_26.hes              | 0.2784               | invalid    |
+| r_scc_1920_16.hes              | 0.2680               | invalid    |
+| p_scc_2627_16.hes              | 0.2579               | invalid    |
+| p_nmc_2519.hes                 | 0.2612               | invalid    |
+| p_scc_1718_13.hes              | 0.2522               | invalid    |
+| p_scc_1216_20.hes              | 0.2493               | invalid    |
+| p_scc_1718_5.hes               | 0.2822               | invalid    |
+| p_scc_1718_7.hes               | 0.2443               | invalid    |
+| p_nmc_1210.hes                 | 0.2619               | invalid    |
+| p_scc_1216_22.hes              | 0.2495               | invalid    |
+| p_scc_2425_8.hes               | 0.2474               | invalid    |
+| p_nmc_266.hes                  | 0.2770               | invalid    |
+| p_scc_426_8.hes                | 0.2836               | invalid    |
+| p_scc_1718_11.hes              | 0.2467               | invalid    |
+| p_nmc_919.hes                  | 0.2473               | invalid    |
+| p_scc_1819_9.hes               | 0.2924               | invalid    |
+| r_nmc_119.hes                  | 0.2950               | invalid    |
+| p_scc_2627_14.hes              | 0.2892               | invalid    |
+| r_scc_1920_14.hes              | 0.2962               | invalid    |
+| r_scc_2021_24.hes              | 0.3009               | invalid    |
+| r_scc_1112_7.hes               | 0.3767               | invalid    |
+| p_scc_2123_15.hes              | 0.2847               | invalid    |
+| r_scc_2021_18.hes              | 0.2821               | invalid    |
+| p_scc_144_14.hes               | 0.4253               | invalid    |
+| r_scc_1112_21.hes              | 0.3368               | invalid    |
+| p_scc_224_16.hes               | 0.2518               | invalid    |
+| p_scc_56_25.hes                | 0.2527               | invalid    |
+| p_scc_154_11.hes               | 0.2556               | invalid    |
+| p_scc_910_11.hes               | 0.2512               | invalid    |
+| p_scc_56_19.hes                | 0.2478               | invalid    |
+| r_scc_67_26.hes                | 0.3929               | invalid    |
+| p_scc_1213_12.hes              | 0.6389               | invalid    |
+| p_scc_1216_5.hes               | 0.2883               | invalid    |
+| p_scc_1314_27.hes              | 0.2503               | invalid    |
+| p_scc_1314_26.hes              | 0.3018               | invalid    |
+| p_scc_1216_4.hes               | 0.3391               | invalid    |
+| r_scc_67_27.hes                | 0.4068               | invalid    |
+| p_scc_1213_13.hes              | 0.2458               | invalid    |
+| p_scc_910_10.hes               | 0.2574               | invalid    |
+| p_scc_56_18.hes                | 0.3018               | invalid    |
+| p_scc_154_10.hes               | 0.2531               | invalid    |
+| p_scc_56_24.hes                | 0.2474               | invalid    |
+| p_scc_01_0.hes                 | 0.2938               | invalid    |
+| p_nmc_2320.hes                 | 0.2552               | invalid    |
+| r_scc_1112_20.hes              | 0.3364               | invalid    |
+| p_scc_224_17.hes               | 0.2447               | invalid    |
+| p_scc_144_15.hes               | 0.2897               | invalid    |
+| r_scc_2021_19.hes              | 0.3255               | invalid    |
+| p_scc_2123_14.hes              | 0.2903               | invalid    |
+| r_scc_1112_6.hes               | 0.3278               | invalid    |
+| p_scc_2627_15.hes              | 0.2966               | invalid    |
+| r_nmc_118.hes                  | 0.2928               | invalid    |
+| r_scc_2021_25.hes              | 0.2956               | invalid    |
+| r_scc_1920_15.hes              | 0.2778               | invalid    |
+| p_scc_1819_8.hes               | 0.2860               | invalid    |
+| p_scc_426_9.hes                | 0.2934               | invalid    |
+| p_scc_1718_10.hes              | 0.2741               | invalid    |
+| p_scc_2425_9.hes               | 0.2428               | invalid    |
+| p_nmc_267.hes                  | 0.2577               | invalid    |
+| p_scc_1216_23.hes              | 0.2487               | invalid    |
+| p_nmc_1211.hes                 | 0.2651               | invalid    |
+| p_scc_1718_6.hes               | 0.2503               | invalid    |
+| p_scc_1216_27.hes              | 0.2434               | invalid    |
+| p_nmc_511.hes                  | 0.2576               | invalid    |
+| p_scc_2123_6.hes               | 0.2473               | invalid    |
+| p_scc_1718_14.hes              | 0.2506               | invalid    |
+| p_nmc_920.hes                  | 0.2591               | invalid    |
+| p_scc_2123_10.hes              | 0.2496               | invalid    |
+| r_nmc_108.hes                  | 0.2936               | invalid    |
+| r_scc_1920_11.hes              | 0.3209               | invalid    |
+| r_scc_2021_21.hes              | 0.3316               | invalid    |
+| p_scc_2627_11.hes              | 0.2428               | invalid    |
+| p_scc_224_13.hes               | 0.2885               | invalid    |
+| r_scc_1112_24.hes              | 0.3066               | invalid    |
+| p_scc_144_11.hes               | 0.2446               | invalid    |
+| r_scc_1112_18.hes              | 0.2833               | invalid    |
+| p_scc_2324_5.hes               | 0.2462               | invalid    |
+| r_nmc_1018.hes                 | 0.2858               | invalid    |
+| p_nmc_1611.hes                 | 0.2527               | invalid    |
+| p_scc_910_14.hes               | 0.2482               | invalid    |
+| p_scc_56_20.hes                | 0.2491               | invalid    |
+| p_scc_154_14.hes               | 0.2886               | invalid    |
+| p_scc_1314_22.hes              | 0.2904               | invalid    |
+| p_scc_1213_17.hes              | 0.2906               | invalid    |
+| p_scc_1314_7.hes               | 0.2502               | invalid    |
+| r_scc_67_23.hes                | 0.3042               | invalid    |
+| p_scc_1213_16.hes              | 0.2862               | invalid    |
+| r_scc_67_22.hes                | 0.2925               | invalid    |
+| p_scc_1314_6.hes               | 0.2586               | invalid    |
+| p_scc_1314_23.hes              | 0.2855               | invalid    |
+| p_scc_154_15.hes               | 0.4278               | invalid    |
+| p_scc_56_21.hes                | 0.2469               | invalid    |
+| p_scc_910_15.hes               | 0.2870               | invalid    |
+| p_nmc_1610.hes                 | 0.2621               | invalid    |
+| p_nmc_2319.hes                 | 0.2508               | invalid    |
+| p_scc_2324_4.hes               | 0.2520               | invalid    |
+| r_scc_1112_19.hes              | 0.3205               | invalid    |
+| p_scc_144_10.hes               | 0.2595               | invalid    |
+| p_scc_224_12.hes               | 0.2528               | invalid    |
+| r_scc_1112_25.hes              | 0.3075               | invalid    |
+| r_scc_2021_20.hes              | 1.6555               | invalid    |
+| r_scc_1920_10.hes              | 0.3305               | invalid    |
+| p_scc_2627_10.hes              | 0.2622               | invalid    |
+| r_nmc_109.hes                  | 0.2999               | invalid    |
+| p_scc_2123_11.hes              | 0.2549               | invalid    |
+| p_scc_23_2.hes                 | 0.3034               | invalid    |
+| p_scc_1718_15.hes              | 0.2389               | invalid    |
+| p_scc_2123_7.hes               | 0.2545               | invalid    |
+| p_nmc_510.hes                  | 0.2620               | invalid    |
+| p_scc_1216_26.hes              | 0.2468               | invalid    |
+| p_scc_1216_24.hes              | 0.2518               | invalid    |
+| p_scc_2123_5.hes               | 0.2485               | invalid    |
+| p_scc_1216_18.hes              | 0.2933               | invalid    |
+| p_scc_1718_17.hes              | 0.4417               | invalid    |
+| p_scc_2123_13.hes              | 0.2831               | invalid    |
+| p_scc_2627_12.hes              | 0.2527               | invalid    |
+| r_nmc_64.hes                   | 0.3802               | invalid    |
+| r_scc_1920_12.hes              | 0.2749               | invalid    |
+| r_scc_2021_22.hes              | 0.2939               | invalid    |
+| r_scc_1112_27.hes              | 0.2823               | invalid    |
+| p_scc_224_10.hes               | 0.2459               | invalid    |
+| p_scc_2324_6.hes               | 0.2465               | invalid    |
+| p_scc_144_12.hes               | 0.2483               | invalid    |
+| p_scc_154_8.hes                | 0.2552               | invalid    |
+| p_scc_910_17.hes               | 0.2814               | invalid    |
+| p_scc_154_17.hes               | 0.2335               | invalid    |
+| p_scc_56_23.hes                | 0.2430               | invalid    |
+| p_scc_1314_21.hes              | 0.3129               | invalid    |
+| p_scc_1314_4.hes               | 0.2563               | invalid    |
+| r_scc_67_20.hes                | 0.3191               | invalid    |
+| p_scc_1213_14.hes              | 0.2483               | invalid    |
+| p_nmc_1410.hes                 | 0.2530               | invalid    |
+| p_nmc_2119.hes                 | 0.2577               | invalid    |
+| r_scc_67_21.hes                | 0.3293               | invalid    |
+| p_scc_1314_5.hes               | 0.2598               | invalid    |
+| p_nmc_1411.hes                 | 0.2556               | invalid    |
+| p_scc_1213_15.hes              | 0.2491               | invalid    |
+| p_scc_1314_20.hes              | 0.2459               | invalid    |
+| p_scc_56_22.hes                | 0.2485               | invalid    |
+| p_scc_154_16.hes               | 0.3864               | invalid    |
+| p_scc_910_16.hes               | 0.3191               | invalid    |
+| p_scc_154_9.hes                | 0.2850               | invalid    |
+| r_nmc_718.hes                  | 0.2917               | invalid    |
+| p_scc_144_13.hes               | 0.2927               | invalid    |
+| p_scc_2324_7.hes               | 0.2479               | invalid    |
+| r_scc_1112_26.hes              | 0.2770               | invalid    |
+| p_nmc_1820.hes                 | 0.2518               | invalid    |
+| p_scc_224_11.hes               | 0.2458               | invalid    |
+| p_scc_2627_13.hes              | 0.2947               | invalid    |
+| r_scc_2021_23.hes              | 0.3088               | invalid    |
+| r_scc_1920_13.hes              | 0.2812               | invalid    |
+| r_nmc_65.hes                   | 0.3952               | invalid    |
+| p_scc_2123_12.hes              | 0.2661               | invalid    |
+| p_nmc_2520.hes                 | 0.2525               | invalid    |
+| p_scc_1718_16.hes              | 0.2811               | invalid    |
+| p_scc_1216_19.hes              | 0.2444               | invalid    |
+| p_scc_2123_4.hes               | 0.2446               | invalid    |
+| p_scc_1216_25.hes              | 0.2454               | invalid    |
+
+Total time:237.397243
+-e 
+
+
+Processing ticket
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.3525               | invalid    |
+| det.hes                        | 0.1935               | invalid    |
+
+Total time:0.546027
+
+Checking implementability...
+Binary protocol, implementable
+-e 
+
+
+Processing travel-agency
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.3368               | invalid    |
+| det.hes                        | 0.2800               | invalid    |
+
+Total time:0.616804
+
+Checking implementability...
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| c_scc_45_8.hes                 | 0.2105               | invalid    |
+| a_scc_20_2.hes                 | 0.2031               | invalid    |
+| a_nmc_81.hes                   | 0.2109               | invalid    |
+| c_scc_08_0.hes                 | 0.2328               | invalid    |
+| c_rcc_20_56.hes                | 0.3024               | invalid    |
+| a_scc_20_4.hes                 | 0.1762               | invalid    |
+| a_scc_20_5.hes                 | 0.1753               | invalid    |
+| c_scc_08_6.hes                 | 0.1874               | invalid    |
+| c_scc_67_8.hes                 | 0.2240               | invalid    |
+| a_scc_20_6.hes                 | 0.1752               | invalid    |
+| c_scc_12_1.hes                 | 0.2063               | invalid    |
+| c_scc_12_3.hes                 | 0.2113               | invalid    |
+| c_scc_12_7.hes                 | 0.1959               | invalid    |
+| a_nmc_26.hes                   | 0.1920               | invalid    |
+| c_scc_12_6.hes                 | 0.2193               | invalid    |
+| a_scc_86_1.hes                 | 0.2107               | invalid    |
+| a_scc_86_3.hes                 | 0.2229               | invalid    |
+| c_scc_12_4.hes                 | 0.2094               | invalid    |
+| a_scc_34_8.hes                 | 0.2147               | invalid    |
+| a_nmc_31.hes                   | 0.2168               | invalid    |
+| c_scc_03_0.hes                 | 0.2231               | invalid    |
+| c_scc_12_8.hes                 | 0.2270               | invalid    |
+| c_rcc_56_20.hes                | 0.2879               | invalid    |
+| c_scc_01_0.hes                 | 0.2116               | invalid    |
+| c_scc_03_6.hes                 | 0.1911               | invalid    |
+| s_scc_56_5.hes                 | 0.4456               | invalid    |
+| a_scc_34_3.hes                 | 0.2095               | invalid    |
+| a_scc_86_8.hes                 | 0.2001               | invalid    |
+| a_scc_34_1.hes                 | 0.2070               | invalid    |
+| c_scc_01_6.hes                 | 0.1951               | invalid    |
+| c_scc_67_6.hes                 | 0.2513               | invalid    |
+| c_scc_45_1.hes                 | 0.2121               | invalid    |
+| c_scc_67_7.hes                 | 0.1935               | invalid    |
+| c_scc_45_3.hes                 | 0.2316               | invalid    |
+| c_scc_67_4.hes                 | 0.2247               | invalid    |
+| c_scc_67_0.hes                 | 0.2036               | invalid    |
+| c_scc_45_7.hes                 | 0.2043               | invalid    |
+| c_scc_45_6.hes                 | 0.2241               | invalid    |
+| c_scc_67_1.hes                 | 0.2197               | invalid    |
+| c_scc_67_3.hes                 | 0.2113               | invalid    |
+| c_scc_45_4.hes                 | 0.2378               | invalid    |
+
+Total time:9.008698
+-e 
+
+
+Processing two-buyer
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.3824               | invalid    |
+| det.hes                        | 0.2143               | invalid    |
+
+Total time:0.596682
+
+Checking implementability...
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| b_scc_56_5.hes                 | 0.2585               | invalid    |
+| a_scc_89_8.hes                 | 0.2043               | invalid    |
+| s_scc_23_2.hes                 | 0.2051               | invalid    |
+| a_scc_67_6.hes                 | 0.2038               | invalid    |
+| a_nmc_85.hes                   | 0.2082               | invalid    |
+| b_scc_48_4.hes                 | 0.2696               | invalid    |
+| a_scc_01_0.hes                 | 0.1957               | invalid    |
+| a_scc_34_2.hes                 | 0.2237               | invalid    |
+| a_scc_34_3.hes                 | 0.1990               | invalid    |
+| a_scc_67_9.hes                 | 0.1759               | invalid    |
+| s_scc_12_1.hes                 | 0.1975               | invalid    |
+| b_scc_45_4.hes                 | 0.2533               | invalid    |
+| a_scc_89_5.hes                 | 0.2022               | invalid    |
+| b_scc_56_9.hes                 | 0.2521               | invalid    |
+| b_scc_56_8.hes                 | 0.2450               | invalid    |
+
+Total time:3.293965
+-e 
+
+
+Warning: File ../examples/sprout/adder not found. Skipping.
+Processing double-buffering
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.2186               | invalid    |
+| det.hes                        | 0.1779               | invalid    |
+
+Total time:0.396484
+
+Checking implementability...
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| k_scc_01_0.hes                 | 0.1796               | invalid    |
+| t_scc_23_2.hes                 | 0.1815               | invalid    |
+| t_scc_23_1.hes                 | 0.2248               | invalid    |
+| t_scc_23_0.hes                 | 0.2058               | invalid    |
+| s_scc_12_1.hes                 | 0.1745               | invalid    |
+| k_scc_30_3.hes                 | 0.1784               | invalid    |
+
+Total time:1.144680
+-e 
+
+
+Processing oauth
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.2557               | invalid    |
+| det.hes                        | 0.2215               | invalid    |
+
+Total time:0.477243
+
+Checking implementability...
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| a_scc_45_4.hes                 | 0.1837               | invalid    |
+| s_scc_01_0.hes                 | 0.1880               | invalid    |
+| a_scc_49_8.hes                 | 0.2419               | invalid    |
+| c_scc_148_14.hes               | 0.1837               | invalid    |
+| c_scc_1314_2.hes               | 0.2081               | invalid    |
+| a_scc_56_9.hes                 | 0.2302               | invalid    |
+| s_scc_67_6.hes                 | 0.1855               | invalid    |
+| c_scc_1314_13.hes              | 0.1839               | invalid    |
+| c_scc_34_3.hes                 | 0.1844               | invalid    |
+| s_scc_118_11.hes               | 0.1862               | invalid    |
+| s_scc_78_7.hes                 | 0.1865               | invalid    |
+| a_scc_910_5.hes                | 0.2375               | invalid    |
+| s_scc_012_0.hes                | 0.1862               | invalid    |
+| s_scc_1213_12.hes              | 0.1910               | invalid    |
+| c_scc_34_14.hes                | 0.2210               | invalid    |
+| s_scc_78_11.hes                | 0.2477               | invalid    |
+| c_scc_148_3.hes                | 0.2205               | invalid    |
+| a_scc_910_9.hes                | 0.1927               | invalid    |
+| s_scc_12_12.hes                | 0.2074               | invalid    |
+| s_scc_1011_6.hes               | 0.2429               | invalid    |
+| c_scc_23_13.hes                | 0.2044               | invalid    |
+| c_scc_23_2.hes                 | 0.1835               | invalid    |
+| s_scc_118_7.hes                | 0.2448               | invalid    |
+| s_scc_1213_1.hes               | 0.1999               | invalid    |
+| s_scc_12_1.hes                 | 0.1868               | invalid    |
+| a_scc_56_5.hes                 | 0.1905               | invalid    |
+| s_scc_1011_10.hes              | 0.1961               | invalid    |
+| a_scc_45_8.hes                 | 0.2481               | invalid    |
+| s_scc_67_10.hes                | 0.2391               | invalid    |
+| a_scc_49_4.hes                 | 0.1907               | invalid    |
+
+Total time:6.192757
+-e 
+
+
+Processing plus-minus
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.4012               | invalid    |
+| det.hes                        | 0.3723               | invalid    |
+
+Total time:0.773449
+
+Checking implementability...
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| b_scc_52_7.hes                 | 0.2408               | invalid    |
+| b_scc_52_6.hes                 | 0.2313               | invalid    |
+| b_scc_52_5.hes                 | 0.2307               | invalid    |
+| c_scc_34_3.hes                 | 0.2681               | invalid    |
+| c_scc_23_8.hes                 | 0.2769               | invalid    |
+| a_scc_01_0.hes                 | 0.1968               | invalid    |
+| b_scc_62_6.hes                 | 0.2319               | invalid    |
+| b_scc_62_7.hes                 | 0.2378               | invalid    |
+| b_scc_46_4.hes                 | 0.2705               | invalid    |
+| b_scc_62_5.hes                 | 0.2353               | invalid    |
+| a_scc_12_1.hes                 | 0.2041               | invalid    |
+| c_scc_23_2.hes                 | 0.2744               | invalid    |
+| c_scc_23_0.hes                 | 0.2282               | invalid    |
+| c_scc_23_1.hes                 | 0.2276               | invalid    |
+| b_scc_47_4.hes                 | 0.3614               | invalid    |
+| b_scc_78_6.hes                 | 0.2440               | invalid    |
+| b_scc_78_7.hes                 | 0.2364               | invalid    |
+| b_scc_78_5.hes                 | 0.2381               | invalid    |
+| b_scc_45_4.hes                 | 0.2698               | invalid    |
+
+Total time:4.704125
+-e 
+
+
+Processing ring-max
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.5043               | invalid    |
+| det.hes                        | 0.1812               | invalid    |
+
+Total time:0.685544
+
+Checking implementability...
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| g_scc_67_6.hes                 | 1.0216               | invalid    |
+| d_scc_34_3.hes                 | 0.2407               | invalid    |
+| b_scc_12_1.hes                 | 0.2280               | invalid    |
+| a_scc_01_0.hes                 | 0.2306               | invalid    |
+| c_scc_23_2.hes                 | 0.2505               | invalid    |
+| f_scc_56_5.hes                 | 0.4418               | invalid    |
+| e_scc_45_4.hes                 | 0.3589               | invalid    |
+
+Total time:2.772091
+-e 
+
+
+Warning: File ../examples/sprout/simple-adder not found. Skipping.
+Processing simple-auth
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.3139               | invalid    |
+| det.hes                        | 0.2099               | invalid    |
+
+Total time:0.523791
+
+Checking implementability...
+Binary protocol, implementable
+-e 
+
+
+Processing travel-agency2
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.2675               | invalid    |
+| det.hes                        | 0.2205               | invalid    |
+
+Total time:0.488009
+
+Checking implementability...
+Binary protocol, implementable
+-e 
+
+
+Processing send-validity-yes
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.2157               | invalid    |
+| det.hes                        | 0.1990               | invalid    |
+
+Total time:0.414658
+
+Checking implementability...
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| p_scc_03_0.hes                 | 0.1836               | invalid    |
+| p_scc_01_0.hes                 | 0.1864               | invalid    |
+| r_scc_12_1.hes                 | 0.1852               | invalid    |
+| r_scc_12_0.hes                 | 0.2113               | invalid    |
+| r_scc_34_3.hes                 | 0.1787               | invalid    |
+| r_scc_34_1.hes                 | 0.2044               | invalid    |
+| r_scc_34_0.hes                 | 0.2047               | invalid    |
+| r_scc_12_3.hes                 | 0.1993               | invalid    |
+
+Total time:1.553640
+-e 
+
+
+Processing send-validity-no
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.2161               | invalid    |
+| det.hes                        | 0.1981               | invalid    |
+
+Total time:0.414195
+
+Checking implementability...
+Non-implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| p_scc_03_0.hes                 | 0.1794               | invalid    |
+| p_scc_01_0.hes                 | 0.1819               | invalid    |
+| r_scc_12_1.hes                 | 0.1756               | invalid    |
+| r_scc_12_0.hes                 | 0.2100               | invalid    |
+| r_scc_34_3.hes                 | 0.1782               | invalid    |
+| r_scc_34_1.hes                 | 0.2073               | valid      |
+| r_scc_34_0.hes                 | 0.2018               | invalid    |
+| r_scc_12_3.hes                 | 0.1944               | valid      |
+
+Total time:1.528779
+-e 
+
+
+Processing receive-validity-yes
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.2013               | invalid    |
+| det.hes                        | 0.1987               | invalid    |
+
+Total time:0.399922
+
+Checking implementability...
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| q_scc_12_6.hes                 | 0.1907               | invalid    |
+| p_scc_34_3.hes                 | 0.1854               | invalid    |
+| r_scc_23_2.hes                 | 0.1870               | invalid    |
+| q_scc_12_5.hes                 | 0.1998               | invalid    |
+| q_scc_12_1.hes                 | 0.1879               | invalid    |
+| r_scc_23_6.hes                 | 0.1873               | invalid    |
+| p_scc_34_7.hes                 | 0.1869               | invalid    |
+| p_scc_34_6.hes                 | 0.1858               | invalid    |
+| p_scc_56_2.hes                 | 0.1998               | invalid    |
+| p_scc_56_1.hes                 | 0.1992               | invalid    |
+| r_scc_67_2.hes                 | 0.1869               | invalid    |
+| r_scc_67_6.hes                 | 0.1876               | invalid    |
+| r_rcc_12_56.hes                | 0.2321               | invalid    |
+| p_nmc_52.hes                   | 0.1894               | invalid    |
+| r_rcc_56_12.hes                | 0.2342               | invalid    |
+| p_scc_56_5.hes                 | 0.1732               | invalid    |
+| q_nmc_16.hes                   | 0.1970               | invalid    |
+| r_rcc_34_78.hes                | 0.2140               | invalid    |
+| q_scc_78_7.hes                 | 0.1735               | invalid    |
+| q_scc_78_4.hes                 | 0.1812               | invalid    |
+| q_scc_78_3.hes                 | 0.1844               | invalid    |
+| q_scc_78_2.hes                 | 0.1840               | invalid    |
+| r_rcc_78_34.hes                | 0.2173               | invalid    |
+| p_scc_34_8.hes                 | 0.1732               | invalid    |
+| p_scc_01_0.hes                 | 0.1803               | invalid    |
+| p_scc_05_0.hes                 | 0.1782               | invalid    |
+
+Total time:4.996082
+-e 
+
+
+Processing receive-validity-no
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.2028               | invalid    |
+| det.hes                        | 0.2003               | invalid    |
+
+Total time:0.403082
+
+Checking implementability...
+Non-implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| q_scc_12_5.hes                 | 0.1941               | invalid    |
+| q_scc_12_4.hes                 | 0.2006               | invalid    |
+| q_scc_12_1.hes                 | 0.1855               | invalid    |
+| q_scc_56_5.hes                 | 0.1849               | invalid    |
+| r_rcc_12_45.hes                | 0.2100               | valid      |
+| q_scc_56_4.hes                 | 0.1803               | invalid    |
+| q_scc_56_1.hes                 | 0.1926               | invalid    |
+| p_scc_45_1.hes                 | 0.1932               | invalid    |
+| r_rcc_56_23.hes                | 0.1918               | invalid    |
+| p_scc_45_2.hes                 | 0.1823               | invalid    |
+| r_rcc_23_56.hes                | 0.1838               | invalid    |
+| p_scc_45_4.hes                 | 0.1706               | invalid    |
+| p_scc_04_0.hes                 | 0.1819               | invalid    |
+| p_scc_23_4.hes                 | 0.1938               | invalid    |
+| p_scc_01_0.hes                 | 0.1813               | invalid    |
+| p_scc_23_2.hes                 | 0.1812               | invalid    |
+| r_rcc_45_12.hes                | 0.2019               | valid      |
+| p_scc_23_1.hes                 | 0.1781               | invalid    |
+
+Total time:3.387644
+-e 
+
+
+Processing symbolic-two-bidder-yes
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 6.3620               | invalid    |
+| det.hes                        | 0.2383               | invalid    |
+
+Total time:6.600255
+
+Checking implementability...
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| b2_rcc_73_86.hes               | 0.6137               | invalid    |
+| s_scc_23_2.hes                 | 0.2262               | invalid    |
+| b1_scc_78_6.hes                | 0.1785               | invalid    |
+| b1_scc_78_7.hes                | 0.3537               | invalid    |
+| s_scc_23_1.hes                 | 0.2614               | invalid    |
+| b1_rcc_47_56.hes               | 0.5345               | invalid    |
+| s_scc_86_5.hes                 | 0.1803               | invalid    |
+| b1_scc_01_0.hes                | 0.2098               | invalid    |
+| b1_scc_34_8.hes                | 0.1898               | invalid    |
+| s_rcc_78_45.hes                | 5.3411               | invalid    |
+| s_scc_56_8.hes                 | 0.1888               | invalid    |
+| b2_rcc_86_73.hes               | 0.6930               | invalid    |
+| b1_scc_34_3.hes                | 0.2321               | invalid    |
+| b1_scc_12_1.hes                | 0.2124               | invalid    |
+| s_rcc_45_78.hes                | 6.3201               | invalid    |
+| b1_rcc_56_47.hes               | 0.5397               | invalid    |
+| s_scc_56_5.hes                 | 1.4661               | invalid    |
+| b1_scc_73_7.hes                | 0.4484               | invalid    |
+| b1_scc_73_6.hes                | 0.1785               | invalid    |
+| b1_scc_34_6.hes                | 0.1979               | invalid    |
+| s_scc_86_8.hes                 | 3.0478               | invalid    |
+| b2_scc_47_4.hes                | 0.3230               | invalid    |
+| b2_scc_45_4.hes                | 0.3129               | invalid    |
+
+Total time:22.249644
+-e 
+
+
+Processing symbolic-two-bidder-no1
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 5.6073               | invalid    |
+| det.hes                        | 0.2387               | invalid    |
+
+Total time:5.846069
+
+Checking implementability...
+Non-implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| b2_rcc_73_86.hes               | 0.7159               | invalid    |
+| s_scc_23_2.hes                 | 0.2337               | invalid    |
+| b1_scc_78_6.hes                | 0.1782               | invalid    |
+| b1_scc_78_7.hes                | 0.4378               | invalid    |
+| s_scc_23_1.hes                 | 0.2591               | invalid    |
+| b1_rcc_47_56.hes               | 0.5339               | invalid    |
+| s_scc_86_5.hes                 | 0.1808               | invalid    |
+| b1_scc_01_0.hes                | 0.2204               | invalid    |
+| b1_scc_34_8.hes                | 0.1897               | invalid    |
+| s_rcc_78_45.hes                | 2.0160               | invalid    |
+| s_scc_56_8.hes                 | 0.1805               | invalid    |
+| b2_rcc_86_73.hes               | 0.7043               | invalid    |
+| b1_scc_34_3.hes                | 0.2350               | invalid    |
+| b1_scc_12_1.hes                | 0.2159               | invalid    |
+| s_rcc_45_78.hes                | 3.4710               | invalid    |
+| b1_rcc_56_47.hes               | 0.5382               | invalid    |
+| s_scc_56_5.hes                 | 1.2706               | invalid    |
+| b1_scc_73_7.hes                | 0.4310               | invalid    |
+| b1_scc_73_6.hes                | 0.1795               | invalid    |
+| b1_scc_34_6.hes                | 0.2002               | invalid    |
+| s_scc_86_8.hes                 | 1.0650               | invalid    |
+| b2_scc_47_4.hes                | 0.3916               | valid      |
+| b2_scc_45_4.hes                | 0.3202               | invalid    |
+
+Total time:14.168437
+-e 
+
+
+Processing figure12-yes
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 1.2465               | invalid    |
+| det.hes                        | 0.1722               | invalid    |
+
+Total time:1.418647
+
+Checking implementability...
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| r_scc_23_2.hes                 | 0.2066               | invalid    |
+| q_scc_12_1.hes                 | 0.1916               | invalid    |
+| p_scc_01_0.hes                 | 0.1930               | invalid    |
+
+Total time:0.591242
+-e 
+
+
+Processing figure12-no
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 2.2600               | invalid    |
+| det.hes                        | 0.1818               | invalid    |
+
+Total time:2.441801
+
+Checking implementability...
+Non-implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| r_scc_23_2.hes                 | 0.2046               | valid      |
+| q_scc_12_1.hes                 | 0.2003               | invalid    |
+| p_scc_01_0.hes                 | 0.1912               | invalid    |
+
+Total time:0.596095
+-e 
+
+
+Processing symbolic-send-validity-yes
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.4008               | invalid    |
+| det.hes                        | 0.2539               | invalid    |
+
+Total time:0.654701
+
+Checking implementability...
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| p_scc_79_8.hes                 | 0.2124               | invalid    |
+| q_scc_12_5.hes                 | 0.2040               | invalid    |
+| s_scc_01_0.hes                 | 0.2124               | invalid    |
+| q_scc_68_6.hes                 | 0.2115               | invalid    |
+| q_scc_34_7.hes                 | 0.1754               | invalid    |
+| q_scc_34_3.hes                 | 0.1984               | invalid    |
+| q_scc_68_2.hes                 | 0.1870               | invalid    |
+| q_scc_12_1.hes                 | 0.1893               | invalid    |
+| s_scc_05_0.hes                 | 0.2037               | invalid    |
+| p_scc_23_8.hes                 | 0.2238               | invalid    |
+| q_nmc_62.hes                   | 0.1940               | invalid    |
+| q_scc_56_5.hes                 | 0.1987               | invalid    |
+| q_nmc_38.hes                   | 0.1922               | invalid    |
+| p_scc_89_6.hes                 | 0.2728               | invalid    |
+| p_scc_89_7.hes                 | 0.2112               | invalid    |
+| p_scc_89_2.hes                 | 0.2235               | invalid    |
+| q_scc_56_1.hes                 | 0.1966               | invalid    |
+| q_scc_67_2.hes                 | 0.1929               | invalid    |
+| q_scc_67_6.hes                 | 0.2141               | invalid    |
+| q_nmc_37.hes                   | 0.1853               | invalid    |
+| p_scc_89_8.hes                 | 0.2160               | invalid    |
+| p_scc_79_2.hes                 | 0.2226               | invalid    |
+| p_scc_23_6.hes                 | 0.2647               | invalid    |
+| p_scc_23_7.hes                 | 0.2400               | invalid    |
+| p_scc_23_2.hes                 | 0.2188               | invalid    |
+| p_scc_79_7.hes                 | 0.2108               | invalid    |
+| q_scc_34_8.hes                 | 0.1757               | invalid    |
+| p_scc_79_6.hes                 | 0.2484               | invalid    |
+
+Total time:5.895876
+-e 
+
+
+Processing symbolic-send-validity-no
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.3768               | invalid    |
+| det.hes                        | 0.2475               | invalid    |
+
+Total time:0.624264
+
+Checking implementability...
+Non-implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| q_scc_12_5.hes                 | 0.2023               | invalid    |
+| s_scc_01_0.hes                 | 0.2132               | invalid    |
+| q_scc_68_6.hes                 | 0.2142               | invalid    |
+| q_scc_34_7.hes                 | 0.1753               | invalid    |
+| q_scc_34_3.hes                 | 0.2054               | invalid    |
+| q_scc_68_2.hes                 | 0.1872               | invalid    |
+| q_scc_12_1.hes                 | 0.1987               | invalid    |
+| s_scc_05_0.hes                 | 0.2070               | invalid    |
+| p_scc_23_8.hes                 | 0.2141               | invalid    |
+| q_nmc_62.hes                   | 0.1965               | invalid    |
+| q_scc_56_5.hes                 | 0.1986               | invalid    |
+| q_nmc_38.hes                   | 0.1919               | invalid    |
+| p_scc_89_6.hes                 | 0.2333               | invalid    |
+| p_scc_89_7.hes                 | 0.2103               | invalid    |
+| p_scc_89_2.hes                 | 0.2137               | invalid    |
+| q_scc_56_1.hes                 | 0.2016               | invalid    |
+| q_scc_67_2.hes                 | 0.2001               | invalid    |
+| q_scc_67_6.hes                 | 0.2100               | invalid    |
+| p_scc_89_8.hes                 | 0.2265               | invalid    |
+| p_scc_23_6.hes                 | 0.2258               | valid      |
+| p_scc_23_7.hes                 | 0.2026               | valid      |
+| p_scc_23_2.hes                 | 0.2049               | invalid    |
+| q_scc_34_8.hes                 | 0.1751               | invalid    |
+
+Total time:4.708180
+-e 
+
+
+Processing symbolic-receive-validity-yes
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.5210               | invalid    |
+| det.hes                        | 0.2225               | invalid    |
+
+Total time:0.743527
+
+Checking implementability...
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| p_scc_12_1.hes                 | 0.2230               | invalid    |
+| p_scc_34_3.hes                 | 0.2165               | invalid    |
+| s_scc_01_0.hes                 | 0.2256               | invalid    |
+| p_scc_34_7.hes                 | 0.2283               | invalid    |
+| r_scc_910_9.hes                | 0.2619               | invalid    |
+| p_scc_89_7.hes                 | 0.2053               | invalid    |
+| p_scc_89_3.hes                 | 0.2345               | invalid    |
+| r_rcc_34_78.hes                | 0.3317               | invalid    |
+| r_scc_56_9.hes                 | 0.2174               | invalid    |
+| r_scc_56_5.hes                 | 0.2664               | invalid    |
+| q_scc_45_7.hes                 | 0.2525               | invalid    |
+| q_scc_78_7.hes                 | 0.2359               | invalid    |
+| r_rcc_89_45.hes                | 0.2732               | invalid    |
+| q_scc_45_4.hes                 | 0.2475               | invalid    |
+| q_scc_78_4.hes                 | 0.2517               | invalid    |
+| r_rcc_45_89.hes                | 0.2841               | invalid    |
+| r_scc_910_5.hes                | 0.2169               | invalid    |
+| q_scc_78_3.hes                 | 0.2415               | invalid    |
+| q_scc_45_3.hes                 | 0.2304               | invalid    |
+| p_scc_89_8.hes                 | 0.2287               | invalid    |
+| r_rcc_78_34.hes                | 0.4146               | invalid    |
+| p_scc_34_8.hes                 | 0.2362               | invalid    |
+| p_scc_27_2.hes                 | 0.2474               | invalid    |
+| p_scc_23_2.hes                 | 0.2417               | invalid    |
+
+Total time:6.012867
+-e 
+
+
+Processing symbolic-receive-validity-no
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 2.0396               | invalid    |
+| det.hes                        | 0.2269               | invalid    |
+
+Total time:2.266461
+
+Checking implementability...
+Non-implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| p_scc_12_1.hes                 | 0.2115               | invalid    |
+| p_scc_34_3.hes                 | 0.2153               | invalid    |
+| s_scc_01_0.hes                 | 0.2230               | invalid    |
+| p_scc_34_7.hes                 | 0.2214               | invalid    |
+| r_scc_910_9.hes                | 0.2656               | invalid    |
+| p_scc_89_7.hes                 | 0.2142               | invalid    |
+| p_scc_89_3.hes                 | 0.2344               | invalid    |
+| r_rcc_34_78.hes                | 0.3292               | valid      |
+| r_scc_56_9.hes                 | 0.2164               | invalid    |
+| r_scc_56_5.hes                 | 0.2612               | invalid    |
+| q_scc_45_7.hes                 | 0.2511               | invalid    |
+| q_scc_78_7.hes                 | 0.2380               | invalid    |
+| r_rcc_89_45.hes                | 0.2707               | invalid    |
+| q_scc_45_4.hes                 | 0.2465               | invalid    |
+| q_scc_78_4.hes                 | 0.2598               | invalid    |
+| r_rcc_45_89.hes                | 0.2919               | invalid    |
+| r_scc_910_5.hes                | 0.2162               | invalid    |
+| q_scc_78_3.hes                 | 0.2395               | invalid    |
+| q_scc_45_3.hes                 | 0.2273               | invalid    |
+| p_scc_89_8.hes                 | 0.2292               | invalid    |
+| r_rcc_78_34.hes                | 0.3963               | valid      |
+| p_scc_34_8.hes                 | 0.2376               | invalid    |
+| p_scc_27_2.hes                 | 0.2446               | invalid    |
+| p_scc_23_2.hes                 | 0.2419               | invalid    |
+
+Total time:5.982774
+-e 
+
+
+Processing fwd-auth-yes
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.7334               | invalid    |
+| det.hes                        | 0.3714               | invalid    |
+
+Total time:1.104886
+
+Checking implementability...
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| p_scc_12_1.hes                 | 0.2259               | invalid    |
+| s_scc_134_13.hes               | 0.4870               | invalid    |
+| s_scc_134_11.hes               | 0.4927               | invalid    |
+| p_scc_46_12.hes                | 0.6964               | invalid    |
+| s_scc_1112_11.hes              | 0.4295               | invalid    |
+| s_scc_1112_13.hes              | 0.3888               | invalid    |
+| s_scc_89_8.hes                 | 0.4859               | invalid    |
+| p_scc_67_6.hes                 | 0.5899               | invalid    |
+| p_scc_67_5.hes                 | 0.5901               | invalid    |
+| p_scc_45_12.hes                | 0.6981               | invalid    |
+| p_scc_78_7.hes                 | 0.3931               | invalid    |
+| a_scc_34_3.hes                 | 0.2326               | invalid    |
+| p_scc_45_4.hes                 | 0.5280               | invalid    |
+| s_scc_910_9.hes                | 0.3916               | invalid    |
+| a_scc_1011_10.hes              | 0.9713               | invalid    |
+| p_scc_01_0.hes                 | 0.2126               | invalid    |
+| a_scc_1013_10.hes              | 0.9858               | invalid    |
+| p_scc_23_2.hes                 | 0.2249               | invalid    |
+| p_scc_46_4.hes                 | 0.6443               | invalid    |
+
+Total time:9.668647
+-e 
+
+
+Processing fwd-auth-no
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.7414               | invalid    |
+| det.hes                        | 0.3625               | invalid    |
+
+Total time:1.103861
+
+Checking implementability...
+Inconclusive
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| p_scc_46_9.hes                 | 15.0491              | timeout    |
+| p_scc_12_1.hes                 | 0.2280               | invalid    |
+| p_scc_46_8.hes                 | 15.0647              | timeout    |
+| p_scc_46_10.hes                | 15.0476              | timeout    |
+| p_scc_46_11.hes                | 15.0567              | timeout    |
+| p_scc_46_13.hes                | 5.3809               | invalid    |
+| s_scc_1112_11.hes              | 0.4229               | invalid    |
+| p_scc_45_8.hes                 | 15.0589              | timeout    |
+| s_nmc_1113.hes                 | 0.3643               | invalid    |
+| p_scc_45_9.hes                 | 15.0443              | timeout    |
+| s_scc_1112_13.hes              | 0.3993               | invalid    |
+| s_scc_89_8.hes                 | 0.4056               | invalid    |
+| p_scc_67_6.hes                 | 1.0469               | invalid    |
+| p_scc_45_11.hes                | 201.0882             | timeout    |
+| p_scc_45_10.hes                | 15.0468              | timeout    |
+| p_scc_67_5.hes                 | 1.1251               | invalid    |
+| p_scc_45_13.hes                | 4.2559               | invalid    |
+| p_scc_78_7.hes                 | 0.9500               | invalid    |
+| a_scc_34_3.hes                 | 0.2364               | invalid    |
+| p_scc_45_4.hes                 | 0.8730               | invalid    |
+| p_nmc_411.hes                  | 15.0460              | timeout    |
+| s_scc_910_9.hes                | 0.4127               | invalid    |
+| p_scc_67_12.hes                | 0.1862               | invalid    |
+| a_scc_1011_10.hes              | 0.6741               | invalid    |
+| p_scc_01_0.hes                 | 0.2200               | invalid    |
+| a_scc_1013_10.hes              | 0.7681               | invalid    |
+| p_scc_23_2.hes                 | 0.2285               | invalid    |
+| a_scc_134_11.hes               | 0.4171               | invalid    |
+| a_scc_134_13.hes               | 0.4312               | invalid    |
+| p_scc_46_4.hes                 | 1.1639               | invalid    |
+| a_scc_134_12.hes               | 0.4166               | invalid    |
+
+Total time:342.108972
+-e 
+
+
+Processing symbolic-two-bidder-no2
+----------------------------------------
+
+Checking GCLTS eligibility...
+Inconclusive
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 15.0480              | timeout    |
+| det.hes                        | 0.2484               | invalid    |
+
+Total time:15.296382
+-e 
+
+
+Processing higher-lower-ultimate
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 2.7331               | invalid    |
+| det.hes                        | 0.3009               | invalid    |
+
+Total time:3.033997
+
+Checking implementability...
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| b_nmc_64.hes                   | 0.2388               | invalid    |
+| b_nmc_65.hes                   | 0.2445               | invalid    |
+| c_scc_43_8.hes                 | 0.3481               | invalid    |
+| b_scc_37_3.hes                 | 0.4981               | invalid    |
+| b_scc_35_3.hes                 | 0.4989               | invalid    |
+| b_nmc_75.hes                   | 0.2402               | invalid    |
+| b_nmc_74.hes                   | 0.2414               | invalid    |
+| b_scc_68_4.hes                 | 0.2230               | invalid    |
+| c_scc_53_5.hes                 | 0.4520               | invalid    |
+| c_scc_53_4.hes                 | 0.3487               | invalid    |
+| b_scc_68_5.hes                 | 0.2203               | invalid    |
+| b_scc_68_7.hes                 | 0.2351               | invalid    |
+| c_scc_53_6.hes                 | 0.3397               | invalid    |
+| c_scc_53_7.hes                 | 0.3405               | invalid    |
+| b_scc_68_6.hes                 | 0.2324               | invalid    |
+| b_scc_34_3.hes                 | 0.5330               | invalid    |
+| a_scc_01_0.hes                 | 0.2067               | invalid    |
+| b_scc_36_3.hes                 | 0.4056               | invalid    |
+| b_scc_36_8.hes                 | 0.1739               | invalid    |
+| a_scc_12_1.hes                 | 0.2128               | invalid    |
+| c_scc_23_2.hes                 | 0.2691               | invalid    |
+| c_scc_23_0.hes                 | 0.2080               | invalid    |
+| c_scc_23_1.hes                 | 0.2233               | invalid    |
+| c_scc_53_8.hes                 | 0.3591               | invalid    |
+| b_scc_34_8.hes                 | 0.1734               | invalid    |
+| c_scc_43_7.hes                 | 0.3450               | invalid    |
+| b_scc_78_6.hes                 | 0.2330               | invalid    |
+| b_scc_78_7.hes                 | 0.2262               | invalid    |
+| c_scc_43_6.hes                 | 0.3386               | invalid    |
+| c_scc_43_4.hes                 | 0.4503               | invalid    |
+| b_scc_78_5.hes                 | 0.2208               | invalid    |
+| b_scc_78_4.hes                 | 0.2186               | invalid    |
+| c_scc_43_5.hes                 | 0.3491               | invalid    |
+| b_scc_35_8.hes                 | 0.1729               | invalid    |
+| b_scc_37_8.hes                 | 0.1755               | invalid    |
+
+Total time:10.196874
+-e 
+
+
+Processing higher-lower-winning
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 1.7285               | invalid    |
+| det.hes                        | 0.4209               | invalid    |
+
+Total time:2.149390
+
+Checking implementability...
+Inconclusive
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| b_scc_67_8.hes                 | 0.2708               | invalid    |
+| b_scc_35_3.hes                 | 0.4257               | invalid    |
+| b_scc_57_6.hes                 | 0.2639               | invalid    |
+| b_scc_57_5.hes                 | 0.2652               | invalid    |
+| b_scc_57_4.hes                 | 0.2697               | invalid    |
+| b_scc_82_8.hes                 | 0.2591               | invalid    |
+| b_scc_42_8.hes                 | 0.2577               | invalid    |
+| b_scc_34_3.hes                 | 0.5249               | invalid    |
+| c_scc_23_8.hes                 | 2.4428               | invalid    |
+| a_scc_01_0.hes                 | 0.1995               | invalid    |
+| b_scc_36_3.hes                 | 0.4254               | invalid    |
+| c_scc_23_5.hes                 | 0.4434               | invalid    |
+| c_scc_23_4.hes                 | 4.1774               | invalid    |
+| c_scc_23_6.hes                 | 0.4405               | invalid    |
+| c_scc_23_7.hes                 | 0.5005               | invalid    |
+| b_scc_38_3.hes                 | 0.5221               | invalid    |
+| b_scc_42_5.hes                 | 0.2781               | invalid    |
+| a_scc_12_1.hes                 | 0.2116               | invalid    |
+| b_scc_82_5.hes                 | 0.2642               | invalid    |
+| b_scc_57_8.hes                 | 0.2697               | invalid    |
+| c_scc_23_2.hes                 | 0.3972               | invalid    |
+| b_scc_82_4.hes                 | 0.2580               | invalid    |
+| b_scc_42_4.hes                 | 0.2576               | invalid    |
+| b_scc_42_6.hes                 | 0.2704               | invalid    |
+| b_scc_82_6.hes                 | 0.2649               | invalid    |
+| c_scc_23_0.hes                 | 15.0404              | timeout    |
+| c_scc_23_1.hes                 | 2.6831               | invalid    |
+| b_scc_67_6.hes                 | 0.2636               | invalid    |
+| b_scc_67_4.hes                 | 0.2653               | invalid    |
+| b_scc_67_5.hes                 | 0.2669               | invalid    |
+
+Total time:32.679499
+-e 
+
+
+Processing higher-lower-no
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.4418               | invalid    |
+| det.hes                        | 0.4058               | invalid    |
+
+Total time:0.847596
+
+Checking implementability...
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| b_scc_35_7.hes                 | 0.1709               | invalid    |
+| b_nmc_62.hes                   | 0.2150               | invalid    |
+| b_scc_35_3.hes                 | 0.2805               | invalid    |
+| b_scc_32_3.hes                 | 0.2770               | invalid    |
+| b_scc_36_7.hes                 | 0.1699               | invalid    |
+| b_scc_57_6.hes                 | 0.2222               | invalid    |
+| b_scc_57_5.hes                 | 0.2162               | invalid    |
+| b_scc_57_2.hes                 | 0.2059               | invalid    |
+| a_scc_01_0.hes                 | 0.1929               | invalid    |
+| b_scc_36_3.hes                 | 0.2785               | invalid    |
+| b_scc_32_7.hes                 | 0.1702               | invalid    |
+| c_scc_23_5.hes                 | 0.3051               | invalid    |
+| c_scc_23_6.hes                 | 0.3007               | invalid    |
+| c_scc_23_7.hes                 | 0.3552               | invalid    |
+| a_scc_12_1.hes                 | 0.1996               | invalid    |
+| c_scc_23_2.hes                 | 0.2920               | invalid    |
+| c_scc_23_0.hes                 | 1.7676               | invalid    |
+| c_scc_23_1.hes                 | 0.9468               | invalid    |
+| b_scc_67_2.hes                 | 0.2066               | invalid    |
+| b_nmc_52.hes                   | 0.2115               | invalid    |
+| b_scc_67_6.hes                 | 0.2119               | invalid    |
+| b_scc_67_5.hes                 | 0.2178               | invalid    |
+
+Total time:7.414112
+-e 
+
+
+Processing higher-lower-encrypt-yes
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.6359               | invalid    |
+| det.hes                        | 0.4183               | invalid    |
+
+Total time:1.054144
+
+Checking implementability...
+Implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| b_scc_35_7.hes                 | 0.1735               | invalid    |
+| a_scc_011_0.hes                | 0.2140               | invalid    |
+| b_nmc_62.hes                   | 0.2607               | invalid    |
+| b_scc_35_3.hes                 | 0.3302               | invalid    |
+| b_scc_32_3.hes                 | 0.4357               | invalid    |
+| b_scc_36_7.hes                 | 0.1731               | invalid    |
+| b_scc_57_6.hes                 | 0.2692               | invalid    |
+| b_scc_57_5.hes                 | 0.2619               | invalid    |
+| b_scc_57_2.hes                 | 0.2424               | invalid    |
+| b_scc_36_3.hes                 | 0.4374               | invalid    |
+| b_scc_32_7.hes                 | 0.1729               | invalid    |
+| a_scc_122_11.hes               | 0.2621               | invalid    |
+| c_scc_23_5.hes                 | 0.3340               | invalid    |
+| d_scc_1112_11.hes              | 0.2229               | invalid    |
+| a_scc_122_12.hes               | 0.2160               | invalid    |
+| c_scc_23_6.hes                 | 0.3326               | invalid    |
+| c_scc_23_7.hes                 | 0.4275               | invalid    |
+| c_scc_23_2.hes                 | 0.3293               | invalid    |
+| c_scc_23_12.hes                | 1.2823               | invalid    |
+| c_scc_23_0.hes                 | 0.3371               | invalid    |
+| c_scc_23_11.hes                | 0.7536               | invalid    |
+| b_scc_67_2.hes                 | 0.2396               | invalid    |
+| b_nmc_52.hes                   | 0.2523               | invalid    |
+| b_scc_67_6.hes                 | 0.2609               | invalid    |
+| b_scc_67_5.hes                 | 0.2615               | invalid    |
+
+Total time:8.482511
+-e 
+
+
+Processing higher-lower-encrypt-no
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 1.7636               | invalid    |
+| det.hes                        | 0.4346               | invalid    |
+
+Total time:2.198265
+
+Checking implementability...
+Non-implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| b_scc_67_8.hes                 | 0.2860               | invalid    |
+| a_scc_011_0.hes                | 0.2150               | invalid    |
+| b_scc_35_3.hes                 | 0.3721               | valid      |
+| b_scc_57_6.hes                 | 0.2865               | invalid    |
+| b_scc_57_5.hes                 | 0.2825               | invalid    |
+| b_scc_57_4.hes                 | 0.2868               | invalid    |
+| b_scc_82_8.hes                 | 0.2808               | invalid    |
+| b_scc_42_8.hes                 | 0.2805               | invalid    |
+| b_scc_34_3.hes                 | 0.4653               | valid      |
+| c_scc_23_8.hes                 | 9.1758               | invalid    |
+| b_scc_36_3.hes                 | 0.4678               | valid      |
+| a_scc_122_11.hes               | 1.8737               | invalid    |
+| c_scc_23_5.hes                 | 0.4979               | invalid    |
+| d_scc_1112_11.hes              | 0.2309               | invalid    |
+| c_scc_23_4.hes                 | 1.7782               | invalid    |
+| a_scc_122_12.hes               | 0.2182               | invalid    |
+| c_scc_23_6.hes                 | 0.5004               | invalid    |
+| c_scc_23_7.hes                 | 0.6095               | invalid    |
+| b_scc_38_3.hes                 | 0.4688               | valid      |
+| b_scc_42_5.hes                 | 0.2899               | invalid    |
+| b_scc_82_5.hes                 | 0.2896               | invalid    |
+| b_scc_57_8.hes                 | 0.2876               | invalid    |
+| c_scc_23_2.hes                 | 0.4816               | invalid    |
+| b_scc_82_4.hes                 | 0.2819               | invalid    |
+| c_scc_23_12.hes                | 15.0513              | timeout    |
+| b_scc_42_4.hes                 | 0.2815               | invalid    |
+| b_scc_42_6.hes                 | 0.2884               | invalid    |
+| b_scc_82_6.hes                 | 0.2864               | invalid    |
+| c_scc_23_0.hes                 | 10.4158              | invalid    |
+| c_scc_23_11.hes                | 15.0430              | timeout    |
+| b_scc_67_6.hes                 | 0.2847               | invalid    |
+| b_scc_67_4.hes                 | 0.2876               | invalid    |
+| b_scc_67_5.hes                 | 0.2951               | invalid    |
+
+Total time:62.440777
+-e 
+
+
+Processing higher-lower-mixed
+----------------------------------------
+
+Checking GCLTS eligibility...
+GCLTS eligible
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| df.hes                         | 0.6007               | invalid    |
+| det.hes                        | 0.4096               | invalid    |
+
+Total time:1.010328
+
+Checking implementability...
+Non-implementable
+
+Results:
+| Filename                       | Execution Time (s)   | Result     |
+|--------------------------------|----------------------|------------|
+| a_nmc_56.hes                   | 0.4988               | valid      |
+| b_nmc_65.hes                   | 0.2337               | invalid    |
+| b_scc_35_7.hes                 | 0.1723               | invalid    |
+| b_nmc_62.hes                   | 0.2412               | invalid    |
+| b_scc_35_3.hes                 | 0.4496               | invalid    |
+| b_scc_32_3.hes                 | 0.6511               | invalid    |
+| b_scc_36_7.hes                 | 0.1721               | invalid    |
+| b_rcc_23_57.hes                | 0.3518               | invalid    |
+| a_scc_01_0.hes                 | 0.2052               | invalid    |
+| b_scc_36_3.hes                 | 0.9573               | invalid    |
+| b_scc_32_7.hes                 | 0.1720               | invalid    |
+| c_scc_23_5.hes                 | 0.3307               | invalid    |
+| a_scc_57_6.hes                 | 0.4640               | valid      |
+| c_scc_23_6.hes                 | 0.3278               | invalid    |
+| c_scc_23_7.hes                 | 0.3796               | invalid    |
+| a_scc_57_5.hes                 | 0.5162               | invalid    |
+| a_scc_12_1.hes                 | 0.2126               | invalid    |
+| c_scc_23_2.hes                 | 0.4295               | invalid    |
+| a_scc_57_2.hes                 | 15.0367              | timeout    |
+| c_scc_23_0.hes                 | 0.2224               | invalid    |
+| c_scc_23_1.hes                 | 0.2496               | invalid    |
+| a_scc_57_3.hes                 | 2.8494               | valid      |
+| b_scc_67_2.hes                 | 0.2355               | invalid    |
+| b_scc_67_6.hes                 | 0.2536               | invalid    |
+| b_rcc_57_23.hes                | 0.3916               | invalid    |
+| b_scc_67_5.hes                 | 0.2256               | invalid    |
+
+Total time:26.229672
+-e 
+
+
