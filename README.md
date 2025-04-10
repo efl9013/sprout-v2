@@ -4,7 +4,7 @@
 > # *SPROUT: A Verifier for Symbolic Multiparty Protocols*
 > 
 > #### Elaine Li, Felix Stutz, Thomas Wies and Damien Zufferey
-![](README/sprout.png)<!-- {"width":288} -->
+![](sprout.png)<!-- {"width":288} -->
 We present Sprout, the first sound and complete implementability checker for symbolic multiparty protocols. Sprout supports protocols with dependent refinements on message values, loop memory, and multiparty communication with generalized, sender-driven choice. Sprout checks implementability via an optimized, sound and complete reduction to the fixpoint logic muCLP, and uses MuVal as a backend solver for muCLP instances. We evaluate Sprout on an extended benchmark suite of implementable and non-implementable examples, and show that Sprout outperforms its competititors in terms of expressivity and precision, and provides competitive runtime performance. Sprout additionally provides support for verifying custom functional correctness properties beyond implementability.
 
 The artifact contains the following: 
