@@ -1,6 +1,6 @@
 Initial state: (0)
 Initial register assignments: rx=0, ry=0, rza=0, rzb=0
-(0) s->p:x{True} (1)
+(0) s->p:x{rx'=x} (1)
 (1) p->r:y{y>rx/\ry'=y} (2)
 (2) p->q:b{b=0/\rx%2=0} (3)
 (3) p->r:z1{rza'=z1} (4)
