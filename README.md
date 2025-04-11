@@ -1,22 +1,23 @@
-# # CAV’25 Artifact #8 Overview
+# # CAV’25 Artifact #8
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3970760.svg)](https://doi.org/10.5281/zenodo.3970760) (TODO: change the link) 
 
 > # *SPROUT: A Verifier for Symbolic Multiparty Protocols*
 > 
 > #### Elaine Li, Felix Stutz, Thomas Wies and Damien Zufferey
 ![](sprout.png)<!-- {"width":288} -->
-We present Sprout, the first sound and complete implementability checker for symbolic multiparty protocols. Sprout supports protocols with dependent refinements on message values, loop memory, and multiparty communication with generalized, sender-driven choice. Sprout checks implementability via an optimized, sound and complete reduction to the fixpoint logic muCLP, and uses MuVal as a backend solver for muCLP instances. We evaluate Sprout on an extended benchmark suite of implementable and non-implementable examples, and show that Sprout outperforms its competititors in terms of expressivity and precision, and provides competitive runtime performance. Sprout additionally provides support for verifying custom functional correctness properties beyond implementability.
+
+We present Sprout, the tool accompanying submission #202: SPROUT: A Verifier for Symbolic Multiparty Protocols. Sprout is the first sound and complete implementability checker for symbolic multiparty protocols. Sprout supports protocols featuring dependent refinements on message values, loop memory, and multiparty communication with generalized, sender-driven choice. Sprout checks implementability via an optimized, sound and complete reduction to the fixpoint logic muCLP, and uses MuVal as a backend solver for muCLP instances. We evaluate Sprout on an extended benchmark suite of implementable and non-implementable examples, and show that Sprout outperforms its competititors in terms of expressivity and precision, and provides competitive runtime performance. Sprout is open source, and hosted at https://github.com/nyu-acsys/sprout. We provide a Docker image for the purposes of artifact evaluation hosted at (TODO: Zenodo url) with checksum (TODO: checksum). We are claiming all three artifact badges: available, functional and reusable. 
 
 The artifact contains the following: 
 - Documentation for Sprout (README.pdf)
 - A Docker image for Sprout (sprout.tar)
 - The md5 hash of the Docker image is `532b4e75bdcffe4c883aecf61371d373`. (TODO: change)
 - A software license file (LICENSE) 
-- A folder containing the benchmark suite for Session* (sessionstar)
+- A folder containing the benchmark suite (examples)
 
-This artifact evaluation depends on two external software libraries: MuVal and Session*. MuVal is Sprout’s backend muCLP solver, and is available as part of the toolchain [CoAR](https://github.com/hiroshi-unno/coar) (Collection of Automated Reasoners). Session* is the tool accompanying [Zhou et al. 2020], which we compare Sprout against. Because MuVal is essential to Sprout’s functionality, the necessary executables for MuVal, along with its license and documentation, are included in Sprout’s Docker image. On the contrary, Session* is only required for evaluating Sprout’s precision and efficiency. Session* is distributed as a Docker image, available at https://zenodo.org/records/4032454. Thus, we only include instructions for installing Session* from the above link, and do not include Session* itself in our artifact submission. 
+Sprout's evaluation depends on two external software libraries: MuVal and Session*. MuVal is Sprout’s backend muCLP solver, and is available as part of the toolchain [CoAR](https://github.com/hiroshi-unno/coar) (Collection of Automated Reasoners). Session* is the tool accompanying [Zhou et al. 2020], which we compare Sprout against. Because MuVal is essential to Sprout’s functionality, the necessary executables for MuVal, along with its license and documentation, are included in Sprout’s Docker image. On the contrary, Session* is only required for evaluating Sprout’s precision and efficiency. Session* is distributed as a Docker image, available at https://zenodo.org/records/4032454. Thus, we only include instructions for installing Session* from the above link, and do not include Session* itself in our artifact submission. 
 
-All execution times reported are from a 2024 MacBook Air (M3, 16GB RAM). 
+All execution times reported are from a 2024 MacBook Air (M3, 24GB RAM). 
 
 ## A Getting Started 
 ---
@@ -60,7 +61,7 @@ All execution times reported are from a 2024 MacBook Air (M3, 16GB RAM).
    This completes the installation of Sprout. 
 
 ### Installing Session* 
-The following instructions are copied from the README.md file for Session*: we repeat them here for convenience. 
+The following instructions are copied from the README.md file for Session*: we include them here for convenience. 
 7. Download the Session* Docker image `artifact.tar.gz` from https://zenodo.org/records/4032454 to the current working directory. 
 8. Unzip `artifact.tar.gz`, which should create `artifact.tar` in the same directory: 
    ```bash
@@ -84,13 +85,13 @@ The following instructions are copied from the README.md file for Session*: we r
 
 ## B Step-by-Step Instructions
 ---
-Our artifact supports the following claims, whose evidence is summarized in Table 1 and 2 of the tool paper. 
+Our artifact supports the following claims, evidenced by Table 1 and 2 of the tool paper. 
 - Claim 1 (Table 1): Sprout’s optimizations to the muCLP encodings presented in the original theory paper yield a speedup by over two orders of magnitude. 
 - Claim 2a (Table 2): Sprout outperforms Session* in terms of *precision*: Sprout correctly classifies the implementability of all benchmarks on which it does not timeout, whereas Session* exhibits an abundance of false negatives. 
 - Claim 2b (Table 2): Sprout provides competitive runtime performance: Sprout outperforms Session* on binary protocols, and verifies most multiparty protocols in under 10s, with the exception of 2 timeouts. 
 
 ### Reproducing experiments 
-To reproduce Table 1 from the tool paper, perform the following steps: 
+To reproduce Table 1 from the paper: 
 1. In Sprout’s Docker image, in the directory `/home/opam/sprout/query-generator`, run: 
    ```bash
    bash naive_vs_opt.sh 
@@ -98,31 +99,72 @@ To reproduce Table 1 from the tool paper, perform the following steps:
 2. The above step takes (a looooong time, TODO), and logs Sprout’s raw output in the file `naive_vs_opt_output.txt`. 
 3. To consolidate the raw output into Table 1, run: 
    ```bash
-   sh process_naive_vs_opt.sh (TODO: this isn't actually implemented yet) 
+   sh aggregate_naive_vs_opt_output.sh 
+   ```
+4. To view the completed Table 2, run: 
+   ```bash
+   cat table1_final.txt 
    ```
 
-To reproduce Table 2 from the tool paper, perform the following steps: 
+To reproduce Table 2 from the paper: 
 1. In Sprout’s Docker image, in the directory `/home/opam/sprout/query-generator`, run: 
    ```bash
-   bash verify_all.sh 
+   bash verify_all.sh 1 
    ```
+   The shell script takes as input a number representing the number of iterations. 
 2. The above step takes ~30 minutes, and logs Sprout’s raw output in the file `sprout_output.txt` inside the mounted folder `examples/sprout`. 
-3. In Session*’s Docker image, run: 
+3. To aggregate the raw output from Sprout into the corresponding columns of Table 2, run: 
+   ```bash
+   bash aggregate_sprout_output.sh 
+   ```
+4. To view the partially completed Table 2, run: 
+   ```bash
+   cat table2_final.txt 
+   ```
+5. In Session*’s Docker image, run: 
    ```bash
    cd examples 
-   bash verify_sessionstar.sh  
+   bash verify_sessionstar.sh 1 
    ```
-4. The above step takes ~xminutes, and logs Session*’s raw output in the file `sessionstar_output.txt` inside the mounted folder `examples/sessionstar`. 
-5. To consolidate the raw output from both tools into Table 2, run: 
+6. The above step takes ~x minutes, and logs Session*’s raw output in the file `sessionstar_output.txt` inside the mounted folder `examples/sessionstar`. 
+7. To aggregate the raw output from Session* into the corresponding columns of Table 2, run:  
    ```
-   sh process_naive_vs_opt.sh (TODO: this isn't actually implemented yet) 
+   bash aggregate_sessionstar_output.sh 
    ```
+8. To view the completed Table 2, run: 
+   ```bash
+   cat table2_final.txt 
+   ```. 
 
 Below, we provide further details regarding each experiment. 
 ### Claim 1: Optimization efficiency 
-### Claim 2a: Precision 
-### Claim 2b: Efficiency 
+Table 1 compares the runtime efficiency of Sprout on two different modes: naive and optimized. The naive mode corresponds to implementing the pen-and-paper symbolic algorithm given in [Li et al. 2024]; the optimized mode implements all the optimizations introduced in Section 3.2 of our paper. Sprout allows the user to specify their desired mode using a command line argument. 
 
+We claim that ~Sprout's optimizations improve verification efficiency by over two orders of magnitude for protocols with more than 2 transitions~. 
+
+The shell script `naive_vs_opt.sh`  iterates over a list of example names, and calls Sprout on naive and optimized mode respectively. The function `run_with_limits` imposes a memory limit of 16GB by monitoring the memory usage of the process `main.exe` every 0.5 seconds.  
+
+Our claim can be falfisied by examining `table1_final.txt`. 
+
+### Claim 2: Precision and efficiency 
+Table 2 compares the precision and runtime efficiency of Sprout against Session*. Precision is measured by the fraction of examples that each tool correctly classifies; efficiency is measured in terms of execution time. 
+
+Regarding precision, we claim that ~Sprout correctly classifies the implementability all protocols on which it does not timeout, whereas Session* rejects most examples introduced in our extended benchmark suite and thus suffers from incompleteness~. Note that because Sprout is an implementability checking tool, precision is equivalent to correctness. 
+Regarding efficiency, we claim that ~Sprout provides competitive performance for binary protocols, and verifies most multiparty protocols in under 10 seconds~. 
+
+The shell scripts `verify_all.sh`  and `verify_sessionstar.sh` iterate over all 37 examples, and log the output to `sessionstar_output.txt` and `sprout_output.txt` respectively.
+Note that Sprout's timeout in `verify_all.sh` is set to 40 seconds, whereas the results in Table 2 of the paper, which were run natively on a local machine, assume a timeout of 30 seconds. The increase in timeout is to accommodate the runtime overhead introduced by the Docker container.
+
+We detail the results returned by each tool below. 
+Sprout returns one of three results: implementable (`Y`), non-implementable (`N`), inconclusive (`?`), or non-GCLTS (not applicable to this artifact evaluation). Note that non-implementability requires only one valid muCLP instance, whereas implementability requires all muCLP instances to return invalid. Thus, thus non-implementable protocols may timeout on other instances. Further note that Sprout does not eagerly terminate upon finding the first valid muCLP instance, but rather checks all generated muCLP instances in the interest of aiding protocol repair. Inconclusive means that Sprout cannot establish implementability due to timeouts. 
+We classify the output of Session* into three results: implementable (`Y`) means that the projection is defined and local types are computed, non-implementable (`N`) means that the protocol cannot be projected, and inconclusive (`?`) means that Session* aborts for another reason, such as failure to parse or typecheck the input.  
+The aggregation shell scripts copy `table2_empty`, which contains columns 2-4 of Table 2 in the paper, and fill in the remaining columns. 
+In case multiple iterations were run, the final result is `Y` iff all iterations return implementable, `N` iff all iterations return non-implementable, and `?` otherwise, and the final time is the mean of all iterations.  
+
+Both claims can be falsified by examining `table2_final.txt`. 
+
+### (Optional) Claim 3: Expressivity 
+Section 4.2 of the paper additionally claims that Sprout outperforms its competitors in terms of expressivity, and quantifies this claim using the fraction of the combined benchmark suites from Session* [Zhou et al. 2020], Rumpsteak [Vassor and Yoshida 2024] and Sprout that can be expressed in each tool. As mentioned in the paper, of the 37 benchmarks in total (10 from Session*, 6 from Rumpsteak, 21 from Sprout), Session* can express 35/37, Sprout can express 37/37, whereas Rumpsteak can only express 19/37. We thus decided to omit Rumpsteak from the remainder of our evaluation due to its lack of expressivity, as well as absence of formal guarantees. Nonetheless, we provide the 37 benchmarks we translated into NuScr in the folder `examples/rumpsteak`, so that our rationale may be independently verified. Rumpsteak's artifact can be found at https://zenodo.org/records/12731834.  
 
 ## C SPROUT up close 
 ---
@@ -147,4 +189,15 @@ Below, we provide further details regarding each experiment.
 
   Sprout’s parser detects ill-formed logical formulas and general syntactic errors, and Sprout’s lightweight typechecker detects out-of-scope variables. For readability, Sprout allows input protocols to omit register equalities of the form `rn'=rn` indicating that register `rn` is unchanged by the present transition, and inserts these missing equalities during preprocessing. 
 
-### Interpreting SPROUT feedback 
+### Using Sprout feedback for protocol repair 
+
+### Integrating Sprout into existing toolchains 
+We envision Sprout as a preprocessing step for protocol verification toolchains that center around the construct of a global protocol. Sprout complements existing toolchains by providing sound and complete implementability checking for an expressive class of protocols, which can serve as the first step to synthesizing correct-by-construction distributed implementations. 
+
+
+## D References 
+[Li et al. 2024] Elaine Li, Felix Stutz, Thomas Wies and Damien Zufferey. Characterizing Implementability of Global Protocols with Infinite States and Data. To appear in Proc. ACM Program. Lang. 9, OOPSLA (2025) ~[https://doi.org/10.48550/arXiv.2411.05722](https://doi.org/10.48550/arXiv.2411.05722)~
+
+[Vassor and Yoshida 2024] Martin Vassor and Nobuko Yoshida. Refinements for Multiparty Message-Passing Protocols: Specification-Agnostic Theory and Implementation. In 38th European Conference on Object-Oriented Programming (ECOOP 2024). Leibniz International Proceedings in Informatics (LIPIcs), Volume 313, pp. 41:1-41:29, Schloss Dagstuhl – Leibniz-Zentrum für Informatik (2024) https://doi.org/10.4230/LIPIcs.ECOOP.2024.41
+
+[Zhou et al. 2020] Fangyi Zhou, Francisco Ferreira, Raymond Hu, Rumyana Neykova, and Nobuko Yoshida. Statically verified refinements for multiparty protocols. Proc. ACM Program. Lang. 4, OOPSLA, Article 148 (2020), 30 pages. https://doi.org/10.1145/3428216
