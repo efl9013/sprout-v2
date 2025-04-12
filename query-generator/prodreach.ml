@@ -199,7 +199,8 @@ let fourth_disjunct_for_s_vb (prot: symbolic_protocol) (s: state) (s1: state) (p
 let fourth_disjunct_va (prot: symbolic_protocol) (p: participant) : string = 
   List.fold_left (fun acc s -> acc ^ fourth_disjunct_for_s_va prot s p) "" prot.states 
 
-let generate_prodreach_for_participant (prot: symbolic_protocol) (p: participant) : string = 
+(* Version a. of prodreach which defines a monolithic predicate for each participant (coarse) *)
+let generate_prodreach_va (prot: symbolic_protocol) (p: participant) : string = 
   "prodreach_" ^ p ^ " " ^ 
   "(s'1:int) " ^ 
   List.fold_left (fun acc r -> acc ^ "(" ^ r ^ "'1: int) ") "" prot.registers ^
@@ -213,11 +214,7 @@ let generate_prodreach_for_participant (prot: symbolic_protocol) (p: participant
   fourth_disjunct_va prot p ^
   ";"
 
-(* Version a. of prodreach which defines a monolithic predicate for each participant (naive) *)
-let generate_prodreach_va (prot: symbolic_protocol) (p: participant) : string =
-  generate_prodreach_for_participant prot p 
-
-(* Version b. of prodreach which defines a separate predicate for each pair of s'1 and s'2 *)
+(* Version b. of prodreach which defines a separate predicate for each pair of s'1 and s'2 for each participant (fine) *)
 let generate_prodreach_for_s1_s2 (prot: symbolic_protocol) (s1: state) (s2: state) (p: participant) : string = 
   "prodreach_" ^ p ^ "_" ^ 
   string_of_int s1 ^ "_" ^

@@ -165,9 +165,27 @@ let print_execution_time results : float =
   Printf.printf "\nTotal time:%fs\n" sum;
   sum 
 
-let generate_gclts_queries (prot: symbolic_protocol) (dirname: string) = 
+let generate_gclts_queries (prot: symbolic_protocol) (dirname: string) (version: string) = 
+  match version with 
+  | "opt" -> 
   generate_determinism_queries_v1b prot dirname; 
-  generate_deadlock_free_queries_v1 prot dirname 
+  generate_deadlock_free_queries_v1b prot dirname 
+  | "naive" -> 
+  generate_determinism_queries_v1b prot dirname; 
+  generate_deadlock_free_queries_v1b prot dirname 
+  | "espresso" -> 
+  generate_determinism_queries_v2b prot dirname; 
+  generate_deadlock_free_queries_v2b prot dirname 
+  | "v60" -> 
+  generate_determinism_queries_v1b prot dirname; 
+  generate_deadlock_free_queries_v2b prot dirname 
+  | "chemex" -> 
+  generate_determinism_queries_v1b prot dirname; 
+  generate_deadlock_free_queries_v1b prot dirname 
+  | "coldbrew" -> 
+  generate_determinism_queries_v1b prot dirname; 
+  generate_deadlock_free_queries_v1b prot dirname 
+  | _ -> Printf.eprintf "Version invalid\n" 
 
 let generate_implementability_queries (prot: symbolic_protocol) (dirname: string) (version: string) = 
   match version with 
@@ -180,34 +198,22 @@ let generate_implementability_queries (prot: symbolic_protocol) (dirname: string
   generate_rcc_queries_naive prot dirname; 
   generate_nmc_queries_naive prot dirname;
   (* Further versions with more fine-grained differences *)
-  | "v3bb" -> 
+  | "espresso" -> 
   generate_scc_queries_v3bb prot dirname;
   generate_rcc_queries_v2b prot dirname; 
   generate_nmc_queries_v2b prot dirname;
-  | "v3b" -> 
-  generate_scc_queries_v3b prot dirname;
+  | "v60" -> 
+  generate_scc_queries_v2ab prot dirname;
   generate_rcc_queries_v2b prot dirname; 
   generate_nmc_queries_v2b prot dirname;
-  | "v3a" -> 
-  generate_scc_queries_v3a prot dirname;
+  | "chemex" -> 
+  generate_scc_queries_v2ab prot dirname;
   generate_rcc_queries_v2b prot dirname; 
-  generate_nmc_queries_v2b prot dirname;
-  | "v2b" -> 
-  generate_scc_queries_v2b prot dirname;
-  generate_rcc_queries_v2b prot dirname; 
-  generate_nmc_queries_v2b prot dirname;
-  | "v2a" -> 
-  generate_scc_queries_v2a prot dirname;
-  generate_rcc_queries_v2b prot dirname; 
-  generate_nmc_queries_v2b prot dirname;
-  | "v1b" -> 
-  generate_scc_queries_v1b prot dirname;
+  generate_nmc_queries_v1b prot dirname;
+  | "coldbrew" -> 
+  generate_scc_queries_v1ab prot dirname;
   generate_rcc_queries_v1b prot dirname; 
   generate_nmc_queries_v1b prot dirname;
-  | "v1a" -> 
-  generate_scc_queries_v1a prot dirname;
-  generate_rcc_queries_v1a prot dirname; 
-  generate_nmc_queries_v1a prot dirname;
   | _ -> Printf.eprintf "Version invalid\n" 
 
 let check_gclts (prot: symbolic_protocol) (dirname: string) (timeout: int) (version: string) (mode: string) : (bool * float) = 
@@ -280,7 +286,7 @@ let () =
             (* to see visualization, run 
               dot -Tsvg visualization.dot > visualization.svg 
               in the respective folder and open svg-file *)
-            generate_gclts_queries protocol gclts_dirname;
+            generate_gclts_queries protocol gclts_dirname version;
             let (is_gclts, gclts_time) = check_gclts protocol gclts_dirname timeout version mode in 
             if is_gclts 
             then (let (res, impl_time) = check_implementability protocol dirname timeout version mode in 

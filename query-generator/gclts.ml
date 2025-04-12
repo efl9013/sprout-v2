@@ -14,6 +14,12 @@ let filter_transition_pairs_for_state_determinism (ls: (symbolic_transition * sy
                                  tr2.pre = s)
                 ls
 
+(* We define 2*2 versions of determinism: 
+	(1) One muCLP query altogether, 
+	(2) One muCLP query per pair of transitions
+	Each version can choose between 2 versions of reach generation: 
+	a. One reach predicate altogether, i.e. monolithic reach,  
+	b. One reach predicate per state, i.e. curried reach *)
 let generate_determinism_for_transition_pair_vb (prot: symbolic_protocol) (pair: symbolic_transition * symbolic_transition) : string = 
 	let tr1 = fst pair in 
   	let tr2 = snd pair in 
@@ -118,7 +124,7 @@ let generate_determinism_v1b (prot: symbolic_protocol) : string =
 let generate_determinism_queries_v1b (prot: symbolic_protocol) (dir: string) = 
 	write_to_file (Filename.concat dir "det.hes") (generate_determinism_v1b prot)
 
-let generate_determinism_queries_vb (prot: symbolic_protocol) (dir: string) = 
+let generate_determinism_queries_v2b (prot: symbolic_protocol) (dir: string) = 
 	List.iter (fun s -> 
 						(* For each state in the protocol *)
 						List.iter (fun (tr1,tr2) -> 
@@ -129,7 +135,7 @@ let generate_determinism_queries_vb (prot: symbolic_protocol) (dir: string) =
 								(filter_transition_pairs_for_state_determinism (all_transition_pairs prot.transitions) s))
 			prot.states 
 
-let generate_determinism_queries_va (prot: symbolic_protocol) (dir: string) = 
+let generate_determinism_queries_v2a (prot: symbolic_protocol) (dir: string) = 
 	List.iter (fun s -> 
 						(* For each state in the protocol *)
 						List.iter (fun (tr1,tr2) -> 
@@ -141,6 +147,11 @@ let generate_determinism_queries_va (prot: symbolic_protocol) (dir: string) =
 			prot.states 
 
 (* 2) Deadlock-freedom picks out non-final states *)
+
+(* This file defines 2 versions of deadlock freedom: 
+	(1) One muCLP query altogether, 
+	(2) One muCLP query per state 
+	Both versions use vb reach, i.e. curried reach *) 
 let filter_states_for_deadlock_freedom (prot: symbolic_protocol) =
    List.filter (fun x -> not (List.mem x prot.final_states)) prot.states 
 
@@ -177,7 +188,7 @@ let deadlock_free_body_for_state (prot: symbolic_protocol) (s: state) : string =
 	" /\\ df_" ^ string_of_int s ^ " " ^ 
 	List.fold_left (fun acc x -> acc ^ x ^ " ") "" prot.registers 
 
-let generate_deadlock_free_v1 (prot: symbolic_protocol) : string = 
+let generate_deadlock_free_v1b (prot: symbolic_protocol) : string = 
 	"exists " ^
 	List.fold_left (fun acc x -> acc ^ " " ^ parenthesize (x ^ ": int")) "" prot.registers ^ 
 	".\n" ^
@@ -187,11 +198,11 @@ let generate_deadlock_free_v1 (prot: symbolic_protocol) : string =
 	"\n" ^ 
 	List.fold_left (fun acc s -> acc ^ "\n" ^ generate_df_for_state prot s) "" prot.states 
 
-let generate_deadlock_free_queries_v1 (prot: symbolic_protocol) (dirname: string) = 
+let generate_deadlock_free_queries_v1b (prot: symbolic_protocol) (dirname: string) = 
 	write_to_file (Filename.concat dirname "df.hes")
-				     (generate_deadlock_free_v1 prot )
+				     (generate_deadlock_free_v1b prot )
 
-let generate_deadlock_free_queries (prot: symbolic_protocol) (dirname: string) = 
+let generate_deadlock_free_queries_v2b (prot: symbolic_protocol) (dirname: string) = 
 	List.iter (fun s -> write_to_file
 			     		(Filename.concat dirname ("df_" ^ string_of_int s ^ ".hes"))
 			     		(generate_deadlock_free_for_state prot s))

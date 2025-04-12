@@ -176,7 +176,7 @@ let generate_rcc_preamble_for_participant_va (prot: symbolic_protocol) (p: parti
 let generate_rcc_for_participant_va (prot: symbolic_protocol) (p: participant) (ls : (symbolic_transition * symbolic_transition) list) = 
 	generate_rcc_preamble_for_participant_va prot p ls ^ 
 	"\n" ^ 
-	generate_prodreach_for_participant prot p ^ 
+	generate_prodreach_va prot p ^ 
 	"\n" ^ 
 	generate_all_avail_for_participant prot p
 

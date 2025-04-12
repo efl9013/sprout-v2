@@ -119,7 +119,7 @@ let generate_nmc_preamble_for_participant_vb (prot: symbolic_protocol) (p: parti
 let generate_nmc_for_participant_va (prot: symbolic_protocol) (p: participant) (ls : (symbolic_transition * symbolic_transition) list) = 
 	generate_nmc_preamble_for_participant_va prot p ls ^ 
 	"\n" ^ 
-	generate_prodreach_for_participant prot p
+	generate_prodreach_va prot p
 
 let generate_nmc_for_participant_vb (prot: symbolic_protocol) (p: participant) (ls : (symbolic_transition * symbolic_transition) list) = 
 	generate_nmc_preamble_for_participant_vb prot p ls ^ 
