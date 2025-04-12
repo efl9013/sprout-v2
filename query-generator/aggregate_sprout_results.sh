@@ -1,9 +1,22 @@
 #!/usr/bin/env bash
 
-# Define filenames
-file1="sprout_output_aggregation.txt"
-template_file="table2_empty.txt"
-output_file="table2_final.txt"
+if [[ $# -ne 2 ]]; then
+    echo "Usage: $0 <sprout_output> <table_file>"
+    exit 1
+fi
+
+file1="$1"           
+output_file="$2"     
+template_file="table2_empty.txt"  
+
+# Validate input file existence
+if [[ ! -f "$file1" ]]; then
+    echo "Error: Input file '$file1' not found" >&2
+    exit 1
+fi
+
+# Clear the output file if it exists, or create a new one
+> "$output_file"
 
 # Copy Table 2's template to the final table 
 cp "$template_file" "$output_file"
@@ -79,32 +92,39 @@ for filename in "${files[@]}"; do
 
   # Calculate average time
   average_time="N/A"
-  if [[ ${#times[@]} -gt 0 ]]; then
-    sum=0
-    count=${#times[@]}
-    for t in "${times[@]}"; do
-      sum=$(awk "BEGIN {printf \"%f\", $sum + $t}")
-    done
-    average_time=$(awk "BEGIN {printf \"%.1f\", $sum/$count}")
+  if ((${#times[@]} > 0)); then
+    sum=$(IFS=+; echo "scale=2; (${times[*]})/${#times[@]}" | bc -l)
+    average_time=$(printf "%.1f" "$sum")
   fi
 
-  # Determine result aggregation
+
+  # Calculate average result 
   average_result="?"
   if [[ ${#results[@]} -gt 0 ]]; then
-    unique_results=$(printf "%s\n" "${results[@]}" | sort -u)
-    
-    if [[ "$unique_results" == "implementable" ]]; then
+    # Count occurrences of each result type
+    impl_count=0
+    non_impl_count=0
+    for result in "${results[@]}"; do
+      if [[ "$result" == "implementable" ]]; then
+        ((impl_count++))
+      elif [[ "$result" == "non-implementable" ]]; then
+        ((non_impl_count++))
+      fi
+    done
+
+    # Apply new decision logic
+    if ((impl_count > 0 && non_impl_count == 0)); then
       average_result="Y"
-    elif [[ "$unique_results" == "non-implementable" ]]; then
+    elif ((non_impl_count > 0 && impl_count == 0)); then
       average_result="N"
-    else
+    elif ((impl_count > 0 && non_impl_count > 0)); then
       average_result="?"
+    else
+      average_result="?"  
     fi
   fi
-
   
   echo "$filename,$average_time,$average_result" 
-
 
 
   # Update template file with column-aware replacement
@@ -145,4 +165,4 @@ for filename in "${files[@]}"; do
 
 done
 
-echo "Column-aware table written to $output_file"
+echo "Sprout results written to $output_file."

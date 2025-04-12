@@ -13,49 +13,45 @@ base_dir="../examples/sprout"
 
 # List of examples to verify
 files=(
-  #"figure12-yes"
-  #"figure12-no"
+  # "figure12-yes"
+  # "figure12-no"
   # "two-buyer"
-  # "higher-lower-ultimate" # timeout 300s 
-  #"higher-lower-no" # needs fixing so we won't test this for now 
-   "symbolic-two-bidder-yes" # 22s, implementable vs timeout 923s, inconclusive 
-  # "symbolic-two-bidder-no1" # 20s, non-implementable vs timeout 733s, inconclusive 
+  "higher-lower-ultimate" # timeout 300s 
+  "higher-lower-no" # needs fixing so we won't test this for now 
+  "symbolic-two-bidder-yes" # 22s, implementable vs timeout 923s, inconclusive 
+  "symbolic-two-bidder-no1" # 20s, non-implementable vs timeout 733s, inconclusive 
 )
 
 run_with_limits() {
   local cmd=("$@")
-  local mem_limit_gb=16   # Memory limit in GB
+  local mem_limit_gb=4
   local status
-  local process_name="main.exe"
-
-  # Start process with timeout using proper signal handling
+  
   "${cmd[@]}" >> "$output_file" 2>&1 &
-  # local pid=$!
+  local pid=$!
+  
+  while kill -0 "$pid" 2>/dev/null; do
+    # Sum up all processes called "main.exe"
+    mem=$(ps aux | grep "[m]ain.exe" | awk '{sum += $6} END {printf "%.2f", sum / 1024 / 1024}') 
 
-  # Monitoring loop
-  # while kill -0 "$pid" 2>/dev/null; do
-  while true; do 
-    # Cross-platform memory check (Linux/macOS)
-    mem=$(ps -A -o rss,command | grep -v grep | grep "$process_name" | awk '{sum+=$1} END {print sum/1024/1024}')
-    echo "Amount of memory being used by process $process_name: $mem"
-    # Memory check with buffer
+    echo "Memory used by processes main.exe: ${mem}GB"
+        
     if (( $(echo "$mem > $mem_limit_gb" | bc -l) )); then
-      echo "Out of memory (${mem_limit_gb}gb)" >> "$output_file"
-      pkill -TERM "$process_name" 2>/dev/null || true
+      echo "Out of memory (${mem_limit_gb}GB)" >> "$output_file"
+      pkill -TERM -P "$pid"
       sleep 1
-      pkill -KILL "$process_name" 2>/dev/null || true
+      pkill -KILL -P "$pid"
       return 137
     fi
-    
     sleep 0.5
   done
-
-  # Handle timeout case properly
+  
   wait "$pid"
   status=$?
-
   return $status
 }
+
+
 
 # Removing generated files before the experiment 
 (cd "$base_dir" && sh cleanup.sh)

@@ -65,7 +65,7 @@ files=(
 )
 
 # Removing generated files before the experiment 
-# (cd "$base_dir" && sh cleanup.sh)
+sh cleanup.sh
 
 # Iterate over the files
 for file in "${files[@]}"; do
@@ -83,12 +83,11 @@ for file in "${files[@]}"; do
   echo "----------------------------------------" >> "$output_file"
   # Run the command n times and append output to the file
   for ((i=1; i<=n; i++)); do
-    sleep 1
     # Cleanup generated files before each iteration
-    (cd "$base_dir" && sh cleanup.sh)
+    sh cleanup.sh 
 
     # Capture output and process line-by-line
-    ./_build/default/main.exe "$full_path" 30 opt parallel 2>&1 | while IFS= read -r line; do
+    ./_build/default/main.exe "$full_path" 40 opt parallel 2>&1 | while IFS= read -r line; do
       # Write to output file
       echo "$line" >> "$output_file"
       
@@ -105,10 +104,11 @@ for file in "${files[@]}"; do
     echo "----" >> "$output_file"  # Separator between iterations
   done
 
-  echo "\n\n" >> "$output_file"
+  echo -e "\n\n" >> "$output_file"
   echo "$file verified."
 done
 
 # Removing generated files after the experiment 
-(cd "$base_dir" && sh cleanup.sh)
+sh cleanup.sh 
+
 echo "All examples verified $n times; results saved in $output_file."
