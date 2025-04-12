@@ -96,12 +96,12 @@ To reproduce Table 1 from the paper:
    ```bash
    bash naive_vs_opt.sh 
    ```
-2. The above step takes (a looooong time, TODO), and logs Sprout’s raw output in the file `naive_vs_opt_output.txt`. 
-3. To consolidate the raw output into Table 1, run: 
+   The above step takes (a looooong time, TODO), and logs Sprout’s raw output in the file `naive_vs_opt_output.txt`. 
+2. To consolidate the raw output into Table 1, run: 
    ```bash
    sh aggregate_naive_vs_opt_output.sh 
    ```
-4. To view the completed Table 2, run: 
+3. To view the completed Table 2, run: 
    ```bash
    cat table1_final.txt 
    ```
@@ -112,29 +112,29 @@ To reproduce Table 2 from the paper:
    bash verify_all.sh 1 
    ```
    The shell script takes as input a number representing the number of iterations. 
-2. The above step takes ~30 minutes, and logs Sprout’s raw output in the file `sprout_output.txt` inside the mounted folder `examples/sprout`. 
-3. To aggregate the raw output from Sprout into the corresponding columns of Table 2, run: 
+   The above step takes ~30 minutes, and logs Sprout’s raw output in the file `sprout_output.txt` inside the mounted folder `examples/sprout`. 
+2. To aggregate the raw output from Sprout into the corresponding columns of Table 2, run: 
    ```bash
    bash aggregate_sprout_output.sh 
    ```
-4. To view the partially completed Table 2, run: 
+3. To view the partially completed Table 2, run: 
    ```bash
    cat table2_final.txt 
    ```
-5. In Session*’s Docker image, run: 
+4. In Session*’s Docker image, run: 
    ```bash
    cd examples 
    bash verify_sessionstar.sh 1 
    ```
-6. The above step takes ~x minutes, and logs Session*’s raw output in the file `sessionstar_output.txt` inside the mounted folder `examples/sessionstar`. 
-7. To aggregate the raw output from Session* into the corresponding columns of Table 2, run:  
+   The above step takes ~x minutes, and logs Session*’s raw output in the file `sessionstar_output.txt` inside the mounted folder `examples/sessionstar`. 
+5. To aggregate the raw output from Session* into the corresponding columns of Table 2, run:  
    ```
    bash aggregate_sessionstar_output.sh 
    ```
-8. To view the completed Table 2, run: 
+6. To view the completed Table 2, run: 
    ```bash
    cat table2_final.txt 
-   ```. 
+   ```
 
 Below, we provide further details regarding each experiment. 
 ### Claim 1: Optimization efficiency 
