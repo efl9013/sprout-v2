@@ -2,8 +2,8 @@ module HigherLowerNo;
 
 type <fstar> "int" from "" as int;
 
-global protocol HigherLowerNo(role A, role B, role C) {
-  start(n0:int) from A to B;  @'0<=n0 && n0<100'
+global protocol HigherLowerNo(role A, role B, role C, role D) {
+  start(n0:int) from A to D;  @'0<=n0 && n0<100'
   limit(t0:int) from A to B;  @'0<t0'
   do Aux(A, B, C);     @'B[0, t0]'
 }

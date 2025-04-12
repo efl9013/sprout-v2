@@ -1,7 +1,6 @@
 Initial state: (0)
 Initial register assignments: rn=0, rt=0, rx=0, rs=0
-(0) a->d:n{rn'=n} (11)
-(11) d->b:s{rs'=s/\s!=rn} (1)
+(0) a->d:n{rn'=n} (1) // Participant a sends to d instead of b
 (1) a->b:t{t>0/\rt'=t} (2)
 (2) c->b:x{rx'=x} (3)
 (3) b->c:higher{higher=3/\rn>rx/\rt>0/\rt'=rt-1} (4)
