@@ -86,7 +86,7 @@ for file in "${files[@]}"; do
     # Cleanup generated files before each iteration
     sh cleanup.sh 
 
-    # Capture output and process line-by-line
+    # Capture output line-by-line
     ./_build/default/main.exe "$full_path" 40 opt parallel 2>&1 | while IFS= read -r line; do
       # Write to output file
       echo "$line" >> "$output_file"
