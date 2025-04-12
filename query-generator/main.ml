@@ -55,6 +55,7 @@ let process_protocol filename : symbolic_protocol * bool =
   then (add_unmentioned_equalities prot, true)
   else (prot, false)
 
+
 let process_hes_file_mode filename dirname timeout mode : string * float =
   let command = Printf.sprintf "timeout %i ./_build/default/main.exe -c ./config/solver/muval_%s_tbq_ar.json -p muclp %s/%s" timeout mode dirname filename in
   (* For making Docker image *) 
@@ -161,7 +162,7 @@ let print_execution_time results : float =
       execution_time 
       outcome
   ) (List.rev results);
-  Printf.printf "\nTotal time:%f\n" sum;
+  Printf.printf "\nTotal time:%fs\n" sum;
   sum 
 
 let generate_gclts_queries (prot: symbolic_protocol) (dirname: string) = 
@@ -231,20 +232,26 @@ let check_gclts (prot: symbolic_protocol) (dirname: string) (timeout: int) (vers
                        let sum = print_execution_time results in 
                        (false,sum)))
 
-let check_implementability (prot: symbolic_protocol) (dirname: string) (timeout: int) (version: string) (mode: string) : float = 
+type result = Yes | No | Inconclusive 
+let result_to_string res = 
+  match res with 
+  | Yes -> "implementable"
+  | No -> "non-implementable"
+  | Inconclusive -> "inconclusive"
+
+let check_implementability (prot: symbolic_protocol) (dirname: string) (timeout: int) (version: string) (mode: string) : (result*float) = 
   Printf.printf "\nChecking implementability...\n";
   (* print_symbolic_protocol prot;  *)
   if is_binary prot 
-  then (Printf.printf "Binary protocol, implementable\n"; 0.0)
+  then (Printf.printf "Implementable (binary)\n"; (Yes,0.0))
   else (generate_implementability_queries prot dirname version;
         let results = process_directory dirname timeout version mode in 
         (* List.iter (fun (file, outcome, time) -> Printf.printf "%s: %s\n" file outcome) results; *)
         if List.for_all (fun (_, result, _) -> result = "invalid") results 
-        then Printf.printf "Implementable\n" 
+        then (Printf.printf "Implementable\n"; (Yes, print_execution_time results))
         else if List.exists (fun (_, result, _) -> result = "valid") results 
-             then Printf.printf "Non-implementable\n" 
-             else Printf.printf "Inconclusive\n";
-        print_execution_time results)
+             then (Printf.printf "Non-implementable\n"; (No, print_execution_time results))
+             else (Printf.printf "Inconclusive\n"; (Inconclusive, print_execution_time results)))
         (* Note to self: no semi-colon after final statement! *)
 
 
@@ -276,10 +283,10 @@ let () =
             generate_gclts_queries protocol gclts_dirname;
             let (is_gclts, gclts_time) = check_gclts protocol gclts_dirname timeout version mode in 
             if is_gclts 
-            then (let impl_time = check_implementability protocol dirname timeout version mode in 
+            then (let (res, impl_time) = check_implementability protocol dirname timeout version mode in 
                   (* Optionally generate property queries *)
                   (* generate_property_query protocol two_bidder_bids_increasing "bids_increasing_property" dirname; *)
-                  Printf.eprintf "\nTotal verification time: %f\n" (Float.add gclts_time impl_time))
+                  Printf.printf "\nTotal verification time: %fs, %s\n" (Float.add gclts_time impl_time) (result_to_string res))
           else ();)
       else ();)
     else Printf.eprintf "Protocol not well-formed, terminating.\n"

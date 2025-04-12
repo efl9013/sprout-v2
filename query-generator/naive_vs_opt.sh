@@ -13,14 +13,49 @@ base_dir="../examples/sprout"
 
 # List of examples to verify
 files=(
-  "figure12-yes"
-  "figure12-no"
-  "two-buyer"
-  "higher-lower-ultimate"
-  "higher-lower-no"
-  "symbolic-two-bidder-yes"
-  "symbolic-two-bidder-no1"
+  #"figure12-yes"
+  #"figure12-no"
+  # "two-buyer"
+  # "higher-lower-ultimate" # timeout 300s 
+  #"higher-lower-no" # needs fixing so we won't test this for now 
+   "symbolic-two-bidder-yes" # 22s, implementable vs timeout 923s, inconclusive 
+  # "symbolic-two-bidder-no1" # 20s, non-implementable vs timeout 733s, inconclusive 
 )
+
+run_with_limits() {
+  local cmd=("$@")
+  local mem_limit_gb=16   # Memory limit in GB
+  local status
+  local process_name="main.exe"
+
+  # Start process with timeout using proper signal handling
+  "${cmd[@]}" >> "$output_file" 2>&1 &
+  # local pid=$!
+
+  # Monitoring loop
+  # while kill -0 "$pid" 2>/dev/null; do
+  while true; do 
+    # Cross-platform memory check (Linux/macOS)
+    mem=$(ps -A -o rss,command | grep -v grep | grep "$process_name" | awk '{sum+=$1} END {print sum/1024/1024}')
+    echo "Amount of memory being used by process $process_name: $mem"
+    # Memory check with buffer
+    if (( $(echo "$mem > $mem_limit_gb" | bc -l) )); then
+      echo "Out of memory (${mem_limit_gb}gb)" >> "$output_file"
+      pkill -TERM "$process_name" 2>/dev/null || true
+      sleep 1
+      pkill -KILL "$process_name" 2>/dev/null || true
+      return 137
+    fi
+    
+    sleep 0.5
+  done
+
+  # Handle timeout case properly
+  wait "$pid"
+  status=$?
+
+  return $status
+}
 
 # Removing generated files before the experiment 
 (cd "$base_dir" && sh cleanup.sh)
@@ -36,31 +71,21 @@ for file in "${files[@]}"; do
     continue
   fi
 
-  # Add a header for each file in the output
+  # Naive mode execution with monitoring
   echo "Processing $file on naive mode" >> "$output_file"
   echo "----------------------------------------" >> "$output_file"
-  # Run one command for naive version and append output to the file
-  ./_build/default/main.exe "$full_path" 300 naive parallel >> "$output_file"
-
-  # Add a separator after each file's output
+  run_with_limits ./_build/default/main.exe "$full_path" 300 naive parallel
   echo -e "\n\n" >> "$output_file"
-
-  echo "$file verified."
-  # Cleaning up generated files 
+  echo "$file verified (naive)."
   (cd "$base_dir" && sh cleanup.sh)
 
+  # Optimized mode execution 
   echo "Processing $file on optimized mode" >> "$output_file"
   echo "----------------------------------------" >> "$output_file"
-  # Run one command for optimized version and append output to the file
-  ./_build/default/main.exe "$full_path" 30 opt parallel >> "$output_file"
-
-  # Add a separator after each file's output
+  ./_build/default/main.exe "$full_path" 30 opt parallel >> "$output_file" 2>&1
   echo -e "\n\n" >> "$output_file"
-
-  echo "$file verified."
-  # Cleaning up generated files 
+  echo "$file verified (optimized)."
   (cd "$base_dir" && sh cleanup.sh)
-
 done
 
 # Removing generated files after the experiment 

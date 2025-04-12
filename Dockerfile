@@ -10,6 +10,7 @@ FROM ocaml/opam:ubuntu-22.04-ocaml-5.2
 # Install system dependencies (as root)
 RUN sudo apt-get update && sudo apt-get install -y \
         vim \ 
+        bc \ 
         libblas-dev \
         libffi-dev \
         libglpk-dev \

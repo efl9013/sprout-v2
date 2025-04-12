@@ -2,11 +2,21 @@
 
 set -u
 
-# Define the output file
+if [ $# -ne 1 ]; then
+  echo "Usage: $0 <number_of_iterations>"
+  exit 1
+fi
+
+# Define the number of iterations
+n=$1
+
+# Define the output file and aggregation file 
 output_file="sprout_output.txt"
+aggregation_file="sprout_output_aggregation.txt"
 
 # Clear the output file if it exists, or create a new one
 > "$output_file"
+> "$aggregation_file"
 
 # Base directory where the files are located
 base_dir="../examples/sprout"
@@ -15,7 +25,7 @@ base_dir="../examples/sprout"
 files=(
   "calculator"
   "fibonacci"
-  "higher-lower-original"
+  "higher-lower"
   "http"
   "negotiation"
   "online-wallet"
@@ -23,7 +33,6 @@ files=(
   "ticket"
   "travel-agency"
   "two-buyer"
-  "adder"
   "double-buffering"
   "oauth"
   "plus-minus"
@@ -56,13 +65,13 @@ files=(
 )
 
 # Removing generated files before the experiment 
-(cd "$base_dir" && sh cleanup.sh)
+# (cd "$base_dir" && sh cleanup.sh)
 
 # Iterate over the files
 for file in "${files[@]}"; do
   # Construct the full path to the file
   full_path="$base_dir/$file"
-
+  
   # Check if file exists
   if [ ! -f "$full_path" ]; then
     echo "Warning: File $full_path not found. Skipping." >> "$output_file"
@@ -72,16 +81,34 @@ for file in "${files[@]}"; do
   # Add a header for each file in the output
   echo "Processing $file" >> "$output_file"
   echo "----------------------------------------" >> "$output_file"
-  # Run the command and append output to the file
-  ./_build/default/main.exe "$full_path" 30 opt parallel >> "$output_file"
+  # Run the command n times and append output to the file
+  for ((i=1; i<=n; i++)); do
+    # Cleanup generated files before each iteration
+    (cd "$base_dir" && sh cleanup.sh)
 
-  # Add a separator after each file's output
-  echo -e "\n\n" >> "$output_file"
+    # Capture output and process line-by-line
+    ./_build/default/main.exe "$full_path" 30 opt parallel 2>&1 | while IFS= read -r line; do
+      # Write to output file
+      echo "$line" >> "$output_file"
+      
+      # Check for verification time line
+      if [[ "$line" == "Total verification time:"* ]]; then
+        # Extract time using parameter expansion (works on all systems)
+        time="${line#*Total verification time:}"
+      fi
 
+      echo "$file iteration $i: ${time}"
+      echo "$file iteration $i: ${time}" >> "$aggregation_file"
+    done 
+    
+    
+    echo "----" >> "$output_file"  # Separator between iterations
+  done
+
+  echo "\n\n" >> "$output_file"
   echo "$file verified."
 done
 
 # Removing generated files after the experiment 
 (cd "$base_dir" && sh cleanup.sh)
-
-echo "All examples verified; results saved in $output_file."
+echo "All examples verified $n times; results saved in $output_file."

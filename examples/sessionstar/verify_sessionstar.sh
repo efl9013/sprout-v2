@@ -2,11 +2,21 @@
 
 set -u
 
+if [ $# -ne 1 ]; then
+  echo "Usage: $0 <number_of_iterations>"
+  exit 1
+fi
+
+# Define the number of iterations
+n=$1
+
 # Define the output file
 output_file="sessionstar_output.txt"
+aggregation_file="sessionstar_output_aggregation.txt"
 
 # Clear the output file if it exists, or create a new one
 > "$output_file"
+> "$aggregation_file"
 
 # List of commands to execute
 commands=(
@@ -51,17 +61,43 @@ commands=(
 
 # Iterate over the commands
 for cmd in "${commands[@]}"; do
-  # Add a header for each command in the output
+  # Extract example filename 
+  file=$(echo "$cmd" | grep -oP 'sessionstar \K[^ ]+\.scr' | sed 's/\.scr//' | sort -u)
+
   echo "Executing: $cmd" >> "$output_file"
   echo "----------------------------------------" >> "$output_file"
   
-  # Run the command and append output to the file
-  eval "time ($cmd)" >> "$output_file" 2>&1
+  for ((i=1; i<=n; i++)); do
+    time=""  # Initialize time variable
+    res=""   # Initialize result variable
+
+    # Capture output and timing
+    { time -p eval "$cmd"; } 2>&1 | while IFS= read -r line; do
+      # Write all output to main log
+      echo "$line" >> "$output_file"
+      
+      # Parse timing and results
+      if [[ "$line" == real* ]]; then
+        time=$(echo "$line" | awk '{print $2}')
+      fi
+      
+      if [[ "$line" == *"Cannot project"* ]]; then
+        res="non-implementable"
+      elif [[ "$line" == *"Scribble reported a problem"* ]]; then
+        res="inconclusive"
+      else
+        res="implementable"
+      fi
+    done
+    
+    # Write aggregated results after each iteration
+    echo "$file iteration $i: ${time}, ${res}"
+    echo "$file iteration $i: ${time}, ${res}" >> "$aggregation_file"
+    echo "----" >> "$output_file"
+  done
   
-  # Add a separator after each command's output
   echo -e "\n\n" >> "$output_file"
-  
-  echo "$cmd executed"
+  echo "$file verified."
 done
 
 echo "All commands executed; results saved in $output_file"
