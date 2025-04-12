@@ -4,7 +4,7 @@
 > # *SPROUT: A Verifier for Symbolic Multiparty Protocols*
 > 
 > #### Elaine Li, Felix Stutz, Thomas Wies and Damien Zufferey
-![](sprout.png)<!-- {"width":288} -->
+![](sprout.png)<!-- {"width":100} -->
 
 We present Sprout, the tool accompanying submission #202: SPROUT: A Verifier for Symbolic Multiparty Protocols. Sprout is the first sound and complete implementability checker for symbolic multiparty protocols. Sprout supports protocols featuring dependent refinements on message values, loop memory, and multiparty communication with generalized, sender-driven choice. Sprout checks implementability via an optimized, sound and complete reduction to the fixpoint logic muCLP, and uses MuVal as a backend solver for muCLP instances. We evaluate Sprout on an extended benchmark suite of implementable and non-implementable examples, and show that Sprout outperforms its competititors in terms of expressivity and precision, and provides competitive runtime performance. Sprout is open source, and hosted at https://github.com/nyu-acsys/sprout. We provide a Docker image for the purposes of artifact evaluation hosted at (TODO: Zenodo url) with checksum (TODO: checksum). We are claiming all three artifact badges: available, functional and reusable. 
 
@@ -136,11 +136,18 @@ To reproduce Table 2 from the paper:
    cat table2_final.txt 
    ```
 
+### Tuning Sprout's performance 
+Sprout is susceptible to the sources of non-determinism present in MuVal. Thus, results may present discrepancies due to factors such as runtime environment and number of iterations during batch processing. Thus, we provide command line functionality to tune Sprout's performance. An example command to run Sprout on an individual example is as follows, from the directory `/home/opam/sprout/query-generator`: 
+```
+./_build/default/main.exe ../examples/sprout/example-name 5 opt parallel 
+```
+The executable takes 4 arguments: a path to the example file, a timeout limit, Sprout's mode, and MuVal's mode. To improve performance, we recommend first increasing the timeout limit, and then trying Sprout on `espresso` mode, which maximally decomposes the conditions that Sprout checks into muCLP instances at the cost of some performance overhead. 
+
 Below, we provide further details regarding each experiment. 
 ### Claim 1: Optimization efficiency 
 Table 1 compares the runtime efficiency of Sprout on two different modes: naive and optimized. The naive mode corresponds to implementing the pen-and-paper symbolic algorithm given in [Li et al. 2024]; the optimized mode implements all the optimizations introduced in Section 3.2 of our paper. Sprout allows the user to specify their desired mode using a command line argument. 
 
-We claim that ~Sprout's optimizations improve verification efficiency by over two orders of magnitude for protocols with more than 2 transitions~. 
+We claim that **Sprout's optimizations improve verification efficiency by over two orders of magnitude for protocols with more than 2 transitions**. 
 
 The shell script `naive_vs_opt.sh`  iterates over a list of example names, and calls Sprout on naive and optimized mode respectively. The function `run_with_limits` imposes a memory limit of 16GB by monitoring the memory usage of the process `main.exe` every 0.5 seconds.  
 
@@ -149,8 +156,8 @@ Our claim can be falfisied by examining `table1_final.txt`.
 ### Claim 2: Precision and efficiency 
 Table 2 compares the precision and runtime efficiency of Sprout against Session*. Precision is measured by the fraction of examples that each tool correctly classifies; efficiency is measured in terms of execution time. 
 
-Regarding precision, we claim that ~Sprout correctly classifies the implementability all protocols on which it does not timeout, whereas Session* rejects most examples introduced in our extended benchmark suite and thus suffers from incompleteness~. Note that because Sprout is an implementability checking tool, precision is equivalent to correctness. 
-Regarding efficiency, we claim that ~Sprout provides competitive performance for binary protocols, and verifies most multiparty protocols in under 10 seconds~. 
+Regarding precision, we claim that **Sprout correctly classifies the implementability all protocols on which it does not timeout, whereas Session\* rejects most examples introduced in our extended benchmark suite and thus suffers from incompleteness**. Note that because Sprout is an implementability checking tool, precision is equivalent to correctness. 
+Regarding efficiency, we claim that **Sprout provides competitive performance for binary protocols, and verifies most multiparty protocols in under 10 seconds**. 
 
 The shell scripts `verify_all.sh`  and `verify_sessionstar.sh` iterate over all 37 examples, and log the output to `sessionstar_output.txt` and `sprout_output.txt` respectively.
 Note that Sprout's timeout in `verify_all.sh` is set to 40 seconds, whereas the results in Table 2 of the paper, which were run natively on a local machine, assume a timeout of 30 seconds. The increase in timeout is to accommodate the runtime overhead introduced by the Docker container.
@@ -165,6 +172,8 @@ Both claims can be falsified by examining `table2_final.txt`.
 
 ### (Optional) Claim 3: Expressivity 
 Section 4.2 of the paper additionally claims that Sprout outperforms its competitors in terms of expressivity, and quantifies this claim using the fraction of the combined benchmark suites from Session* [Zhou et al. 2020], Rumpsteak [Vassor and Yoshida 2024] and Sprout that can be expressed in each tool. As mentioned in the paper, of the 37 benchmarks in total (10 from Session*, 6 from Rumpsteak, 21 from Sprout), Session* can express 35/37, Sprout can express 37/37, whereas Rumpsteak can only express 19/37. We thus decided to omit Rumpsteak from the remainder of our evaluation due to its lack of expressivity, as well as absence of formal guarantees. Nonetheless, we provide the 37 benchmarks we translated into NuScr in the folder `examples/rumpsteak`, so that our rationale may be independently verified. Rumpsteak's artifact can be found at https://zenodo.org/records/12731834.  
+
+### 
 
 ## C SPROUT up close 
 ---
@@ -196,7 +205,8 @@ We envision Sprout as a preprocessing step for protocol verification toolchains 
 
 
 ## D References 
-[Li et al. 2024] Elaine Li, Felix Stutz, Thomas Wies and Damien Zufferey. Characterizing Implementability of Global Protocols with Infinite States and Data. To appear in Proc. ACM Program. Lang. 9, OOPSLA (2025) ~[https://doi.org/10.48550/arXiv.2411.05722](https://doi.org/10.48550/arXiv.2411.05722)~
+---
+[Li et al. 2024] Elaine Li, Felix Stutz, Thomas Wies and Damien Zufferey. Characterizing Implementability of Global Protocols with Infinite States and Data. To appear in Proc. ACM Program. Lang. 9, OOPSLA (2025) https://doi.org/10.48550/arXiv.2411.05722
 
 [Vassor and Yoshida 2024] Martin Vassor and Nobuko Yoshida. Refinements for Multiparty Message-Passing Protocols: Specification-Agnostic Theory and Implementation. In 38th European Conference on Object-Oriented Programming (ECOOP 2024). Leibniz International Proceedings in Informatics (LIPIcs), Volume 313, pp. 41:1-41:29, Schloss Dagstuhl – Leibniz-Zentrum für Informatik (2024) https://doi.org/10.4230/LIPIcs.ECOOP.2024.41
 
