@@ -2,7 +2,7 @@ module Figure12Yes;
 
 type <fstar> "int" from "" as int;
 
-global protocol Figure12(role P , role Q, role R) {
+global protocol Figure12Yes(role P , role Q, role R) {
   message(x: int) from P to Q; 
   message(y: int) from Q to R; @"y=x"
   message(z: int) from R to P; @"z>x"

@@ -1,0 +1,33 @@
+module FwdAuthYes; 
+
+type <fstar> "int" from "" as int;
+
+global protocol FwdAuth(role P, role A, role S)
+{
+  reg() from P to A;
+  m(username: int) from P to A; 
+  m(password: int) from P to A; 
+  confirm() from A to P; 
+  do Aux(P,A,S); @"A[password]"
+}
+
+aux global protocol Aux(role P, role A, role S) 
+	@"A[p : int = 0]" {
+	choice at P {
+		done() from P to S; 
+	} or {
+		login() from P to S; 
+		m(username0: int) from P to A; 
+		m(password0: int) from P to S; 
+		m(x: int) from S to A; @"x=username0"
+		m(y: int) from S to A; @"x=password0"
+		choice at A {
+			fail() from A to S; @"(y>username0||y>username0) || (x>password0||x<password0)"
+			fail() from S to P; 
+			do Aux(P,A,S); @"A[p]"
+		} or {
+			succ() from A to S; @"y=username0 && x=password0"
+			succ() from S to P;
+		}
+	}
+}
