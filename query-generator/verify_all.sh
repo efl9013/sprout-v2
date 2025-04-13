@@ -11,8 +11,8 @@ fi
 n=$1
 
 # Define the output file and aggregation file 
-output_file="sprout_output.txt"
-aggregation_file="sprout_output_aggregation.txt"
+output_file="../examples/sprout/sprout_output.txt"
+aggregation_file="../examples/sprout/sprout_output_aggregation.txt"
 
 # Clear the output file if it exists, or create a new one
 > "$output_file"
