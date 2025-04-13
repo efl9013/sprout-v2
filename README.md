@@ -6,7 +6,7 @@
 > #### Elaine Li, Felix Stutz, Thomas Wies and Damien Zufferey
 ![](sprout.png)<!-- {"width":100} -->
 
-We present Sprout, the tool accompanying submission #202: SPROUT: A Verifier for Symbolic Multiparty Protocols. Sprout is the first sound and complete implementability checker for symbolic multiparty protocols. Sprout supports protocols featuring dependent refinements on message values, loop memory, and multiparty communication with generalized, sender-driven choice. Sprout checks implementability via an optimized, sound and complete reduction to the fixpoint logic muCLP, and uses MuVal as a backend solver for muCLP instances. We evaluate Sprout on an extended benchmark suite of implementable and non-implementable examples, and show that Sprout outperforms its competititors in terms of expressivity and precision, and provides competitive runtime performance. Sprout is open source, and hosted at https://github.com/nyu-acsys/sprout. We provide a Docker image for the purposes of artifact evaluation hosted at (TODO: Zenodo url) with checksum (TODO: checksum). We are claiming all three artifact badges: available, functional and reusable. 
+We present Sprout, the tool accompanying submission #202: SPROUT: A Verifier for Symbolic Multiparty Protocols. Sprout is the first sound and complete implementability checker for symbolic multiparty protocols. Sprout supports protocols featuring dependent refinements on message values, loop memory, and multiparty communication with generalized, sender-driven choice. Sprout checks implementability via an optimized, sound and complete reduction to the fixpoint logic muCLP, and uses MuVal as a backend solver for muCLP instances. We evaluate Sprout on an extended benchmark suite of implementable and non-implementable examples, and show that Sprout outperforms its competititors in terms of expressivity and precision, and provides competitive runtime performance. Sprout is open source, and hosted at https://github.com/nyu-acsys/sprout. We provide a Docker image for the purposes of artifact evaluation hosted at (TODO: Zenodo url) with checksum (TODO: checksum). Our artifact evaluation requires at least 2 CPU cores and at least 8GB of memory. We are claiming all three artifact badges: available, functional and reusable. 
 
 The artifact contains the following: 
 - Documentation for Sprout (README.pdf)
@@ -16,8 +16,6 @@ The artifact contains the following:
 - A folder containing the benchmark suite (examples)
 
 Sprout's evaluation depends on two external software libraries: MuVal and Session*. MuVal is Sprout’s backend muCLP solver, and is available as part of the toolchain [CoAR](https://github.com/hiroshi-unno/coar) (Collection of Automated Reasoners). Session* is the tool accompanying [Zhou et al. 2020], which we compare Sprout against. Because MuVal is essential to Sprout’s functionality, the necessary executables for MuVal, along with its license and documentation, are included in Sprout’s Docker image. On the contrary, Session* is only required for evaluating Sprout’s precision and efficiency. Session* is distributed as a Docker image, available at https://zenodo.org/records/4032454. Thus, we only include instructions for installing Session* from the above link, and do not include Session* itself in our artifact submission. 
-
-All execution times reported are from a 2024 MacBook Air (M3, 24GB RAM). 
 
 ## A Getting Started 
 ---
@@ -33,7 +31,7 @@ All execution times reported are from a 2024 MacBook Air (M3, 24GB RAM).
    ```
 4. Run Sprout using an interactive Docker shell, mounting the folder `examples/sprout` containing Sprout’s benchmark suite with read and write permission: 
    ```bash
-   docker run -it sprout:latest -v $(pwd)/examples/sprout:/home/opam/sprout/examples:rw 
+   docker run -it -v $(pwd)/examples/sprout:/home/opam/sprout/examples/sprout:rw -m="8gb" sprout:latest   
    ```
 5. The Docker container for Sprout starts up in the directory `/home/opam/sprout/query-generator`. 
 6. To quicktest Sprout’s functionality in ~1s, run: 
@@ -96,14 +94,10 @@ To reproduce Table 1 from the paper:
    ```bash
    bash naive_vs_opt.sh 
    ```
-   The above step takes (a looooong time, TODO), and logs Sprout’s raw output in the file `naive_vs_opt_output.txt`. 
+   The above step takes ~1h, and logs Sprout’s raw output in the file `naive_vs_opt_output.txt`, and aggregated output in the file `naive_vs_opt_output_aggregation.txt`. 
 2. To consolidate the raw output into Table 1, run: 
    ```bash
-   sh aggregate_naive_vs_opt_output.sh 
-   ```
-3. To view the completed Table 2, run: 
-   ```bash
-   cat table1_final.txt 
+   bash create_table1.sh naive_vs_opt_output_aggregation.txt table1_final.txt
    ```
 
 To reproduce Table 2 from the paper: 
@@ -112,36 +106,18 @@ To reproduce Table 2 from the paper:
    bash verify_all.sh 1 
    ```
    The shell script takes as input a number representing the number of iterations. 
-   The above step takes ~30 minutes, and logs Sprout’s raw output in the file `sprout_output.txt` inside the mounted folder `examples/sprout`. 
-2. To aggregate the raw output from Sprout into the corresponding columns of Table 2, run: 
-   ```bash
-   bash aggregate_sprout_output.sh 
-   ```
-3. To view the partially completed Table 2, run: 
-   ```bash
-   cat table2_final.txt 
-   ```
-4. In Session*’s Docker image, run: 
+   The above step takes ~30 minutes, and logs Sprout’s raw output in the file `sprout_output.txt`, and Sprout's aggregated output in the file `sprout_output_aggregation.txt`, both in the mounted folder `examples/sprout`. 
+2. In Session*’s Docker image, run: 
    ```bash
    cd examples 
    bash verify_sessionstar.sh 1 
    ```
-   The above step takes ~x minutes, and logs Session*’s raw output in the file `sessionstar_output.txt` inside the mounted folder `examples/sessionstar`. 
-5. To aggregate the raw output from Session* into the corresponding columns of Table 2, run:  
-   ```
-   bash aggregate_sessionstar_output.sh 
-   ```
-6. To view the completed Table 2, run: 
+   The above step takes ~x minutes, and logs Session*’s raw output in the file `sessionstar_output.txt`, and Session*'s aggregated output in the file `sessionstar_output_aggregation.txt`, both in the mounted folder `examples/sessionstar`. 
+3. In your local machine, to consolidate the aggregated output from both tools into Table 2, run: 
    ```bash
-   cat table2_final.txt 
+   cd examples 
+   bash create_table2.sh sprout/sprout_output_aggregation.txt sessionstar/sessionstar_output_aggregation.txt table2_final.txt  
    ```
-
-### Tuning Sprout's performance 
-Sprout is susceptible to the sources of non-determinism present in MuVal. Thus, results may present discrepancies due to factors such as runtime environment and number of iterations during batch processing. Thus, we provide command line functionality to tune Sprout's performance. An example command to run Sprout on an individual example is as follows, from the directory `/home/opam/sprout/query-generator`: 
-```
-./_build/default/main.exe ../examples/sprout/example-name 5 opt parallel 
-```
-The executable takes 4 arguments: a path to the example file, a timeout limit, Sprout's mode, and MuVal's mode. To improve performance, we recommend first increasing the timeout limit, and then trying Sprout on `espresso` mode, which maximally decomposes the conditions that Sprout checks into muCLP instances at the cost of some performance overhead. 
 
 Below, we provide further details regarding each experiment. 
 ### Claim 1: Optimization efficiency 
@@ -149,7 +125,7 @@ Table 1 compares the runtime efficiency of Sprout on two different modes: naive 
 
 We claim that **Sprout's optimizations improve verification efficiency by over two orders of magnitude for protocols with more than 2 transitions**. 
 
-The shell script `naive_vs_opt.sh`  iterates over a list of example names, and calls Sprout on naive and optimized mode respectively. The function `run_with_limits` imposes a memory limit of 16GB by monitoring the memory usage of the process `main.exe` every 0.5 seconds.  
+The shell script `naive_vs_opt.sh`  iterates over a list of example names, and calls Sprout on naive and optimized mode respectively. The Docker container is initialized with 8GB of memory, killing processes that exceed this limit, and naive mode muCLP instances are given a 300 second timeout. Optimized mode muCLP instances are given a 40 second timeout. 
 
 Our claim can be falfisied by examining `table1_final.txt`. 
 
@@ -163,17 +139,29 @@ The shell scripts `verify_all.sh`  and `verify_sessionstar.sh` iterate over all 
 Note that Sprout's timeout in `verify_all.sh` is set to 40 seconds, whereas the results in Table 2 of the paper, which were run natively on a local machine, assume a timeout of 30 seconds. The increase in timeout is to accommodate the runtime overhead introduced by the Docker container.
 
 We detail the results returned by each tool below. 
-Sprout returns one of three results: implementable (`Y`), non-implementable (`N`), inconclusive (`?`), or non-GCLTS (not applicable to this artifact evaluation). Note that non-implementability requires only one valid muCLP instance, whereas implementability requires all muCLP instances to return invalid. Thus, thus non-implementable protocols may timeout on other instances. Further note that Sprout does not eagerly terminate upon finding the first valid muCLP instance, but rather checks all generated muCLP instances in the interest of aiding protocol repair. Inconclusive means that Sprout cannot establish implementability due to timeouts. 
+Sprout returns one of three results: implementable (`Y`), non-implementable (`N`), inconclusive (`?`), or non-GCLTS (not applicable to this artifact evaluation). Note that non-implementability requires only one valid muCLP instance, whereas implementability requires all muCLP instances to return invalid. Thus, thus non-implementable protocols may timeout on other instances. Further note that Sprout does not eagerly terminate upon finding the first valid muCLP instance, but rather checks all generated muCLP instances in the interest of aiding protocol repair. Inconclusive means that Sprout cannot establish implementability due to timeouts or out of memory errors. 
 We classify the output of Session* into three results: implementable (`Y`) means that the projection is defined and local types are computed, non-implementable (`N`) means that the protocol cannot be projected, and inconclusive (`?`) means that Session* aborts for another reason, such as failure to parse or typecheck the input.  
-The aggregation shell scripts copy `table2_empty`, which contains columns 2-4 of Table 2 in the paper, and fill in the remaining columns. 
-In case multiple iterations were run, the final result is `Y` iff all iterations return implementable, `N` iff all iterations return non-implementable, and `?` otherwise, and the final time is the mean of all iterations.  
+The aggregation shell script copies `table2_empty`, which contains columns 2-4 of Table 2 in the paper, and fills in the remaining columns based on Sprout and Session*'s aggregated output. 
 
 Both claims can be falsified by examining `table2_final.txt`. 
+
+### A note on performance 
+The results reported in our paper are from running Sprout natively on a 2024 MacBook Air (M3, 24GB RAM). The experimental results may slightly vary in part due to factors such as runtime environment and hardware, and in part due to the sources of non-determinism present in MuVal. Any differences that present should not affect the validity of our claims. Nonetheless, we describe below some ways to address potential performance discrepancies that may arise. 
+
+#### Repeating experiments 
+Each shell script is equipped with a parameter that specifies the number of iterations. In case multiple iterations were run, the aggregated result is `Y` iff all iterations return implementable, `N` iff all iterations return non-implementable, and `?` otherwise, and the aggregated time is the mean of all iterations.  
+
+#### Tuning Sprout on individual examples 
+We provide command line functionality to tune Sprout's performance on individual examples. 
+Running Sprout on an individual example can be done with the following command, from the directory `/home/opam/sprout/query-generator`: 
+```
+./_build/default/main.exe ../examples/sprout/example-name 5 opt parallel 
+```
+Sprout's executable takes 4 arguments: a path to the example file, a timeout limit, Sprout's mode, and MuVal's mode. To improve performance and stability, we recommend first increasing the timeout limit, and then trying Sprout on `espresso` mode. `espresso` mode maximally decomposes all conditions that Sprout checks, resulting in more but smaller muCLP instances, which we find MuVal to perform more consistently on. 
 
 ### (Optional) Claim 3: Expressivity 
 Section 4.2 of the paper additionally claims that Sprout outperforms its competitors in terms of expressivity, and quantifies this claim using the fraction of the combined benchmark suites from Session* [Zhou et al. 2020], Rumpsteak [Vassor and Yoshida 2024] and Sprout that can be expressed in each tool. As mentioned in the paper, of the 37 benchmarks in total (10 from Session*, 6 from Rumpsteak, 21 from Sprout), Session* can express 35/37, Sprout can express 37/37, whereas Rumpsteak can only express 19/37. We thus decided to omit Rumpsteak from the remainder of our evaluation due to its lack of expressivity, as well as absence of formal guarantees. Nonetheless, we provide the 37 benchmarks we translated into NuScr in the folder `examples/rumpsteak`, so that our rationale may be independently verified. Rumpsteak's artifact can be found at https://zenodo.org/records/12731834.  
 
-### 
 
 ## C SPROUT up close 
 ---
