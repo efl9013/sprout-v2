@@ -12,3 +12,5 @@ _opam/
 *.png
 *.fst 
 *.fsm
+*_output*.txt
+muval/

@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 
-if [[ $# -ne 3 ]]; then
-    echo "Usage: $0 <sprout_output> <sessionstar_output> <table_file>"
+if [[ $# -ne 2 ]]; then
+    echo "Usage: $0 <sprout_output> <table_file>"
     exit 1
 fi
 
-file1="$1"   
-file2="$2"        
-output_file="$3"     
-template_file="table2_empty.txt"   
+file1="$1"          
+output_file="$2"     
+template_file="table1_empty.txt"   
 
 # Validate input file existence
 if [[ ! -f "$file1" ]]; then
@@ -19,50 +18,18 @@ fi
 # Clear the output file if it exists, or create a new one
 > "$output_file"
 
-# Copy Table 2's template to the final table 
+# Copy Table 1's template to the final table 
 cp "$template_file" "$output_file"
 
-# Initialize arrays
+# Examples from Table 1
 files=(
-  "calculator"
-  "fibonacci"
-  "higher-lower"
-  "http"
-  "negotiation"
-  "online-wallet"
-  "sh"
-  "ticket"
-  "travel-agency"
-  "two-buyer"
-  "double-buffering"
-  "oauth"
-  "plus-minus"
-  "ring-max"
-  "simple-adder"
-  "simple-auth"
-  "travel-agency2"
-  # 
-  "send-validity-yes"
-  "send-validity-no"
-  "receive-validity-yes"
-  "receive-validity-no"
-  "symbolic-two-bidder-yes"
-  "symbolic-two-bidder-no1"
   "figure12-yes"
   "figure12-no"
-  "symbolic-send-validity-yes"
-  "symbolic-send-validity-no"
-  "symbolic-receive-validity-yes"
-  "symbolic-receive-validity-no"
-  "fwd-auth-yes"
-  "fwd-auth-no"
-  "symbolic-two-bidder-no2"
+  "two-buyer"
   "higher-lower-ultimate"
-  "higher-lower-winning"
   "higher-lower-no"
-  "higher-lower-encrypt-yes"
-  "higher-lower-encrypt-no"
-  "higher-lower-mixed"
+  "symbolic-two-bidder-yes"
+  "symbolic-two-bidder-no1"
 )
 
 # Initialize output file
@@ -81,8 +48,7 @@ for filename in "${files[@]}"; do
   # Process file1
   while IFS= read -r line || [[ -n "$line" ]]; do
     # Match lines with pattern: "filename iteration N: X.XXs, result"
-    if [[ "$line" =~ ^([^[:space:]]+)\ iteration\ [0-9]+:\ +([0-9.]+)s,\ (implementable|non-implementable|inconclusive)$ ]]; then
-    # Normalize current filename from line
+    if [[ "$line" =~ ^([^[:space:]]+)\ iteration\ [0-9]+\ \(optimized\):\ +([0-9.]+)s,\ (implementable|non-implementable|inconclusive|oom)$ ]]; then 
       current=$(echo "${BASH_REMATCH[1]}" | tr -d '[:space:]-'| tr '[:upper:]' '[:lower:]')
 
       if [[ "$current" == "$search_pattern" ]]; then
@@ -145,8 +111,8 @@ for filename in "${files[@]}"; do
       
       if (first_col == name) {
           # Update columns after position 47
-          prefix = substr($0, 1, 47)
-          suffix = substr($0, 48)
+          prefix = substr($0, 1, 38)
+          suffix = substr($0, 39)
           
           # Update implementation status (8 characters centered)
           status_field = sprintf("%4s%-4s", "", result)  # Force 8 characters
@@ -168,9 +134,9 @@ for filename in "${files[@]}"; do
 
 done
 
-echo "Sprout results written to $output_file."
+echo "Sprout (optimized) results written to $output_file."
 
-# Second enter sessionstar's two columns 
+# Second enter Sprout's naive two columns 
 # Process each filename
 for filename in "${files[@]}"; do
   # Normalize search pattern (remove hyphens and spaces, convert to lowercase)
@@ -183,8 +149,7 @@ for filename in "${files[@]}"; do
   # Process file2
   while IFS= read -r line || [[ -n "$line" ]]; do
     # Match lines with pattern: "filename iteration N: X.XXs, result"
-    if [[ "$line" =~ ^([^[:space:]]+)\ iteration\ [0-9]+:\ +([0-9.]+)s,\ (implementable|non-implementable|inconclusive)$ ]]; then
-    # Normalize current filename from line
+    if [[ "$line" =~ ^([^[:space:]]+)\ iteration\ [0-9]+\ \(naive\):\ +([0-9.]+)s,\ (implementable|non-implementable|inconclusive|oom)$ ]]; then 
       current=$(echo "${BASH_REMATCH[1]}" | tr -d '[:space:]-'| tr '[:upper:]' '[:lower:]')
 
       if [[ "$current" == "$search_pattern" ]]; then
@@ -193,7 +158,7 @@ for filename in "${files[@]}"; do
       fi
     fi
     
-  done < "$file2"
+  done < "$file1"
 
   # Calculate average time
   average_time="N/A"
@@ -246,13 +211,13 @@ for filename in "${files[@]}"; do
       gsub(/[[:space:]-]/, "", first_col)
       
       if (first_col == name) {
-          # Update columns after position 47
-          prefix = substr($0, 1, 70)
-          suffix = substr($0, 71)
+          # Update columns after position 62
+          prefix = substr($0, 1, 62)
+          suffix = substr($0, 63)
           
-          # Update implementation status (10 characters centered)
-          status_field = sprintf("%5s%-5s", "", result)  # Force 10 characters
-          status_field = substr(status_field, 1, 10)      # Ensure exact length
+          # Update implementation status (7 characters centered)
+          status_field = sprintf("%3s%-4s", "", result)  # Force 7 characters
+          status_field = substr(status_field, 1, 7)      # Ensure exact length
           
           # Update time in 13 spaces centered
           time_str = (time == "N/A" ? "" : sprintf("%0.1fs", time))
@@ -270,7 +235,7 @@ for filename in "${files[@]}"; do
 
 done
 
-echo "Session* results written to $output_file."
+echo "Sprout (naive) results written to $output_file."
 
 # Display Table 2 
 eval cat "$output_file"

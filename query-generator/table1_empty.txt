@@ -1,0 +1,9 @@
+Example                        | |P| | SPROUT |     Time    | Naive |     Time    |
+-----------------------------------------------------------------------------------
+figure12-yes                   |  3  |
+figure12-no                    |  3  |
+TwoBuyer                       |  3  |
+higher-lower-ultimate          |  3  |
+higher-lower-no                |  3  |
+symbolic-two-bidder-yes        |  3  |
+symbolic-two-bidder-no1        |  3  |

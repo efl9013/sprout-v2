@@ -1,60 +1,40 @@
 #!/bin/bash
 
+# Note that this is a Sprout-only experiment, and thus everything can be run from query-generator 
 set -u
 
-# Define the output file
+if [ $# -ne 1 ]; then
+  echo "Usage: $0 <number_of_iterations>"
+  exit 1
+fi
+
+# Define the number of iterations
+n=$1
+
+# Define the output file and aggregation file 
 output_file="naive_vs_opt_output.txt"
+aggregation_file="naive_vs_opt_output_aggregation.txt"
 
 # Clear the output file if it exists, or create a new one
 > "$output_file"
+> "$aggregation_file"
 
 # Base directory where the files are located
 base_dir="../examples/sprout"
 
-# List of examples to verify
+# List of examples from Table 1
 files=(
-  # "figure12-yes"
-  # "figure12-no"
-  # "two-buyer"
-  "higher-lower-ultimate" # timeout 300s 
-  "higher-lower-no" # needs fixing so we won't test this for now 
-  "symbolic-two-bidder-yes" # 22s, implementable vs timeout 923s, inconclusive 
-  "symbolic-two-bidder-no1" # 20s, non-implementable vs timeout 733s, inconclusive 
+  "figure12-yes"
+  "figure12-no"
+  "two-buyer"
+  "higher-lower-ultimate" 
+  "higher-lower-no" 
+  "symbolic-two-bidder-yes" 
+  "symbolic-two-bidder-no1" 
 )
 
-run_with_limits() {
-  local cmd=("$@")
-  local mem_limit_gb=4
-  local status
-  
-  "${cmd[@]}" >> "$output_file" 2>&1 &
-  local pid=$!
-  
-  while kill -0 "$pid" 2>/dev/null; do
-    # Sum up all processes called "main.exe"
-    mem=$(ps aux | grep "[m]ain.exe" | awk '{sum += $6} END {printf "%.2f", sum / 1024 / 1024}') 
-
-    echo "Memory used by processes main.exe: ${mem}GB"
-        
-    if (( $(echo "$mem > $mem_limit_gb" | bc -l) )); then
-      echo "Out of memory (${mem_limit_gb}GB)" >> "$output_file"
-      pkill -TERM -P "$pid"
-      sleep 1
-      pkill -KILL -P "$pid"
-      return 137
-    fi
-    sleep 0.5
-  done
-  
-  wait "$pid"
-  status=$?
-  return $status
-}
-
-
-
 # Removing generated files before the experiment 
-(cd "$base_dir" && sh cleanup.sh)
+sh cleanup.sh
 
 # Iterate over the files
 for file in "${files[@]}"; do
@@ -67,24 +47,96 @@ for file in "${files[@]}"; do
     continue
   fi
 
-  # Naive mode execution with monitoring
+  # Naive mode execution 
   echo "Processing $file on naive mode" >> "$output_file"
   echo "----------------------------------------" >> "$output_file"
-  run_with_limits ./_build/default/main.exe "$full_path" 300 naive parallel
+  # Run the command n times and append output to the file
+  for ((i=1; i<=n; i++)); do
+    # Cleanup generated files before each iteration
+    sh cleanup.sh 
+
+    # Important that this is outside of the loop!
+    res="" # Initialize res to empty 
+    time=""
+    # Capture output line-by-line
+    while IFS= read -r line; do
+      # Write to output file
+      echo "$line" >> "$output_file"
+      
+      
+      # Only if Killed is present, set res to "Killed"
+      if [[ "$line" == *"Killed"* ]]; then
+        res="oom"
+        continue 
+      fi 
+
+      # Check for verification time line
+      if [[ "$line" == "Total verification time:"* ]]; then
+        # Extract time using parameter expansion (works on all systems)
+        time="${line#*Total verification time:}"
+        time="${time%%,*}"
+        # Only modify res if it hasn't already been set to "oom"
+        if [[ "$res" != "oom" ]]; then
+          res="${line##*, }" 
+        fi 
+      fi
+    done < <(./_build/default/main.exe "$full_path" 300 naive parallel 2>&1)
+    
+    echo "$file iteration $i (naive): ${time}, ${res}"
+    echo "$file iteration $i (naive): ${time}, ${res}" >> "$aggregation_file"
+    echo "----" >> "$output_file"  # Separator between iterations
+  done
+
   echo -e "\n\n" >> "$output_file"
   echo "$file verified (naive)."
-  (cd "$base_dir" && sh cleanup.sh)
+
+  sh cleanup.sh 
 
   # Optimized mode execution 
   echo "Processing $file on optimized mode" >> "$output_file"
   echo "----------------------------------------" >> "$output_file"
-  ./_build/default/main.exe "$full_path" 30 opt parallel >> "$output_file" 2>&1
+  # Run the command n times and append output to the file
+  for ((i=1; i<=n; i++)); do
+    # Cleanup generated files before each iteration
+    sh cleanup.sh 
+    
+    # Important that this is outside of the loop!
+    res="" # Initialize res to empty 
+    time=""
+    # Capture output line-by-line
+    while IFS= read -r line; do
+      # Write to output file
+      echo "$line" >> "$output_file"
+      
+      # Only if Killed is present, set res to "Killed"
+      if [[ "$line" == "Killed"* ]]; then
+        res="oom"
+        continue
+      fi 
+
+      # Check for verification time line
+      if [[ "$line" == "Total verification time:"* ]]; then
+        # Extract time using parameter expansion (works on all systems)
+        time="${line#*Total verification time:}"
+        time="${time%%,*}"
+        # Only modify res if it hasn't already been set to Killed 
+        if [[ "$res" != "oom" ]]; then
+          res="${line##*, }" 
+        fi 
+      fi
+    done < <(./_build/default/main.exe "$full_path" 40 opt parallel 2>&1)
+    
+    echo "$file iteration $i (optimized): ${time}, ${res}"
+    echo "$file iteration $i (optimized): ${time}, ${res}" >> "$aggregation_file"
+    echo "----" >> "$output_file"  # Separator between iterations
+  done
+
   echo -e "\n\n" >> "$output_file"
   echo "$file verified (optimized)."
-  (cd "$base_dir" && sh cleanup.sh)
+  sh cleanup.sh 
 done
 
 # Removing generated files after the experiment 
-(cd "$base_dir" && sh cleanup.sh)
+sh cleanup.sh
 
 echo "All examples verified; results saved in $output_file."

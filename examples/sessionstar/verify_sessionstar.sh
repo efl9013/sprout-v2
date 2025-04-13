@@ -53,7 +53,7 @@ commands=(
   "sessionstar FwdAuthNo.scr FwdAuthNo S; sessionstar FwdAuthNo.scr FwdAuthNo A; sessionstar FwdAuthNo.scr FwdAuthNo C"
   "sessionstar SymbolicTwoBidderNo2.scr SymbolicTwoBidderNo2 S; sessionstar SymbolicTwoBidderNo2.scr SymbolicTwoBidderNo2 B1; sessionstar SymbolicTwoBidderNo2.scr SymbolicTwoBidderNo2 B2"
   "sessionstar HigherLowerUltimate.scr HigherLowerUltimate A; sessionstar HigherLowerUltimate.scr HigherLowerUltimate B; sessionstar HigherLowerUltimate.scr HigherLowerUltimate C"
-  # "sessionstar HigherLowerWinning.scr HigherLowerWinning A; sessionstar HigherLowerWinning.scr HigherLowerWinning B; sessionstar HigherLowerWinning.scr HigherLowerWinning C"
+  "sessionstar HigherLowerWinning.scr HigherLowerWinning A; sessionstar HigherLowerWinning.scr HigherLowerWinning B; sessionstar HigherLowerWinning.scr HigherLowerWinning C"
   "sessionstar HigherLowerNo.scr HigherLowerNo A; sessionstar HigherLowerNo.scr HigherLowerNo B; sessionstar HigherLowerNo.scr HigherLowerNo C"
   "sessionstar HigherLowerEncryptYes.scr HigherLowerEncryptYes A; sessionstar HigherLowerEncryptYes.scr HigherLowerEncryptYes B; sessionstar HigherLowerEncryptYes.scr HigherLowerEncryptYes C"
   "sessionstar HigherLowerEncryptNo.scr HigherLowerEncryptNo A; sessionstar HigherLowerEncryptNo.scr HigherLowerEncryptNo B; sessionstar HigherLowerEncryptNo.scr HigherLowerEncryptNo C"
@@ -96,10 +96,12 @@ for cmd in "${commands[@]}"; do
         res="inconclusive"
       #elif [[ "$line" == *"Scribble reported a problem, aborting"* ]]; then
       # res="non-implementable"
+      elif [[ "$line" == *"EXITCODE:124"* ]]; then 
+        res="inconclusive"
       fi
-    done < <({ time -p eval "$cmd"; } 2>&1)  # Process substitution
+    done < <({ time -p timeout 300s bash -c "$cmd"; } 2>&1; echo "EXITCODE:$?") # Storing exit code 
     
-    # Write results (variables now persist outside the loop)
+    # Write results 
     echo "$file iteration $i: ${time}s, ${res}"
     echo "$file iteration $i: ${time}s, ${res}" >> "$aggregation_file"
     echo "----" >> "$output_file"

@@ -11,8 +11,8 @@ fi
 n=$1
 
 # Define the output file and aggregation file 
-output_file="../examples/sprout/sprout_output.txt"
-aggregation_file="../examples/sprout_output_aggregation.txt"
+output_file="../examples/sprout/sprout_output_woto.txt"
+aggregation_file="../examples/sprout/sprout_output_woto_aggregation.txt"
 
 # Clear the output file if it exists, or create a new one
 > "$output_file"
@@ -91,12 +91,23 @@ for file in "${files[@]}"; do
       # Write to output file
       echo "$line" >> "$output_file"
       
+      res="" # Initialize res to empty 
+      # Only if Killed is present, set res to "Killed"
+      if [[ "$line" == "Killed"* ]]; then
+        res="Killed"
+      fi 
+
       # Check for verification time line
       if [[ "$line" == "Total verification time:"* ]]; then
         # Extract time using parameter expansion (works on all systems)
         time="${line#*Total verification time:}"
-        echo "$file iteration $i: ${time}"
-        echo "$file iteration $i: ${time}" >> "$aggregation_file"
+        time="${time%%,*}"
+        # Only modify res if it hasn't already been set to Killed 
+        if [[ "$res" != "Killed" ]]; then
+          res="${line##*, }" 
+        fi 
+        echo "$file iteration $i: ${time}, ${res}"
+        echo "$file iteration $i: ${time}, ${res}" >> "$aggregation_file"
       fi
     done 
     
