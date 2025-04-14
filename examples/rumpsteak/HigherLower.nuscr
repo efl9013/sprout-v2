@@ -1,0 +1,20 @@
+(*# RefinementTypes #*)
+
+// Non-expressible because no loop variables 
+global protocol PlusMinus(role A, role B, role C)
+{
+  start(n0:int{0<=n0 && n0<100}) from A to B;  
+  limit(t0:int{0<t0}) from A to B;  
+  rec Loop {
+    Guess(x: int) from C to B;
+    choice at B {
+      More(x: int {x < n0}) from B to C;
+      continue Loop;
+    } or {
+      Less(x: int {x > n0}) from B to C;
+      continue Loop;
+    } or {
+      Correct(x: int {x = n0}) from B to C;
+    }
+  }
+}

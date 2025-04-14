@@ -1,0 +1,19 @@
+(*# RefinementTypes #*)
+
+// Not expressible for rumpsteak because the protocol cannot have arguments, and the loop cannot remember things? 
+
+global protocol Fib(role A, role B) @"[x: int = 0, y: int = 1] x>=0 && y>=x"
+{
+    choice at A
+    {
+        Num1(x1: int) from A to B;   @"x1=x"
+        Num2(y1: int) from A to B;   @"y1=y"
+        Num3(z1: int) from B to A;   @"z1=x1+y1"
+        do Fib(A, B);                @"[y, z1]"
+        //do Fib(A, B);                @"A[y, z1]"
+    }
+    or
+    {
+        Bye() from A to B;
+    }
+}
