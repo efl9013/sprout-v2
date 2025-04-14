@@ -37,7 +37,6 @@ files=(
   "oauth"
   "plus-minus"
   "ring-max"
-  "simple-adder"
   "simple-auth"
   "travel-agency2"
   # 
@@ -86,15 +85,18 @@ for file in "${files[@]}"; do
     # Cleanup generated files before each iteration
     sh cleanup.sh 
 
+    # Important that this is outside of the loop!
+    res="" # Initialize res to empty 
+    time=""
     # Capture output line-by-line
-    ./_build/default/main.exe "$full_path" 40 opt parallel 2>&1 | while IFS= read -r line; do
+    while IFS= read -r line; do
       # Write to output file
       echo "$line" >> "$output_file"
       
-      res="" # Initialize res to empty 
       # Only if Killed is present, set res to "Killed"
       if [[ "$line" == "Killed"* ]]; then
-        res="Killed"
+        res="oom"
+        continue
       fi 
 
       # Check for verification time line
@@ -103,18 +105,17 @@ for file in "${files[@]}"; do
         time="${line#*Total verification time:}"
         time="${time%%,*}"
         # Only modify res if it hasn't already been set to Killed 
-        if [[ "$res" != "Killed" ]]; then
+        if [[ "$res" != "oom" ]]; then
           res="${line##*, }" 
         fi 
-        echo "$file iteration $i: ${time}, ${res}"
-        echo "$file iteration $i: ${time}, ${res}" >> "$aggregation_file"
       fi
-    done 
+    done < <(./_build/default/main.exe "$full_path" 40 opt parallel 2>&1)
     
-    
+    echo "$file iteration $i: ${time}, ${res}"
+    echo "$file iteration $i: ${time}, ${res}" >> "$aggregation_file"
     echo "----" >> "$output_file"  # Separator between iterations
   done
-
+  
   echo -e "\n\n" >> "$output_file"
   echo "$file verified."
 done

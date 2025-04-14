@@ -37,7 +37,6 @@ commands=(
   "./_build/default/main.exe "$base_dir/oauth" 30 opt parallel" 
   "./_build/default/main.exe "$base_dir/plus-minus" 30 opt parallel" 
   "./_build/default/main.exe "$base_dir/ring-max" 30 opt parallel" 
-  "./_build/default/main.exe "$base_dir/simple-adder" 30 opt parallel" 
   "./_build/default/main.exe "$base_dir/simple-auth" 30 opt parallel" 
   "./_build/default/main.exe "$base_dir/travel-agency2" 30 opt parallel" 
   # 
@@ -88,22 +87,35 @@ for cmd in "${commands[@]}"; do
   for ((i=1; i<=n; i++)); do
     # Cleanup generated files before each iteration
     sh cleanup.sh 
-
-    # Capture output and process line-by-line
-    eval "$cmd" 2>&1 | while IFS= read -r line; do
+    
+    # Important that this is outside of the loop!
+    res="" # Initialize res to empty 
+    time=""
+    # Capture output line-by-line
+    while IFS= read -r line; do
       # Write to output file
       echo "$line" >> "$output_file"
       
+      # Only if Killed is present, set res to "Killed"
+      if [[ "$line" == "Killed"* ]]; then
+        res="oom"
+        continue
+      fi 
+
       # Check for verification time line
       if [[ "$line" == "Total verification time:"* ]]; then
         # Extract time using parameter expansion (works on all systems)
         time="${line#*Total verification time:}"
-        echo "$file iteration $i: ${time}"
-        echo "$file iteration $i: ${time}" >> "$aggregation_file"
+        time="${time%%,*}"
+        # Only modify res if it hasn't already been set to Killed 
+        if [[ "$res" != "oom" ]]; then
+          res="${line##*, }" 
+        fi 
       fi
-    done 
+    done < <(./_build/default/main.exe "$full_path" 40 opt parallel 2>&1)
     
-    
+    echo "$file iteration $i: ${time}, ${res}"
+    echo "$file iteration $i: ${time}, ${res}" >> "$aggregation_file"
     echo "----" >> "$output_file"  # Separator between iterations
   done
 

@@ -216,34 +216,41 @@ let generate_implementability_queries (prot: symbolic_protocol) (dirname: string
   generate_nmc_queries_v1b prot dirname;
   | _ -> Printf.eprintf "Version invalid\n" 
 
-let check_gclts (prot: symbolic_protocol) (dirname: string) (timeout: int) (version: string) (mode: string) : (bool * float) = 
-  Printf.printf "Checking GCLTS eligibility...\n";
-  (* print_symbolic_protocol prot;  *)
-  (* First do syntactic checks *)
-  if (not (sender_driven prot))
-  then (Printf.printf "Protocol is not sender-driven\n"; (false,0.0)) 
-  else if (not (sink_final prot))
-       then (Printf.printf "Protocol is not sink-final\n"; (false,0.0)) 
-       else (let results = process_directory_gclts dirname timeout version mode in 
-            List.iter (fun (file, outcome, time) -> if outcome = "valid" then Printf.printf "%s violates GCLTS conditions\n" file) results;
-            if List.for_all (fun (_, result, _) -> result = "invalid") results 
-            then (Printf.printf "GCLTS eligible\n"; 
-                  let sum = print_execution_time results in 
-                  (true,sum))
-            else if List.exists (fun (_, result, _) -> result = "valid") results 
-                 then (Printf.printf "Protocol is GCLTS ineligible\n"; 
-                       let sum = print_execution_time results in 
-                        (false, sum))
-                 else (Printf.printf "Inconclusive\n"; 
-                       let sum = print_execution_time results in 
-                       (false,sum)))
-
 type result = Yes | No | Inconclusive 
 let result_to_string res = 
   match res with 
   | Yes -> "implementable"
   | No -> "non-implementable"
   | Inconclusive -> "inconclusive"
+
+let check_gclts (prot: symbolic_protocol) (dirname: string) (timeout: int) (version: string) (mode: string) : (result * float) = 
+  Printf.printf "Checking GCLTS eligibility...\n";
+  (* print_symbolic_protocol prot;  *)
+  (* First do syntactic checks *)
+  if (not (sender_driven prot))
+  then (Printf.printf "Protocol is not sender-driven\n"; (No,0.0)) 
+  else if (not (sink_final prot))
+       then (Printf.printf "Protocol is not sink-final\n"; (No,0.0)) 
+       else (let results = process_directory_gclts dirname timeout version mode in 
+            List.iter (fun (file, outcome, time) -> if outcome = "valid" then Printf.printf "%s violates GCLTS conditions\n" file) results;
+            if List.for_all (fun (_, result, _) -> result = "invalid") results 
+            then (Printf.printf "GCLTS eligible\n"; 
+                  let sum = print_execution_time results in 
+                  (Yes,sum))
+            else if List.exists (fun (_, result, _) -> result = "valid") results 
+                 then (Printf.printf "Protocol is GCLTS ineligible\n"; 
+                       let sum = print_execution_time results in 
+                        (No, sum))
+                 else (Printf.printf "Inconclusive\n"; 
+                       let sum = print_execution_time results in 
+                       (Inconclusive,sum)))
+
+let result_to_string_gclts res = 
+  match res with 
+  | Yes -> "implementable"
+  | No -> "gclts-ineligible"
+  | Inconclusive -> "inconclusive"
+
 
 let check_implementability (prot: symbolic_protocol) (dirname: string) (timeout: int) (version: string) (mode: string) : (result*float) = 
   Printf.printf "\nChecking implementability...\n";
@@ -287,13 +294,13 @@ let () =
               dot -Tsvg visualization.dot > visualization.svg 
               in the respective folder and open svg-file *)
             generate_gclts_queries protocol gclts_dirname version;
-            let (is_gclts, gclts_time) = check_gclts protocol gclts_dirname timeout version mode in 
-            if is_gclts 
-            then (let (res, impl_time) = check_implementability protocol dirname timeout version mode in 
-                  (* Optionally generate property queries *)
-                  (* generate_property_query protocol two_bidder_bids_increasing "bids_increasing_property" dirname; *)
+            let (gclts_res, gclts_time) = check_gclts protocol gclts_dirname timeout version mode in 
+            if gclts_res = Yes 
+            then ((* Optionally generate property queries *)
+                  (* generate_property_query protocol higher_lower_termination "termination_property" dirname; *)
+                  let (res, impl_time) = check_implementability protocol dirname timeout version mode in 
                   Printf.printf "\nTotal verification time: %fs, %s\n" (Float.add gclts_time impl_time) (result_to_string res))
-          else ();)
+            else (Printf.printf "\nTotal verification time: %fs, %s\n" (Float.add gclts_time gclts_time) (result_to_string_gclts gclts_res));)
       else ();)
     else Printf.eprintf "Protocol not well-formed, terminating.\n"
     with

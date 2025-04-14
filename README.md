@@ -17,6 +17,7 @@ The artifact contains the following:
 
 Sprout's evaluation depends on two external software libraries: MuVal and Session*. MuVal is Sprout’s backend muCLP solver, and is available as part of the toolchain [CoAR](https://github.com/hiroshi-unno/coar) (Collection of Automated Reasoners). Session* is the tool accompanying [Zhou et al. 2020], which we compare Sprout against. Because MuVal is essential to Sprout’s functionality, the necessary executables for MuVal, along with its license and documentation, are included in Sprout’s Docker image. On the contrary, Session* is only required for evaluating Sprout’s precision and efficiency. Session* is distributed as a Docker image, available at https://zenodo.org/records/4032454. Thus, we only include instructions for installing Session* from the above link, and do not include Session* itself in our artifact submission. 
 
+All execution times below are reported from a 2024 MacBook Air (M3, 24GB RAM).
 ## A Getting Started 
 ---
 0. Install and run [Docker](https://docs.docker.com/engine/install/).
@@ -92,14 +93,25 @@ Our artifact supports the following claims, evidenced by Table 1 and 2 of the to
 To reproduce Table 1 from the paper: 
 1. In Sprout’s Docker image, in the directory `/home/opam/sprout/query-generator`, run: 
    ```bash
-   bash naive_vs_opt.sh 
+   bash naive_vs_opt.sh 1
    ```
-   The above step takes ~1h, and logs Sprout’s raw output in the file `naive_vs_opt_output.txt`, and aggregated output in the file `naive_vs_opt_output_aggregation.txt`. 
+   The above step takes ~45 minutes, and logs Sprout’s raw output in the file `naive_vs_opt_output.txt`, and aggregated output in the file `naive_vs_opt_output_aggregation.txt`. 
 2. To consolidate the raw output into Table 1, run: 
    ```bash
    bash create_table1.sh naive_vs_opt_output_aggregation.txt table1_final.txt
    ```
-
+3. The output should resemble the following: 
+   ```
+   Example                        | |P| | SPROUT |     Time    | Naive |     Time    |
+   -----------------------------------------------------------------------------------
+   figure12-yes                   |  3  |    Y   |    1.6s     |   Y   |    4.4s     |
+   figure12-no                    |  3  |    N   |    2.7s     |   N   |    5.2s     |
+   TwoBuyer                       |  3  |    Y   |    2.5s     |   ?   |   195.9s    |
+   higher-lower-ultimate          |  3  |    Y   |    10.8s    |   ?   |   609.7s    |
+   higher-lower-no                |  3  |    N   |    10.1s    |   ?   |   594.2s    |
+   symbolic-two-bidder-yes        |  3  |    Y   |    50.2s    |   ?   |   598.7s    |
+   symbolic-two-bidder-no1        |  3  |    N   |    49.1s    |   ?   |   557.7s    |
+   ```
 To reproduce Table 2 from the paper: 
 1. In Sprout’s Docker image, in the directory `/home/opam/sprout/query-generator`, run: 
    ```bash
@@ -112,11 +124,11 @@ To reproduce Table 2 from the paper:
    cd examples 
    bash verify_sessionstar.sh 1 
    ```
-   The above step takes ~x minutes, and logs Session*’s raw output in the file `sessionstar_output.txt`, and aggregated output in the file `sessionstar_output_aggregation.txt`, both in the mounted folder `examples/sessionstar`. 
+   The above step takes ~7 minutes, and logs Session*’s raw output in the file `sessionstar_output.txt`, and aggregated output in the file `sessionstar_output_aggregation.txt`, both in the mounted folder `examples/sessionstar`. 
 3. In your local machine, to consolidate the aggregated output from both tools into Table 2, run: 
    ```bash
    cd examples 
-   bash create_table2.sh sprout/sprout_output_aggregation.txt sessionstar/sessionstar_output_aggregation.txt table2_final.txt  
+   sh create_table2.sh sprout/sprout_output_aggregation.txt sessionstar/sessionstar_output_aggregation.txt table2_final.txt  
    ```
 
 Below, we provide further details regarding each experiment. 
@@ -154,7 +166,7 @@ Running Sprout on an individual example can be done with the following command, 
 ```
 ./_build/default/main.exe ../examples/sprout/example-name 5 opt parallel 
 ```
-Sprout's executable takes 4 arguments: a path to the example file, a timeout limit, Sprout's mode, and MuVal's mode. To improve performance and stability, we recommend first increasing the timeout limit, and then trying Sprout on `espresso` mode. `espresso` mode maximally decomposes all conditions that Sprout checks, resulting in more but smaller muCLP instances, which we find MuVal to perform more consistently on. 
+Sprout's executable takes 4 arguments: a path to the example file, a timeout limit, Sprout's mode, and MuVal's mode. To improve performance and stability, we recommend first increasing the timeout limit, and then trying Sprout on `espresso` mode. `espresso` mode maximally decomposes all conditions that Sprout checks, resulting in more but smaller muCLP instances, which we find MuVal to perform more consistently on. Remember to run `sh cleanup.sh` in between runs!
 
 #### Repeating experiments 
 Each shell script is equipped with a parameter that specifies the number of iterations. In case multiple iterations were run, the aggregated result is `Y` iff all iterations return implementable, `N` iff all iterations return non-implementable, and `?` otherwise, and the aggregated time is the mean of all iterations. For running all examples, we additionally provide two shell scripts, located in `/home/opam/sprout/query-generator`: `verify_all_woto.sh` omits the two examples that timeout, thus reducing the experiment time by ~10 minutes, and `verify_all_woto_tuned.sh` additionally tunes Sprout to be the fastest for each example. 
@@ -187,10 +199,25 @@ Section 4.2 of the paper additionally claims that Sprout outperforms its competi
   Sprout’s parser detects ill-formed logical formulas and general syntactic errors, and Sprout’s lightweight typechecker detects out-of-scope variables. For readability, Sprout allows input protocols to omit register equalities of the form `rn'=rn` indicating that register `rn` is unchanged by the present transition, and inserts these missing equalities during preprocessing. 
 
 ### Using Sprout feedback for protocol repair 
+Sprout's output prints the result of every muCLP it generates and discharges to MuVal. In `opt` and `espresso` mode, Sprout generates muCLP instances whose filenames point to specific transitions in the protocol that violate implementability. For example, part of the output for the running example in Section 2 of the paper, `symbolic-two-bidder-no1`, contains the following:
+```
+| b2_scc_47_4.hes                | 0.3117               | valid      |
+```
+In the file name, `47` refers to the transition `(4) b2->b1:b{b>rzb/\b<rc/\rzb'=b} (7)` in the input protocol, and `4` refers to the state `(4)` that is simultaneously reachable for participant `b2`. 
+
+### Checking functional properties 
+Sprout enables users to write general properties in muCLP using the predicates we define for checking implementability: `reach`, `prodreach`, `unreach`, `stcon`. The `generate_property_query` function in file `query-generator/property_playground.ml` defines a template muCLP file, allowing the user to supply the muCLP query corresponding to the property as a string, and fills in the definitions of the relevant recursive predicates in the body. As an example, to check that the higher lower protocol terminates, uncomment the following line from `query-generator/main.ml`: 
+```
+(* generate_property_query protocol higher_lower_termination "termination_property" dirname;
+```
+Then run Sprout on the `higher-lower` example: 
+```
+dune exec sprout ../examples/sprout/higher-lower 30 opt parallel
+```
+This generates an additional file `bids_increasing_property.hes` and discharges it to MuVal. Note that as a convention, the property is stated in negation form, and thus MuVal returning `invalid` means the property is satisfied. 
 
 ### Integrating Sprout into existing toolchains 
 We envision Sprout as a preprocessing step for protocol verification toolchains that center around the construct of a global protocol. Sprout complements existing toolchains by providing sound and complete implementability checking for an expressive class of protocols, which can serve as the first step to synthesizing correct-by-construction distributed implementations. 
-
 
 ## D References 
 ---

@@ -11,8 +11,8 @@ fi
 n=$1
 
 # Define the output file and aggregation file 
-output_file="../examples/sprout/sprout_output.txt"
-aggregation_file="../examples/sprout/sprout_output_aggregation.txt"
+output_file="../examples/sprout/sprout_output_woto.txt"
+aggregation_file="../examples/sprout/sprout_output_woto_aggregation.txt"
 
 # Clear the output file if it exists, or create a new one
 > "$output_file"
@@ -37,7 +37,6 @@ files=(
   "oauth"
   "plus-minus"
   "ring-max"
-  "simple-adder"
   "simple-auth"
   "travel-agency2"
   # 
@@ -86,24 +85,37 @@ for file in "${files[@]}"; do
     # Cleanup generated files before each iteration
     sh cleanup.sh 
 
-    # Capture output and process line-by-line
-    ./_build/default/main.exe "$full_path" 40 opt parallel 2>&1 | while IFS= read -r line; do
+    # Important that this is outside of the loop!
+    res="" # Initialize res to empty 
+    time=""
+    # Capture output line-by-line
+    while IFS= read -r line; do
       # Write to output file
       echo "$line" >> "$output_file"
       
+      # Only if Killed is present, set res to "Killed"
+      if [[ "$line" == "Killed"* ]]; then
+        res="oom"
+        continue
+      fi 
+
       # Check for verification time line
       if [[ "$line" == "Total verification time:"* ]]; then
         # Extract time using parameter expansion (works on all systems)
         time="${line#*Total verification time:}"
-        echo "$file iteration $i: ${time}"
-        echo "$file iteration $i: ${time}" >> "$aggregation_file"
+        time="${time%%,*}"
+        # Only modify res if it hasn't already been set to Killed 
+        if [[ "$res" != "oom" ]]; then
+          res="${line##*, }" 
+        fi 
       fi
-    done 
+    done < <(./_build/default/main.exe "$full_path" 40 opt parallel 2>&1)
     
-    
+    echo "$file iteration $i: ${time}, ${res}"
+    echo "$file iteration $i: ${time}, ${res}" >> "$aggregation_file"
     echo "----" >> "$output_file"  # Separator between iterations
   done
-
+  
   echo -e "\n\n" >> "$output_file"
   echo "$file verified."
 done

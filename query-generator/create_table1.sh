@@ -73,11 +73,14 @@ for filename in "${files[@]}"; do
     # Count occurrences of each result type
     impl_count=0
     non_impl_count=0
+    oom_count=0
     for result in "${results[@]}"; do
       if [[ "$result" == "implementable" ]]; then
         ((impl_count++))
       elif [[ "$result" == "non-implementable" ]]; then
         ((non_impl_count++))
+      elif [[ "$result" == "oom" ]]; then
+        ((oom_count++))
       fi
     done
 
@@ -86,6 +89,8 @@ for filename in "${files[@]}"; do
       average_result="Y"
     elif ((non_impl_count > 0 && impl_count == 0)); then
       average_result="N"
+    elif ((oom_count > 0)); then 
+      average_result="OOM"
     elif ((impl_count > 0 && non_impl_count > 0)); then
       average_result="?"
     else
@@ -174,11 +179,14 @@ for filename in "${files[@]}"; do
     # Count occurrences of each result type
     impl_count=0
     non_impl_count=0
+    oom_count=0
     for result in "${results[@]}"; do
       if [[ "$result" == "implementable" ]]; then
         ((impl_count++))
       elif [[ "$result" == "non-implementable" ]]; then
         ((non_impl_count++))
+      elif [[ "$result" == "oom" ]]; then
+        ((oom_count++))
       fi
     done
 
@@ -187,6 +195,8 @@ for filename in "${files[@]}"; do
       average_result="Y"
     elif ((non_impl_count > 0 && impl_count == 0)); then
       average_result="N"
+    elif ((oom_count > 0)); then 
+      average_result="OOM"
     elif ((impl_count > 0 && non_impl_count > 0)); then
       average_result="?"
     else

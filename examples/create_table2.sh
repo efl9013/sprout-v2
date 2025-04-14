@@ -38,7 +38,6 @@ files=(
   "oauth"
   "plus-minus"
   "ring-max"
-  "simple-adder"
   "simple-auth"
   "travel-agency2"
   # 
@@ -94,7 +93,7 @@ for filename in "${files[@]}"; do
   done < "$file1"
 
   # Calculate average time
-  average_time="N/A"
+  average_time=""
   if ((${#times[@]} > 0)); then
     sum=$(IFS=+; echo "${times[*]}")
     average_time=$(awk -v sum="$sum" -v count="${#times[@]}" 'BEGIN { printf "%.1f", sum/count }')
@@ -107,11 +106,14 @@ for filename in "${files[@]}"; do
     # Count occurrences of each result type
     impl_count=0
     non_impl_count=0
+    oom_count=0
     for result in "${results[@]}"; do
       if [[ "$result" == "implementable" ]]; then
         ((impl_count++))
       elif [[ "$result" == "non-implementable" ]]; then
         ((non_impl_count++))
+      elif [[ "$result" == "oom" ]]; then
+        ((oom_count++))
       fi
     done
 
@@ -120,6 +122,8 @@ for filename in "${files[@]}"; do
       average_result="Y"
     elif ((non_impl_count > 0 && impl_count == 0)); then
       average_result="N"
+    elif ((oom_count > 0)); then 
+      average_result="OOM"
     elif ((impl_count > 0 && non_impl_count > 0)); then
       average_result="?"
     else
@@ -196,7 +200,7 @@ for filename in "${files[@]}"; do
   done < "$file2"
 
   # Calculate average time
-  average_time="N/A"
+  average_time=""
   if ((${#times[@]} > 0)); then
     sum=$(IFS=+; echo "${times[*]}")
     average_time=$(awk -v sum="$sum" -v count="${#times[@]}" 'BEGIN { printf "%.1f", sum/count }')
@@ -204,16 +208,19 @@ for filename in "${files[@]}"; do
 
 
   # Calculate average result 
-  average_result="?"
+  average_result="N/A"
   if [[ ${#results[@]} -gt 0 ]]; then
     # Count occurrences of each result type
     impl_count=0
     non_impl_count=0
+    oom_count=0
     for result in "${results[@]}"; do
       if [[ "$result" == "implementable" ]]; then
         ((impl_count++))
       elif [[ "$result" == "non-implementable" ]]; then
         ((non_impl_count++))
+      elif [[ "$result" == "oom" ]]; then
+        ((oom_count++))
       fi
     done
 
@@ -222,13 +229,15 @@ for filename in "${files[@]}"; do
       average_result="Y"
     elif ((non_impl_count > 0 && impl_count == 0)); then
       average_result="N"
+    elif ((oom_count > 0)); then 
+      average_result="OOM"
     elif ((impl_count > 0 && non_impl_count > 0)); then
       average_result="?"
     else
       average_result="?"  
     fi
   fi
-  
+
   echo "$filename,$average_time,$average_result" 
 
 
