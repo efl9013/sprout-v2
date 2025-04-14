@@ -209,9 +209,9 @@ Section 4.2 of the paper additionally claims that Sprout outperforms its competi
 ## C SPROUT up close 
 
 ### Source code overview 
-We provide a brief overview of Sprout's source code, which can be found in `/home/opam/sprout/query-generator` of the Docker container as well as at https://github.com/nyu-acsys/sprout. Sprout is build using `dune`, and its required dependencies can be found in the `dune-project` file. 
-- Parsing input protocols: `lexer.mll`, `parser.mly`, `ast.ml`, `error.ml`, `loc.ml`
-- Generating GCLTS conditions for checking eligibility of input protocol: `gclts.ml`, `reach.ml` 
+We provide a brief overview of Sprout's source code, which can be found in `/home/opam/sprout/query-generator` of the Docker container as well as at https://github.com/nyu-acsys/sprout/query-generator. Sprout is built using `dune`, and its required dependencies can be found in the `dune-project` file. 
+- Processing input protocols: `lexer.mll`, `parser.mly`, `ast.ml`, `error.ml`, `loc.ml`
+- Generating conditions for checking GCLTS-eligibility of input protocol: `gclts.ml`, `reach.ml` 
 - Generating Coherence Conditions for checking implementability: `prodreach.ml`, `unreach.ml`, `avail.ml`, `scc.ml`, `rcc.ml`, `nmc.ml`
 - Generating functional correctness properties: `property_playground.ml`
 - Generic library functions: `common.ml`, `print.ml`, `visual.ml`
