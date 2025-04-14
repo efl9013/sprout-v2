@@ -3,7 +3,7 @@
 <img src="sprout.png" style="display: block; margin: 0 auto; width: 50%;">
 
 ## Abstract 
-We present Sprout, the tool accompanying submission #202: SPROUT: A Verifier for Symbolic Multiparty Protocols. Sprout is the first sound and complete implementability checker for symbolic multiparty protocols. Sprout supports protocols featuring dependent refinements on message values, loop memory, and multiparty communication with generalized, sender-driven choice. Sprout checks implementability via an optimized, sound and complete reduction to the fixpoint logic muCLP, and uses MuVal as a backend solver for muCLP instances. We evaluate Sprout on an extended benchmark suite of implementable and non-implementable examples, and show that Sprout outperforms its competititors in terms of expressivity and precision, and provides competitive runtime performance. Sprout is open source, and hosted at https://github.com/nyu-acsys/sprout. We provide a Docker image for the purposes of artifact evaluation hosted at (TODO: Zenodo url) with checksum (TODO: checksum). Our artifact evaluation requires at least 2 CPU cores and at least 8GB of memory. We are claiming all three artifact badges: available, functional and reusable. 
+We present Sprout, the tool accompanying submission #202: SPROUT: A Verifier for Symbolic Multiparty Protocols. Sprout is the first sound and complete implementability checker for symbolic multiparty protocols. In a nutshell, implementability is a hyperproperty that characterizes when global, sequential protocol specifications can be realized in a deadlock-free, distributed manner. Sprout supports protocols featuring dependent refinements on message values, loop memory, and multiparty communication with generalized, sender-driven choice. Sprout checks implementability via an optimized, sound and complete reduction to the fixpoint logic muCLP, and uses MuVal as a backend solver for muCLP instances. We evaluate Sprout on an extended benchmark suite of implementable and non-implementable examples, and show that Sprout outperforms its competititors in terms of expressivity and precision, and provides competitive runtime performance. Sprout is open source, and hosted at https://github.com/nyu-acsys/sprout. We provide a Docker image for the purposes of artifact evaluation hosted at (TODO: Zenodo url) with checksum (TODO: checksum). Our artifact evaluation requires at least 2 CPU cores and at least 8GB of memory. We are claiming all three artifact badges: available, functional and reusable. 
 
 ### Artifact requirements 
 - A Mac machine with Apple silicon that can allocate at least 2 CPU cores and at least 8GB of memory to Docker containers, and with an internet connection
@@ -93,7 +93,7 @@ The following instructions are copied from the README.md file for Session*: we i
 11. To quicktest Session*’s functionality in ~1s, run: 
     ```bash
     cd examples
-    sessionstar Fib.scr Fib A
+    sessionstar Fibonacci.scr Fibonacci A
     ```
     No output is expected. This completes the installation of Session*. You may exit the Docker container by running `exit`. 
 
@@ -189,7 +189,7 @@ The aggregation shell script copies `table2_empty`, which contains columns 2-4 o
 Both claims can be falsified by examining `table2_final.txt`, which includes a column recording the ground truth implementability for each example. 
 
 ### A note on performance 
-The results reported in our paper are from running Sprout natively on a 2024 MacBook Air (M3, 24GB RAM). The experimental results may slightly vary in part due to factors such as runtime environment and hardware, and in part due to the sources of non-determinism present in MuVal. Any differences that present should not affect the validity of our claims. Nonetheless, we describe below some ways to address potential performance discrepancies that may arise. 
+The results reported in our paper are from running Sprout natively on a 2024 MacBook Air (M3, 24GB RAM). The experimental results may slightly vary in part due to factors such as runtime environment and hardware, and in part due to the sources of non-determinism present in MuVal. Any differences that present themselves should not affect the validity of our claims. Nonetheless, we describe below some ways to address potential performance discrepancies that may arise. 
 
 #### Tuning Sprout on individual examples 
 We provide command line functionality to tune Sprout's performance on individual examples. 
@@ -207,6 +207,16 @@ Section 4.2 of the paper additionally claims that Sprout outperforms its competi
 
 
 ## C SPROUT up close 
+
+### Source code overview 
+We provide a brief overview of Sprout's source code, which can be found in `/home/opam/sprout/query-generator` of the Docker container as well as at https://github.com/nyu-acsys/sprout. Sprout is build using `dune`, and its required dependencies can be found in the `dune-project` file. 
+- Parsing input protocols: `lexer.mll`, `parser.mly`, `ast.ml`, `error.ml`, `loc.ml`
+- Generating GCLTS conditions for checking eligibility of input protocol: `gclts.ml`, `reach.ml` 
+- Generating Coherence Conditions for checking implementability: `prodreach.ml`, `unreach.ml`, `avail.ml`, `scc.ml`, `rcc.ml`, `nmc.ml`
+- Generating functional correctness properties: `property_playground.ml`
+- Generic library functions: `common.ml`, `print.ml`, `visual.ml`
+- Main files: `main.ml`, `config.ml`
+
 
 ### Input protocol syntax 
 - We give a walkthrough of SPROUT’s input protocol format, using `calculator` as a simple example: 
@@ -280,7 +290,7 @@ Because the property is stated in negation form, MuVal returning `invalid` means
 
 
 ### Integrating Sprout into existing toolchains 
-We envision Sprout as a preprocessing step for protocol verification toolchains that center around the construct of a global protocol. Sprout is open-source, and complements existing toolchains by providing sound and complete implementability checking for an expressive class of protocols, which can serve as the first step to synthesizing correct-by-construction distributed implementations. 
+We envision Sprout as a preprocessing step for protocol verification toolchains that center around the construct of a global protocol. Sprout is open source, and complements existing toolchains by providing sound and complete implementability checking for an expressive class of protocols, which can serve as the first step to synthesizing correct-by-construction distributed implementations. 
 
 ## D References 
 ---
