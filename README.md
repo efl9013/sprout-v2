@@ -1,9 +1,8 @@
 # CAV’25 Artifact #8: SPROUT: A Verifier for Symbolic Multiparty Protocols 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3970760.svg)](https://doi.org/10.5281/zenodo.3970760) (TODO: change the link) 
 <img src="sprout.png" style="display: block; margin: 0 auto; width: 50%;">
 
 ## Abstract 
-We present Sprout, the tool accompanying submission #202: SPROUT: A Verifier for Symbolic Multiparty Protocols. Sprout is the first sound and complete implementability checker for symbolic multiparty protocols. In a nutshell, implementability is a hyperproperty that characterizes when global, sequential protocol specifications can be realized in a deadlock-free, distributed manner. Sprout supports protocols featuring dependent refinements on message values, loop memory, and multiparty communication with generalized, sender-driven choice. Sprout checks implementability via an optimized, sound and complete reduction to the fixpoint logic muCLP, and uses MuVal as a backend solver for muCLP instances. We evaluate Sprout on an extended benchmark suite of implementable and non-implementable examples, and show that Sprout outperforms its competititors in terms of expressivity and precision, and provides competitive runtime performance. Sprout is open source, and hosted at https://github.com/nyu-acsys/sprout. We provide a Docker image for the purposes of artifact evaluation hosted at (TODO: Zenodo url) with checksum (TODO: checksum). Our artifact evaluation requires at least 2 CPU cores and at least 8GB of memory. We are claiming all three artifact badges: available, functional and reusable. 
+We present Sprout, the tool accompanying submission #202: SPROUT: A Verifier for Symbolic Multiparty Protocols. Sprout is the first sound and complete implementability checker for symbolic multiparty protocols. In a nutshell, implementability is a hyperproperty that characterizes when global, sequential protocol specifications can be realized in a deadlock-free, distributed manner. Sprout supports protocols featuring dependent refinements on message values, loop memory, and multiparty communication with generalized, sender-driven choice. Sprout checks implementability via an optimized, sound and complete reduction to the fixpoint logic muCLP, and uses MuVal as a backend solver for muCLP instances. We evaluate Sprout on an extended benchmark suite of implementable and non-implementable examples, and show that Sprout outperforms its competititors in terms of expressivity and precision, and provides competitive runtime performance. Sprout is open source, and hosted at https://github.com/nyu-acsys/sprout. Our artifact evaluation requires at least 2 CPU cores and at least 8GB of memory. We are claiming all three artifact badges: available, functional and reusable. 
 
 ### Artifact requirements 
 - A Mac machine with Apple silicon that can allocate at least 2 CPU cores and at least 8GB of memory to Docker containers, and with an internet connection
@@ -15,9 +14,8 @@ We present Sprout, the tool accompanying submission #202: SPROUT: A Verifier for
 
 
 The artifact contains the following: 
-- Documentation for Sprout (README.pdf)
+- Documentation for Sprout (README.md)
 - A Docker image for Sprout (sprout.tar)
-- The md5 hash of the Docker image is `532b4e75bdcffe4c883aecf61371d373`. (TODO: change)
 - A software license file (LICENSE) 
 - A folder containing the benchmark suite for each tool (examples), with subfolders sprout, sessionstar and rumpsteak
 
@@ -25,29 +23,25 @@ Sprout's evaluation depends on two external software libraries: MuVal and Sessio
 
 
 ## A Getting Started 
----
 0. Install and run [Docker](https://docs.docker.com/engine/install/).
 
 All following commands are to be executed from the working directory `sprout-artifact` with the contents listed above.
 
 ### Installing Sprout 
-1. Unzip `sprout.tar.gz`, which should create `sprout.tar` in the same directory: 
-   ```bash
-   gunzip sprout.tar.gz
-   ```
-2. Load the Docker image (may require `sudo` root privileges): 
+1. Unzip `examples.zip`. 
+1. Load the Docker image (may require `sudo` root privileges): 
    ```bash
    docker load < sprout.tar
    ```
-3. Run Sprout using an interactive Docker shell. The `-v` flag mounts the folder `sprout-artifact/examples/sprout` containing Sprout’s benchmark suite with read and write permission, to store Sprout's evaluation results locally. 
+2. Run Sprout using an interactive Docker shell. The `-v` flag mounts the folder `sprout-artifact/examples/sprout` containing Sprout’s benchmark suite with read and write permission, to store Sprout's evaluation results locally. 
    ```bash
    docker run -it -v $(pwd)/examples/sprout:/home/opam/sprout/examples/sprout:rw -m="8gb" sprout:latest   
    ```
 The Docker container for Sprout starts up in the directory `/home/opam/sprout/query-generator`. 
 
-4. To quicktest Sprout’s functionality in ~1s, run: 
+1. To quicktest Sprout’s functionality in ~1s, run: 
    ```
-   ./_build/default/main.exe ../examples/sprout/fibonacci 30 opt parallel 
+   sh cleanup.sh; ./_build/default/main.exe ../examples/sprout/fibonacci 30 opt parallel 
    ```
    The expected output is: 
    ```
