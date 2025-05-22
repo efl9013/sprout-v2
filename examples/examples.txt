@@ -1,0 +1,11 @@
+New examples introduced in [Li et al. 2025]: 
+- symbolic-two-bidder-no2:  B1 must divine when the bidding is successful, despite not knowing the price of the book, 
+- higher-lower-ultimate: the “most correct'' version of the protocol guaranteeing that C follows the rules and guesses a limited number of times specified by A, C’s guesses are kept private from A, B remembers the secret number and the attempt limit, and C responds rationally to hints from B,
+- higher-lower-winning: guarantees a winning strategy for C by enforcing that the maximum number of attempts is greater than the secret number which is greater than or equal to 0, 
+- - higher-lower-no: B forgets the secret number and is thus unable to correctly provide hints to C, 
+- higher-lower-encrypt-yes: a fourth participant D multiplies A’s secret number by a large constant before sending it to B, which B is able to decrypt, 
+- higher-lower-encrypt-no: a fourth participant D fuzzes A’s secret number by adding a number between 0 and 10, which B is unable to decrypt, 
+- higher-lower-mixed: A is required to divine when it has lost the game. 
+
+References 
+[Li et al. 2025] Elaine Li, Felix Stutz, Thomas Wies and Damien Zufferey. SPROUT: A Verifier for Symbolic Multiparty Protocols. To appear at CAV 2025. 
