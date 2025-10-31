@@ -1,0 +1,10 @@
+Initial state: (0)
+Initial register assignments: 
+   (0) p->r:v{v=1} (1)
+   (1) r->q:m{m=1} (2)
+   (0) p->r:v{v=2} (3)
+   (3) p->q:m{m=1} (4)
+   (4) q->s:m{m=1} (5)
+   (5) r->s:m{m=1} (6)
+   (6) r->q:m{m=1} (7)
+Final states:(2),(7)      
