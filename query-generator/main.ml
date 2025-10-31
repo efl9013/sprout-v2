@@ -8,6 +8,8 @@ open Gclts
 open Scc
 open Nmc 
 open Rcc 
+open Mb_rcc 
+open Sb_rcc 
 open Printf
 open Lexer 
 open Parser 
@@ -191,28 +193,28 @@ let generate_implementability_queries (prot: symbolic_protocol) (dirname: string
   match version with 
   | "opt" -> 
   generate_scc_queries_opt prot dirname;
-  generate_rcc_queries_opt prot dirname; 
+  generate_mb_rcc_queries_opt prot dirname; 
   generate_nmc_queries_opt prot dirname;
   | "naive" -> 
   generate_scc_queries_naive prot dirname;
-  generate_rcc_queries_naive prot dirname; 
+  generate_mb_rcc_queries_naive prot dirname; 
   generate_nmc_queries_naive prot dirname;
   (* Further versions with more fine-grained differences *)
   | "espresso" -> 
   generate_scc_queries_v3bb prot dirname;
-  generate_rcc_queries_v2b prot dirname; 
+  generate_mb_rcc_queries_v2b prot dirname; 
   generate_nmc_queries_v2b prot dirname;
   | "v60" -> 
   generate_scc_queries_v2ab prot dirname;
-  generate_rcc_queries_v2b prot dirname; 
+  generate_mb_rcc_queries_v2b prot dirname; 
   generate_nmc_queries_v2b prot dirname;
   | "chemex" -> 
   generate_scc_queries_v2ab prot dirname;
-  generate_rcc_queries_v2b prot dirname; 
+  generate_mb_rcc_queries_v2b prot dirname; 
   generate_nmc_queries_v1b prot dirname;
   | "coldbrew" -> 
   generate_scc_queries_v1ab prot dirname;
-  generate_rcc_queries_v1b prot dirname; 
+  generate_mb_rcc_queries_v1b prot dirname; 
   generate_nmc_queries_v1b prot dirname;
   | _ -> Printf.eprintf "Version invalid\n" 
 

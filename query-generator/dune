@@ -1,7 +1,7 @@
 (executable
  (name main)
  (public_name sprout)
- (libraries unix logs util ast common prodreach reach unreach avail gclts scc rcc nmc lexer parser config visual property_playground)
+ (libraries unix logs util ast common prodreach reach unreach avail gclts scc mb_rcc sb_rcc rcc nmc lexer parser config visual property_playground)
  (modules Main)
  (preprocess (pps ppx_custom_printf)))
 
@@ -59,6 +59,21 @@
  (libraries ast common)
  (modules Avail))
 
+(library
+ (name mbavail)
+ (libraries ast common)
+ (modules Mbavail))
+
+(library
+ (name other_mbavail)
+ (libraries ast common)
+ (modules Other_mbavail))
+
+(library
+ (name sbavail)
+ (libraries ast common)
+ (modules Sbavail))
+
 (library 
  (name gclts)
  (libraries ast common reach)
@@ -73,6 +88,16 @@
  (name rcc)
  (libraries ast common prodreach avail)
  (modules Rcc))
+
+(library
+ (name mb_rcc)
+ (libraries ast common prodreach mbavail)
+ (modules Mb_rcc))
+
+(library
+ (name sb_rcc)
+ (libraries ast common prodreach sbavail)
+ (modules Sb_rcc))
 
 (library
  (name nmc)

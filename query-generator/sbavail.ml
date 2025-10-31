@@ -1,0 +1,160 @@
+open Ast 
+open Common 
+
+(** sbavail.ml **)
+
+(* This file defines the sbavail predicate sbavail_pq_set, 
+	 where p -> q is the participant signature of the message, 
+	 and set encodes the blocked set argument as a canonically ordered list of strings *) 
+
+let sort_participants (ls: participant list) : participant list = 
+	List.sort String.compare ls 
+
+let string_of_blocked_set (ls: participant list) : string = 
+	List.fold_left (fun acc x -> acc ^ x) "" (sort_participants ls)
+
+let rec powerset = function
+  | [] -> [[]]
+  | x :: xs ->
+      let ps = powerset xs in
+      ps @ List.map (fun subset -> x :: subset) ps
+
+let all_participant_subsets (prot: symbolic_protocol) : (participant list) list = 
+	powerset (get_participants prot)
+
+let all_participant_subsets_containing_participant (prot: symbolic_protocol) (q: participant) : (participant list) list = 
+	List.filter (fun ls -> List.mem q ls) (all_participant_subsets prot)
+
+(* The first conjunct constrains the values of s to the state space of the protocol *) 
+let first_conjunct (prot: symbolic_protocol) : string = 
+	"(" ^ 
+	List.fold_left (fun acc s -> acc ^ " \\/ s = " ^ string_of_int s) "false" prot.states ^ 
+	")\n"
+
+(* The second disjunct corresponds with the case where a new participant is blocked *)
+(* The second disjunct enumerates transitions where the sender is blocked, and the signature is not p->_ *)
+let filter_transitions_disjunct_two (ls: symbolic_transition list) (bs: participant list) (p: participant) (q: participant) : symbolic_transition list =
+   List.filter (fun tr -> List.mem tr.sender bs && tr.sender <> p) ls 
+
+let second_disjunct_from_transition (prot: symbolic_protocol) (tr: symbolic_transition) (bs: participant list) (p: participant) (q: participant) : string = 
+	let phi = substitute tr.predicate tr.comm_var "x" in 
+	"(" ^ 
+  "s = " ^ string_of_int tr.pre ^
+  " /\\ " ^  
+	"(exists (x: int). " ^ 
+	quantify_over_poststate_registers prot "exists" ^ " " ^ 
+	"sbavail_" ^ p ^ q ^ "_" ^ 
+	string_of_blocked_set (add_nonexistent tr.receiver bs) ^ " " ^ 
+	"x1 " ^ 
+	string_of_int tr.post ^ " " ^ 
+	List.fold_left (fun acc x -> acc ^ parenthesize (x ^ "'")) "" prot.registers ^
+	" /\\ " ^
+	string_of_formula phi ^ 
+	"))\n"
+
+let second_disjunct (prot: symbolic_protocol) (bs: participant list) (p: participant) (q: participant) : string = 
+  let transitions = filter_transitions_disjunct_two prot.transitions bs p q in 
+  List.fold_left (fun acc tr -> acc ^ " \\/ \n" ^ second_disjunct_from_transition prot tr bs p q) "false" transitions
+
+(* The third disjunct corresponds with the case where no new participant is blocked *)
+(* The third disjunct enumerates transitions where the sender is not blocked, and the signature is not p->_ *)
+let sender_not_blocked (prot: symbolic_protocol) (bs: participant list) (tr: symbolic_transition) : bool = 
+	let participants = get_participants prot in 
+	List.mem tr.sender participants && not (List.mem tr.sender bs)
+
+let filter_transitions_disjunct_three (prot: symbolic_protocol) (ls: symbolic_transition list) (bs: participant list) (p: participant) (q: participant) : symbolic_transition list =
+   List.filter (fun tr -> sender_not_blocked prot bs tr && tr.sender <> p) ls 
+
+let third_disjunct_from_transition (prot: symbolic_protocol) (tr: symbolic_transition) (bs: participant list) (p: participant) (q: participant) : string = 
+	let phi = substitute tr.predicate tr.comm_var "x" in 
+	"(" ^ 
+  "s = " ^ string_of_int tr.pre ^
+  " /\\ " ^  
+  "(exists (x: int). " ^ 
+	"(" ^
+	quantify_over_poststate_registers prot "exists" ^ " " ^ 
+	"sbavail_" ^ p ^ q ^ "_" ^ 
+	string_of_blocked_set bs ^ " " ^ 
+	"x1 " ^ 
+	string_of_int tr.post ^ " " ^ 
+	List.fold_left (fun acc x -> acc ^ parenthesize (x ^ "'")) "" prot.registers ^
+	" /\\ " ^
+	string_of_formula phi ^ 
+	")))\n"
+
+let third_disjunct (prot: symbolic_protocol) (bs: participant list) (p: participant) (q: participant) : string = 
+  let transitions = filter_transitions_disjunct_three prot prot.transitions bs p q in 
+  List.fold_left (fun acc tr -> acc ^ " \\/ \n" ^ third_disjunct_from_transition prot tr bs p q) "false" transitions
+
+(* The fourth disjunct corresponds with the case where no new participant is blocked *)
+(* The fourth disjunct enumerates transitions where the receiver is not blocked, and the signature is not _->q *)
+let receiver_not_blocked (prot: symbolic_protocol) (bs: participant list) (tr: symbolic_transition) : bool = 
+	let participants = get_participants prot in 
+	List.mem tr.receiver participants && not (List.mem tr.receiver bs)
+
+let filter_transitions_disjunct_four (prot: symbolic_protocol) (ls: symbolic_transition list) (bs: participant list) (p: participant) (q: participant) : symbolic_transition list =
+   List.filter (fun tr -> receiver_not_blocked prot bs tr && tr.receiver <> q) ls 
+
+let fourth_disjunct_from_transition (prot: symbolic_protocol) (tr: symbolic_transition) (bs: participant list) (p: participant) (q: participant) : string = 
+	let phi = substitute tr.predicate tr.comm_var "x" in 
+	"(" ^ 
+  "s = " ^ string_of_int tr.pre ^
+  " /\\ " ^  
+  "(exists (x: int). " ^ 
+	"(" ^
+	quantify_over_poststate_registers prot "exists" ^ " " ^ 
+	"sbavail_" ^ p ^ q ^ "_" ^ 
+	string_of_blocked_set bs ^ " " ^ 
+	"x1 " ^ 
+	string_of_int tr.post ^ " " ^ 
+	List.fold_left (fun acc x -> acc ^ parenthesize (x ^ "'")) "" prot.registers ^
+	" /\\ " ^
+	string_of_formula phi ^ 
+	")))\n"
+
+let fourth_disjunct (prot: symbolic_protocol) (bs: participant list) (p: participant) (q: participant) : string = 
+  let transitions = filter_transitions_disjunct_four prot prot.transitions bs p q in 
+  List.fold_left (fun acc tr -> acc ^ " \\/ \n" ^ fourth_disjunct_from_transition prot tr bs p q) "false" transitions
+
+
+(* The fifth disjunct eumerates all transitions with the signature p->q, when p is not blocked *)
+let filter_transitions_disjunct_five (ls: symbolic_transition list) (bs: participant list) (p: participant) (q: participant) = 
+	if List.mem p bs then [] else 
+	List.filter (fun tr -> tr.sender = p && tr.receiver = q) ls 
+
+let fifth_disjunct_from_transition (prot: symbolic_protocol) (tr: symbolic_transition) (bs: participant list) (p: participant) (q: participant) : string = 
+	let phi = substitute tr.predicate tr.comm_var "x1" in 
+	"(" ^ 
+  "s = " ^ string_of_int tr.pre ^
+  " /\\ " ^  
+  "(" ^
+	quantify_over_poststate_registers prot "exists" ^ " " ^ 
+	string_of_formula phi ^
+	"))\n"
+
+let fifth_disjunct (prot: symbolic_protocol) (bs: participant list) (p: participant) (q: participant) : string = 
+	let transitions = filter_transitions_disjunct_five prot.transitions bs p q in 
+  	List.fold_left (fun acc tr -> acc ^ " \\/ \n" ^ fifth_disjunct_from_transition prot tr bs p q) "false" transitions
+
+let generate_sbavail_for_participant_pair_and_blocked_set (prot: symbolic_protocol) (bs: participant list) (p: participant) (q: participant) : string = 
+  "sbavail_" ^ p ^ q ^ "_" ^ 
+  string_of_blocked_set bs ^ " " ^ 
+  "(x1: int) (s: int) " ^ 
+  all_registers prot ^ 
+  ": bool =mu " ^ 
+  "\n" ^
+  first_conjunct prot ^ 
+  "/\\ \n" ^
+  second_disjunct prot bs p q ^ 
+  "\\/ \n " ^ 
+  third_disjunct prot bs p q ^
+  "\\/ \n " ^ 
+  fourth_disjunct prot bs p q ^
+  "\\/ \n " ^ 
+  fifth_disjunct prot bs p q ^
+  ";"
+
+(* Optimization here: for a participant pair p q, we only generate avail predicates that include {q} in the blocked set *)
+let generate_sbavail_for_participant_pair (prot: symbolic_protocol) (p: participant) (q: participant) : string = 
+	let bs_list = all_participant_subsets_containing_participant prot q in 
+	List.fold_left (fun acc bs -> acc ^ "\n" ^ generate_sbavail_for_participant_pair_and_blocked_set prot bs p q) "" bs_list
